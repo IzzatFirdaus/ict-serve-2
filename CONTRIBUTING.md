@@ -65,7 +65,7 @@ Use lowercase, hyphens to separate words, and keep names descriptive but short.
 - Add a body with more details and linked issues when necessary.
 - Example:
 
-  ```
+  ```git
   feat(auth): add login form and remember-me option
 
   - Add login form component
