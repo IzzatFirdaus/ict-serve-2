@@ -1,3 +1,5 @@
+    // Allowed locales for language switcher
+    'allowed_locales' => ['en', 'ms'],
 <?php
 
 return [
