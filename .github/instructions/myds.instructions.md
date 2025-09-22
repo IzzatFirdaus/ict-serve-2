@@ -6,11 +6,11 @@ applyTo: '**'
 
 _Last updated: September 2025_
 
-- Always reference project documentation for MYDS usage, implementation, and best practices:  
-  - `MYDS-Design-Overview.md`  
-  - `MYDS-Colour-Reference.md`  
-  - `MYDS-Icons-Overview.md`  
-  - Any relevant repo files in `resources/views/components/myds/`
+- Always reference project documentation for MYDS usage, implementation, and best practices:
+    - `MYDS-Design-Overview.md`
+    - `MYDS-Colour-Reference.md`
+    - `MYDS-Icons-Overview.md`
+    - Any relevant repo files in `resources/views/components/myds/`
 - Do not rely on prior knowledge or training data for MYDS components, tokens, or UI patterns; always follow the current project documentation and implementation.
 - For any component, pattern, or MYDS-related question, consult the above documentation and existing project usage first. Default to the most accessible and MYDS-compliant solution.
 

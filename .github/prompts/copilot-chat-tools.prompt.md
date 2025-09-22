@@ -11,11 +11,11 @@ This prompt enforces strict tool usage for GitHub Copilot Chat interactions in t
 **You MUST:**
 
 - Use the following tools and workflows when processing any request:
-  - **sequentialthinking**: Always start by using this tool to plan your approach or solution step-by-step before coding or explaining.
-  - **laravel-boost**: For any code generation, refactoring, or architecture questions regarding the Laravel framework, use this tool for canonical guidance and best practices.
-  - **context7**: Use this tool to retrieve and reference documentation, implementation details, or other information from within the repository's codebase or markdown files.
-  - **firecrawl**: Use this tool to crawl and extract relevant information from external web pages when the answer requires current or supplemental info not found in the local repository.
-  - **playwright-mcp-server**: Use this tool for UI/feature testing, browser automation, and test validation. All automated browser tests must be performed and validated via the Playwright MCP Server instance configured for this project.
+    - **sequentialthinking**: Always start by using this tool to plan your approach or solution step-by-step before coding or explaining.
+    - **laravel-boost**: For any code generation, refactoring, or architecture questions regarding the Laravel framework, use this tool for canonical guidance and best practices.
+    - **context7**: Use this tool to retrieve and reference documentation, implementation details, or other information from within the repository's codebase or markdown files.
+    - **firecrawl**: Use this tool to crawl and extract relevant information from external web pages when the answer requires current or supplemental info not found in the local repository.
+    - **playwright-mcp-server**: Use this tool for UI/feature testing, browser automation, and test validation. All automated browser tests must be performed and validated via the Playwright MCP Server instance configured for this project.
 
 **General Rules:**
 

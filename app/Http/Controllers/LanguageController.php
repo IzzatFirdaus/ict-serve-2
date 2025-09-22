@@ -13,6 +13,7 @@ class LanguageController extends Controller
             session(['locale' => $lang]);
             app()->setLocale($lang);
         }
+
         return redirect()->back();
     }
 }
