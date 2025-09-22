@@ -1,6 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const test_1 = require("@playwright/test");
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+const test_1 = require('@playwright/test');
 test_1.test.describe('ICTServe landing page', () => {
     test_1.test.beforeEach(async ({ page }) => {
         await page.goto('/');

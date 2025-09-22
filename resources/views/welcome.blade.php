@@ -38,12 +38,12 @@
             referrerpolicy="no-referrer"
         />
     </head>
-    <body class="bg-washed text-black-900 font-sans antialiased min-h-screen flex flex-col">
+    <body class="bg-washed text-black-900 flex min-h-screen flex-col font-sans antialiased">
         <!-- Skip to main content for accessibility (MYDS) -->
         <a href="#main-content" class="skip-link">Langkau ke kandungan utama</a>
         <!-- Header -->
-        <header class="w-full bg-white shadow-md border-b border-otl-divider sticky top-0 z-40">
-            <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3">
+        <header class="border-otl-divider sticky top-0 z-40 w-full border-b bg-white shadow-md">
+            <div class="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-3">
                 <div class="flex items-center gap-3">
                     <!-- MOTAC Logo JPEG (MYDS: height 40px, width auto, alt text) -->
                     <img
@@ -53,21 +53,21 @@
                         style="height: 40px; width: auto; max-width: 160px; object-fit: contain"
                     />
                     <span
-                        class="ml-2 text-xl font-poppins font-bold text-primary-600 tracking-wide"
+                        class="font-poppins text-primary-600 ml-2 text-xl font-bold tracking-wide"
                     >
                         ICTServe
-                        <span class="font-normal text-black-700">(iServe)</span>
+                        <span class="text-black-700 font-normal">(iServe)</span>
                     </span>
                 </div>
-                <nav class="flex-1 flex items-center justify-end gap-6" aria-label="Navigasi utama">
+                <nav class="flex flex-1 items-center justify-end gap-6" aria-label="Navigasi utama">
                     <x-myds.language-switcher />
                     <a
                         href="{{ route('login') }}"
-                        class="text-sm font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-primary-300 flex items-center gap-1"
+                        class="focus:ring-primary-300 flex items-center gap-1 text-sm font-medium hover:underline focus:ring-2 focus:outline-none"
                     >
                         <!-- Bootstrap Icons person-circle -->
                         <i
-                            class="bi bi-person-circle text-primary-600 w-6 h-6 flex-shrink-0"
+                            class="bi bi-person-circle text-primary-600 h-6 w-6 flex-shrink-0"
                             aria-hidden="true"
                             role="img"
                             aria-label="Log Masuk"
@@ -76,11 +76,11 @@
                     </a>
                     <a
                         href="#about"
-                        class="text-sm font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-primary-300 flex items-center gap-1"
+                        class="focus:ring-primary-300 flex items-center gap-1 text-sm font-medium hover:underline focus:ring-2 focus:outline-none"
                     >
                         <!-- Bootstrap Icons info-circle -->
                         <i
-                            class="bi bi-info-circle text-primary-600 w-6 h-6 flex-shrink-0"
+                            class="bi bi-info-circle text-primary-600 h-6 w-6 flex-shrink-0"
                             aria-hidden="true"
                             role="img"
                             aria-label="Tentang"
@@ -89,11 +89,11 @@
                     </a>
                     <a
                         href="#contact"
-                        class="text-sm font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-primary-300 flex items-center gap-1"
+                        class="focus:ring-primary-300 flex items-center gap-1 text-sm font-medium hover:underline focus:ring-2 focus:outline-none"
                     >
                         <!-- Bootstrap Icons telephone -->
                         <i
-                            class="bi bi-telephone text-primary-600 w-6 h-6 flex-shrink-0"
+                            class="bi bi-telephone text-primary-600 h-6 w-6 flex-shrink-0"
                             aria-hidden="true"
                             role="img"
                             aria-label="Hubungi"
@@ -106,13 +106,13 @@
 
         <!-- Phase Banner (optional) -->
         <div
-            class="bg-warning-50 py-2 border-b border-warning-200 text-warning-700 text-center text-xs font-medium"
+            class="bg-warning-50 border-warning-200 text-warning-700 border-b py-2 text-center text-xs font-medium"
             role="status"
         >
-            <span class="inline-block bg-warning-200 text-warning-900 rounded px-2 py-1 mr-2">
+            <span class="bg-warning-200 text-warning-900 mr-2 inline-block rounded px-2 py-1">
                 <!-- Bootstrap Icons exclamation-triangle -->
                 <i
-                    class="bi bi-exclamation-triangle w-4 h-4 mr-1 align-middle flex-shrink-0"
+                    class="bi bi-exclamation-triangle mr-1 h-4 w-4 flex-shrink-0 align-middle"
                     aria-hidden="true"
                     role="img"
                     aria-label="Beta"
@@ -128,32 +128,32 @@
         <main
             id="main-content"
             tabindex="-1"
-            class="flex-1 flex flex-col items-center justify-center px-4 py-8 bg-washed"
+            class="bg-washed flex flex-1 flex-col items-center justify-center px-4 py-8"
         >
             <!-- Hero Section -->
-            <section class="w-full max-w-4xl mx-auto text-center mb-12">
+            <section class="mx-auto mb-12 w-full max-w-4xl text-center">
                 <h1
-                    class="font-poppins text-4xl sm:text-5xl font-bold text-primary-600 mb-4 drop-shadow"
+                    class="font-poppins text-primary-600 mb-4 text-4xl font-bold drop-shadow sm:text-5xl"
                     style="letter-spacing: -1px"
                 >
                     Selamat Datang ke ICTServe
-                    <span class="font-normal text-black-700">(iServe)</span>
+                    <span class="text-black-700 font-normal">(iServe)</span>
                 </h1>
-                <p class="text-lg sm:text-xl text-black-700 mb-4 font-medium">
+                <p class="text-black-700 mb-4 text-lg font-medium sm:text-xl">
                     Pusat Pengurusan Pinjaman &amp; Sokongan ICT MOTAC
                 </p>
-                <p class="text-base sm:text-lg text-gray-600 mb-8">
+                <p class="mb-8 text-base text-gray-600 sm:text-lg">
                     Semua permohonan pinjaman peralatan ICT dan aduan kerosakan kini dalam satu
                     sistem digital – mesra rakyat, telus, dan pantas.
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <div class="flex flex-col justify-center gap-4 sm:flex-row">
                     <a
                         href="{{ route('login') }}"
-                        class="inline-flex items-center justify-center px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg shadow-button hover:bg-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 transition easeoutback-short text-base"
+                        class="bg-primary-600 shadow-button hover:bg-primary-700 focus-visible:ring-primary-400 easeoutback-short inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white transition focus:outline-none focus-visible:ring-2"
                     >
                         <!-- Bootstrap Icons arrow-right -->
                         <i
-                            class="bi bi-arrow-right w-5 h-5 mr-2 -ml-1 flex-shrink-0"
+                            class="bi bi-arrow-right mr-2 -ml-1 h-5 w-5 flex-shrink-0"
                             aria-hidden="true"
                             role="img"
                             aria-label="Log Masuk"
@@ -162,11 +162,11 @@
                     </a>
                     <a
                         href="#panduan"
-                        class="inline-flex items-center justify-center px-6 py-3 border border-primary-300 text-primary-600 bg-white font-semibold rounded-lg shadow-button hover:bg-primary-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 transition easeoutback-short text-base"
+                        class="border-primary-300 text-primary-600 shadow-button hover:bg-primary-50 focus-visible:ring-primary-400 easeoutback-short inline-flex items-center justify-center rounded-lg border bg-white px-6 py-3 text-base font-semibold transition focus:outline-none focus-visible:ring-2"
                     >
                         <!-- Bootstrap Icons book -->
                         <i
-                            class="bi bi-book w-5 h-5 mr-2 -ml-1 flex-shrink-0"
+                            class="bi bi-book mr-2 -ml-1 h-5 w-5 flex-shrink-0"
                             aria-hidden="true"
                             role="img"
                             aria-label="Panduan Pengguna"
@@ -178,32 +178,32 @@
 
             <!-- Quick Info Cards -->
             <section
-                class="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10"
+                class="mb-10 grid w-full max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
             >
                 <!-- ICT Loan Card -->
                 <div
-                    class="bg-white rounded-xl shadow-card border border-otl-divider p-6 flex flex-col items-center text-center"
+                    class="shadow-card border-otl-divider flex flex-col items-center rounded-xl border bg-white p-6 text-center"
                 >
                     <i
-                        class="bi bi-folder w-10 h-10 mb-3 text-primary-600 mx-auto"
+                        class="bi bi-folder text-primary-600 mx-auto mb-3 h-10 w-10"
                         aria-hidden="true"
                         role="img"
                         aria-label="Pinjaman ICT"
                     ></i>
-                    <h2 class="font-poppins text-lg font-semibold text-primary-700 mb-2">
+                    <h2 class="font-poppins text-primary-700 mb-2 text-lg font-semibold">
                         Pinjaman ICT
                     </h2>
-                    <p class="text-sm text-black-700 mb-4">
+                    <p class="text-black-700 mb-4 text-sm">
                         Permohonan pinjaman laptop, projektor, dan peralatan ICT secara digital dan
                         telus.
                     </p>
                     <a
                         href="#loan-info"
-                        class="inline-flex items-center text-primary-600 font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-primary-300 transition"
+                        class="text-primary-600 focus:ring-primary-300 inline-flex items-center font-medium transition hover:underline focus:ring-2 focus:outline-none"
                     >
                         Maklumat Lanjut
                         <i
-                            class="bi bi-chevron-right ml-1 w-4 h-4"
+                            class="bi bi-chevron-right ml-1 h-4 w-4"
                             aria-hidden="true"
                             role="img"
                             aria-label="Maklumat Lanjut"
@@ -213,27 +213,27 @@
 
                 <!-- Helpdesk Card -->
                 <div
-                    class="bg-white rounded-xl shadow-card border border-otl-divider p-6 flex flex-col items-center text-center"
+                    class="shadow-card border-otl-divider flex flex-col items-center rounded-xl border bg-white p-6 text-center"
                 >
                     <i
-                        class="bi bi-chat-dots w-10 h-10 mb-3 text-success-600 mx-auto"
+                        class="bi bi-chat-dots text-success-600 mx-auto mb-3 h-10 w-10"
                         aria-hidden="true"
                         role="img"
                         aria-label="Helpdesk ICT"
                     ></i>
-                    <h2 class="font-poppins text-lg font-semibold text-success-700 mb-2">
+                    <h2 class="font-poppins text-success-700 mb-2 text-lg font-semibold">
                         Helpdesk ICT
                     </h2>
-                    <p class="text-sm text-black-700 mb-4">
+                    <p class="text-black-700 mb-4 text-sm">
                         Lapor masalah ICT, pantau status tiket dan terima bantuan profesional BPM.
                     </p>
                     <a
                         href="#helpdesk-info"
-                        class="inline-flex items-center text-primary-600 font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-primary-300 transition"
+                        class="text-primary-600 focus:ring-primary-300 inline-flex items-center font-medium transition hover:underline focus:ring-2 focus:outline-none"
                     >
                         Maklumat Lanjut
                         <i
-                            class="bi bi-chevron-right ml-1 w-4 h-4"
+                            class="bi bi-chevron-right ml-1 h-4 w-4"
                             aria-hidden="true"
                             role="img"
                             aria-label="Maklumat Lanjut"
@@ -243,28 +243,28 @@
 
                 <!-- Compliance Card -->
                 <div
-                    class="bg-white rounded-xl shadow-card border border-otl-divider p-6 flex flex-col items-center text-center"
+                    class="shadow-card border-otl-divider flex flex-col items-center rounded-xl border bg-white p-6 text-center"
                 >
                     <i
-                        class="bi bi-shield-check w-10 h-10 mb-3 text-warning-600 mx-auto"
+                        class="bi bi-shield-check text-warning-600 mx-auto mb-3 h-10 w-10"
                         aria-hidden="true"
                         role="img"
                         aria-label="Pematuhan MYDS &amp; MyGovEA"
                     ></i>
-                    <h2 class="font-poppins text-lg font-semibold text-warning-700 mb-2">
+                    <h2 class="font-poppins text-warning-700 mb-2 text-lg font-semibold">
                         Pematuhan MYDS &amp; MyGovEA
                     </h2>
-                    <p class="text-sm text-black-700 mb-4">
+                    <p class="text-black-700 mb-4 text-sm">
                         Reka bentuk mematuhi piawaian Malaysia Government Design System &amp; 18
                         Prinsip MyGovEA.
                     </p>
                     <a
                         href="#compliance"
-                        class="inline-flex items-center text-primary-600 font-medium hover:underline focus:outline-none focus:ring-2 focus:ring-primary-300 transition"
+                        class="text-primary-600 focus:ring-primary-300 inline-flex items-center font-medium transition hover:underline focus:ring-2 focus:outline-none"
                     >
                         Ketahui Lagi
                         <i
-                            class="bi bi-chevron-right ml-1 w-4 h-4 flex-shrink-0"
+                            class="bi bi-chevron-right ml-1 h-4 w-4 flex-shrink-0"
                             aria-hidden="true"
                             role="img"
                             aria-label="Ketahui Lagi"
@@ -274,64 +274,64 @@
             </section>
 
             <!-- How It Works / Manfaat Section -->
-            <section id="how-it-works" class="w-full max-w-4xl mx-auto mb-10">
-                <h2 class="font-poppins text-2xl font-semibold text-primary-700 mb-6 text-center">
+            <section id="how-it-works" class="mx-auto mb-10 w-full max-w-4xl">
+                <h2 class="font-poppins text-primary-700 mb-6 text-center text-2xl font-semibold">
                     Bagaimana ICTServe Berfungsi
                 </h2>
-                <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+                <ol class="grid grid-cols-1 gap-4 text-center sm:grid-cols-2 lg:grid-cols-4">
                     <li
-                        class="flex flex-col items-center bg-white rounded-lg p-5 shadow-card border border-otl-divider"
+                        class="shadow-card border-otl-divider flex flex-col items-center rounded-lg border bg-white p-5"
                     >
                         <i
-                            class="bi bi-journal w-8 h-8 mb-2 text-primary-600 icon-myds mx-auto"
+                            class="bi bi-journal text-primary-600 icon-myds mx-auto mb-2 h-8 w-8"
                             aria-hidden="true"
                             role="img"
                             aria-label="Isi Borang"
                         ></i>
-                        <span class="font-medium text-black-900">Isi Borang</span>
-                        <span class="text-xs text-black-700 mt-1">
+                        <span class="text-black-900 font-medium">Isi Borang</span>
+                        <span class="text-black-700 mt-1 text-xs">
                             Permohonan pinjaman atau aduan ICT secara digital
                         </span>
                     </li>
                     <li
-                        class="flex flex-col items-center bg-white rounded-lg p-5 shadow-card border border-otl-divider"
+                        class="shadow-card border-otl-divider flex flex-col items-center rounded-lg border bg-white p-5"
                     >
                         <i
-                            class="bi bi-patch-check w-8 h-8 mb-2 text-success-600 icon-myds mx-auto"
+                            class="bi bi-patch-check text-success-600 icon-myds mx-auto mb-2 h-8 w-8"
                             aria-hidden="true"
                             role="img"
                             aria-label="Kelulusan / Tindakan"
                         ></i>
-                        <span class="font-medium text-black-900">Kelulusan / Tindakan</span>
-                        <span class="text-xs text-black-700 mt-1">
+                        <span class="text-black-900 font-medium">Kelulusan / Tindakan</span>
+                        <span class="text-black-700 mt-1 text-xs">
                             Permohonan disemak &amp; diluluskan pegawai
                         </span>
                     </li>
                     <li
-                        class="flex flex-col items-center bg-white rounded-lg p-5 shadow-card border border-otl-divider"
+                        class="shadow-card border-otl-divider flex flex-col items-center rounded-lg border bg-white p-5"
                     >
                         <i
-                            class="bi bi-folder w-8 h-8 mb-2 text-warning-600 icon-myds mx-auto"
+                            class="bi bi-folder text-warning-600 icon-myds mx-auto mb-2 h-8 w-8"
                             aria-hidden="true"
                             role="img"
                             aria-label="Ambil / Pulang Peralatan"
                         ></i>
-                        <span class="font-medium text-black-900">Ambil / Pulang Peralatan</span>
-                        <span class="text-xs text-black-700 mt-1">
+                        <span class="text-black-900 font-medium">Ambil / Pulang Peralatan</span>
+                        <span class="text-black-700 mt-1 text-xs">
                             Urusan fizikal di BPM dengan rekod digital
                         </span>
                     </li>
                     <li
-                        class="flex flex-col items-center bg-white rounded-lg p-5 shadow-card border border-otl-divider"
+                        class="shadow-card border-otl-divider flex flex-col items-center rounded-lg border bg-white p-5"
                     >
                         <i
-                            class="bi bi-list w-8 h-8 mb-2 text-primary-700 icon-myds mx-auto"
+                            class="bi bi-list text-primary-700 icon-myds mx-auto mb-2 h-8 w-8"
                             aria-hidden="true"
                             role="img"
                             aria-label="Jejak Status"
                         ></i>
-                        <span class="font-medium text-black-900">Jejak Status</span>
-                        <span class="text-xs text-black-700 mt-1">
+                        <span class="text-black-900 font-medium">Jejak Status</span>
+                        <span class="text-black-700 mt-1 text-xs">
                             Pantau status permohonan &amp; tiket secara masa nyata
                         </span>
                     </li>
@@ -340,9 +340,9 @@
         </main>
 
         <!-- Footer -->
-        <footer class="bg-white border-t border-otl-divider mt-auto py-4">
+        <footer class="border-otl-divider mt-auto border-t bg-white py-4">
             <div
-                class="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 gap-4"
+                class="mx-auto flex max-w-screen-xl flex-col items-center justify-between gap-4 px-4 md:flex-row"
             >
                 <div class="flex items-center gap-2">
                     <img
@@ -351,72 +351,72 @@
                         class="h-10 w-auto"
                         style="height: 40px; width: auto; max-width: 160px; object-fit: contain"
                     />
-                    <span class="text-xs text-black-700">Bahagian Pengurusan Maklumat (BPM)</span>
+                    <span class="text-black-700 text-xs">Bahagian Pengurusan Maklumat (BPM)</span>
                 </div>
-                <div class="text-xs text-gray-500 text-center">
+                <div class="text-center text-xs text-gray-500">
                     &copy;
                     <span id="year"></span>
                     Hakcipta Terpelihara, Kementerian Pelancongan, Seni dan Budaya Malaysia
                 </div>
-                <div class="flex gap-3 footer-social">
+                <div class="footer-social flex gap-3">
                     <a
                         href="https://facebook.com/motacmalaysia"
                         aria-label="Facebook"
                         target="_blank"
                         rel="noopener"
-                        class="text-primary-600 hover:text-primary-800 focus:outline-none focus:ring-2 focus:ring-primary-300"
+                        class="text-primary-600 hover:text-primary-800 focus:ring-primary-300 focus:ring-2 focus:outline-none"
                     >
-                        <i class="fab fa-facebook w-6 h-6" aria-hidden="true"></i>
+                        <i class="fab fa-facebook h-6 w-6" aria-hidden="true"></i>
                     </a>
                     <a
                         href="https://x.com/motacmalaysia"
                         aria-label="X (Twitter)"
                         target="_blank"
                         rel="noopener"
-                        class="text-primary-600 hover:text-primary-800 focus:outline-none focus:ring-2 focus:ring-primary-300"
+                        class="text-primary-600 hover:text-primary-800 focus:ring-primary-300 focus:ring-2 focus:outline-none"
                     >
-                        <i class="fab fa-x-twitter w-6 h-6" aria-hidden="true"></i>
+                        <i class="fab fa-x-twitter h-6 w-6" aria-hidden="true"></i>
                     </a>
                     <a
                         href="https://instagram.com/motacmalaysia"
                         aria-label="Instagram"
                         target="_blank"
                         rel="noopener"
-                        class="text-primary-600 hover:text-primary-800 focus:outline-none focus:ring-2 focus:ring-primary-300"
+                        class="text-primary-600 hover:text-primary-800 focus:ring-primary-300 focus:ring-2 focus:outline-none"
                     >
-                        <i class="fab fa-instagram w-6 h-6" aria-hidden="true"></i>
+                        <i class="fab fa-instagram h-6 w-6" aria-hidden="true"></i>
                     </a>
                     <a
                         href="https://youtube.com/motacmalaysia"
                         aria-label="YouTube"
                         target="_blank"
                         rel="noopener"
-                        class="text-primary-600 hover:text-primary-800 focus:outline-none focus:ring-2 focus:ring-primary-300"
+                        class="text-primary-600 hover:text-primary-800 focus:ring-primary-300 focus:ring-2 focus:outline-none"
                     >
-                        <i class="fab fa-youtube w-6 h-6" aria-hidden="true"></i>
+                        <i class="fab fa-youtube h-6 w-6" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
             <div
-                class="max-w-screen-xl mx-auto flex flex-wrap items-center justify-center gap-4 px-4 pt-2 text-xs"
+                class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-center gap-4 px-4 pt-2 text-xs"
             >
                 <a
                     href="#privacy"
-                    class="text-gray-500 hover:underline focus:outline-none focus:ring-2 focus:ring-primary-300"
+                    class="focus:ring-primary-300 text-gray-500 hover:underline focus:ring-2 focus:outline-none"
                 >
                     Dasar Privasi
                 </a>
                 <span class="text-gray-300">|</span>
                 <a
                     href="#terms"
-                    class="text-gray-500 hover:underline focus:outline-none focus:ring-2 focus:ring-primary-300"
+                    class="focus:ring-primary-300 text-gray-500 hover:underline focus:ring-2 focus:outline-none"
                 >
                     Terma Penggunaan
                 </a>
                 <span class="text-gray-300">|</span>
                 <a
                     href="#accessibility"
-                    class="text-gray-500 hover:underline focus:outline-none focus:ring-2 focus:ring-primary-300"
+                    class="focus:ring-primary-300 text-gray-500 hover:underline focus:ring-2 focus:outline-none"
                 >
                     Kenyataan Kebolehcapaian
                 </a>
