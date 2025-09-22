@@ -1,0 +1,8 @@
+# Ignore built and vendor files
+public/css/
+node_modules/
+.vendor/
+
+# Ignore any generated CSS in storage or build folders
+storage/
+.build/

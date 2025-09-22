@@ -1,0 +1,32 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.55.0",
+        "@tailwindcss/vite": "^4.0.0",
+        "@types/node": "^24.5.2",
+        "autoprefixer": "^10.4.21",
+        "axios": "^1.7.4",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^1.2.0",
+        "playwright": "^1.55.0",
+        "postcss": "^8.5.6",
+        "prettier": "^3.6.2",
+        "prettier-plugin-blade": "^2.1.21",
+        "stylelint": "^16.24.0",
+        "stylelint-config-prettier": "^9.0.5",
+        "stylelint-config-standard": "^39.0.0",
+        "stylelint-config-tailwindcss": "^1.0.0",
+        "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
+        "stylelint-order": "^6.0.3",
+        "tailwindcss": "^4.1.13",
+        "vite": "^6.0.11"
+    },
+    "dependencies": {
+        "sweetalert2": "^11.23.0"
+    }
+}
