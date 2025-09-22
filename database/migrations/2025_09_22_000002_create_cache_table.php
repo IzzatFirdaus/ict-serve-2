@@ -1,12 +1,9 @@
-<?php
-<<<<<<< HEAD:database/migrations/0001_01_01_000001_create_cache_table.php
-=======
 
+<?php
 /**
  * Migration: Create cache and cache_locks tables for Laravel cache system.
  * Follows Laravel 12 conventions for database cache driver and distributed locks.
  */
->>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000002_create_cache_table.php
 
 /**
  * Migration: Create cache and cache_locks tables for Laravel cache system.
