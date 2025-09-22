@@ -1,5 +1,7 @@
 # Malaysia Government Design System (MYDS) Overview
 
+> Repository guidance: see `./.github/instructions/myds.instructions.md` for project-specific AI & developer instructions and the recommended fetch workflow for live MYDS docs.
+
 ## Introduction to MYDS
 
 As digital government services become more widely used, maintaining high-quality, accessible platforms is essential. The **Malaysia Government Design System (MYDS)** supports this goal by providing standard tools, templates, and guidelines that enable agencies to build fast, user-friendly, and consistent digital services.
