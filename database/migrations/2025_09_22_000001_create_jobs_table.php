@@ -1,4 +1,12 @@
 <?php
+<<<<<<< HEAD:database/migrations/0001_01_01_000002_create_jobs_table.php
+=======
+
+/**
+ * Migration: Create jobs, job_batches, and failed_jobs tables for Laravel queue system.
+ * Follows Laravel 12 conventions and supports queue, batch, and failed job tracking.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000001_create_jobs_table.php
 
 /**
  * Migration: Create jobs, job_batches, and failed_jobs tables for Laravel queue system.

@@ -1,4 +1,12 @@
 <?php
+<<<<<<< HEAD:database/migrations/2025_09_22_000012_create_loan_transaction_items_table.php
+=======
+
+/**
+ * Migration for loan_transaction_items table.
+ * Individual equipment items involved in a transaction.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000015_create_loan_transaction_items_table.php
 
 /**
  * Migration for loan_transaction_items table.
@@ -13,8 +21,6 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('loan_transaction_items', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('loan_transaction_id')->index();
             $table->unsignedBigInteger('equipment_id')->nullable()->index();
             $table->enum('status', ['issued', 'returned_good', 'returned_damaged', 'reported_lost'])->default('issued')->index();

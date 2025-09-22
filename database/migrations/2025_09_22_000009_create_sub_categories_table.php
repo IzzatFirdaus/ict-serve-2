@@ -1,4 +1,13 @@
 <?php
+<<<<<<< HEAD:database/migrations/2025_09_22_000006_create_sub_categories_table.php
+=======
+
+/**
+ * Migration for sub_categories table.
+ * Stores sub-categories linked to equipment categories for ICTServe (iServe).
+ * Follows Laravel 12 conventions and best practices.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000009_create_sub_categories_table.php
 
 /**
  * Migration for sub_categories table.

@@ -1,4 +1,13 @@
 <?php
+<<<<<<< HEAD
+=======
+
+/**
+ * Migration: Create positions table for ICTServe (iServe) system.
+ * Includes id, name, grade_id, description, is_active, audit fields.
+ * Follows Laravel 12 conventions and robust auditability.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe))
 
 /**
  * Migration: Create positions table for ICTServe (iServe) system.

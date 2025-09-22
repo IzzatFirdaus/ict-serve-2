@@ -1,4 +1,12 @@
 <?php
+<<<<<<< HEAD:database/migrations/2025_09_22_000019_create_settings_table.php
+=======
+
+/**
+ * Migration for settings table.
+ * Stores application key/value settings as JSON.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000022_create_settings_table.php
 
 /**
  * Migration for settings table.

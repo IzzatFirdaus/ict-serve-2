@@ -1,4 +1,12 @@
 <?php
+<<<<<<< HEAD:database/migrations/2025_09_22_000016_create_helpdesk_comments_table.php
+=======
+
+/**
+ * Migration for helpdesk_comments table.
+ * Comments attached to helpdesk tickets; supports internal notes.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000019_create_helpdesk_comments_table.php
 
 /**
  * Migration for helpdesk_comments table.
