@@ -1,10 +1,14 @@
 <?php
+/**
+ * Migration: Create grades table for ICTServe (iServe) system.
+ * Includes id, name, level, min_approval_grade_id, is_approver_grade, audit fields.
+ * Follows Laravel 12 conventions and robust auditability.
+ */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-// Migration: Create grades table for user grade levels
 return new class extends Migration
 {
     /**
@@ -18,14 +22,15 @@ return new class extends Migration
             $table->integer('level');
             $table->unsignedBigInteger('min_approval_grade_id')->nullable();
             $table->boolean('is_approver_grade')->default(false);
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->unsignedBigInteger('deleted_by')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable()->index();
+            $table->unsignedBigInteger('updated_by')->nullable()->index();
+            $table->unsignedBigInteger('deleted_by')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('min_approval_grade_id')->references('id')->on('grades')->nullOnDelete();
-            // audit user foreign keys will be added later in a post-users migration
+            // Foreign keys
+            $table->foreign('min_approval_grade_id')->references('id')->on('grades')->onDelete('set null');
+            // Audit user foreign keys removed to avoid circular dependency
         });
     }
 

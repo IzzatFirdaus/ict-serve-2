@@ -1,10 +1,14 @@
 <?php
+/**
+ * Migration for locations table.
+ * Stores physical locations for equipment and loan operations.
+ * Follows Laravel 12 conventions and best practices.
+ */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-// Migration: Create locations table for physical locations
 return new class extends Migration
 {
     /**
@@ -18,14 +22,13 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
-            $table->boolean('is_active')->default(true);
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->unsignedBigInteger('deleted_by')->nullable();
+            $table->boolean('is_active')->default(true)->index();
+            $table->unsignedBigInteger('created_by')->nullable()->index();
+            $table->unsignedBigInteger('updated_by')->nullable()->index();
+            $table->unsignedBigInteger('deleted_by')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();
-
-            // audit user foreign keys will be added later in a post-users migration
+            $table->comment('Stores physical locations for equipment and loan operations.');
         });
     }
 

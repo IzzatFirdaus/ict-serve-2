@@ -1,4 +1,8 @@
 <?php
+/**
+ * Migration: Create cache and cache_locks tables for Laravel cache system.
+ * Follows Laravel 12 conventions for database cache driver and distributed locks.
+ */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
