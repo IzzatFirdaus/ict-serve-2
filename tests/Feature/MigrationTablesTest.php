@@ -11,7 +11,7 @@ class MigrationTablesTest extends TestCase
     {
         $this->assertTrue(Schema::hasTable('audit_logs'), 'audit_logs table does not exist');
 
-        $expectedColumns = ['id','auditable_type','auditable_id','event','old_values','new_values','user_id','created_at','updated_at'];
+        $expectedColumns = ['id', 'auditable_type', 'auditable_id', 'event', 'old_values', 'new_values', 'user_id', 'created_at', 'updated_at'];
 
         foreach ($expectedColumns as $col) {
             $this->assertTrue(Schema::hasColumn('audit_logs', $col), "Column {$col} not found in audit_logs");
