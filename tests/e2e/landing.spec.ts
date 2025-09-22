@@ -23,7 +23,7 @@ test.describe('ICTServe landing page', () => {
     });
 
     test('hero CTA navigates to login fallback', async ({ page }) => {
-        const cta = page.locator('a', { hasText: 'Log Masuk' });
+        const cta = page.locator('#main-content a[href="/login"]');
         await expect(cta).toBeVisible();
         await cta.click();
         await expect(page).toHaveURL(/login/);

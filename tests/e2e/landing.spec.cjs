@@ -21,7 +21,7 @@ test_1.test.describe('ICTServe landing page', () => {
         await (0, test_1.expect)(main).toBeFocused();
     });
     (0, test_1.test)('hero CTA navigates to login fallback', async ({ page }) => {
-        const cta = page.locator('a', { hasText: 'Log Masuk' });
+        const cta = page.locator('#main-content a', { hasText: 'Log Masuk' });
         await (0, test_1.expect)(cta).toBeVisible();
         await cta.click();
         await (0, test_1.expect)(page).toHaveURL(/login/);
