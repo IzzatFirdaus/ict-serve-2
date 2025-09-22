@@ -1,4 +1,3 @@
-
 import './bootstrap';
 
 import { showSwal } from './swal';
