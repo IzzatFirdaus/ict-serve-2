@@ -3,7 +3,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "format:blade": "prettier --plugin=prettier-plugin-blade --write \"resources/views/**/*.blade.php\""
     },
     "devDependencies": {
         "@playwright/test": "^1.55.0",
