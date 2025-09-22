@@ -25,6 +25,20 @@ body {
     background-color: #f8f9fa;
 }
 
+/* MYDS semantic token variables */
+:root {
+    --myds-primary-600: #2563eb;
+    --myds-primary-500: #3a75f6;
+    --myds-primary-400: #6394ff;
+    --myds-success-700: #15803d;
+    --myds-danger-600: #dc2626;
+    --myds-warning-700: #a16207;
+    --myds-washed: #f4f4f5;
+    --myds-contrast: #fff;
+    --myds-dialog: #fff;
+    --myds-gray-50: #fafafa;
+}
+
 /* =========================================================================
    2. MYDS Grid Layout Helper Classes (12-8-4)
    ========================================================================= */
@@ -59,15 +73,15 @@ body {
 
 /* Background tokens */
 .bg-primary-600 {
-    background-color: #2563eb !important;
+    background-color: var(--myds-primary-600) !important;
 }
 
 .bg-primary-500 {
-    background-color: #3a75f6 !important;
+    background-color: var(--myds-primary-500) !important;
 }
 
 .bg-primary-400 {
-    background-color: #6394ff !important;
+    background-color: var(--myds-primary-400) !important;
 }
 
 .bg-success-700 {
