@@ -1,106 +1,180 @@
-# Contributing
+# Sumbangan / Contributing
 
-Thank you for contributing to ICTServe (iServe). This document describes the branch rules, branch purposes, pull request process, commit message guidelines, and common conventions for this repository.
+Terima kasih kerana berminat untuk menyumbang kepada ICTServe (iServe). Dokumen ini menerangkan peraturan cawangan (branch), tujuan setiap cawangan, proses Pull Request, garis panduan mesej commit, dan konvensyen umum untuk repositori ini.
 
-## Branch rules & purposes
+*Thank you for your interest in contributing to ICTServe (iServe). This document explains branch rules, the purpose of each branch, the Pull Request process, commit message guidelines, and general conventions for this repository.*
 
-We use a hybrid of Gitflow and Feature Branch workflow. Branches in this repository and their purposes:
+## Peraturan & Tujuan Cawangan (Branch Rules & Purposes)
+
+Kami menggunakan gabungan aliran kerja Gitflow dan Feature Branch. Berikut adalah cawangan utama dan tujuannya:
+
+*We use a hybrid of Gitflow and Feature Branch workflows. Below are the main branches and their purposes:*
 
 - `master`
-  - Purpose: Canonical default branch. Always production-ready and stable. All hotfixes and releases ultimately land here.
-  - Rules: Protected. Require PR review and passing CI before merging.
+  - **Tujuan:** Cawangan utama yang sentiasa stabil dan sedia untuk pengeluaran.
+  - **Peraturan:** Lindungi cawangan ini. Semua hotfix dan pelepasan utama digabungkan di sini selepas semakan PR dan lulus CI.
+
+    *Purpose: Main stable branch, always production-ready. All hotfixes and major releases are merged here after PR review and passing CI.*
 
 - `develop`
-  - Purpose: Integration branch for ongoing development. Features are merged here and prepared for the next release.
-  - Rules: PRs from `feature/*` branches should target `develop`. Require CI and at least one review.
+  - **Tujuan:** Cawangan integrasi untuk pembangunan berterusan. Ciri-ciri baru digabungkan ke sini sebelum pelepasan.
+  - **Peraturan:** PR dari `feature/*` harus mensasarkan `develop` dan memerlukan sekurang-kurangnya satu semakan serta lulus CI.
+
+    *Purpose: Integration branch for ongoing development. New features are merged here before release.*
 
 - `production`
-  - Purpose: Represents what is deployed to production (optional environment-specific branch). Use if your deployment pipeline targets a separate branch.
-  - Rules: Keep in sync with `master` via merges or automated deployments. Protect if it triggers releases.
+  - **Tujuan:** Mewakili kod sebenar yang dideploy ke persekitaran produksi (jika pipeline deploy anda menggunakan cawangan khas).
+  - **Peraturan:** Pastikan segerak dengan `master`. Lindungi jika ia mencetuskan pelepasan.
+
+    *Purpose: Represents deployed production code (if your deployment pipeline targets a dedicated branch). Keep in sync with `master`.*
 
 - `live`
-  - Purpose: Optional branch for live/hot deployments or a separate live environment. Document and use consistently.
-  - Rules: Same protection recommendations as `production`.
+  - **Tujuan:** Cawangan pilihan untuk deploy live/hot atau persekitaran live khusus.
+  - **Peraturan:** Saranan perlindungan sama seperti `production`.
 
-- `hotfix/*` (or single `hotfix` branch)
-  - Purpose: Fast, targeted fixes for production. Branch from `master` to fix urgent issues and merge back into `master` and `develop`.
-  - Rules: Keep hotfixes small and well-tested. Tag the master branch with a release version after merging.
+    *Purpose: Optional branch for live/hot deployments or a dedicated live environment.*
 
-- `feature/*` (e.g., `feature/initial-setup`)
-  - Purpose: Short-lived branches for features, improvements, or experiments. Branch from `develop` (or `master` if not using `develop`).
-  - Rules: Create PRs to `develop`. Delete branch after merging.
+- `hotfix/*`
+  - **Tujuan:** Pembetulan pantas yang kritikal (emergency fixes) untuk production. Cabang dari `master`; gabungkan kembali ke `master` dan `develop` selepas diuji.
+  - **Peraturan:** Hotfix kecil, diuji, dan tag versi pada `master` selepas merge.
 
-## Branch naming conventions
+    *Purpose: Urgent fixes for production. Branch from `master` and merge back into `master` and `develop` after testing.*
 
-- Feature branches: `feature/<short-description>`
-- Bugfix branches: `bugfix/<short-description>`
-- Hotfix branches: `hotfix/<short-description>`
-- Release branches: `release/<semver>` (e.g., `release/0.1.0`)
+- `feature/*`
+  - **Tujuan:** Cawangan jangka pendek untuk ciri, penambahbaikan, atau eksperimen. Cabang dari `develop`.
+  - **Peraturan:** PR ke `develop`, padam cawangan selepas digabungkan.
 
-Use lowercase, hyphens to separate words, and keep names descriptive but short.
+    *Purpose: Short-lived branches for features, improvements, or experiments. Branch from `develop`. PR into `develop` and delete after merge.*
 
-## Pull request process
+## Konvensyen Penamaan Cawangan (Branch Naming Conventions)
 
-1. Create a feature branch from `develop` (or `master` if working directly on main):
+- Ciri (feature): `feature/<penerangan-pendek>`
+- Bugfix: `bugfix/<penerangan-pendek>`
+- Hotfix: `hotfix/<penerangan-pendek>`
+- Pelepasan (release): `release/<versi-semver>`
 
-   ```powershell
+Gunakan huruf kecil dan tanda sengkang (-) untuk memisahkan kata.
+
+*Feature: `feature/<short-description>`  
+Bugfix: `bugfix/<short-description>`  
+Hotfix: `hotfix/<short-description>`  
+Release: `release/<semver-version>`  
+Use lowercase and hyphens to separate words.*
+
+## Proses Pull Request (Pull Request Process)
+
+1. Cipta cawangan feature dari `develop`:
+
+   ```shell
+   git checkout develop
+   git checkout -b feature/nama-ciri-anda
+   ```
+
+   *Create a feature branch from `develop`:*
+
+   ```shell
    git checkout develop
    git checkout -b feature/your-feature-name
    ```
 
-2. Make changes, commit frequently with meaningful messages, and push your branch:
+2. Lakukan perubahan, commit kerap dengan mesej bermakna, dan tolak (push) cawangan anda:
 
-   ```powershell
+   ```shell
+   git push -u origin feature/nama-ciri-anda
+   ```
+
+   *Make changes, commit frequently with meaningful messages, and push your branch:*
+
+   ```shell
    git push -u origin feature/your-feature-name
    ```
 
-3. Open a Pull Request targeting `develop` (or `master` for hotfixes). Provide a clear description, screenshots if applicable, and link related issues.
-4. Ensure CI passes and request at least one code review. Address review comments with follow-up commits.
-5. After approval, merge the PR using a merge commit or squash (team preference) and delete the branch.
+3. Buka Pull Request yang mensasarkan `develop` (atau `master` untuk hotfix). Sertakan penerangan jelas, tangkapan skrin jika perlu, dan pautkan isu berkaitan.
 
-## Commit message guidelines
+   *Open a Pull Request targeting `develop` (or `master` for hotfixes). Provide a clear description, screenshots if needed, and link related issues.*
 
-- Use present tense: "Add login form", not "Added login form".
-- Keep the subject line under 50 characters.
-- Add a body with more details and linked issues when necessary.
-- Example:
+4. Pastikan CI lulus dan minta sekurang-kurangnya satu semakan kod. Selesaikan komen semakan dengan commit susulan.
 
-  ```git
-  feat(auth): add login form and remember-me option
+   *Ensure CI passes and request at least one code review. Address review comments with follow-up commits.*
 
-  - Add login form component
-  - Add remember-me checkbox to improve UX
-  - Closes #123
-  ```
+5. Selepas diluluskan, gabungkan PR menggunakan merge commit atau squash (mengikut pilihan pasukan) dan padam cawangan.
 
-## Workflow variants
+   *After approval, merge the PR using a merge commit or squash (team preference) and delete the branch.*
 
-- Simple feature-branch:
-  - Work on `feature/*`, PR to `develop` or `main` if `develop` is not used.
+## Garis Panduan Mesej Commit (Commit Message Guidelines)
 
-- Gitflow:
-  - Use `develop` for integration, `release/*` for release stabilization, and `hotfix/*` for emergency fixes.
+- Gunakan masa sekarang: "Tambah borang login" bukan "Telah tambah borang login".
+- Hadkan baris subjek kepada 50 aksara.
+- Tambah badan mesej dengan butiran tambahan dan rujukan isu bila perlu.
 
-## Branch protection & CI
+*Use present tense: "Add login form", not "Added login form".  
+Limit subject line to 50 characters.  
+Add a body with more details and issue references when needed.*
 
-- Protect `master` (and `production`/`live` if used) with required status checks, required reviews, and disallowed force pushes.
-- Ensure CI (tests, static analysis) runs on PRs and pushes to important branches.
+Contoh:
 
-## Local housekeeping
+```git
+feat(auth): tambah borang login dan pilihan remember-me
 
-- Delete local branches after merging:
+- Tambah komponen borang login
+- Tambah kotak pilihan remember-me untuk penambahbaikan UX
+- Tutup #123
+```
 
-  ```powershell
-  git branch -d feature/your-feature-name
-  git push origin --delete feature/your-feature-name
-  ```
+*Example:*
 
-- Rebase or merge regularly from `develop` to keep your feature branch up to date and reduce merge conflicts.
+```git
+feat(auth): add login form and remember-me option
 
-## Questions or exceptions
+- Add login form component
+- Add remember-me checkbox to improve UX
+- Closes #123
+```
 
-If you're unsure where to branch from, ask in a PR or open an issue describing your change. Exceptions to the workflow must be documented in the PR description.
+## Varian Aliran Kerja (Workflow Variants)
+
+- **Ciri ringkas:** Kerja pada `feature/*`, buka PR ke `develop` atau `main` jika `develop` tidak digunakan.
+- **Gitflow:** Gunakan `develop` untuk integrasi, `release/*` untuk stabilisasi pelepasan, dan `hotfix/*` untuk pembaikan kecemasan.
+
+*Simple feature-branch: Work on `feature/*`, PR to `develop` or `main` if `develop` is not used.  
+Gitflow: Use `develop` for integration, `release/*` for release stabilization, and `hotfix/*` for emergency fixes.*
+
+## Perlindungan Cawangan & CI (Branch Protection & CI)
+
+- Lindungi `master` (dan `production`/`live` jika digunakan) dengan status checks wajib, semakan wajib, dan larangan force-push.
+- Pastikan CI (ujian, analisis statik) berjalan pada PR dan push ke cawangan penting.
+
+*Protect `master` (and `production`/`live` if used) with required status checks, required reviews, and disallowed force pushes.  
+Ensure CI (tests, static analysis) runs on PRs and pushes to important branches.*
+
+## Kerja Rutin Tempatan (Local Housekeeping)
+
+- Padam cawangan tempatan selepas digabungkan:
+
+   ```shell
+   git branch -d feature/nama-ciri-anda
+   git push origin --delete feature/nama-ciri-anda
+   ```
+
+   *Delete local branches after merging:*
+
+   ```shell
+   git branch -d feature/your-feature-name
+   git push origin --delete feature/your-feature-name
+   ```
+
+- Rebase atau merge secara berkala dari `develop` untuk memastikan cawangan feature sentiasa kemas dan mengurangkan konflik.
+
+   *Rebase or merge regularly from `develop` to keep your feature branch up to date and reduce conflicts.*
+
+## Soalan atau Pengecualian (Questions or Exceptions)
+
+Jika tidak pasti dari mana hendak mencabang, tanya dalam PR atau buka isu yang menerangkan perubahan anda. Pengecualian kepada aliran kerja mesti didokumenkan dalam penerangan PR.
+
+*If unsure where to branch from, ask in a PR or open an issue describing your change. Exceptions to the workflow must be documented in the PR description.*
 
 ---
 
-Thanks for helping keep this repo clean and collaborative.
+Terima kasih kerana membantu memastikan repositori ini kemas dan kolaboratif.
+
+*Thank you for helping keep this repository clean and collaborative.*
