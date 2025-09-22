@@ -1,12 +1,9 @@
-<?php
-<<<<<<< HEAD:database/migrations/2025_09_22_000014_create_helpdesk_tickets_table.php
-=======
 
+<?php
 /**
  * Migration for helpdesk_tickets table.
  * Tracks support tickets raised by users.
  */
->>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000017_create_helpdesk_tickets_table.php
 
 /**
  * Migration for helpdesk_tickets table.
@@ -27,23 +24,10 @@ return new class extends Migration
             $table->unsignedBigInteger('assigned_to_user_id')->nullable()->index();
             $table->unsignedBigInteger('category_id')->nullable()->index();
             $table->string('subject');
-<<<<<<< HEAD:database/migrations/2025_09_22_000017_create_helpdesk_tickets_table.php
-=======
-<<<<<<< HEAD:database/migrations/2025_09_22_000014_create_helpdesk_tickets_table.php
             $table->text('description');
-            $table->enum('status', ['open', 'in_progress', 'pending_user_feedback', 'resolved', 'closed', 'reopened'])->default('open');
-            $table->enum('priority', ['low', 'medium', 'high', 'critical'])->default('medium');
-            $table->date('due_date')->nullable();
-=======
->>>>>>> feature/migrations:database/migrations/2025_09_22_000014_create_helpdesk_tickets_table.php
-            $table->text('description')->nullable();
             $table->enum('status', ['open', 'in_progress', 'pending_user_feedback', 'resolved', 'closed', 'reopened'])->default('open')->index();
             $table->enum('priority', ['low', 'medium', 'high', 'critical'])->default('medium')->index();
             $table->date('due_date')->nullable()->index();
-<<<<<<< HEAD:database/migrations/2025_09_22_000017_create_helpdesk_tickets_table.php
-=======
->>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000017_create_helpdesk_tickets_table.php
->>>>>>> feature/migrations:database/migrations/2025_09_22_000014_create_helpdesk_tickets_table.php
             $table->text('resolution_notes')->nullable();
             $table->timestamp('closed_at')->nullable()->index();
 
