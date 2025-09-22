@@ -1,12 +1,9 @@
-<?php
-<<<<<<< HEAD:database/migrations/2025_09_22_000010_create_loan_application_items_table.php
-=======
 
+<?php
 /**
  * Migration for loan_application_items table.
  * Items requested in a loan application.
  */
->>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000013_create_loan_application_items_table.php
 
 /**
  * Migration for loan_application_items table.
