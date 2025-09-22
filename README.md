@@ -4,22 +4,22 @@
 
 ICTServe (iServe) adalah aplikasi Laravel 12 untuk mengurus perkhidmatan ICT di MOTAC, termasuk modul Pinjaman Peralatan dan Helpdesk Aduan Kerosakan. Projek ini dibina dengan fokus kepada pengalaman mesra pengguna, aksesibiliti yang ketat, dan pematuhan kepada [Sistem Reka Bentuk Kerajaan Malaysia (MYDS)](https://design.digital.gov.my/) dan [Prinsip MyGovEA](https://mygovea.jdn.gov.my/page-prinsip-reka-bentuk/).
 
-*ICTServe (iServe) is a modern Laravel 12 application for managing ICT services in MOTAC, including equipment loans and helpdesk ticketing for damage complaints. The project is built with a citizen-centric focus, strict accessibility, and compliance with the [Malaysia Government Design System (MYDS)](https://design.digital.gov.my/) and [MyGovEA Principles](https://mygovea.jdn.gov.my/page-prinsip-reka-bentuk/).*
+_ICTServe (iServe) is a modern Laravel 12 application for managing ICT services in MOTAC, including equipment loans and helpdesk ticketing for damage complaints. The project is built with a citizen-centric focus, strict accessibility, and compliance with the [Malaysia Government Design System (MYDS)](https://design.digital.gov.my/) and [MyGovEA Principles](https://mygovea.jdn.gov.my/page-prinsip-reka-bentuk/)._
 
 ---
 
 ### 1. Gambaran Projek (Project Overview)
 
 - **Tujuan (Purpose)**: Menyediakan platform digital berpusat untuk semua permintaan perkhidmatan ICT MOTAC—pinjaman peralatan dan aduan kerosakan.  
-*Provide a unified, digital platform for all MOTAC ICT service requests—equipment loans and damage complaints.*
+  _Provide a unified, digital platform for all MOTAC ICT service requests—equipment loans and damage complaints._
 
 - **Sasaran Pengguna (Audience)**: Semua staf MOTAC, BPM, pasukan sokongan ICT, dan pentadbir.
 
-*All MOTAC staff, BPM, IT support, and administrators.*
+_All MOTAC staff, BPM, IT support, and administrators._
 
 - **Fokus Reka Bentuk (Design Focus)**: Pematuhan MYDS, aksesibiliti (WCAG 2.1 AA), grid responsif 12-8-4, dan seni bina modular.
 
-*MYDS-compliant UI, accessibility (WCAG 2.1 AA), responsive 12-8-4 grid, and a modular, extensible architecture.*
+_MYDS-compliant UI, accessibility (WCAG 2.1 AA), responsive 12-8-4 grid, and a modular, extensible architecture._
 
 ---
 
@@ -27,23 +27,23 @@ ICTServe (iServe) adalah aplikasi Laravel 12 untuk mengurus perkhidmatan ICT di 
 
 - **Papan Pemuka Berpusat (Centralized Dashboard)**: Akses bersepadu ke modul pinjaman & helpdesk, notifikasi, dan penjejakan status.
 
-*Unified access to loan & helpdesk modules, notifications, and status tracking.*
+_Unified access to loan & helpdesk modules, notifications, and status tracking._
 
 - **Modul Pinjaman Peralatan (Equipment Loan Module)**: Borang permohonan digital, aliran kelulusan, pengeluaran/pemulangan, dan jejak audit.
 
-*Digital loan application, approval workflow, issuance/return, and audit log.*
+_Digital loan application, approval workflow, issuance/return, and audit log._
 
 - **Modul Helpdesk (Helpdesk Module)**: Borang aduan kerosakan, sistem tiket dengan status, komen berbenang, dan tugasan admin.
 
-*Damage complaint form, ticketing with status, threaded comments, and admin assignment.*
+_Damage complaint form, ticketing with status, threaded comments, and admin assignment._
 
 - **Aksesibiliti & UI MYDS (Accessibility & MYDS UI)**: Navigasi papan kekunci, sokongan ARIA, kontras tinggi, dan mod gelap.
 
-*Keyboard navigation, ARIA support, high contrast, and dark mode.*
+_Keyboard navigation, ARIA support, high contrast, and dark mode._
 
 - **Ciri Lain (Other Features)**: Jejak audit penuh, notifikasi dalam aplikasi & e-mel, akses berasaskan peranan, dan sokongan dwibahasa (BM utama).
 
-*Full audit logging, in-app & email notifications, role-based access, and bilingual support (Malay primary).*
+_Full audit logging, in-app & email notifications, role-based access, and bilingual support (Malay primary)._
 
 ---
 
@@ -61,30 +61,30 @@ ICTServe (iServe) adalah aplikasi Laravel 12 untuk mengurus perkhidmatan ICT di 
 
 - **Seni Bina (Architecture)**: Struktur Laravel MVC standard dengan komponen Livewire, sumber admin Filament, dan pustaka komponen Blade untuk elemen MYDS.
 
-*Standard Laravel MVC structure with Livewire components, Filament admin resources, and a Blade component library for MYDS elements.*
+_Standard Laravel MVC structure with Livewire components, Filament admin resources, and a Blade component library for MYDS elements._
 
 - **Struktur Direktori (Directory Structure)**:
   app/
-   ├─ Http/Controllers/
-   ├─ Models/
-   ├─ Livewire/
-   ├─ Services/
-   └─ Policies/
+  ├─ Http/Controllers/
+  ├─ Models/
+  ├─ Livewire/
+  ├─ Services/
+  └─ Policies/
   resources/
-   ├─ views/
-   │   ├─ components/myds/
-   │   └─ livewire/
-   ├─ css/
-   └─ js/
+  ├─ views/
+  │ ├─ components/myds/
+  │ └─ livewire/
+  ├─ css/
+  └─ js/
   database/
-   ├─ migrations/
-   └─ seeders/
+  ├─ migrations/
+  └─ seeders/
   routes/
   tests/
 
 - **Dokumentasi Lanjut (Further Documentation)**: Rujuk direktori `/docs` untuk skema data terperinci, carta aliran kerja, dan rasional reka bentuk.
 
-*See the `/docs` directory for detailed data schemas, workflow charts, and design rationale.*
+_See the `/docs` directory for detailed data schemas, workflow charts, and design rationale._
 
 ---
 
@@ -101,7 +101,7 @@ ICTServe (iServe) adalah aplikasi Laravel 12 untuk mengurus perkhidmatan ICT di 
 
 1. **Clone repositori dan pasang pergantungan PHP.**
 
-*Clone the repository and install PHP dependencies.*
+_Clone the repository and install PHP dependencies._
 
     git clone [https://github.com/user/ict-serve.git](https://github.com/user/ict-serve.git)
     cd ict-serve
@@ -110,7 +110,7 @@ ICTServe (iServe) adalah aplikasi Laravel 12 untuk mengurus perkhidmatan ICT di 
 
 2. **Sediakan persekitaran aplikasi.**
 
-*Set up the application environment.*
+_Set up the application environment._
 
     php artisan key:generate
 
@@ -118,19 +118,19 @@ ICTServe (iServe) adalah aplikasi Laravel 12 untuk mengurus perkhidmatan ICT di 
 
 1. **Jalankan migrasi pangkalan data dan seeders.**
 
-*Run database migrations and seeders.*
+_Run database migrations and seeders._
 
     php artisan migrate --seed
 
 4. **Pasang pergantungan frontend.**
 
-*Install frontend dependencies.*
+_Install frontend dependencies._
 
     npm install
 
 5. **Jalankan server pembangunan.**
 
-*Run the development servers.*
+_Run the development servers._
 
     ```powershell
         # Dalam terminal pertama (In the first terminal):
@@ -142,7 +142,7 @@ ICTServe (iServe) adalah aplikasi Laravel 12 untuk mengurus perkhidmatan ICT di 
 
 6. **Akses aplikasi.**
 
-*Access the application.*
+_Access the application._
 
 Buka (Open) [http://localhost:8000](https://www.google.com/search?q=http://localhost:8000)
 
@@ -151,22 +151,22 @@ Buka (Open) [http://localhost:8000](https://www.google.com/search?q=http://local
 ## 6\. Aliran Pembangunan (Development Workflow)
 
 - **Jalankan ujian PHPUnit (Run PHPUnit tests)**:
-    `php artisan test`
+  `php artisan test`
 
 - **Jalankan ujian Playwright E2E (Run Playwright E2E tests)**:
-    `npx playwright test`
+  `npx playwright test`
 
 - **Format kod PHP (Format PHP code)**:
-    `vendor/bin/pint --dirty`
+  `vendor/bin/pint --dirty`
 
 - **Format kod frontend (Format frontend code)**:
-    `npx prettier --write .`
+  `npx prettier --write .`
 
 - **Lint fail CSS (Lint CSS files)**:
-    `npx stylelint "**/*.css"`
+  `npx stylelint "**/*.css"`
 
 - **Analisis statik (Static analysis)**:
-    `./vendor/bin/phpstan analyse`
+  `./vendor/bin/phpstan analyse`
 
 ---
 
@@ -174,15 +174,15 @@ Buka (Open) [http://localhost:8000](https://www.google.com/search?q=http://local
 
 - **Laravel Boost**: Ikut konvensyen Laravel Boost untuk struktur kod, penamaan, dan amalan terbaik.
 
-*Follow Laravel Boost conventions for code structure, naming, and best practices.*
+_Follow Laravel Boost conventions for code structure, naming, and best practices._
 
 - **Sistem Reka Bentuk MYDS (MYDS Design System)**: Gunakan token semantik MYDS untuk warna, jarak, dan tipografi.
 
-*Use semantic tokens from MYDS for colors, spacing, and typography.*
+_Use semantic tokens from MYDS for colors, spacing, and typography._
 
 - **Aksesibiliti (Accessibility)**: Pastikan semua komponen menyokong navigasi papan kekunci, label ARIA, dan kontras warna yang mencukupi.
 
-*Ensure all components support keyboard navigation, ARIA labels, and sufficient color contrast.*
+_Ensure all components support keyboard navigation, ARIA labels, and sufficient color contrast._
 
 ---
 
@@ -193,6 +193,6 @@ Buka (Open) [http://localhost:8000](https://www.google.com/search?q=http://local
 
 ---
 
-Jika terdapat sebarang cadangan atau masalah, sila buka *issue* di repositori ini.
+Jika terdapat sebarang cadangan atau masalah, sila buka _issue_ di repositori ini.
 
-*Please open an issue for any suggestions or problems.*
+_Please open an issue for any suggestions or problems._

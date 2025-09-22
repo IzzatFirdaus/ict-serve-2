@@ -29,10 +29,10 @@ MYDS icons are organized into the following main groups:
 - **Grid Size:** All icons are drawn on a 20×20px grid for pixel-perfect alignment.
 - **Stroke Width:** Standard stroke width is 1.5px at base size. Strokes scale proportionally for other sizes.
 - **Sizes:** Recommended:
-  - 16×16px (small buttons)
-  - 20×20px (medium buttons, default)
-  - 24×24px (large buttons)
-  - 32×32px, 42×42px (alerts/dialogs)
+    - 16×16px (small buttons)
+    - 20×20px (medium buttons, default)
+    - 24×24px (large buttons)
+    - 32×32px, 42×42px (alerts/dialogs)
 - **Variants:** Outline (stroke only) and Filled (solid).
 - **Format:** SVG, with clear, scalable paths.
 - **Visual Consistency:** Icons should be visually balanced, clear at all sizes, and easily recognizable.
@@ -332,10 +332,10 @@ import { Button, ButtonIcon } from '@govtechmy/myds-react/button';
 import { SearchIcon } from '@govtechmy/myds-react/icon';
 
 <Button>
-  <ButtonIcon>
-    <SearchIcon />
-  </ButtonIcon>
-  Search
+    <ButtonIcon>
+        <SearchIcon />
+    </ButtonIcon>
+    Search
 </Button>;
 ```
 
@@ -343,8 +343,8 @@ import { SearchIcon } from '@govtechmy/myds-react/icon';
 
 ```html
 <button aria-label="Search">
-  <svg width="20" height="20" ...><!-- Search icon SVG --></svg>
-  Search
+    <svg width="20" height="20" ...><!-- Search icon SVG --></svg>
+    Search
 </button>
 ```
 

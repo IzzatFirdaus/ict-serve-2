@@ -6,8 +6,6 @@
 | Sources: MYDS-Design-Overview.md, MYDS-Colour-Reference.md,
 |          Dokumentasi_Reka_Bentuk_ICTServe(iServe).md, and related docs.
 |--------------------------------------------------------------------------
-| Canonical MYDS docs: https://design.digital.gov.my/en/docs
-| Local repository guidance: ./.github/instructions/myds.instructions.md
 */
 
 @import url('tailwindcss');
@@ -23,20 +21,6 @@ body {
     line-height: 1.6;
     color: #18181b;
     background-color: #f8f9fa;
-}
-
-/* MYDS semantic token variables */
-:root {
-    --myds-primary-600: #2563eb;
-    --myds-primary-500: #3a75f6;
-    --myds-primary-400: #6394ff;
-    --myds-success-700: #15803d;
-    --myds-danger-600: #dc2626;
-    --myds-warning-700: #a16207;
-    --myds-washed: #f4f4f5;
-    --myds-contrast: #fff;
-    --myds-dialog: #fff;
-    --myds-gray-50: #fafafa;
 }
 
 /* =========================================================================
@@ -73,15 +57,15 @@ body {
 
 /* Background tokens */
 .bg-primary-600 {
-    background-color: var(--myds-primary-600) !important;
+    background-color: #2563eb !important;
 }
 
 .bg-primary-500 {
-    background-color: var(--myds-primary-500) !important;
+    background-color: #3a75f6 !important;
 }
 
 .bg-primary-400 {
-    background-color: var(--myds-primary-400) !important;
+    background-color: #6394ff !important;
 }
 
 .bg-success-700 {

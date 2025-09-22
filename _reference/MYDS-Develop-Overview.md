@@ -13,8 +13,8 @@ Malaysia's official design system for government digital services, ensuring **ac
 ### A. Colors
 
 - **Primary Palette:**
-  - `MYDS Blue` (#2563EB) – Main government identity.
-  - Supported by secondary colors, e.g., `Green` for success, `Red` for errors.
+    - `MYDS Blue` (#2563EB) – Main government identity.
+    - Supported by secondary colors, e.g., `Green` for success, `Red` for errors.
 - **Accessibility:** Minimum contrast ratio of **4.5:1** (WCAG AA compliant).
 
 ### B. Typography
@@ -24,11 +24,11 @@ A clear standard for font style, size, and spacing to ensure readability and con
 #### Heading
 
 - **Font Family:**
-  - `Poppins` is used for home page section titles, page headers, and important text elements to create a clear visual hierarchy and improve user navigation.
-  - Not applicable for rich-text.
+    - `Poppins` is used for home page section titles, page headers, and important text elements to create a clear visual hierarchy and improve user navigation.
+    - Not applicable for rich-text.
 
 - **Font Sizes and Weights:**
-  - All sizes include weights: Regular (400), Medium (500), Semibold (600).
+    - All sizes include weights: Regular (400), Medium (500), Semibold (600).
 
 | Name                | HTML Tag | Font Size       | Line Height     |
 | ------------------- | -------- | --------------- | --------------- |
@@ -44,10 +44,10 @@ A clear standard for font style, size, and spacing to ensure readability and con
 #### Body
 
 - **Font Family:**
-  - `Inter` is used for paragraphs, descriptions, and general content to provide a comfortable reading experience for users.
+    - `Inter` is used for paragraphs, descriptions, and general content to provide a comfortable reading experience for users.
 
 - **Font Sizes and Weights:**
-  - All sizes include weights: Regular (400), Medium (500), Semibold (600).
+    - All sizes include weights: Regular (400), Medium (500), Semibold (600).
 
 | Name             | Font Size       | Line Height     | List Spacing   | Paragraph Spacing |
 | ---------------- | --------------- | --------------- | -------------- | ----------------- |
@@ -66,13 +66,13 @@ A clear standard for font style, size, and spacing to ensure readability and con
 #### Rich Text Format (RTF)
 
 - **Font Family:**
-  - `Inter` is used for styling long form content such as an article.
+    - `Inter` is used for styling long form content such as an article.
 
 - **Note:**
-  - The H1 tag in RTF differs from the standard H1 Heading tag and is intended only for formatting content within an article section.
+    - The H1 tag in RTF differs from the standard H1 Heading tag and is intended only for formatting content within an article section.
 
 - **Font Sizes and Weights:**
-  - All sizes include weights: Regular (400) and Semibold (600).
+    - All sizes include weights: Regular (400) and Semibold (600).
 
 | Name      | HTML Tag | Font Size       | Line Height     | List Spacing   | Paragraph Spacing |
 | --------- | -------- | --------------- | --------------- | -------------- | ----------------- |
@@ -90,7 +90,7 @@ A clear standard for font style, size, and spacing to ensure readability and con
 
 - **Grid System:** 12-column layout with `24px` gutters.
 - **Responsive Breakpoints:**
-  - Mobile (`<768px`), Tablet (`768px–1024px`), Desktop (`>1024px`).
+    - Mobile (`<768px`), Tablet (`768px–1024px`), Desktop (`>1024px`).
 
 ---
 
@@ -104,10 +104,10 @@ A clear standard for font style, size, and spacing to ensure readability and con
 ### B. Forms
 
 - **Input Fields:**
-  - Labels aligned top-left, error states in `Red`.
-  - Placeholder text avoided (per accessibility guidelines).
+    - Labels aligned top-left, error states in `Red`.
+    - Placeholder text avoided (per accessibility guidelines).
 - **Buttons:**
-  - Primary (`Blue`), Secondary (`White`), Disabled (`Grey`).
+    - Primary (`Blue`), Secondary (`White`), Disabled (`Grey`).
 
 ### C. Data Display
 
@@ -556,13 +556,13 @@ A modal pop-up designed to capture user attention for important actions or messa
 
 ```javascript
 import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-  AlertDialogAction,
-  AlertDialogClose,
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+    AlertDialogAction,
+    AlertDialogClose,
 } from '@govtechmy/myds-react/alert-dialog';
 ```
 
@@ -570,20 +570,20 @@ import {
 
 ```jsx
 export default () => (
-  <AlertDialog>
-    <AlertDialogTrigger />
-    <AlertDialogBody>
-      <AlertDialogHeader>
-        <AlertDialogTitle />
-      </AlertDialogHeader>
-      <AlertDialogContent>
-        <AlertDialogDescription />
-      </AlertDialogContent>
-      <AlertDialogFooter>
-        <AlertDialogClose />
-      </AlertDialogFooter>
-    </AlertDialogBody>
-  </AlertDialog>
+    <AlertDialog>
+        <AlertDialogTrigger />
+        <AlertDialogBody>
+            <AlertDialogHeader>
+                <AlertDialogTitle />
+            </AlertDialogHeader>
+            <AlertDialogContent>
+                <AlertDialogDescription />
+            </AlertDialogContent>
+            <AlertDialogFooter>
+                <AlertDialogClose />
+            </AlertDialogFooter>
+        </AlertDialogBody>
+    </AlertDialog>
 );
 ```
 
@@ -659,9 +659,9 @@ Informs users about the service's development stage and includes a link for subm
 
 ```javascript
 import {
-  AnnounceBar,
-  AnnounceBarTag,
-  AnnounceBarDescription,
+    AnnounceBar,
+    AnnounceBarTag,
+    AnnounceBarDescription,
 } from '@govtechmy/myds-react/announce-bar';
 ```
 
@@ -669,10 +669,10 @@ import {
 
 ```jsx
 export default () => (
-  <AnnounceBar>
-    <AnnounceBarTag />
-    <AnnounceBarDescription />
-  </AnnounceBar>
+    <AnnounceBar>
+        <AnnounceBarTag />
+        <AnnounceBarDescription />
+    </AnnounceBar>
 );
 ```
 
@@ -684,10 +684,10 @@ Use the `variant` prop to change the Announce Bar style.
 
 ```jsx
 <AnnounceBar>
-  <AnnounceBarTag variant="alpha" />
-  <AnnounceBarDescription>
-    This is a new service. Help us improve it. Send us your feedback here.
-  </AnnounceBarDescription>
+    <AnnounceBarTag variant="alpha" />
+    <AnnounceBarDescription>
+        This is a new service. Help us improve it. Send us your feedback here.
+    </AnnounceBarDescription>
 </AnnounceBar>
 ```
 
@@ -725,11 +725,11 @@ A navigation aid that helps users understand their current location within a web
 
 ```javascript
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbPage,
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbSeparator,
+    BreadcrumbPage,
 } from '@govtechmy/myds-react/breadcrumb';
 ```
 
@@ -737,13 +737,13 @@ import {
 
 ```jsx
 export default () => (
-  <Breadcrumb>
-    <BreadcrumbItem>
-      <BreadcrumbLink />
-      <BreadcrumbPage />
-    </BreadcrumbItem>
-    <BreadcrumbSeparator />
-  </Breadcrumb>
+    <Breadcrumb>
+        <BreadcrumbItem>
+            <BreadcrumbLink />
+            <BreadcrumbPage />
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+    </Breadcrumb>
 );
 ```
 
@@ -786,21 +786,17 @@ A fundamental UI element used to trigger actions or events. It ensures consisten
 **Imports:**
 
 ```javascript
-import {
-  Button,
-  ButtonIcon,
-  ButtonCounter,
-} from '@govtechmy/myds-react/button';
+import { Button, ButtonIcon, ButtonCounter } from '@govtechmy/myds-react/button';
 ```
 
 **Component Structure Example:**
 
 ```jsx
 export default () => (
-  <Button>
-    <ButtonIcon />
-    <ButtonCounter />
-  </Button>
+    <Button>
+        <ButtonIcon />
+        <ButtonCounter />
+    </Button>
 );
 ```
 
@@ -835,8 +831,8 @@ Add an icon using `<ButtonIcon>`.
 
 ```jsx
 <Button>
-  <ButtonIcon>🔍</ButtonIcon>
-  Search
+    <ButtonIcon>🔍</ButtonIcon>
+    Search
 </Button>
 ```
 
@@ -846,7 +842,7 @@ For buttons with only an icon, set `iconOnly={true}` and use `<ButtonIcon>` as t
 
 ```jsx
 <Button iconOnly>
-  <ButtonIcon>🔍</ButtonIcon>
+    <ButtonIcon>🔍</ButtonIcon>
 </Button>
 ```
 
@@ -856,8 +852,8 @@ Add a numeric counter using `<ButtonCounter>`.
 
 ```jsx
 <Button>
-  Notifications
-  <ButtonCounter>3</ButtonCounter>
+    Notifications
+    <ButtonCounter>3</ButtonCounter>
 </Button>
 ```
 
@@ -899,10 +895,10 @@ Notifies users about important information related to their actions inside Forms
 
 ```javascript
 import {
-  Callout,
-  CalloutAction,
-  CalloutTitle,
-  CalloutContent,
+    Callout,
+    CalloutAction,
+    CalloutTitle,
+    CalloutContent,
 } from '@govtechmy/myds-react/callout';
 ```
 
@@ -910,13 +906,13 @@ import {
 
 ```jsx
 export default () => (
-  <Callout>
-    <CalloutTitle />
-    <CalloutContent />
-    <CalloutAction>
-      <CalloutClose />
-    </CalloutAction>
-  </Callout>
+    <Callout>
+        <CalloutTitle />
+        <CalloutContent />
+        <CalloutAction>
+            <CalloutClose />
+        </CalloutAction>
+    </Callout>
 );
 ```
 
@@ -932,8 +928,8 @@ Use the `variant` prop to change the callout style (e.g., info, success, warning
 
 ```jsx
 <Callout variant="success">
-  <CalloutTitle>Success</CalloutTitle>
-  <CalloutContent>Operation completed successfully.</CalloutContent>
+    <CalloutTitle>Success</CalloutTitle>
+    <CalloutContent>Operation completed successfully.</CalloutContent>
 </Callout>
 ```
 
@@ -1042,13 +1038,13 @@ Notifies users that the website uses cookies to improve their experience and giv
 
 ```javascript
 import {
-  CookieBanner,
-  CookieBannerClose,
-  CookieBannerDescription,
-  CookieBannerAction,
-  CookieBannerPreferences,
-  CookieBannerTitle,
-  CookieBannerPreferencesTrigger,
+    CookieBanner,
+    CookieBannerClose,
+    CookieBannerDescription,
+    CookieBannerAction,
+    CookieBannerPreferences,
+    CookieBannerTitle,
+    CookieBannerPreferencesTrigger,
 } from '@govtechmy/myds-react/cookie-banner';
 ```
 
@@ -1056,14 +1052,14 @@ import {
 
 ```jsx
 export default () => (
-  <CookieBanner>
-    <CookieBannerTitle />
-    <CookieBannerDescription />
-    <CookieBannerPreferences />
-    <CookieBannerAction>
-      <CookieBannerClose />
-    </CookieBannerAction>
-  </CookieBanner>
+    <CookieBanner>
+        <CookieBannerTitle />
+        <CookieBannerDescription />
+        <CookieBannerPreferences />
+        <CookieBannerAction>
+            <CookieBannerClose />
+        </CookieBannerAction>
+    </CookieBanner>
 );
 ```
 
@@ -1615,15 +1611,15 @@ A modal pop-up designed to capture user attention for important actions or messa
 
 ```javascript
 import {
-  Dialog,
-  DialogBody,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-  DialogClose,
+    Dialog,
+    DialogBody,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    DialogFooter,
+    DialogClose,
 } from '@govtechmy/myds-react/dialog';
 ```
 
@@ -1631,20 +1627,20 @@ import {
 
 ```jsx
 export default () => (
-  <Dialog>
-    <DialogTrigger />
-    <DialogBody>
-      <DialogHeader>
-        <DialogTitle />
-      </DialogHeader>
-      <DialogContent>
-        <DialogDescription />
-      </DialogContent>
-      <DialogFooter>
-        <DialogClose />
-      </DialogFooter>
-    </DialogBody>
-  </Dialog>
+    <Dialog>
+        <DialogTrigger />
+        <DialogBody>
+            <DialogHeader>
+                <DialogTitle />
+            </DialogHeader>
+            <DialogContent>
+                <DialogDescription />
+            </DialogContent>
+            <DialogFooter>
+                <DialogClose />
+            </DialogFooter>
+        </DialogBody>
+    </Dialog>
 );
 // This component creates a dialog with a trigger, header, content, and footer.
 // DialogTrigger opens the dialog. Header and Title show the modal's heading.
@@ -1660,10 +1656,10 @@ You can use multiple triggers to open the same dialog.
 
 ```jsx
 <Dialog>
-  <DialogTrigger>
-    <Button>Open Dialog</Button>
-  </DialogTrigger>
-  {/* ...dialog body here... */}
+    <DialogTrigger>
+        <Button>Open Dialog</Button>
+    </DialogTrigger>
+    {/* ...dialog body here... */}
 </Dialog>
 ```
 
@@ -1697,10 +1693,10 @@ Controlled lets you manage state in your app.
 
 ```jsx
 <DialogBody
-  dismissible={false}
-  onDismiss={() => {
-    /* handle close */
-  }}
+    dismissible={false}
+    onDismiss={() => {
+        /* handle close */
+    }}
 />
 ```
 
@@ -1791,11 +1787,11 @@ Dropdowns are toggleable, contextual overlays for displaying lists of links and 
 
 ```javascript
 import {
-  Dropdown,
-  DropdownContent,
-  DropdownItem,
-  DropdownItemIcon,
-  DropdownTrigger,
+    Dropdown,
+    DropdownContent,
+    DropdownItem,
+    DropdownItemIcon,
+    DropdownTrigger,
 } from '@govtechmy/myds-react/dropdown';
 ```
 
@@ -1803,14 +1799,14 @@ import {
 
 ```jsx
 export default () => (
-  <Dropdown>
-    <DropdownTrigger />
-    <DropdownContent>
-      <DropdownItem>
-        <DropdownItemIcon />
-      </DropdownItem>
-    </DropdownContent>
-  </Dropdown>
+    <Dropdown>
+        <DropdownTrigger />
+        <DropdownContent>
+            <DropdownItem>
+                <DropdownItemIcon />
+            </DropdownItem>
+        </DropdownContent>
+    </Dropdown>
 );
 // This component sets up a dropdown menu with a trigger, content area, and items.
 // DropdownItemIcon can be used to display an icon next to each item.
@@ -1824,10 +1820,10 @@ Wrap the `DropdownTrigger` around the element (e.g., button) that opens the drop
 
 ```jsx
 <Dropdown>
-  <DropdownTrigger>
-    <Button>Open Dropdown</Button>
-  </DropdownTrigger>
-  {/* ...dropdown content here... */}
+    <DropdownTrigger>
+        <Button>Open Dropdown</Button>
+    </DropdownTrigger>
+    {/* ...dropdown content here... */}
 </Dropdown>
 ```
 
@@ -1859,10 +1855,10 @@ Add an icon to `DropdownItem` using the `DropdownItemIcon` component to provide 
 
 ```jsx
 <DropdownItem>
-  <DropdownItemIcon>
-    <Icon name="edit" />
-  </DropdownItemIcon>
-  Edit
+    <DropdownItemIcon>
+        <Icon name="edit" />
+    </DropdownItemIcon>
+    Edit
 </DropdownItem>
 ```
 
@@ -1876,10 +1872,10 @@ Set the `variant` prop to `danger` on `DropdownItem` to indicate destructive act
 
 ```jsx
 <DropdownItem variant="danger">
-  <DropdownItemIcon>
-    <Icon name="delete" />
-  </DropdownItemIcon>
-  Delete
+    <DropdownItemIcon>
+        <Icon name="delete" />
+    </DropdownItemIcon>
+    Delete
 </DropdownItem>
 ```
 
@@ -1893,10 +1889,10 @@ Disable a dropdown item by setting its `disabled` prop to `true`. Disabled items
 
 ```jsx
 <DropdownItem disabled>
-  <DropdownItemIcon>
-    <Icon name="lock" />
-  </DropdownItemIcon>
-  Locked Item
+    <DropdownItemIcon>
+        <Icon name="lock" />
+    </DropdownItemIcon>
+    Locked Item
 </DropdownItem>
 ```
 
@@ -1976,12 +1972,12 @@ The Footer component provides a standardized footer for Malaysian government web
 
 ```javascript
 import {
-  Footer,
-  SiteInfo,
-  FooterSection,
-  SiteLinkGroup,
-  SiteLink,
-  FooterLogo,
+    Footer,
+    SiteInfo,
+    FooterSection,
+    SiteLinkGroup,
+    SiteLink,
+    FooterLogo,
 } from '@govtechmy/myds-react/footer';
 ```
 
@@ -1993,16 +1989,16 @@ Imports all necessary subcomponents to build a government-standard footer.
 
 ```jsx
 export default () => (
-  <Footer>
-    <FooterSection>
-      <SiteInfo>
-        <FooterLogo />
-      </SiteInfo>
-      <SiteLinkGroup>
-        <SiteLink />
-      </SiteLinkGroup>
-    </FooterSection>
-  </Footer>
+    <Footer>
+        <FooterSection>
+            <SiteInfo>
+                <FooterLogo />
+            </SiteInfo>
+            <SiteLinkGroup>
+                <SiteLink />
+            </SiteLinkGroup>
+        </FooterSection>
+    </Footer>
 );
 // This example shows a typical footer layout with information, logo, and grouped links.
 ```
@@ -2015,11 +2011,11 @@ export default () => (
 
 ```jsx
 <Footer>
-  <FooterSection>
-    All Rights Reserved © 2025 |<SiteLink>Disclaimer</SiteLink>
-    <SiteLink>Privacy Policy</SiteLink>
-    Last updated: 11th March 2025
-  </FooterSection>
+    <FooterSection>
+        All Rights Reserved © 2025 |<SiteLink>Disclaimer</SiteLink>
+        <SiteLink>Privacy Policy</SiteLink>
+        Last updated: 11th March 2025
+    </FooterSection>
 </Footer>
 ```
 
@@ -2033,10 +2029,9 @@ Use FooterSection for legal, copyright, and policy info.
 
 ```jsx
 <SiteInfo>
-  <FooterLogo logoTitle="Kementerian Digital" />
-  Aras 13, 14 & 15, Blok Menara, Menara Usahawan, No. 18, Persiaran Perdana,
-  Presint 2, Pusat Pentadbiran Kerajaan Persekutuan, 62000 Putrajaya, Malaysia
-  Follow us
+    <FooterLogo logoTitle="Kementerian Digital" />
+    Aras 13, 14 & 15, Blok Menara, Menara Usahawan, No. 18, Persiaran Perdana, Presint 2, Pusat
+    Pentadbiran Kerajaan Persekutuan, 62000 Putrajaya, Malaysia Follow us
 </SiteInfo>
 ```
 
@@ -2050,14 +2045,14 @@ SiteInfo is ideal for address, contact, and social links.
 
 ```jsx
 <SiteLinkGroup groupTitle="Super long title" linkCount={8}>
-  <SiteLink>Link 1 super super long super super long long long long</SiteLink>
-  <SiteLink>Link 2</SiteLink>
-  <SiteLink>Link 3</SiteLink>
-  <SiteLink>Link 4</SiteLink>
-  <SiteLink>Link 5</SiteLink>
-  <SiteLink>Link 6</SiteLink>
-  <SiteLink>Link 7</SiteLink>
-  <SiteLink>Link 8</SiteLink>
+    <SiteLink>Link 1 super super long super super long long long long</SiteLink>
+    <SiteLink>Link 2</SiteLink>
+    <SiteLink>Link 3</SiteLink>
+    <SiteLink>Link 4</SiteLink>
+    <SiteLink>Link 5</SiteLink>
+    <SiteLink>Link 6</SiteLink>
+    <SiteLink>Link 7</SiteLink>
+    <SiteLink>Link 8</SiteLink>
 </SiteLinkGroup>
 ```
 
@@ -2286,10 +2281,10 @@ Imports the InputOTP and InputOTPSlot components for building OTP input forms.
 
 ```jsx
 <InputOTP maxLength={4}>
-  <InputOTPSlot index={0} />
-  <InputOTPSlot index={1} />
-  <InputOTPSlot index={2} />
-  <InputOTPSlot index={3} />
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
 </InputOTP>
 // This setup creates a 4-digit OTP input, with each slot representing a digit/character.
 ```
@@ -2302,10 +2297,10 @@ Set the `invalid` prop to `true` to mark the entire OTP input as invalid.
 
 ```jsx
 <InputOTP maxLength={4} invalid>
-  <InputOTPSlot index={0} />
-  <InputOTPSlot index={1} />
-  <InputOTPSlot index={2} />
-  <InputOTPSlot index={3} />
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
 </InputOTP>
 ```
 
@@ -2319,10 +2314,10 @@ Disable the OTP input by setting the `disabled` prop to `true`.
 
 ```jsx
 <InputOTP maxLength={4} disabled>
-  <InputOTPSlot index={0} />
-  <InputOTPSlot index={1} />
-  <InputOTPSlot index={2} />
-  <InputOTPSlot index={3} />
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
 </InputOTP>
 ```
 
@@ -2338,15 +2333,11 @@ In this example, the value is managed in state and converted to uppercase on cha
 ```jsx
 const [otp, setOtp] = useState('');
 
-<InputOTP
-  value={otp}
-  onChange={(val) => setOtp(val.toUpperCase())}
-  maxLength={4}
->
-  <InputOTPSlot index={0} />
-  <InputOTPSlot index={1} />
-  <InputOTPSlot index={2} />
-  <InputOTPSlot index={3} />
+<InputOTP value={otp} onChange={(val) => setOtp(val.toUpperCase())} maxLength={4}>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
 </InputOTP>;
 ```
 
@@ -2361,10 +2352,10 @@ For example, only allow numeric OTP:
 
 ```jsx
 <InputOTP pattern="\d*" maxLength={4}>
-  <InputOTPSlot index={0} />
-  <InputOTPSlot index={1} />
-  <InputOTPSlot index={2} />
-  <InputOTPSlot index={3} />
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
 </InputOTP>
 ```
 
@@ -2416,18 +2407,18 @@ Import Label for form text, Checkbox for selection, and Toggle for switch contro
 
 ```jsx
 export default () => (
-  <>
-    <div className="flex items-center justify-between">
-      <Label htmlFor="checkbox">Auto-delete notifications</Label>
-      <Checkbox id="checkbox" />
-    </div>
-    <div className="flex items-center justify-between">
-      <Label htmlFor="toggle">Enable 2FA security?</Label>
-      <Toggle id="toggle">
-        <ToggleThumb />
-      </Toggle>
-    </div>
-  </>
+    <>
+        <div className="flex items-center justify-between">
+            <Label htmlFor="checkbox">Auto-delete notifications</Label>
+            <Checkbox id="checkbox" />
+        </div>
+        <div className="flex items-center justify-between">
+            <Label htmlFor="toggle">Enable 2FA security?</Label>
+            <Toggle id="toggle">
+                <ToggleThumb />
+            </Toggle>
+        </div>
+    </>
 );
 // This example shows Label paired with Checkbox and Toggle for accessible form controls.
 ```
@@ -2454,7 +2445,7 @@ Use the `asChild` prop to render the label using the Slot component for custom r
 
 ```jsx
 <Label asChild>
-  <span className="custom-label">Custom Rendered Label</span>
+    <span className="custom-label">Custom Rendered Label</span>
 </Label>
 ```
 
@@ -2494,10 +2485,10 @@ Imports the Link component for creating styled hyperlinks.
 
 ```jsx
 export default () => (
-  <Link href="/" primary>
-    {/* The link's destination should be indicated here. */}
-    Malaysia's Official Design System
-  </Link>
+    <Link href="/" primary>
+        {/* The link's destination should be indicated here. */}
+        Malaysia's Official Design System
+    </Link>
 );
 // This example shows a primary link to the homepage.
 ```
@@ -2513,9 +2504,9 @@ import { Link as LinkPrimitive } from '@govtechmy/myds-react/link';
 import NextLink from 'next/link';
 
 export const Link = (props) => (
-  <LinkPrimitive asChild>
-    <NextLink {...props} />
-  </LinkPrimitive>
+    <LinkPrimitive asChild>
+        <NextLink {...props} />
+    </LinkPrimitive>
 );
 // This allows you to use Next.js's <Link> with MYDS styling.
 ```
@@ -2530,7 +2521,7 @@ Open the link in a new tab by setting `newTab` or `target="_blank"`.
 
 ```jsx
 <Link href="https://digital.gov.my" newTab>
-  Ministry of Digital
+    Ministry of Digital
 </Link>
 ```
 
@@ -2602,12 +2593,12 @@ The Masthead component is a standardized header for Malaysian government website
 
 ```javascript
 import {
-  Masthead,
-  MastheadHeader,
-  MastheadContent,
-  MastheadTitle,
-  MastheadTrigger,
-  MastheadSection,
+    Masthead,
+    MastheadHeader,
+    MastheadContent,
+    MastheadTitle,
+    MastheadTrigger,
+    MastheadSection,
 } from '@govtechmy/myds-react/masthead';
 ```
 
@@ -2619,17 +2610,17 @@ Imports all necessary subcomponents for building a government-standard masthead.
 
 ```jsx
 export default () => (
-  <Masthead>
-    <MastheadHeader>
-      <MastheadTitle>Official Malaysian Government Website</MastheadTitle>
-      <MastheadTrigger />
-    </MastheadHeader>
-    <MastheadContent>
-      <MastheadSection title="Important Updates" icon={<Icon name="info" />}>
-        {/* Content or navigation goes here */}
-      </MastheadSection>
-    </MastheadContent>
-  </Masthead>
+    <Masthead>
+        <MastheadHeader>
+            <MastheadTitle>Official Malaysian Government Website</MastheadTitle>
+            <MastheadTrigger />
+        </MastheadHeader>
+        <MastheadContent>
+            <MastheadSection title="Important Updates" icon={<Icon name="info" />}>
+                {/* Content or navigation goes here */}
+            </MastheadSection>
+        </MastheadContent>
+    </Masthead>
 );
 // This example shows a masthead with a title and trigger in the header, and a content section with an icon and title.
 ```
@@ -2686,12 +2677,12 @@ The Navbar component establishes a clear navigation menu for users to browse the
 
 ```javascript
 import {
-  Navbar,
-  NavbarLogo,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuDropdown,
-  NavbarAction,
+    Navbar,
+    NavbarLogo,
+    NavbarMenu,
+    NavbarMenuItem,
+    NavbarMenuDropdown,
+    NavbarAction,
 } from '@govtechmy/myds-react/navbar';
 ```
 
@@ -2703,23 +2694,23 @@ Imports all necessary subcomponents for building a government-standard navigatio
 
 ```jsx
 export default () => {
-  return (
-    <Navbar>
-      <NavbarLogo src="/logo.png" alt="MYDS" href="/" />
-      {/* Displays the site logo as a link to the homepage */}
-      <NavbarMenu>
-        <NavbarMenuItem href="/menu1">Menu 1</NavbarMenuItem>
-        <NavbarMenuItem href="/menu2">Menu 2</NavbarMenuItem>
-        {/* Menu dropdown for sub-navigation */}
-        <NavbarMenuDropdown title="More">
-          <NavbarMenuItem href="/menu3">Menu 3</NavbarMenuItem>
-        </NavbarMenuDropdown>
-      </NavbarMenu>
-      <NavbarAction>
-        {/* Place action buttons or links here, e.g., login/logout */}
-      </NavbarAction>
-    </Navbar>
-  );
+    return (
+        <Navbar>
+            <NavbarLogo src="/logo.png" alt="MYDS" href="/" />
+            {/* Displays the site logo as a link to the homepage */}
+            <NavbarMenu>
+                <NavbarMenuItem href="/menu1">Menu 1</NavbarMenuItem>
+                <NavbarMenuItem href="/menu2">Menu 2</NavbarMenuItem>
+                {/* Menu dropdown for sub-navigation */}
+                <NavbarMenuDropdown title="More">
+                    <NavbarMenuItem href="/menu3">Menu 3</NavbarMenuItem>
+                </NavbarMenuDropdown>
+            </NavbarMenu>
+            <NavbarAction>
+                {/* Place action buttons or links here, e.g., login/logout */}
+            </NavbarAction>
+        </Navbar>
+    );
 };
 // This example provides branding, navigation, and actions, following MYDS standards.
 ```
@@ -2744,11 +2735,11 @@ Menu items provide primary navigation links. Use `NavbarMenuItem` for standard l
 
 ```jsx
 <NavbarMenu>
-  <NavbarMenuItem href="/menu1">Menu 1</NavbarMenuItem>
-  <NavbarMenuItem href="/menu2">Menu 2</NavbarMenuItem>
-  <NavbarMenuDropdown title="More">
-    <NavbarMenuItem href="/menu3">Menu 3</NavbarMenuItem>
-  </NavbarMenuDropdown>
+    <NavbarMenuItem href="/menu1">Menu 1</NavbarMenuItem>
+    <NavbarMenuItem href="/menu2">Menu 2</NavbarMenuItem>
+    <NavbarMenuDropdown title="More">
+        <NavbarMenuItem href="/menu3">Menu 3</NavbarMenuItem>
+    </NavbarMenuDropdown>
 </NavbarMenu>
 ```
 
@@ -2762,7 +2753,7 @@ Action controls (e.g., login, profile, language selector) can be placed in the a
 
 ```jsx
 <NavbarAction>
-  <Button>Login</Button>
+    <Button>Login</Button>
 </NavbarAction>
 ```
 
@@ -2853,14 +2844,14 @@ For more advanced scenarios, you can assemble the pagination manually using subc
 
 ```javascript
 import {
-  Pagination,
-  PaginationContext,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationNext,
-  PaginationNumber,
-  PaginationPrevious,
+    Pagination,
+    PaginationContext,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationNext,
+    PaginationNumber,
+    PaginationPrevious,
 } from '@/components/myds';
 ```
 
@@ -2872,20 +2863,20 @@ Manual assembly provides low-level control for custom layouts, labels, and navig
 
 ```jsx
 <Pagination count={20} limit={5} page={2} onPageChange={handlePageChange}>
-  <PaginationContent>
-    <PaginationItem>
-      <PaginationPrevious />
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationNumber page={1} />
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationEllipsis />
-    </PaginationItem>
-    <PaginationItem>
-      <PaginationNext />
-    </PaginationItem>
-  </PaginationContent>
+    <PaginationContent>
+        <PaginationItem>
+            <PaginationPrevious />
+        </PaginationItem>
+        <PaginationItem>
+            <PaginationNumber page={1} />
+        </PaginationItem>
+        <PaginationItem>
+            <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+            <PaginationNext />
+        </PaginationItem>
+    </PaginationContent>
 </Pagination>
 // This example shows custom navigation with previous/next, page numbers, and ellipsis for skipped pages.
 ```
@@ -3073,11 +3064,11 @@ Radio buttons allow users to select exactly one choice from a group. They are co
 
 ```javascript
 import {
-  Radio,
-  RadioButton,
-  RadioHintText,
-  RadioItem,
-  RadioLabel,
+    Radio,
+    RadioButton,
+    RadioHintText,
+    RadioItem,
+    RadioLabel,
 } from '@govtechmy/myds-react/radio';
 ```
 
@@ -3089,17 +3080,17 @@ Import all radio subcomponents for building radio groups with hints and labels.
 
 ```jsx
 <Radio>
-  <RadioItem>
-    <RadioButton value="apple" id="apple" />
-    <RadioLabel htmlFor="apple">Apple</RadioLabel>
-  </RadioItem>
-  <RadioItem>
-    <RadioButton value="banana" id="banana" />
-    <div>
-      <RadioLabel htmlFor="banana">Banana</RadioLabel>
-      <RadioHintText htmlFor="banana">Comes pre-packaged.</RadioHintText>
-    </div>
-  </RadioItem>
+    <RadioItem>
+        <RadioButton value="apple" id="apple" />
+        <RadioLabel htmlFor="apple">Apple</RadioLabel>
+    </RadioItem>
+    <RadioItem>
+        <RadioButton value="banana" id="banana" />
+        <div>
+            <RadioLabel htmlFor="banana">Banana</RadioLabel>
+            <RadioHintText htmlFor="banana">Comes pre-packaged.</RadioHintText>
+        </div>
+    </RadioItem>
 </Radio>
 // This example shows a radio group with labeled choices, and hint text for additional info.
 ```
@@ -3112,20 +3103,20 @@ Change the size of radio buttons using the `size` prop on the Radio component.
 
 ```jsx
 <Radio size="small">
-  <RadioItem>
-    <RadioButton value="email" id="email" />
-    <RadioLabel htmlFor="email">Email</RadioLabel>
-    <RadioHintText htmlFor="email">
-      We will send notifications to your registered email address.
-    </RadioHintText>
-  </RadioItem>
-  <RadioItem>
-    <RadioButton value="phone" id="phone" />
-    <RadioLabel htmlFor="phone">Phone Call</RadioLabel>
-    <RadioHintText htmlFor="phone">
-      Our representative will call you on your provided phone number.
-    </RadioHintText>
-  </RadioItem>
+    <RadioItem>
+        <RadioButton value="email" id="email" />
+        <RadioLabel htmlFor="email">Email</RadioLabel>
+        <RadioHintText htmlFor="email">
+            We will send notifications to your registered email address.
+        </RadioHintText>
+    </RadioItem>
+    <RadioItem>
+        <RadioButton value="phone" id="phone" />
+        <RadioLabel htmlFor="phone">Phone Call</RadioLabel>
+        <RadioHintText htmlFor="phone">
+            Our representative will call you on your provided phone number.
+        </RadioHintText>
+    </RadioItem>
 </Radio>
 ```
 
@@ -3139,20 +3130,20 @@ Disable all radio items by setting the `disabled` prop to `true` on the Radio co
 
 ```jsx
 <Radio disabled>
-  <RadioItem>
-    <RadioButton value="email" id="email" />
-    <RadioLabel htmlFor="email">Email</RadioLabel>
-    <RadioHintText htmlFor="email">
-      We will send notifications to your registered email address.
-    </RadioHintText>
-  </RadioItem>
-  <RadioItem>
-    <RadioButton value="phone" id="phone" />
-    <RadioLabel htmlFor="phone">Phone Call</RadioLabel>
-    <RadioHintText htmlFor="phone">
-      Our representative will call you on your provided phone number.
-    </RadioHintText>
-  </RadioItem>
+    <RadioItem>
+        <RadioButton value="email" id="email" />
+        <RadioLabel htmlFor="email">Email</RadioLabel>
+        <RadioHintText htmlFor="email">
+            We will send notifications to your registered email address.
+        </RadioHintText>
+    </RadioItem>
+    <RadioItem>
+        <RadioButton value="phone" id="phone" />
+        <RadioLabel htmlFor="phone">Phone Call</RadioLabel>
+        <RadioHintText htmlFor="phone">
+            Our representative will call you on your provided phone number.
+        </RadioHintText>
+    </RadioItem>
 </Radio>
 ```
 
@@ -3164,18 +3155,18 @@ Disable individual radio items by setting the `disabled` prop to `true` on the R
 
 ```jsx
 <Radio>
-  <RadioItem>
-    <RadioButton value="email" id="email" />
-    <RadioLabel htmlFor="email">Email</RadioLabel>
-    <RadioHintText htmlFor="email">
-      We will send notifications to your registered email address.
-    </RadioHintText>
-  </RadioItem>
-  <RadioItem disabled>
-    <RadioButton value="postal" id="postal" />
-    <RadioLabel htmlFor="postal">Postal Mail</RadioLabel>
-    <RadioHintText htmlFor="postal">Not available at the moment.</RadioHintText>
-  </RadioItem>
+    <RadioItem>
+        <RadioButton value="email" id="email" />
+        <RadioLabel htmlFor="email">Email</RadioLabel>
+        <RadioHintText htmlFor="email">
+            We will send notifications to your registered email address.
+        </RadioHintText>
+    </RadioItem>
+    <RadioItem disabled>
+        <RadioButton value="postal" id="postal" />
+        <RadioLabel htmlFor="postal">Postal Mail</RadioLabel>
+        <RadioHintText htmlFor="postal">Not available at the moment.</RadioHintText>
+    </RadioItem>
 </Radio>
 ```
 
@@ -3191,20 +3182,20 @@ To use Radio as a controlled component, set the `value` and `onValueChange` prop
 const [value, setValue] = useState('');
 
 <Radio value={value} onValueChange={setValue}>
-  <RadioItem>
-    <RadioButton value="email" id="email" />
-    <RadioLabel htmlFor="email">Email</RadioLabel>
-    <RadioHintText htmlFor="email">
-      We will send notifications to your registered email address.
-    </RadioHintText>
-  </RadioItem>
-  <RadioItem>
-    <RadioButton value="phone" id="phone" />
-    <RadioLabel htmlFor="phone">Phone Call</RadioLabel>
-    <RadioHintText htmlFor="phone">
-      Our representative will call you on your provided phone number.
-    </RadioHintText>
-  </RadioItem>
+    <RadioItem>
+        <RadioButton value="email" id="email" />
+        <RadioLabel htmlFor="email">Email</RadioLabel>
+        <RadioHintText htmlFor="email">
+            We will send notifications to your registered email address.
+        </RadioHintText>
+    </RadioItem>
+    <RadioItem>
+        <RadioButton value="phone" id="phone" />
+        <RadioLabel htmlFor="phone">Phone Call</RadioLabel>
+        <RadioHintText htmlFor="phone">
+            Our representative will call you on your provided phone number.
+        </RadioHintText>
+    </RadioItem>
 </Radio>;
 ```
 
@@ -3253,15 +3244,15 @@ The Search Bar component allows users to enter a query or keyword to search thro
 
 ```javascript
 import {
-  SearchBar,
-  SearchBarInput,
-  SearchBarInputContainer,
-  SearchBarSearchButton,
-  SearchBarResults,
-  SearchBarResultsList,
-  SearchBarResultsItem,
-  SearchBarClearButton,
-  SearchBarHint,
+    SearchBar,
+    SearchBarInput,
+    SearchBarInputContainer,
+    SearchBarSearchButton,
+    SearchBarResults,
+    SearchBarResultsList,
+    SearchBarResultsItem,
+    SearchBarClearButton,
+    SearchBarHint,
 } from '@govtechmy/myds-react/search-bar';
 ```
 
@@ -3273,24 +3264,24 @@ Imports all subcomponents required for building a feature-rich search bar.
 
 ```jsx
 <SearchBar size="large">
-  <SearchBarInputContainer>
-    <SearchBarInput value={query} onValueChange={setQuery} />
-    <SearchBarHint>
-      Press <Pill size="small">/</Pill> to search
-    </SearchBarHint>
-    <SearchBarClearButton />
-    <SearchBarSearchButton />
-  </SearchBarInputContainer>
-  <SearchBarResults open={true}>
-    <SearchBarResultsList>
-      <SearchBarResultsItem value="foo" onSelect={() => {}}>
-        Foo
-      </SearchBarResultsItem>
-      <SearchBarResultsItem value="bar" onSelect={() => {}}>
-        Bar
-      </SearchBarResultsItem>
-    </SearchBarResultsList>
-  </SearchBarResults>
+    <SearchBarInputContainer>
+        <SearchBarInput value={query} onValueChange={setQuery} />
+        <SearchBarHint>
+            Press <Pill size="small">/</Pill> to search
+        </SearchBarHint>
+        <SearchBarClearButton />
+        <SearchBarSearchButton />
+    </SearchBarInputContainer>
+    <SearchBarResults open={true}>
+        <SearchBarResultsList>
+            <SearchBarResultsItem value="foo" onSelect={() => {}}>
+                Foo
+            </SearchBarResultsItem>
+            <SearchBarResultsItem value="bar" onSelect={() => {}}>
+                Bar
+            </SearchBarResultsItem>
+        </SearchBarResultsList>
+    </SearchBarResults>
 </SearchBar>
 // Example: Large search bar with input, hint, clear, search button, and results list.
 ```
@@ -3323,10 +3314,10 @@ The `SearchBarClearButton` shows a button to clear the search input.
 
 ```jsx
 <SearchBar>
-  <SearchBarInputContainer>
-    <SearchBarInput value={query} onValueChange={setQuery} />
-    <SearchBarClearButton />
-  </SearchBarInputContainer>
+    <SearchBarInputContainer>
+        <SearchBarInput value={query} onValueChange={setQuery} />
+        <SearchBarClearButton />
+    </SearchBarInputContainer>
 </SearchBar>
 ```
 
@@ -3340,12 +3331,12 @@ Show a hint with `SearchBarHint` to guide users on using the search bar.
 
 ```jsx
 <SearchBar>
-  <SearchBarInputContainer>
-    <SearchBarInput placeholder="Search by name" />
-    <SearchBarHint>
-      Press <Pill size="small">/</Pill> to search
-    </SearchBarHint>
-  </SearchBarInputContainer>
+    <SearchBarInputContainer>
+        <SearchBarInput placeholder="Search by name" />
+        <SearchBarHint>
+            Press <Pill size="small">/</Pill> to search
+        </SearchBarHint>
+    </SearchBarInputContainer>
 </SearchBar>
 ```
 
@@ -3359,23 +3350,23 @@ Display search results or suggestions with `SearchBarResults`, `SearchBarResults
 
 ```jsx
 <SearchBar>
-  <SearchBarInputContainer>
-    <SearchBarInput value={query} onValueChange={setQuery} />
-  </SearchBarInputContainer>
-  <SearchBarResults open={true}>
-    <SearchBarResultsList>
-      <SearchBarResultsItem value="michelle-yeoh" onSelect={() => {}}>
-        Michelle Yeoh
-        <br />
-        Internationally acclaimed actress
-      </SearchBarResultsItem>
-      <SearchBarResultsItem value="p-ramlee" onSelect={() => {}}>
-        P. Ramlee
-        <br />
-        Iconic actor, director, and musician
-      </SearchBarResultsItem>
-    </SearchBarResultsList>
-  </SearchBarResults>
+    <SearchBarInputContainer>
+        <SearchBarInput value={query} onValueChange={setQuery} />
+    </SearchBarInputContainer>
+    <SearchBarResults open={true}>
+        <SearchBarResultsList>
+            <SearchBarResultsItem value="michelle-yeoh" onSelect={() => {}}>
+                Michelle Yeoh
+                <br />
+                Internationally acclaimed actress
+            </SearchBarResultsItem>
+            <SearchBarResultsItem value="p-ramlee" onSelect={() => {}}>
+                P. Ramlee
+                <br />
+                Iconic actor, director, and musician
+            </SearchBarResultsItem>
+        </SearchBarResultsList>
+    </SearchBarResults>
 </SearchBar>
 ```
 
@@ -3389,34 +3380,34 @@ Group search results with `SearchBarResultsGroup` for better organization.
 
 ```jsx
 <SearchBar>
-  <SearchBarInputContainer>
-    <SearchBarInput value={query} onValueChange={setQuery} />
-  </SearchBarInputContainer>
-  <SearchBarResults open={true}>
-    <SearchBarResultsGroup heading="Arts">
-      <SearchBarResultsList>
-        <SearchBarResultsItem value="michelle-yeoh" onSelect={() => {}}>
-          Michelle Yeoh
-          <br />
-          Internationally acclaimed actress
-        </SearchBarResultsItem>
-        <SearchBarResultsItem value="harith-iskander" onSelect={() => {}}>
-          Harith Iskander
-          <br />
-          Comedian and actor
-        </SearchBarResultsItem>
-      </SearchBarResultsList>
-    </SearchBarResultsGroup>
-    <SearchBarResultsGroup heading="Business">
-      <SearchBarResultsList>
-        <SearchBarResultsItem value="tony-fernandes" onSelect={() => {}}>
-          Tony Fernandes
-          <br />
-          Founder of AirAsia
-        </SearchBarResultsItem>
-      </SearchBarResultsList>
-    </SearchBarResultsGroup>
-  </SearchBarResults>
+    <SearchBarInputContainer>
+        <SearchBarInput value={query} onValueChange={setQuery} />
+    </SearchBarInputContainer>
+    <SearchBarResults open={true}>
+        <SearchBarResultsGroup heading="Arts">
+            <SearchBarResultsList>
+                <SearchBarResultsItem value="michelle-yeoh" onSelect={() => {}}>
+                    Michelle Yeoh
+                    <br />
+                    Internationally acclaimed actress
+                </SearchBarResultsItem>
+                <SearchBarResultsItem value="harith-iskander" onSelect={() => {}}>
+                    Harith Iskander
+                    <br />
+                    Comedian and actor
+                </SearchBarResultsItem>
+            </SearchBarResultsList>
+        </SearchBarResultsGroup>
+        <SearchBarResultsGroup heading="Business">
+            <SearchBarResultsList>
+                <SearchBarResultsItem value="tony-fernandes" onSelect={() => {}}>
+                    Tony Fernandes
+                    <br />
+                    Founder of AirAsia
+                </SearchBarResultsItem>
+            </SearchBarResultsList>
+        </SearchBarResultsGroup>
+    </SearchBarResults>
 </SearchBar>
 ```
 
@@ -3437,22 +3428,22 @@ const [query, setQuery] = useState('');
 const [hasFocus, setHasFocus] = useState(false);
 
 <SearchBar>
-  <SearchBarInputContainer>
-    <SearchBarInput
-      value={query}
-      onValueChange={setQuery}
-      onFocus={() => setHasFocus(true)}
-      onBlur={() => setHasFocus(false)}
-    />
-    <SearchBarHint>
-      Press <Pill size="small">/</Pill> to search
-    </SearchBarHint>
-    <SearchBarClearButton />
-    <SearchBarSearchButton />
-  </SearchBarInputContainer>
-  <SearchBarResults open={query.length > 0 && hasFocus}>
-    {/* ...results here... */}
-  </SearchBarResults>
+    <SearchBarInputContainer>
+        <SearchBarInput
+            value={query}
+            onValueChange={setQuery}
+            onFocus={() => setHasFocus(true)}
+            onBlur={() => setHasFocus(false)}
+        />
+        <SearchBarHint>
+            Press <Pill size="small">/</Pill> to search
+        </SearchBarHint>
+        <SearchBarClearButton />
+        <SearchBarSearchButton />
+    </SearchBarInputContainer>
+    <SearchBarResults open={query.length > 0 && hasFocus}>
+        {/* ...results here... */}
+    </SearchBarResults>
 </SearchBar>;
 ```
 
@@ -3521,17 +3512,17 @@ The Select component allows users to choose from a list of options. It typically
 
 ```javascript
 import {
-  Select,
-  SelectGroup,
-  SelectGroupTitle,
-  SelectValue,
-  SelectTrigger,
-  SelectLabel,
-  SelectContent,
-  SelectHeader,
-  SelectFooter,
-  SelectItem,
-  SelectSeparator,
+    Select,
+    SelectGroup,
+    SelectGroupTitle,
+    SelectValue,
+    SelectTrigger,
+    SelectLabel,
+    SelectContent,
+    SelectHeader,
+    SelectFooter,
+    SelectItem,
+    SelectSeparator,
 } from '@govtechmy/myds-react/select';
 ```
 
@@ -3543,20 +3534,20 @@ Imports all subcomponents for building flexible and accessible select menus.
 
 ```jsx
 export default () => (
-  <Select>
-    <SelectTrigger>
-      <SelectValue />
-    </SelectTrigger>
-    <SelectContent>
-      <SelectHeader />
-      <SelectGroup>
-        <SelectGroupTitle />
-        <SelectItem />
-      </SelectGroup>
-      <SelectSeparator />
-      <SelectFooter />
-    </SelectContent>
-  </Select>
+    <Select>
+        <SelectTrigger>
+            <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+            <SelectHeader />
+            <SelectGroup>
+                <SelectGroupTitle />
+                <SelectItem />
+            </SelectGroup>
+            <SelectSeparator />
+            <SelectFooter />
+        </SelectContent>
+    </Select>
 );
 // This example shows a select dropdown with a trigger, value display, header, grouped items, separator, and footer.
 ```
@@ -3602,12 +3593,12 @@ Disable individual options by setting the `disabled` prop to `true` on `SelectIt
 
 ```jsx
 <Select>
-  <SelectContent>
-    <SelectItem value="option1">Option 1</SelectItem>
-    <SelectItem value="option2" disabled>
-      Option 2 (disabled)
-    </SelectItem>
-  </SelectContent>
+    <SelectContent>
+        <SelectItem value="option1">Option 1</SelectItem>
+        <SelectItem value="option2" disabled>
+            Option 2 (disabled)
+        </SelectItem>
+    </SelectContent>
 </Select>
 ```
 
@@ -3621,19 +3612,19 @@ Group related options for better structure using `SelectGroup` and `SelectGroupT
 
 ```jsx
 <Select>
-  <SelectContent>
-    <SelectGroup>
-      <SelectGroupTitle>Fruits</SelectGroupTitle>
-      <SelectItem value="apple">Apple</SelectItem>
-      <SelectItem value="banana">Banana</SelectItem>
-    </SelectGroup>
-    <SelectSeparator />
-    <SelectGroup>
-      <SelectGroupTitle>Vegetables</SelectGroupTitle>
-      <SelectItem value="carrot">Carrot</SelectItem>
-      <SelectItem value="spinach">Spinach</SelectItem>
-    </SelectGroup>
-  </SelectContent>
+    <SelectContent>
+        <SelectGroup>
+            <SelectGroupTitle>Fruits</SelectGroupTitle>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+        </SelectGroup>
+        <SelectSeparator />
+        <SelectGroup>
+            <SelectGroupTitle>Vegetables</SelectGroupTitle>
+            <SelectItem value="carrot">Carrot</SelectItem>
+            <SelectItem value="spinach">Spinach</SelectItem>
+        </SelectGroup>
+    </SelectContent>
 </Select>
 ```
 
@@ -3647,11 +3638,11 @@ Add a header to provide extra context or instructions:
 
 ```jsx
 <Select>
-  <SelectContent>
-    <SelectHeader>Choose your favorite</SelectHeader>
-    <SelectItem value="apple">Apple</SelectItem>
-    <SelectItem value="banana">Banana</SelectItem>
-  </SelectContent>
+    <SelectContent>
+        <SelectHeader>Choose your favorite</SelectHeader>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+    </SelectContent>
 </Select>
 ```
 
@@ -3665,10 +3656,10 @@ Add a footer to show additional info or actions:
 
 ```jsx
 <Select>
-  <SelectContent>
-    <SelectItem value="apple">Apple</SelectItem>
-    <SelectFooter>More options coming soon!</SelectFooter>
-  </SelectContent>
+    <SelectContent>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectFooter>More options coming soon!</SelectFooter>
+    </SelectContent>
 </Select>
 ```
 
@@ -3682,11 +3673,11 @@ Enable multiple selection by setting the `multiple` prop to `true`:
 
 ```jsx
 <Select multiple>
-  <SelectContent>
-    <SelectItem value="apple">Apple</SelectItem>
-    <SelectItem value="banana">Banana</SelectItem>
-    <SelectItem value="carrot">Carrot</SelectItem>
-  </SelectContent>
+    <SelectContent>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+        <SelectItem value="carrot">Carrot</SelectItem>
+    </SelectContent>
 </Select>
 ```
 
@@ -3700,17 +3691,15 @@ Customize how selected values are displayed using the `SelectValue` component:
 
 ```jsx
 <Select>
-  <SelectTrigger>
-    <SelectValue>
-      {(value) => (
-        <span>Selected: {Array.isArray(value) ? value.join(', ') : value}</span>
-      )}
-    </SelectValue>
-  </SelectTrigger>
-  <SelectContent>
-    <SelectItem value="apple">Apple</SelectItem>
-    <SelectItem value="banana">Banana</SelectItem>
-  </SelectContent>
+    <SelectTrigger>
+        <SelectValue>
+            {(value) => <span>Selected: {Array.isArray(value) ? value.join(', ') : value}</span>}
+        </SelectValue>
+    </SelectTrigger>
+    <SelectContent>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+    </SelectContent>
 </Select>
 ```
 
@@ -3769,16 +3758,16 @@ Import the Skiplink component to provide an accessible way for users to skip nav
 
 ```jsx
 export default () => (
-  <>
-    {/* Skiplink is typically hidden until focused via Tab key */}
-    <Skiplink href="#main-content">
-      <span>Skip to main content</span>
-    </Skiplink>
-    {/* Main content should have a matching id for skiplink to jump to */}
-    <main id="main-content">
-      <span className="text-slate-600">Main content here</span>
-    </main>
-  </>
+    <>
+        {/* Skiplink is typically hidden until focused via Tab key */}
+        <Skiplink href="#main-content">
+            <span>Skip to main content</span>
+        </Skiplink>
+        {/* Main content should have a matching id for skiplink to jump to */}
+        <main id="main-content">
+            <span className="text-slate-600">Main content here</span>
+        </main>
+    </>
 );
 // This setup allows keyboard users to skip navigation and reach #main-content directly for improved accessibility.
 ```
@@ -3820,16 +3809,16 @@ Import the Skiplink component to provide an accessible way for users to skip nav
 
 ```jsx
 export default () => (
-  <>
-    {/* Skiplink is typically hidden until focused via Tab key */}
-    <Skiplink href="#main-content">
-      <span>Skip to main content</span>
-    </Skiplink>
-    {/* Main content should have a matching id for skiplink to jump to */}
-    <main id="main-content">
-      <span className="text-slate-600">Main content here</span>
-    </main>
-  </>
+    <>
+        {/* Skiplink is typically hidden until focused via Tab key */}
+        <Skiplink href="#main-content">
+            <span>Skip to main content</span>
+        </Skiplink>
+        {/* Main content should have a matching id for skiplink to jump to */}
+        <main id="main-content">
+            <span className="text-slate-600">Main content here</span>
+        </main>
+    </>
 );
 // This setup allows keyboard users to skip navigation and reach #main-content directly for improved accessibility.
 ```
@@ -3943,14 +3932,14 @@ The Summary List component displays information in a structured key-value format
 
 ```javascript
 import {
-  SummaryList,
-  SummaryListAction,
-  SummaryListBody,
-  SummaryListHeader,
-  SummaryListTerm,
-  SummaryListDetail,
-  SummaryListRow,
-  SummaryListAddition,
+    SummaryList,
+    SummaryListAction,
+    SummaryListBody,
+    SummaryListHeader,
+    SummaryListTerm,
+    SummaryListDetail,
+    SummaryListRow,
+    SummaryListAddition,
 } from '@govtechmy/myds-react/summary-list';
 ```
 
@@ -3962,23 +3951,23 @@ Import all subcomponents to build structured summary tables and rows.
 
 ```jsx
 export default () => (
-  <SummaryList>
-    <SummaryListHeader>Government Subsidy Application</SummaryListHeader>
-    <SummaryListBody>
-      <SummaryListRow>
-        <SummaryListTerm>Application ID</SummaryListTerm>
-        <SummaryListDetail>SUB12345</SummaryListDetail>
-        <SummaryListAction>
-          <button>View</button>
-        </SummaryListAction>
-        <SummaryListAddition>Additional Info</SummaryListAddition>
-      </SummaryListRow>
-      <SummaryListRow>
-        <SummaryListTerm>Applicant Name</SummaryListTerm>
-        <SummaryListDetail>Lee Ming Wei</SummaryListDetail>
-      </SummaryListRow>
-    </SummaryListBody>
-  </SummaryList>
+    <SummaryList>
+        <SummaryListHeader>Government Subsidy Application</SummaryListHeader>
+        <SummaryListBody>
+            <SummaryListRow>
+                <SummaryListTerm>Application ID</SummaryListTerm>
+                <SummaryListDetail>SUB12345</SummaryListDetail>
+                <SummaryListAction>
+                    <button>View</button>
+                </SummaryListAction>
+                <SummaryListAddition>Additional Info</SummaryListAddition>
+            </SummaryListRow>
+            <SummaryListRow>
+                <SummaryListTerm>Applicant Name</SummaryListTerm>
+                <SummaryListDetail>Lee Ming Wei</SummaryListDetail>
+            </SummaryListRow>
+        </SummaryListBody>
+    </SummaryList>
 );
 // This example displays a summary table for an application, including rows, actions, and additions.
 ```
@@ -4064,7 +4053,7 @@ For adding actions (e.g., buttons or links) associated with a row.
 
 ```jsx
 <SummaryListAction>
-  <button>View</button>
+    <button>View</button>
 </SummaryListAction>
 ```
 
@@ -4154,16 +4143,16 @@ The Table component organizes information into rows and columns for easy readabi
 
 ```javascript
 import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-  TableSkeleton,
-  TableEmpty,
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableFooter,
+    TableHead,
+    TableHeader,
+    TableRow,
+    TableSkeleton,
+    TableEmpty,
 } from '@govtechmy/myds-react/table';
 ```
 
@@ -4175,24 +4164,24 @@ Imports all necessary subcomponents for building structured tables with headers,
 
 ```jsx
 export default () => (
-  <Table>
-    <TableHeader>
-      <TableRow>
-        <TableHead>Timestamp</TableHead>
-        <TableHead>Activity</TableHead>
-        <TableHead>Action Taken</TableHead>
-      </TableRow>
-    </TableHeader>
-    <TableBody>
-      <TableRow>
-        <TableCell>2021-09-01 12:00:00</TableCell>
-        <TableCell>Login attempt successful</TableCell>
-        <TableCell>Ali</TableCell>
-      </TableRow>
-      {/* Add more TableRow/TableCell as needed */}
-    </TableBody>
-    <TableCaption>Audit log</TableCaption>
-  </Table>
+    <Table>
+        <TableHeader>
+            <TableRow>
+                <TableHead>Timestamp</TableHead>
+                <TableHead>Activity</TableHead>
+                <TableHead>Action Taken</TableHead>
+            </TableRow>
+        </TableHeader>
+        <TableBody>
+            <TableRow>
+                <TableCell>2021-09-01 12:00:00</TableCell>
+                <TableCell>Login attempt successful</TableCell>
+                <TableCell>Ali</TableCell>
+            </TableRow>
+            {/* Add more TableRow/TableCell as needed */}
+        </TableBody>
+        <TableCaption>Audit log</TableCaption>
+    </Table>
 );
 // Example: Simple audit log table with header, body, and caption.
 ```
@@ -4205,21 +4194,21 @@ Create a basic table with headers, rows, and cells using Table, TableHeader, Tab
 
 ```jsx
 <Table>
-  <TableHeader>
-    <TableRow>
-      <TableHead>Timestamp</TableHead>
-      <TableHead>Activity</TableHead>
-      <TableHead>Action Taken</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    <TableRow>
-      <TableCell>2021-09-01 12:00:00</TableCell>
-      <TableCell>Login attempt successful</TableCell>
-      <TableCell>Ali</TableCell>
-    </TableRow>
-    {/* Additional rows */}
-  </TableBody>
+    <TableHeader>
+        <TableRow>
+            <TableHead>Timestamp</TableHead>
+            <TableHead>Activity</TableHead>
+            <TableHead>Action Taken</TableHead>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        <TableRow>
+            <TableCell>2021-09-01 12:00:00</TableCell>
+            <TableCell>Login attempt successful</TableCell>
+            <TableCell>Ali</TableCell>
+        </TableRow>
+        {/* Additional rows */}
+    </TableBody>
 </Table>
 ```
 
@@ -4233,30 +4222,30 @@ Use `rowSpan` and `colSpan` attributes to merge cells across rows or columns.
 
 ```jsx
 <Table>
-  <TableHeader>
-    <TableRow>
-      <TableHead>Category</TableHead>
-      <TableHead>Chargeable Income</TableHead>
-      <TableHead>Calculation (RM)</TableHead>
-      <TableHead>Rate</TableHead>
-      <TableHead>Tax</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableBody>
-    <TableRow>
-      <TableCell rowSpan={2}>A</TableCell>
-      <TableCell colSpan={2}>0 - 5,000</TableCell>
-      <TableCell>0</TableCell>
-      <TableCell>RM 0</TableCell>
-    </TableRow>
-    <TableRow>
-      <TableCell>B</TableCell>
-      <TableCell>5,000 - 20,000</TableCell>
-      <TableCell>On the First 5,000</TableCell>
-      <TableCell>1%</TableCell>
-      <TableCell>RM 0</TableCell>
-    </TableRow>
-  </TableBody>
+    <TableHeader>
+        <TableRow>
+            <TableHead>Category</TableHead>
+            <TableHead>Chargeable Income</TableHead>
+            <TableHead>Calculation (RM)</TableHead>
+            <TableHead>Rate</TableHead>
+            <TableHead>Tax</TableHead>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        <TableRow>
+            <TableCell rowSpan={2}>A</TableCell>
+            <TableCell colSpan={2}>0 - 5,000</TableCell>
+            <TableCell>0</TableCell>
+            <TableCell>RM 0</TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>B</TableCell>
+            <TableCell>5,000 - 20,000</TableCell>
+            <TableCell>On the First 5,000</TableCell>
+            <TableCell>1%</TableCell>
+            <TableCell>RM 0</TableCell>
+        </TableRow>
+    </TableBody>
 </Table>
 ```
 
@@ -4270,13 +4259,13 @@ Add a footer to the table using the TableFooter component for summary or totals.
 
 ```jsx
 <Table>
-  {/* ...header and body... */}
-  <TableFooter>
-    <TableRow>
-      <TableCell colSpan={4}>Total Tax</TableCell>
-      <TableCell>RM 600</TableCell>
-    </TableRow>
-  </TableFooter>
+    {/* ...header and body... */}
+    <TableFooter>
+        <TableRow>
+            <TableCell colSpan={4}>Total Tax</TableCell>
+            <TableCell>RM 600</TableCell>
+        </TableRow>
+    </TableFooter>
 </Table>
 ```
 
@@ -4303,14 +4292,14 @@ Show an empty state when there is no data using TableEmpty.
 
 ```jsx
 <Table>
-  <TableHeader>
-    <TableRow>
-      <TableHead>Timestamp</TableHead>
-      <TableHead>Activity</TableHead>
-      <TableHead>Action Taken</TableHead>
-    </TableRow>
-  </TableHeader>
-  <TableEmpty>No data available</TableEmpty>
+    <TableHeader>
+        <TableRow>
+            <TableHead>Timestamp</TableHead>
+            <TableHead>Activity</TableHead>
+            <TableHead>Action Taken</TableHead>
+        </TableRow>
+    </TableHeader>
+    <TableEmpty>No data available</TableEmpty>
 </Table>
 ```
 
@@ -4348,12 +4337,12 @@ The Tabs component allows users to navigate between different views or content s
 
 ```javascript
 import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-  TabsIcon,
-  TabsCounter,
+    Tabs,
+    TabsList,
+    TabsTrigger,
+    TabsContent,
+    TabsIcon,
+    TabsCounter,
 } from '@govtechmy/myds-react/tabs';
 ```
 
@@ -4365,22 +4354,21 @@ Import all subcomponents to build interactive and accessible tab navigation.
 
 ```jsx
 export default () => (
-  <Tabs variant="line" size="small">
-    <TabsList>
-      <TabsTrigger value="novel">Novel</TabsTrigger>
-      <TabsTrigger value="short-story">Short Story</TabsTrigger>
-      <TabsTrigger value="poetry">Poetry</TabsTrigger>
-      <TabsTrigger value="drama">Drama</TabsTrigger>
-    </TabsList>
-    <TabsContent value="novel">
-      A novel is a long work of fiction that presents a complete story with
-      characters, plot, and setting. It typically encompasses various themes
-      such as love, family, life struggles, and societal challenges. Novels
-      allow readers to immerse themselves in new worlds through the author's
-      imagination.
-    </TabsContent>
-    {/* Add more TabsContent for each trigger */}
-  </Tabs>
+    <Tabs variant="line" size="small">
+        <TabsList>
+            <TabsTrigger value="novel">Novel</TabsTrigger>
+            <TabsTrigger value="short-story">Short Story</TabsTrigger>
+            <TabsTrigger value="poetry">Poetry</TabsTrigger>
+            <TabsTrigger value="drama">Drama</TabsTrigger>
+        </TabsList>
+        <TabsContent value="novel">
+            A novel is a long work of fiction that presents a complete story with characters, plot,
+            and setting. It typically encompasses various themes such as love, family, life
+            struggles, and societal challenges. Novels allow readers to immerse themselves in new
+            worlds through the author's imagination.
+        </TabsContent>
+        {/* Add more TabsContent for each trigger */}
+    </Tabs>
 );
 // This example shows a basic tabs setup with four categories and content panels.
 ```
@@ -4427,18 +4415,18 @@ Use `TabsIcon` inside `TabsTrigger` to add visual indicators at the start (or en
 
 ```jsx
 <Tabs>
-  <TabsList>
-    <TabsTrigger value="novel">
-      <TabsIcon>{/* <BookIcon /> */}</TabsIcon>
-      Novel
-    </TabsTrigger>
-    <TabsTrigger value="short-story">
-      <TabsIcon>{/* <StoryIcon /> */}</TabsIcon>
-      Short Story
-    </TabsTrigger>
+    <TabsList>
+        <TabsTrigger value="novel">
+            <TabsIcon>{/* <BookIcon /> */}</TabsIcon>
+            Novel
+        </TabsTrigger>
+        <TabsTrigger value="short-story">
+            <TabsIcon>{/* <StoryIcon /> */}</TabsIcon>
+            Short Story
+        </TabsTrigger>
+        {/* ... */}
+    </TabsList>
     {/* ... */}
-  </TabsList>
-  {/* ... */}
 </Tabs>
 ```
 
@@ -4452,15 +4440,15 @@ Add `TabsCounter` inside `TabsTrigger` to display the number of items in each ca
 
 ```jsx
 <Tabs>
-  <TabsList>
-    <TabsTrigger value="novel">
-      Novel <TabsCounter>1</TabsCounter>
-    </TabsTrigger>
-    <TabsTrigger value="short-story">
-      Short Story <TabsCounter>2</TabsCounter>
-    </TabsTrigger>
-  </TabsList>
-  {/* ... */}
+    <TabsList>
+        <TabsTrigger value="novel">
+            Novel <TabsCounter>1</TabsCounter>
+        </TabsTrigger>
+        <TabsTrigger value="short-story">
+            Short Story <TabsCounter>2</TabsCounter>
+        </TabsTrigger>
+    </TabsList>
+    {/* ... */}
 </Tabs>
 ```
 
@@ -4631,11 +4619,11 @@ Import the TextArea component for multi-line text input in forms.
 
 ```jsx
 export default () => (
-  <TextArea
-    placeholder="Placeholder text displayed when the text area is empty."
-    size="small"
-    disabled={false}
-  />
+    <TextArea
+        placeholder="Placeholder text displayed when the text area is empty."
+        size="small"
+        disabled={false}
+    />
 );
 // Renders a small TextArea with placeholder and enabled for user input.
 ```
@@ -4702,10 +4690,10 @@ Import ThemeProvider to manage theme context, and ThemeSwitch to provide user co
 
 ```jsx
 export default () => (
-  <ThemeProvider>
-    {/* ThemeSwitch lets users toggle or select a theme */}
-    <ThemeSwitch />
-  </ThemeProvider>
+    <ThemeProvider>
+        {/* ThemeSwitch lets users toggle or select a theme */}
+        <ThemeSwitch />
+    </ThemeProvider>
 );
 // Always wrap your app in ThemeProvider to enable dynamic theme switching.
 ```
@@ -4718,7 +4706,7 @@ By default, `ThemeSwitch` will appear as a toggle button, allowing users to swit
 
 ```jsx
 <ThemeProvider>
-  <ThemeSwitch />
+    <ThemeSwitch />
 </ThemeProvider>
 ```
 
@@ -4732,7 +4720,7 @@ You can render `ThemeSwitch` as a select dropdown, so users can choose from a li
 
 ```jsx
 <ThemeProvider>
-  <ThemeSwitch as="select" />
+    <ThemeSwitch as="select" />
 </ThemeProvider>
 ```
 
@@ -4748,13 +4736,13 @@ Extend the available themes by providing the `themes` prop with custom labels, v
 import { SunIcon, MoonIcon, SystemIcon } from './icons';
 
 const customThemes = [
-  { label: 'Light', value: 'light', icon: <SunIcon /> },
-  { label: 'Dark', value: 'dark', icon: <MoonIcon /> },
-  { label: 'System', value: 'system', icon: <SystemIcon /> },
+    { label: 'Light', value: 'light', icon: <SunIcon /> },
+    { label: 'Dark', value: 'dark', icon: <MoonIcon /> },
+    { label: 'System', value: 'system', icon: <SystemIcon /> },
 ];
 
 <ThemeProvider>
-  <ThemeSwitch themes={customThemes} />
+    <ThemeSwitch themes={customThemes} />
 </ThemeProvider>;
 ```
 
@@ -4780,16 +4768,16 @@ Default `themes` value:
 
 ```jsx
 [
-  {
-    label: 'Light',
-    value: 'light',
-    icon: <SunIcon />,
-  },
-  {
-    label: 'Dark',
-    value: 'dark',
-    icon: <MoonIcon />,
-  },
+    {
+        label: 'Light',
+        value: 'light',
+        icon: <SunIcon />,
+    },
+    {
+        label: 'Dark',
+        value: 'dark',
+        icon: <MoonIcon />,
+    },
 ];
 ```
 
@@ -4832,20 +4820,20 @@ Use the `useToast` hook to publish or emit new toast events.
 import { useToast } from '@govtechmy/myds-react/hooks';
 
 export default () => {
-  const { toast } = useToast();
-  return (
-    <button
-      onClick={() => {
-        toast({
-          variant: 'message',
-          title: 'Hello, world!',
-          description: 'this is a message toast description',
-        });
-      }}
-    >
-      Message
-    </button>
-  );
+    const { toast } = useToast();
+    return (
+        <button
+            onClick={() => {
+                toast({
+                    variant: 'message',
+                    title: 'Hello, world!',
+                    description: 'this is a message toast description',
+                });
+            }}
+        >
+            Message
+        </button>
+    );
 };
 // This button triggers a toast notification when clicked.
 ```
@@ -4857,37 +4845,31 @@ This approach is useful when you need to manage toasts or customize their appear
 
 ```javascript
 import {
-  ToastRoot,
-  ToastIcon,
-  ToastProgress,
-  ToastProvider,
-  ToastViewport,
-  ToastTitle,
-  ToastDescription,
-  ToastClose,
+    ToastRoot,
+    ToastIcon,
+    ToastProgress,
+    ToastProvider,
+    ToastViewport,
+    ToastTitle,
+    ToastDescription,
+    ToastClose,
 } from '@govtechmy/myds-react/toast';
 
 export default () => (
-  <ToastProvider>
-    {toasts.map((toast, index) => (
-      <ToastRoot
-        key={toast.id || index}
-        variant={toast.variant || 'message'}
-        {...toast}
-      >
-        <ToastIcon />
-        <div className="space-y-1">
-          <ToastTitle>{toast.title}</ToastTitle>
-          {toast.description && (
-            <ToastDescription>{toast.description}</ToastDescription>
-          )}
-        </div>
-        <ToastClose />
-        <ToastProgress />
-      </ToastRoot>
-    ))}
-    <ToastViewport />
-  </ToastProvider>
+    <ToastProvider>
+        {toasts.map((toast, index) => (
+            <ToastRoot key={toast.id || index} variant={toast.variant || 'message'} {...toast}>
+                <ToastIcon />
+                <div className="space-y-1">
+                    <ToastTitle>{toast.title}</ToastTitle>
+                    {toast.description && <ToastDescription>{toast.description}</ToastDescription>}
+                </div>
+                <ToastClose />
+                <ToastProgress />
+            </ToastRoot>
+        ))}
+        <ToastViewport />
+    </ToastProvider>
 );
 // This example manually renders a list of toasts managed in state.
 ```
@@ -4906,24 +4888,24 @@ There are five supported toast variants:
 
 ```jsx
 toast({
-  variant: 'success',
-  title: 'Saved!',
-  description: 'Your form was submitted successfully.',
+    variant: 'success',
+    title: 'Saved!',
+    description: 'Your form was submitted successfully.',
 });
 toast({
-  variant: 'warning',
-  title: 'Reminder',
-  description: "Don't forget to update your profile.",
+    variant: 'warning',
+    title: 'Reminder',
+    description: "Don't forget to update your profile.",
 });
 toast({
-  variant: 'info',
-  title: 'Heads up!',
-  description: 'New updates are available.',
+    variant: 'info',
+    title: 'Heads up!',
+    description: 'New updates are available.',
 });
 toast({
-  variant: 'error',
-  title: 'Error!',
-  description: 'Please resolve errors before proceeding.',
+    variant: 'error',
+    title: 'Error!',
+    description: 'Please resolve errors before proceeding.',
 });
 ```
 
@@ -4982,9 +4964,9 @@ Import Toggle and ToggleThumb to create a switch control for binary states.
 
 ```jsx
 export default () => (
-  <Toggle>
-    <ToggleThumb />
-  </Toggle>
+    <Toggle>
+        <ToggleThumb />
+    </Toggle>
 );
 // This creates a basic toggle switch with a thumb indicating the current state.
 ```
@@ -5018,7 +5000,7 @@ Set the `disabled` prop to `true` to make the toggle non-interactive and visuall
 
 ```jsx
 <Toggle disabled>
-  <ToggleThumb />
+    <ToggleThumb />
 </Toggle>
 ```
 
@@ -5034,7 +5016,7 @@ Manage the toggle state externally using the `checked` and `onCheckedChange` pro
 const [checked, setChecked] = useState(false);
 
 <Toggle checked={checked} onCheckedChange={setChecked}>
-  <ToggleThumb />
+    <ToggleThumb />
 </Toggle>;
 ```
 
@@ -5048,7 +5030,7 @@ Allow the toggle to manage its own state internally by omitting the `checked` pr
 
 ```jsx
 <Toggle defaultChecked={true}>
-  <ToggleThumb />
+    <ToggleThumb />
 </Toggle>
 ```
 
@@ -5076,11 +5058,7 @@ The Tooltip component provides brief, contextual information when users hover or
 **Imports:**
 
 ```javascript
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from '@govtechmy/myds-react/tooltip';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@govtechmy/myds-react/tooltip';
 ```
 
 <!--
@@ -5091,10 +5069,10 @@ Import Tooltip components to add contextual info to interactive UI elements.
 
 ```jsx
 <Tooltip>
-  <TooltipTrigger>
-    <button aria-label="Info">i</button>
-  </TooltipTrigger>
-  <TooltipContent>This is a helpful description.</TooltipContent>
+    <TooltipTrigger>
+        <button aria-label="Info">i</button>
+    </TooltipTrigger>
+    <TooltipContent>This is a helpful description.</TooltipContent>
 </Tooltip>
 // Tooltip wraps the trigger and content, showing the bubble when triggered.
 ```
@@ -5225,10 +5203,10 @@ Import the usePagination hook to manage page navigation, visible page numbers, a
 
 ```javascript
 const { visiblePages, max } = usePagination({
-  count: 10,
-  page: 1,
-  limit: 10,
-  maxDisplay: 4,
+    count: 10,
+    page: 1,
+    limit: 10,
+    maxDisplay: 4,
 });
 // visiblePages: Array of page numbers (and "..." for ellipsis) to display in controls
 // max: The maximum number of pages available given count and limit
@@ -5244,36 +5222,36 @@ import { usePagination } from '@govtechmy/myds-react/hooks';
 
 // Inside your component
 const { visiblePages } = usePagination({
-  count: 50,
-  page: 3,
-  limit: 10,
-  maxDisplay: 4,
+    count: 50,
+    page: 3,
+    limit: 10,
+    maxDisplay: 4,
 });
 
 // Self-assembled Pagination component using MYDS primitives
 <Pagination>
-  <PaginationContent>
-    {/* Previous button */}
-    <PaginationItem>
-      <PaginationPrevious />
-    </PaginationItem>
-    {/* Render visible page numbers and ellipsis */}
-    {visiblePages.map((page, index) => (
-      <PaginationItem key={page}>
-        {
-          page === '...' ? (
-            <PaginationEllipsis /> // Shows an ellipsis for skipped pages
-          ) : (
-            typeof page === 'number' && <PaginationNumber number={page} />
-          ) // Shows a numbered page button
-        }
-      </PaginationItem>
-    ))}
-    {/* Next button */}
-    <PaginationItem>
-      <PaginationNext />
-    </PaginationItem>
-  </PaginationContent>
+    <PaginationContent>
+        {/* Previous button */}
+        <PaginationItem>
+            <PaginationPrevious />
+        </PaginationItem>
+        {/* Render visible page numbers and ellipsis */}
+        {visiblePages.map((page, index) => (
+            <PaginationItem key={page}>
+                {
+                    page === '...' ? (
+                        <PaginationEllipsis /> // Shows an ellipsis for skipped pages
+                    ) : (
+                        typeof page === 'number' && <PaginationNumber number={page} />
+                    ) // Shows a numbered page button
+                }
+            </PaginationItem>
+        ))}
+        {/* Next button */}
+        <PaginationItem>
+            <PaginationNext />
+        </PaginationItem>
+    </PaginationContent>
 </Pagination>;
 ```
 
@@ -5348,14 +5326,14 @@ import { useTheme } from '@govtechmy/myds-react/hooks';
 
 // Simple toggle button to switch between light and dark themes
 const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+    const { theme, setTheme } = useTheme();
 
-  // Switches the theme on button click
-  return (
-    <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-      Switch to {theme === 'light' ? 'dark' : 'light'} mode
-    </button>
-  );
+    // Switches the theme on button click
+    return (
+        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+            Switch to {theme === 'light' ? 'dark' : 'light'} mode
+        </button>
+    );
 };
 
 export { ThemeToggle };
@@ -5373,16 +5351,16 @@ You can also build a dropdown menu to select from multiple themes:
 import { useTheme } from '@govtechmy/myds-react/hooks';
 
 const ThemeSelect = () => {
-  const { theme, setTheme } = useTheme();
+    const { theme, setTheme } = useTheme();
 
-  return (
-    <select value={theme} onChange={(e) => setTheme(e.target.value)}>
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-      <option value="system">System</option>
-      {/* Add more theme options as needed */}
-    </select>
-  );
+    return (
+        <select value={theme} onChange={(e) => setTheme(e.target.value)}>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="system">System</option>
+            {/* Add more theme options as needed */}
+        </select>
+    );
 };
 
 export { ThemeSelect };
@@ -5463,11 +5441,11 @@ const { toast } = useToast();
 
 // Function to trigger a toast notification
 const handleClick = () => {
-  toast({
-    variant: 'message',
-    title: 'Hello, world!',
-    description: 'This is a description',
-  });
+    toast({
+        variant: 'message',
+        title: 'Hello, world!',
+        description: 'This is a description',
+    });
 };
 ```
 
@@ -5492,9 +5470,9 @@ const { toast } = useToast();
 
 // Trigger a default message toast (variants: "success", "info", "warning", "error")
 toast({
-  variant: 'message',
-  title: 'Hello, world!',
-  description: 'This is a description',
+    variant: 'message',
+    title: 'Hello, world!',
+    description: 'This is a description',
 });
 ```
 
@@ -5514,10 +5492,10 @@ import { useToast } from '@govtechmy/myds-react/hooks';
 const { subscribe, unsubscribe } = useToast();
 
 useEffect(() => {
-  subscribe(); // Subscribe to toast events when component mounts
-  return () => {
-    unsubscribe(); // Unsubscribe from toast events when component unmounts
-  };
+    subscribe(); // Subscribe to toast events when component mounts
+    return () => {
+        unsubscribe(); // Unsubscribe from toast events when component unmounts
+    };
 }, []);
 ```
 
