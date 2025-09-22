@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Http\Controllers\ThemeController;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,5 +24,9 @@ class AppServiceProvider extends ServiceProvider
         if (session()->has('locale')) {
             app()->setLocale(session('locale'));
         }
+
+        view()->composer('*', function ($view) {
+            $view->with('currentTheme', ThemeController::getCurrentTheme());
+        });
     }
 }
