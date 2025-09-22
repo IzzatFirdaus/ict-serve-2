@@ -5,11 +5,6 @@
  * Comments attached to helpdesk tickets; supports internal notes.
  */
 
-/**
- * Migration for helpdesk_comments table.
- * Comments attached to helpdesk tickets; supports internal notes.
- */
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

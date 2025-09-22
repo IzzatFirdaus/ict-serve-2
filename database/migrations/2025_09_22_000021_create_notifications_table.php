@@ -1,10 +1,4 @@
-
 <?php
-/**
- * Migration for notifications table.
- * Application notifications stored for users and polymorphic notifiable models.
- */
-
 /**
  * Migration for notifications table.
  * Application notifications stored for users and polymorphic notifiable models.
