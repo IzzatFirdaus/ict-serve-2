@@ -1,4 +1,13 @@
 <?php
+<<<<<<< HEAD
+=======
+
+/**
+ * Migration: Create grades table for ICTServe (iServe) system.
+ * Includes id, name, level, min_approval_grade_id, is_approver_grade, audit fields.
+ * Follows Laravel 12 conventions and robust auditability.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe))
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

@@ -1,4 +1,12 @@
 <?php
+<<<<<<< HEAD:database/migrations/2025_09_22_000008_create_equipment_table.php
+=======
+
+/**
+ * Migration for equipment table.
+ * Stores detailed equipment/assets information referenced by loans and helpdesk.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000011_create_equipment_table.php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,6 +28,7 @@ return new class extends Migration {
             $table->string('tag_id')->nullable()->unique();
             $table->date('purchase_date')->nullable();
             $table->date('warranty_expiry_date')->nullable();
+<<<<<<< HEAD:database/migrations/2025_09_22_000008_create_equipment_table.php
             $table->enum('status', ['available', 'on_loan', 'under_maintenance', 'retired'])->default('available');
             $table->string('current_location')->nullable();
             $table->text('notes')->nullable();
@@ -33,6 +42,23 @@ return new class extends Migration {
             $table->decimal('purchase_price', 12, 2)->nullable();
             $table->enum('acquisition_type', ['pembelian', 'sumbangan', 'pemindahan'])->nullable();
             $table->string('classification')->nullable();
+=======
+            $table->enum('status', ['available', 'on_loan', 'under_maintenance', 'retired'])->default('available')->index();
+            $table->string('current_location')->nullable();
+            $table->text('notes')->nullable();
+            $table->enum('condition_status', ['baru', 'baik', 'sederhana', 'rosak', 'hilang'])->default('baik')->index();
+
+            $table->unsignedBigInteger('department_id')->nullable()->index();
+            $table->unsignedBigInteger('equipment_category_id')->nullable()->index();
+            $table->unsignedBigInteger('sub_category_id')->nullable()->index();
+            $table->unsignedBigInteger('location_id')->nullable()->index();
+
+            $table->string('item_code')->nullable()->index();
+            $table->text('description')->nullable();
+            $table->decimal('purchase_price', 15, 2)->nullable();
+            $table->enum('acquisition_type', ['pembelian', 'sumbangan', 'pemindahan'])->nullable()->index();
+            $table->string('classification')->nullable()->index();
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000011_create_equipment_table.php
             $table->string('funded_by')->nullable();
             $table->string('supplier_name')->nullable();
             $table->timestamps();

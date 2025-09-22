@@ -1,4 +1,13 @@
 <?php
+<<<<<<< HEAD:database/migrations/2025_09_22_000004_create_users_table.php
+=======
+
+/**
+ * Migration: Create users table for ICTServe (iServe) system.
+ * Includes all specified fields, enums, audit columns, foreign keys, and comments.
+ * Follows Laravel 12 conventions and robust auditability.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000003_create_users_table.php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

@@ -1,4 +1,13 @@
 <?php
+<<<<<<< HEAD
+=======
+
+/**
+ * Migration: Create departments table for ICTServe (iServe) system.
+ * Includes id, name, branch_type, code, description, is_active, head_user_id, audit fields.
+ * Follows Laravel 12 conventions and robust auditability.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe))
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,7 +22,11 @@ return new class extends Migration {
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
+<<<<<<< HEAD
             $table->string('name');
+=======
+            $table->string('name')->unique();
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe))
             $table->enum('branch_type', ['ibu_pejabat', 'pejabat_negeri', 'unit']);
             $table->string('code')->unique();
             $table->text('description')->nullable();

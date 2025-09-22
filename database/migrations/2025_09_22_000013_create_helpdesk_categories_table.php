@@ -1,4 +1,12 @@
 <?php
+<<<<<<< HEAD:database/migrations/2025_09_22_000013_create_helpdesk_categories_table.php
+=======
+
+/**
+ * Migration for helpdesk_categories table.
+ * Categories used to classify helpdesk tickets and damage reports.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000016_create_helpdesk_categories_table.php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

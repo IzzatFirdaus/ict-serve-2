@@ -1,4 +1,13 @@
 <?php
+<<<<<<< HEAD:database/migrations/2025_09_22_000005_create_equipment_categories_table.php
+=======
+
+/**
+ * Migration for equipment_categories table.
+ * Stores equipment category definitions for ICTServe (iServe).
+ * Follows Laravel 12 conventions and best practices.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000008_create_equipment_categories_table.php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;

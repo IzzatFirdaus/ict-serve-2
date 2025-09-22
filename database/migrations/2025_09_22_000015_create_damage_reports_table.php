@@ -1,4 +1,12 @@
 <?php
+<<<<<<< HEAD:database/migrations/2025_09_22_000015_create_damage_reports_table.php
+=======
+
+/**
+ * Migration for damage_reports table.
+ * Records reported damages related to equipment or services.
+ */
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000018_create_damage_reports_table.php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,11 +26,19 @@ return new class extends Migration {
             $table->string('position_grade')->nullable();
             $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
+<<<<<<< HEAD:database/migrations/2025_09_22_000015_create_damage_reports_table.php
             $table->unsignedBigInteger('damage_type')->nullable();
             $table->text('description');
             $table->boolean('confirmation')->default(false);
             $table->enum('status', ['new', 'assigned', 'in_progress', 'resolved', 'closed'])->default('new');
             $table->unsignedBigInteger('assigned_to_user_id')->nullable();
+=======
+            $table->unsignedBigInteger('damage_type')->nullable()->index();
+            $table->text('description')->nullable();
+            $table->boolean('confirmation')->default(false)->index();
+            $table->enum('status', ['new', 'assigned', 'in_progress', 'resolved', 'closed'])->default('new')->index();
+            $table->unsignedBigInteger('assigned_to_user_id')->nullable()->index();
+>>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000018_create_damage_reports_table.php
             $table->text('resolution_notes')->nullable();
             $table->timestamp('closed_at')->nullable();
             $table->timestamps();
