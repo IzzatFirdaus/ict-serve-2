@@ -1,12 +1,9 @@
-<?php
-<<<<<<< HEAD:database/migrations/2025_09_22_000020_create_permission_tables.php
-=======
 
+<?php
 /**
  * Migration for Spatie permission tables.
  * Creates roles, permissions and their relation tables following the package defaults.
  */
->>>>>>> bcbdec1 (feat(migrations): add and update all migration files for ICTServe (iServe)):database/migrations/2025_09_22_000023_create_permission_tables.php
 
 /**
  * Migration for Spatie permission tables.
