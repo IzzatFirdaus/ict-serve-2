@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for settings table.
  * Stores application key/value settings as JSON.

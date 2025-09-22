@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for Laravel session table.
  * Stores user session data for authentication and state persistence.

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for Spatie permission tables.
  * Creates roles, permissions and their relation tables following the package defaults.

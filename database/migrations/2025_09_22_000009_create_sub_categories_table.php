@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for sub_categories table.
  * Stores sub-categories linked to equipment categories for ICTServe (iServe).

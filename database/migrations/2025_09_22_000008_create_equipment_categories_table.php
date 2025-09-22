@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for equipment_categories table.
  * Stores equipment category definitions for ICTServe (iServe).

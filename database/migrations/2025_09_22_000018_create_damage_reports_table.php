@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for damage_reports table.
  * Records reported damages related to equipment or services.
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('damage_type')->nullable()->index();
             $table->text('description')->nullable();
             $table->boolean('confirmation')->default(false)->index();
-            $table->enum('status', ['new','assigned','in_progress','resolved','closed'])->default('new')->index();
+            $table->enum('status', ['new', 'assigned', 'in_progress', 'resolved', 'closed'])->default('new')->index();
             $table->unsignedBigInteger('assigned_to_user_id')->nullable()->index();
             $table->text('resolution_notes')->nullable();
             $table->timestamp('closed_at')->nullable()->index();

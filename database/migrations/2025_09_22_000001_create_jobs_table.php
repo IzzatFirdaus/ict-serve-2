@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration: Create jobs, job_batches, and failed_jobs tables for Laravel queue system.
  * Follows Laravel 12 conventions and supports queue, batch, and failed job tracking.

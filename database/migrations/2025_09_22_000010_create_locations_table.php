@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for locations table.
  * Stores physical locations for equipment and loan operations.

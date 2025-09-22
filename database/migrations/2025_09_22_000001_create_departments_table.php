@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration: Create departments table for ICTServe (iServe) system.
  * Includes id, name, branch_type, code, description, is_active, head_user_id, audit fields.
@@ -19,7 +20,7 @@ return new class extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->enum('branch_type', ['ibu_pejabat','pejabat_negeri','unit']);
+            $table->enum('branch_type', ['ibu_pejabat', 'pejabat_negeri', 'unit']);
             $table->string('code')->unique();
             $table->text('description')->nullable();
             $table->boolean('is_active')->default(true);

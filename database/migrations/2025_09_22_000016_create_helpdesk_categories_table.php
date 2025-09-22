@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for helpdesk_categories table.
  * Categories used to classify helpdesk tickets and damage reports.

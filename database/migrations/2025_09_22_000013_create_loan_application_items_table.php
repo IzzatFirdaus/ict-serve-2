@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for loan_application_items table.
  * Items requested in a loan application.

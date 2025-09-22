@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for loan_applications table.
  * Tracks loan requests for equipment.
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->string('return_location')->nullable();
             $table->date('loan_start_date')->nullable();
             $table->date('loan_end_date')->nullable();
-            $table->enum('status', ['draft','pending_support','approved','rejected','issued','returned','completed'])->default('draft')->index();
+            $table->enum('status', ['draft', 'pending_support', 'approved', 'rejected', 'issued', 'returned', 'completed'])->default('draft')->index();
             $table->text('rejection_reason')->nullable();
             $table->timestamp('applicant_confirmation_timestamp')->nullable();
             $table->timestamp('submitted_at')->nullable()->index();

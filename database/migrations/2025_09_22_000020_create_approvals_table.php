@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for approvals table.
  * Generic approvals for polymorphic approvable entities.
@@ -17,7 +18,7 @@ return new class extends Migration
             $table->morphs('approvable');
             $table->unsignedBigInteger('officer_id')->nullable()->index();
             $table->string('stage')->nullable()->index();
-            $table->enum('status', ['pending','approved','rejected'])->default('pending')->index();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending')->index();
             $table->text('comments')->nullable();
             $table->timestamp('approval_timestamp')->nullable()->index();
 

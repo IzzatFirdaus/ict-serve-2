@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for loan_transaction_items table.
  * Individual equipment items involved in a transaction.
@@ -16,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('loan_transaction_id')->index();
             $table->unsignedBigInteger('equipment_id')->nullable()->index();
-            $table->enum('status', ['issued','returned_good','returned_damaged','reported_lost'])->default('issued')->index();
+            $table->enum('status', ['issued', 'returned_good', 'returned_damaged', 'reported_lost'])->default('issued')->index();
             $table->string('condition_on_return')->nullable();
 
             // Audit

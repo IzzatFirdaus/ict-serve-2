@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration: Create positions table for ICTServe (iServe) system.
  * Includes id, name, grade_id, description, is_active, audit fields.

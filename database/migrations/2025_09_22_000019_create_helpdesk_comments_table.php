@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for helpdesk_comments table.
  * Comments attached to helpdesk tickets; supports internal notes.

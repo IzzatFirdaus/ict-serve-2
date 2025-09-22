@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration: Create grades table for ICTServe (iServe) system.
  * Includes id, name, level, min_approval_grade_id, is_approver_grade, audit fields.

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for equipment table.
  * Stores detailed equipment/assets information referenced by loans and helpdesk.
@@ -24,10 +25,10 @@ return new class extends Migration
             $table->string('tag_id')->nullable()->unique();
             $table->date('purchase_date')->nullable();
             $table->date('warranty_expiry_date')->nullable();
-            $table->enum('status', ['available','on_loan','under_maintenance','retired'])->default('available')->index();
+            $table->enum('status', ['available', 'on_loan', 'under_maintenance', 'retired'])->default('available')->index();
             $table->string('current_location')->nullable();
             $table->text('notes')->nullable();
-            $table->enum('condition_status', ['baru','baik','sederhana','rosak','hilang'])->default('baik')->index();
+            $table->enum('condition_status', ['baru', 'baik', 'sederhana', 'rosak', 'hilang'])->default('baik')->index();
 
             $table->unsignedBigInteger('department_id')->nullable()->index();
             $table->unsignedBigInteger('equipment_category_id')->nullable()->index();
@@ -37,7 +38,7 @@ return new class extends Migration
             $table->string('item_code')->nullable()->index();
             $table->text('description')->nullable();
             $table->decimal('purchase_price', 15, 2)->nullable();
-            $table->enum('acquisition_type', ['pembelian','sumbangan','pemindahan'])->nullable()->index();
+            $table->enum('acquisition_type', ['pembelian', 'sumbangan', 'pemindahan'])->nullable()->index();
             $table->string('classification')->nullable()->index();
             $table->string('funded_by')->nullable();
             $table->string('supplier_name')->nullable();

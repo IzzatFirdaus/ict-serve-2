@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration: Create users table for ICTServe (iServe) system.
  * Includes all specified fields, enums, audit columns, foreign keys, and comments.
@@ -30,7 +31,7 @@ return new class extends Migration
             $table->string('mobile_number')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('status', ['aktif','tidak_aktif','digantung'])->default('aktif');
+            $table->enum('status', ['aktif', 'tidak_aktif', 'digantung'])->default('aktif');
             $table->timestamp('email_verified_at')->nullable();
             $table->text('two_factor_secret')->nullable();
             $table->text('two_factor_recovery_codes')->nullable();

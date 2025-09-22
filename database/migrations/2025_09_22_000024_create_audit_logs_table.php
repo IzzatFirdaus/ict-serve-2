@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Migration for audit_logs table.
  * Stores model-level audit entries. Compatible with package or custom auditing.
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->json('old_values')->nullable();
             $table->json('new_values')->nullable();
             $table->text('url')->nullable();
-            $table->string('ip_address',45)->nullable();
+            $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->unsignedBigInteger('user_id')->nullable()->index();
             $table->string('tags')->nullable()->index();
