@@ -3,17 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class LanguageController extends Controller
 {
     public function switch(Request $request)
     {
-        $lang = $request->input('lang');
-        if (in_array($lang, ['en', 'ms'])) {
-            session(['locale' => $lang]);
-            app()->setLocale($lang);
+        $allowedLocales = config('app.allowed_locales', ['en', 'ms']);
+        $language = $request->input('language');
+
+        if (!in_array($language, $allowedLocales, true)) {
+            return redirect()->back()->with('status', __('messages.language_switch_invalid'));
         }
 
-        return redirect()->back();
+        session(['locale' => $language]);
+        app()->setLocale($language);
+
+        Log::info('Language switched', [
+            'user_id' => $request->user()?->id,
+            'ip' => $request->ip(),
+            'locale' => $language,
+        ]);
+
+        return redirect()->back()->with('status', __('messages.toast.language_switched'));
     }
 }
