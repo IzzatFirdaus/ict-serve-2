@@ -11,10 +11,10 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>ICTServe (iServe) – Sistem Pengurusan Perkhidmatan ICT MOTAC</title>
+        <title>{{ __('messages.meta.title') }}</title>
         <meta
             name="description"
-            content="Platform rasmi pinjaman peralatan dan helpdesk ICT MOTAC."
+            content="{{ __('messages.meta.description') }}"
         />
 
         <!-- MYDS & Tailwind CSS, compiled via resources/css/app.css -->
@@ -40,7 +40,7 @@
     </head>
     <body class="bg-washed text-black-900 flex min-h-screen flex-col font-sans antialiased">
         <!-- Skip to main content for accessibility (MYDS) -->
-        <a href="#main-content" class="skip-link">Langkau ke kandungan utama</a>
+    <a href="#main-content" class="skip-link">{{ __('messages.aria.skip_to_content') }}</a>
         <!-- Header -->
         <header class="border-otl-divider sticky top-0 z-40 w-full border-b bg-white shadow-md">
             <div class="mx-auto flex max-w-screen-xl items-center justify-between px-4 py-3">
@@ -48,7 +48,7 @@
                     <!-- MOTAC Logo JPEG (MYDS: height 40px, width auto, alt text) -->
                     <img
                         src="{{ asset('images/motac-logo.jpeg') }}"
-                        alt="Logo MOTAC"
+                        alt="{{ __('messages.meta.title') }}"
                         class="h-10 w-auto"
                         style="height: 40px; width: auto; max-width: 160px; object-fit: contain"
                     />
@@ -59,46 +59,44 @@
                         <span class="text-black-700 font-normal">(iServe)</span>
                     </span>
                 </div>
-                <nav class="flex flex-1 items-center justify-end gap-6" aria-label="Navigasi utama">
+                <nav class="flex flex-1 items-center justify-end gap-6" aria-label="{{ __('messages.aria.main_navigation') }}">
                     <x-myds.language-switcher />
+                    <x-myds.theme-switcher />
                     <a
                         href="{{ route('login') }}"
                         class="focus:ring-primary-300 flex items-center gap-1 text-sm font-medium hover:underline focus:ring-2 focus:outline-none"
                     >
-                        <!-- Bootstrap Icons person-circle -->
                         <i
                             class="bi bi-person-circle text-primary-600 h-6 w-6 flex-shrink-0"
                             aria-hidden="true"
                             role="img"
-                            aria-label="Log Masuk"
+                            aria-label="{{ __('messages.nav.login') }}"
                         ></i>
-                        Log Masuk
+                        {{ __('messages.nav.login') }}
                     </a>
                     <a
                         href="#about"
                         class="focus:ring-primary-300 flex items-center gap-1 text-sm font-medium hover:underline focus:ring-2 focus:outline-none"
                     >
-                        <!-- Bootstrap Icons info-circle -->
                         <i
                             class="bi bi-info-circle text-primary-600 h-6 w-6 flex-shrink-0"
                             aria-hidden="true"
                             role="img"
-                            aria-label="Tentang"
+                            aria-label="{{ __('messages.nav.about') }}"
                         ></i>
-                        Tentang
+                        {{ __('messages.nav.about') }}
                     </a>
                     <a
                         href="#contact"
                         class="focus:ring-primary-300 flex items-center gap-1 text-sm font-medium hover:underline focus:ring-2 focus:outline-none"
                     >
-                        <!-- Bootstrap Icons telephone -->
                         <i
                             class="bi bi-telephone text-primary-600 h-6 w-6 flex-shrink-0"
                             aria-hidden="true"
                             role="img"
-                            aria-label="Hubungi"
+                            aria-label="{{ __('messages.nav.contact') }}"
                         ></i>
-                        Hubungi
+                        {{ __('messages.nav.contact') }}
                     </a>
                 </nav>
             </div>
@@ -110,19 +108,28 @@
             role="status"
         >
             <span class="bg-warning-200 text-warning-900 mr-2 inline-block rounded px-2 py-1">
-                <!-- Bootstrap Icons exclamation-triangle -->
                 <i
                     class="bi bi-exclamation-triangle mr-1 h-4 w-4 flex-shrink-0 align-middle"
                     aria-hidden="true"
                     role="img"
-                    aria-label="Beta"
+                    aria-label="{{ __('messages.phase.beta') }}"
                     style="display: inline"
                 ></i>
-                Beta
+                {{ __('messages.phase.beta') }}
             </span>
-            Platform ini dalam fasa pengujian. Sila laporkan isu ke BPM.
-            <a href="#feedback" class="underline">Beri maklum balas</a>
+            {{ __('messages.phase.testing_notice') }}
+            <a href="#feedback" class="underline">{{ __('messages.phase.feedback') }}</a>
         </div>
+
+        <!-- Language Switch Feedback Toast/Callout (MYDS) -->
+        @if (session('status'))
+            <div class="mx-auto mt-4 w-full max-w-md">
+                <div class="bg-success-50 border-success-200 text-success-800 shadow-card border-l-4 border px-4 py-3 rounded flex items-center gap-3" role="status" aria-live="polite">
+                    <i class="bi bi-translate text-success-600 text-xl" aria-hidden="true"></i>
+                    <span class="font-medium">{{ session('status') }}</span>
+                </div>
+            </div>
+        @endif
 
         <!-- Main Content -->
         <main
@@ -136,42 +143,39 @@
                     class="font-poppins text-primary-600 mb-4 text-4xl font-bold drop-shadow sm:text-5xl"
                     style="letter-spacing: -1px"
                 >
-                    Selamat Datang ke ICTServe
+                    {{ __('messages.hero.title') }}
                     <span class="text-black-700 font-normal">(iServe)</span>
                 </h1>
                 <p class="text-black-700 mb-4 text-lg font-medium sm:text-xl">
-                    Pusat Pengurusan Pinjaman &amp; Sokongan ICT MOTAC
+                    {{ __('messages.hero.subtitle') }}
                 </p>
                 <p class="mb-8 text-base text-gray-600 sm:text-lg">
-                    Semua permohonan pinjaman peralatan ICT dan aduan kerosakan kini dalam satu
-                    sistem digital – mesra rakyat, telus, dan pantas.
+                    {{ __('messages.hero.description') }}
                 </p>
                 <div class="flex flex-col justify-center gap-4 sm:flex-row">
                     <a
                         href="{{ route('login') }}"
                         class="bg-primary-600 shadow-button hover:bg-primary-700 focus-visible:ring-primary-400 easeoutback-short inline-flex items-center justify-center rounded-lg px-6 py-3 text-base font-semibold text-white transition focus:outline-none focus-visible:ring-2"
                     >
-                        <!-- Bootstrap Icons arrow-right -->
                         <i
                             class="bi bi-arrow-right mr-2 -ml-1 h-5 w-5 flex-shrink-0"
                             aria-hidden="true"
                             role="img"
-                            aria-label="Log Masuk"
+                            aria-label="{{ __('messages.nav.login') }}"
                         ></i>
-                        Log Masuk
+                        {{ __('messages.nav.login') }}
                     </a>
                     <a
                         href="#panduan"
                         class="border-primary-300 text-primary-600 shadow-button hover:bg-primary-50 focus-visible:ring-primary-400 easeoutback-short inline-flex items-center justify-center rounded-lg border bg-white px-6 py-3 text-base font-semibold transition focus:outline-none focus-visible:ring-2"
                     >
-                        <!-- Bootstrap Icons book -->
                         <i
                             class="bi bi-book mr-2 -ml-1 h-5 w-5 flex-shrink-0"
                             aria-hidden="true"
                             role="img"
-                            aria-label="Panduan Pengguna"
+                            aria-label="{{ __('messages.hero.guide') }}"
                         ></i>
-                        Panduan Pengguna
+                        {{ __('messages.hero.guide') }}
                     </a>
                 </div>
             </section>
@@ -188,25 +192,24 @@
                         class="bi bi-folder text-primary-600 mx-auto mb-3 h-10 w-10"
                         aria-hidden="true"
                         role="img"
-                        aria-label="Pinjaman ICT"
+                        aria-label="{{ __('messages.cards.loan.icon') }}"
                     ></i>
                     <h2 class="font-poppins text-primary-700 mb-2 text-lg font-semibold">
-                        Pinjaman ICT
+                        {{ __('messages.cards.loan.title') }}
                     </h2>
                     <p class="text-black-700 mb-4 text-sm">
-                        Permohonan pinjaman laptop, projektor, dan peralatan ICT secara digital dan
-                        telus.
+                        {{ __('messages.cards.loan.description') }}
                     </p>
                     <a
                         href="#loan-info"
                         class="text-primary-600 focus:ring-primary-300 inline-flex items-center font-medium transition hover:underline focus:ring-2 focus:outline-none"
                     >
-                        Maklumat Lanjut
+                        {{ __('messages.cards.loan.more') }}
                         <i
                             class="bi bi-chevron-right ml-1 h-4 w-4"
                             aria-hidden="true"
                             role="img"
-                            aria-label="Maklumat Lanjut"
+                            aria-label="{{ __('messages.cards.loan.more') }}"
                         ></i>
                     </a>
                 </div>
@@ -219,24 +222,24 @@
                         class="bi bi-chat-dots text-success-600 mx-auto mb-3 h-10 w-10"
                         aria-hidden="true"
                         role="img"
-                        aria-label="Helpdesk ICT"
+                        aria-label="{{ __('messages.cards.helpdesk.icon') }}"
                     ></i>
                     <h2 class="font-poppins text-success-700 mb-2 text-lg font-semibold">
-                        Helpdesk ICT
+                        {{ __('messages.cards.helpdesk.title') }}
                     </h2>
                     <p class="text-black-700 mb-4 text-sm">
-                        Lapor masalah ICT, pantau status tiket dan terima bantuan profesional BPM.
+                        {{ __('messages.cards.helpdesk.description') }}
                     </p>
                     <a
                         href="#helpdesk-info"
                         class="text-primary-600 focus:ring-primary-300 inline-flex items-center font-medium transition hover:underline focus:ring-2 focus:outline-none"
                     >
-                        Maklumat Lanjut
+                        {{ __('messages.cards.helpdesk.more') }}
                         <i
                             class="bi bi-chevron-right ml-1 h-4 w-4"
                             aria-hidden="true"
                             role="img"
-                            aria-label="Maklumat Lanjut"
+                            aria-label="{{ __('messages.cards.helpdesk.more') }}"
                         ></i>
                     </a>
                 </div>
@@ -249,25 +252,24 @@
                         class="bi bi-shield-check text-warning-600 mx-auto mb-3 h-10 w-10"
                         aria-hidden="true"
                         role="img"
-                        aria-label="Pematuhan MYDS &amp; MyGovEA"
+                        aria-label="{{ __('messages.cards.compliance.icon') }}"
                     ></i>
                     <h2 class="font-poppins text-warning-700 mb-2 text-lg font-semibold">
-                        Pematuhan MYDS &amp; MyGovEA
+                        {{ __('messages.cards.compliance.title') }}
                     </h2>
                     <p class="text-black-700 mb-4 text-sm">
-                        Reka bentuk mematuhi piawaian Malaysia Government Design System &amp; 18
-                        Prinsip MyGovEA.
+                        {{ __('messages.cards.compliance.description') }}
                     </p>
                     <a
                         href="#compliance"
                         class="text-primary-600 focus:ring-primary-300 inline-flex items-center font-medium transition hover:underline focus:ring-2 focus:outline-none"
                     >
-                        Ketahui Lagi
+                        {{ __('messages.cards.compliance.more') }}
                         <i
                             class="bi bi-chevron-right ml-1 h-4 w-4 flex-shrink-0"
                             aria-hidden="true"
                             role="img"
-                            aria-label="Ketahui Lagi"
+                            aria-label="{{ __('messages.cards.compliance.more') }}"
                         ></i>
                     </a>
                 </div>
@@ -276,7 +278,7 @@
             <!-- How It Works / Manfaat Section -->
             <section id="how-it-works" class="mx-auto mb-10 w-full max-w-4xl">
                 <h2 class="font-poppins text-primary-700 mb-6 text-center text-2xl font-semibold">
-                    Bagaimana ICTServe Berfungsi
+                    {{ __('messages.howitworks.title') }}
                 </h2>
                 <ol class="grid grid-cols-1 gap-4 text-center sm:grid-cols-2 lg:grid-cols-4">
                     <li
@@ -286,11 +288,11 @@
                             class="bi bi-journal text-primary-600 icon-myds mx-auto mb-2 h-8 w-8"
                             aria-hidden="true"
                             role="img"
-                            aria-label="Isi Borang"
+                            aria-label="{{ __('messages.howitworks.step1.icon') }}"
                         ></i>
-                        <span class="text-black-900 font-medium">Isi Borang</span>
+                        <span class="text-black-900 font-medium">{{ __('messages.howitworks.step1.title') }}</span>
                         <span class="text-black-700 mt-1 text-xs">
-                            Permohonan pinjaman atau aduan ICT secara digital
+                            {{ __('messages.howitworks.step1.description') }}
                         </span>
                     </li>
                     <li
@@ -300,11 +302,11 @@
                             class="bi bi-patch-check text-success-600 icon-myds mx-auto mb-2 h-8 w-8"
                             aria-hidden="true"
                             role="img"
-                            aria-label="Kelulusan / Tindakan"
+                            aria-label="{{ __('messages.howitworks.step2.icon') }}"
                         ></i>
-                        <span class="text-black-900 font-medium">Kelulusan / Tindakan</span>
+                        <span class="text-black-900 font-medium">{{ __('messages.howitworks.step2.title') }}</span>
                         <span class="text-black-700 mt-1 text-xs">
-                            Permohonan disemak &amp; diluluskan pegawai
+                            {{ __('messages.howitworks.step2.description') }}
                         </span>
                     </li>
                     <li
@@ -314,11 +316,11 @@
                             class="bi bi-folder text-warning-600 icon-myds mx-auto mb-2 h-8 w-8"
                             aria-hidden="true"
                             role="img"
-                            aria-label="Ambil / Pulang Peralatan"
+                            aria-label="{{ __('messages.howitworks.step3.icon') }}"
                         ></i>
-                        <span class="text-black-900 font-medium">Ambil / Pulang Peralatan</span>
+                        <span class="text-black-900 font-medium">{{ __('messages.howitworks.step3.title') }}</span>
                         <span class="text-black-700 mt-1 text-xs">
-                            Urusan fizikal di BPM dengan rekod digital
+                            {{ __('messages.howitworks.step3.description') }}
                         </span>
                     </li>
                     <li
@@ -328,11 +330,11 @@
                             class="bi bi-list text-primary-700 icon-myds mx-auto mb-2 h-8 w-8"
                             aria-hidden="true"
                             role="img"
-                            aria-label="Jejak Status"
+                            aria-label="{{ __('messages.howitworks.step4.icon') }}"
                         ></i>
-                        <span class="text-black-900 font-medium">Jejak Status</span>
+                        <span class="text-black-900 font-medium">{{ __('messages.howitworks.step4.title') }}</span>
                         <span class="text-black-700 mt-1 text-xs">
-                            Pantau status permohonan &amp; tiket secara masa nyata
+                            {{ __('messages.howitworks.step4.description') }}
                         </span>
                     </li>
                 </ol>
@@ -347,16 +349,16 @@
                 <div class="flex items-center gap-2">
                     <img
                         src="{{ asset('images/bpm-logo.png') }}"
-                        alt="Logo BPM"
+                        alt="{{ __('messages.footer.bpm_logo_alt') }}"
                         class="h-10 w-auto"
                         style="height: 40px; width: auto; max-width: 160px; object-fit: contain"
                     />
-                    <span class="text-black-700 text-xs">Bahagian Pengurusan Maklumat (BPM)</span>
+                    <span class="text-black-700 text-xs">{{ __('messages.footer.bpm') }}</span>
                 </div>
                 <div class="text-center text-xs text-gray-500">
                     &copy;
                     <span id="year"></span>
-                    Hakcipta Terpelihara, Kementerian Pelancongan, Seni dan Budaya Malaysia
+                    {{ __('messages.footer.copyright') }}
                 </div>
                 <div class="footer-social flex gap-3">
                     <a
@@ -404,21 +406,21 @@
                     href="#privacy"
                     class="focus:ring-primary-300 text-gray-500 hover:underline focus:ring-2 focus:outline-none"
                 >
-                    Dasar Privasi
+                    {{ __('messages.footer.privacy') }}
                 </a>
                 <span class="text-gray-300">|</span>
                 <a
                     href="#terms"
                     class="focus:ring-primary-300 text-gray-500 hover:underline focus:ring-2 focus:outline-none"
                 >
-                    Terma Penggunaan
+                    {{ __('messages.footer.terms') }}
                 </a>
                 <span class="text-gray-300">|</span>
                 <a
                     href="#accessibility"
                     class="focus:ring-primary-300 text-gray-500 hover:underline focus:ring-2 focus:outline-none"
                 >
-                    Kenyataan Kebolehcapaian
+                    {{ __('messages.footer.accessibility') }}
                 </a>
             </div>
         </footer>
