@@ -1,0 +1,2 @@
+<div <?php echo e($attributes->merge(['class' => 'myds-theme-switcher'])); ?>><?php echo e($slot); ?></div>
+<?php /**PATH C:\xampp\htdocs\ict-serve-2\resources\views\components\myds\theme-switcher.blade.php ENDPATH**/ ?>
