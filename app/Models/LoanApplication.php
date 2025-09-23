@@ -10,10 +10,49 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use App\Traits\Blameable;
 
+/**
+ * Class LoanApplication
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int|null $responsible_officer_id
+ * @property int|null $supporting_officer_id
+ * @property string $purpose
+ * @property string|null $location
+ * @property string|null $return_location
+ * @property \Illuminate\Support\Carbon $loan_start_date
+ * @property \Illuminate\Support\Carbon $loan_end_date
+ * @property string $status
+ * @property string|null $rejection_reason
+ * @property \Illuminate\Support\Carbon|null $applicant_confirmation_timestamp
+ * @property \Illuminate\Support\Carbon|null $submitted_at
+ * @property int|null $approved_by
+ * @property \Illuminate\Support\Carbon|null $approved_at
+ * @property int|null $rejected_by
+ * @property \Illuminate\Support\Carbon|null $rejected_at
+ * @property int|null $cancelled_by
+ * @property \Illuminate\Support\Carbon|null $cancelled_at
+ * @property string|null $admin_notes
+ * @property int|null $current_approval_officer_id
+ * @property string|null $current_approval_stage
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property int|null $deleted_by
+ * @property-read User $user
+ * @property-read User|null $responsibleOfficer
+ * @property-read User|null $supportingOfficer
+ * @property-read \Illuminate\Database\Eloquent\Collection|LoanApplicationItem[] $items
+ * @property-read \Illuminate\Database\Eloquent\Collection|LoanTransaction[] $transactions
+ * @property-read \Illuminate\Database\Eloquent\Collection|Approval[] $approvals
+ * @property-read User|null $createdBy
+ * @property-read User|null $updatedBy
+ * @property-read User|null $deletedBy
+ */
 class LoanApplication extends Model implements AuditableContract
 {
-    use AuditableTrait, HasFactory, SoftDeletes;
+    use AuditableTrait, HasFactory, SoftDeletes, Blameable;
 
     protected $fillable = [
         'user_id', 'responsible_officer_id', 'supporting_officer_id', 'purpose', 'location', 'return_location',
@@ -62,18 +101,57 @@ class LoanApplication extends Model implements AuditableContract
         return $this->morphMany(Approval::class, 'approvable');
     }
 
+    public function createdBy(): ?BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy(): ?BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function deletedBy(): ?BelongsTo
+    {
+        return $this->belongsTo(User::class, 'deleted_by');
+    }
+
+    /**
+     * Enum for loan status.
+     */
+    public const STATUS_DRAFT = 'draft';
+    public const STATUS_PENDING_SUPPORT = 'pending_support';
+    public const STATUS_PENDING_APPROVAL = 'pending_approval';
+    public const STATUS_APPROVED = 'approved';
+    public const STATUS_REJECTED = 'rejected';
+    public const STATUS_CANCELLED = 'cancelled';
+
     /**
      * Returns true if the application is in a state that can be approved.
-     * Adjust the value to match your actual allowed status values.
      */
     public function isApprovable(): bool
     {
-        // Use 'pending_support' or 'draft' as per your status enum.
-        return $this->status === 'pending_support' || $this->status === 'draft';
+        return in_array($this->status, [self::STATUS_PENDING_SUPPORT, self::STATUS_DRAFT]);
     }
 
     public function isEditable(): bool
     {
-        return in_array($this->status, ['draft', 'pending']);
+        return in_array($this->status, [self::STATUS_DRAFT, self::STATUS_PENDING_SUPPORT]);
+    }
+
+    /**
+     * Scope for pending applications.
+     */
+    public function scopePending($query)
+    {
+        return $query->where('status', self::STATUS_PENDING_SUPPORT);
+    }
+
+    /**
+     * Scope for approved applications.
+     */
+    public function scopeApproved($query)
+    {
+        return $query->where('status', self::STATUS_APPROVED);
     }
 }

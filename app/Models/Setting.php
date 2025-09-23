@@ -7,10 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use App\Traits\Blameable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * Class Setting
+ *
+ * @property int $id
+ * @property string $key
+ * @property array|null $value
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property int|null $deleted_by
+ * @property-read User|null $createdBy
+ * @property-read User|null $updatedBy
+ * @property-read User|null $deletedBy
+ */
 class Setting extends Model implements AuditableContract
 {
-    use AuditableTrait, HasFactory, SoftDeletes;
+    use AuditableTrait, HasFactory, SoftDeletes, Blameable;
 
     protected $fillable = [
         'key', 'value', 'created_by', 'updated_by', 'deleted_by',
@@ -19,4 +34,27 @@ class Setting extends Model implements AuditableContract
     protected $casts = [
         'value' => 'array',
     ];
+
+    public function createdBy(): ?BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy(): ?BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function deletedBy(): ?BelongsTo
+    {
+        return $this->belongsTo(User::class, 'deleted_by');
+    }
+
+    /**
+     * Scope to find by key.
+     */
+    public function scopeByKey($query, string $key)
+    {
+        return $query->where('key', $key);
+    }
 }
