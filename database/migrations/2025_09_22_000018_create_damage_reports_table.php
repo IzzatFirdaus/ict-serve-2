@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -15,32 +16,29 @@ return new class extends Migration
     {
         Schema::create('damage_reports', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable()->index();
-            $table->unsignedBigInteger('department_id')->nullable()->index();
+
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('department_id')->nullable()->constrained('departments')->nullOnDelete();
+
             $table->string('position_grade')->nullable();
             $table->string('email')->nullable();
             $table->string('phone_number')->nullable();
-            $table->unsignedBigInteger('damage_type')->nullable()->index();
+
+            $table->foreignId('damage_type')->nullable()->constrained('helpdesk_categories')->nullOnDelete();
             $table->text('description')->nullable();
             $table->boolean('confirmation')->default(false)->index();
             $table->enum('status', ['new', 'assigned', 'in_progress', 'resolved', 'closed'])->default('new')->index();
-            $table->unsignedBigInteger('assigned_to_user_id')->nullable()->index();
+            $table->foreignId('assigned_to_user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->text('resolution_notes')->nullable();
-            $table->timestamp('closed_at')->nullable()->index();
+            $table->timestampTz('closed_at')->nullable()->index();
 
             // Audit
-            $table->unsignedBigInteger('created_by')->nullable()->index();
-            $table->unsignedBigInteger('updated_by')->nullable()->index();
-            $table->unsignedBigInteger('deleted_by')->nullable()->index();
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete();
 
-            $table->timestamps();
-            $table->softDeletes();
-
-            // Foreign keys
-            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
-            $table->foreign('department_id')->references('id')->on('departments')->nullOnDelete();
-            $table->foreign('damage_type')->references('id')->on('helpdesk_categories')->nullOnDelete();
-            $table->foreign('assigned_to_user_id')->references('id')->on('users')->nullOnDelete();
+            $table->timestampsTz();
+            $table->softDeletesTz();
 
             $table->comment('Reports of damage/incidents.');
         });
@@ -48,6 +46,18 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('damage_reports');
+        if (Schema::hasTable('damage_reports')) {
+            Schema::table('damage_reports', function (Blueprint $table) {
+                foreach (['user_id', 'department_id', 'damage_type', 'assigned_to_user_id', 'created_by', 'updated_by', 'deleted_by'] as $col) {
+                    try {
+                        $table->dropForeign([$col]);
+                    } catch (\Throwable $e) {
+                        // ignore
+                    }
+                }
+            });
+
+            Schema::dropIfExists('damage_reports');
+        }
     }
 };

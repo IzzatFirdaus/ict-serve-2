@@ -23,13 +23,12 @@ return new class extends Migration
             $table->text('url')->nullable();
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable()->index();
+
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->string('user_type')->nullable()->index(); // may hold oauth/provider info
             $table->string('tags')->nullable()->index();
 
-            $table->timestamps();
-
-            // Foreign key to users optional - keep nullable with nullOnDelete
-            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
+            $table->timestampsTz();
 
             $table->comment('Application audit logs for model events.');
         });
@@ -37,6 +36,15 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('audit_logs');
+        if (Schema::hasTable('audit_logs')) {
+            Schema::table('audit_logs', function (Blueprint $table) {
+                try {
+                    $table->dropForeign(['user_id']);
+                } catch (\Throwable $e) {
+                }
+            });
+
+            Schema::dropIfExists('audit_logs');
+        }
     }
 };

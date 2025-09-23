@@ -1,47 +1,44 @@
 <?php
 
-/**
- * Migration: Create departments table for ICTServe (iServe) system.
- * Includes id, name, branch_type, code, description, is_active, head_user_id, audit fields.
- * Follows Laravel 12 conventions and robust auditability.
- */
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Create the departments table.
+ * Stores all departments/branches for user organization structure.
+ */
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('departments', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->enum('branch_type', ['ibu_pejabat', 'pejabat_negeri', 'unit']);
-            $table->string('code')->unique();
-            $table->text('description')->nullable();
-            $table->boolean('is_active')->default(true);
-            $table->unsignedBigInteger('head_user_id')->nullable();
-            $table->unsignedBigInteger('created_by')->nullable()->index();
-            $table->unsignedBigInteger('updated_by')->nullable()->index();
-            $table->unsignedBigInteger('deleted_by')->nullable()->index();
-            $table->timestamps();
-            $table->softDeletes();
-
-            // Foreign keys
-            // $table->foreign('head_user_id')->references('id')->on('users')->onDelete('set null'); // Removed to avoid circular dependency
-            // Audit user foreign keys removed to avoid circular dependency
+            $table->id()->comment('Primary key');
+            $table->string('name')->comment('Department or branch name');
+            $table->enum('branch_type', ['ibu_pejabat', 'pejabat_negeri', 'unit'])->index()->comment('Type: ibu_pejabat, pejabat_negeri, unit');
+            $table->string('code')->unique()->comment('Unique department code');
+            $table->text('description')->nullable()->comment('Description');
+            $table->boolean('is_active')->default(true)->index()->comment('Active status');
+            $table->foreignId('head_user_id')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (head of department)');
+            // Audit columns
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (creator)');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (updater)');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (deleter)');
+            $table->timestampsTz(0);
+            $table->softDeletesTz(0);
+            $table->comment('Departments/branches for user organization structure.');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
+        // Drop FKs before table for safe rollback
+        Schema::table('departments', function (Blueprint $table) {
+            $table->dropForeign(['head_user_id']);
+            $table->dropForeign(['created_by']);
+            $table->dropForeign(['updated_by']);
+            $table->dropForeign(['deleted_by']);
+        });
         Schema::dropIfExists('departments');
     }
 };

@@ -24,11 +24,11 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->boolean('is_active')->default(true)->index();
-            $table->unsignedBigInteger('created_by')->nullable()->index();
-            $table->unsignedBigInteger('updated_by')->nullable()->index();
-            $table->unsignedBigInteger('deleted_by')->nullable()->index();
-            $table->timestamps();
-            $table->softDeletes();
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->timestampsTz();
+            $table->softDeletesTz();
             $table->comment('Stores physical locations for equipment and loan operations.');
         });
     }
@@ -38,6 +38,18 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        if (Schema::hasTable('locations')) {
+            Schema::table('locations', function (Blueprint $table) {
+                foreach (['created_by', 'updated_by', 'deleted_by'] as $col) {
+                    try {
+                        $table->dropForeign([$col]);
+                    } catch (\Throwable $e) {
+                        // ignore
+                    }
+                }
+            });
+
+            Schema::dropIfExists('locations');
+        }
     }
 };

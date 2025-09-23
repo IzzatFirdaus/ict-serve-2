@@ -196,3 +196,13 @@ _Ensure all components support keyboard navigation, ARIA labels, and sufficient 
 Jika terdapat sebarang cadangan atau masalah, sila buka _issue_ di repositori ini.
 
 _Please open an issue for any suggestions or problems._
+
+## Internationalization & Theming
+
+- All user-facing text must use translation keys from `resources/lang/ms/messages.php` and `resources/lang/en/messages.php`.
+- Add new keys as needed, grouped by section (e.g. `theme`, `language`, `button`, etc.).
+- Use `@lang('messages.key')` or `__('messages.key')` in Blade, Livewire, and JS.
+- Language and theme switchers are included in all layouts for runtime switching.
+- Theme is persisted in `localStorage` and applied via `data-theme` on `<html>`.
+- Language is persisted in session and set via middleware.
+- See `tests/e2e/language-theme-switcher.spec.ts` for automated test coverage.

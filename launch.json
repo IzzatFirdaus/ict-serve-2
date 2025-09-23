@@ -1,0 +1,73 @@
+{
+  // See https://code.visualstudio.com/docs/editor/debugging for usage details
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // Listen for Xdebug connections (default for Laravel PHP debugging)
+      "type": "php",
+      "request": "launch",
+      "name": "PHP: Listen for Xdebug",
+      "port": 9003,
+      // Adjust this if your web root differs (e.g., for Docker/WSL remote debugging)
+      "pathMappings": {
+        "/var/www/html": "${workspaceFolder}"
+      },
+      // Use .env for project-specific environment variables if needed
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      // Debug the currently open PHPUnit test file
+      "type": "php",
+      "request": "launch",
+      "name": "PHPUnit: Debug Current File",
+      "program": "${workspaceFolder}/vendor/bin/phpunit",
+      "args": [
+        "${file}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      // Debug any artisan command (prompt for the command, e.g. "serve" or "test")
+      "type": "php",
+      "request": "launch",
+      "name": "Artisan: Debug Custom Command",
+      "program": "${workspaceFolder}/artisan",
+      "args": [
+        "${input:artisanCommand}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      // Run 'php artisan serve' for local development and allow breakpoints in HTTP requests
+      "type": "php",
+      "request": "launch",
+      "name": "Laravel: php artisan serve (Debug)",
+      "program": "${workspaceFolder}/vendor/bin/php",
+      "args": [
+        "artisan",
+        "serve",
+        "--host=127.0.0.1",
+        "--port=8000"
+      ],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "APP_ENV": "local",
+        "APP_DEBUG": "true"
+      },
+      // Automatically stop at the first line of code
+      "stopOnEntry": false,
+      // Only set this if you use custom PHP binary
+      "runtimeExecutable": null
+    }
+  ],
+  // Prompt the user for the artisan command to run
+  "inputs": [
+    {
+      "id": "artisanCommand",
+      "type": "promptString",
+      "description": "Enter the Artisan command to run (e.g. serve, migrate, test)"
+    }
+  ]
+}

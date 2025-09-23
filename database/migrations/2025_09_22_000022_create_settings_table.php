@@ -17,14 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('key')->unique();
             $table->json('value')->nullable();
-
             // Audit
-            $table->unsignedBigInteger('created_by')->nullable()->index();
-            $table->unsignedBigInteger('updated_by')->nullable()->index();
-            $table->unsignedBigInteger('deleted_by')->nullable()->index();
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete();
 
-            $table->timestamps();
-            $table->softDeletes();
+            $table->timestampsTz();
+            $table->softDeletesTz();
 
             $table->comment('Application configuration and settings.');
         });
@@ -32,6 +31,17 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('settings');
+        if (Schema::hasTable('settings')) {
+            Schema::table('settings', function (Blueprint $table) {
+                foreach (['created_by', 'updated_by', 'deleted_by'] as $col) {
+                    try {
+                        $table->dropForeign([$col]);
+                    } catch (\Throwable $e) {
+                    }
+                }
+            });
+
+            Schema::dropIfExists('settings');
+        }
     }
 };
