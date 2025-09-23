@@ -118,4 +118,16 @@ return [
         'accessibility' => 'Accessibility Statement',
     ],
     'language_switch_invalid' => 'Invalid language selection.',
+    'auth' => [
+        'login' => [
+            'title' => 'Log Masuk ICTServe (iServe)',
+            'email' => 'E-mail',
+            'password' => 'Password',
+        ],
+        'register' => 'Register',
+    ],
+    'actions' => [
+        'login' => 'Log In',
+    ],
+    'test_key' => 'Test Value',
 ];

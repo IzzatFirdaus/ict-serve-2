@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Http\Controllers\ThemeController;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +29,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $view->with('currentTheme', ThemeController::getCurrentTheme());
         });
+
+        Blade::component('layouts.guest', 'guest-layout');
     }
 }

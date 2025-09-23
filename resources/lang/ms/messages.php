@@ -118,4 +118,15 @@ return [
         'accessibility' => 'Kenyataan Kebolehcapaian',
     ],
     'language_switch_invalid' => 'Pilihan bahasa tidak sah.',
+    'auth' => [
+        'login' => [
+            'title' => 'Log Masuk ICTServe (iServe)',
+            'email' => 'E-mel',
+            'password' => 'Kata Laluan',
+        ],
+        'register' => 'Daftar',
+    ],
+    'actions' => [
+        'login' => 'Log Masuk',
+    ],
 ];
