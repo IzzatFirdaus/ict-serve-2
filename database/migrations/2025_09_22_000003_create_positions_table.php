@@ -12,30 +12,26 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('positions', function (Blueprint $table) {
-            $table->id()->comment('Primary key');
-            $table->string('name')->comment('Position name');
-            $table->foreignId('grade_id')->nullable()->constrained('grades')->nullOnDelete()->comment('FK to grades');
-            $table->text('description')->nullable()->comment('Description');
-            $table->boolean('is_active')->default(true)->index()->comment('Active status');
-            // Audit columns
-            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (creator)');
-            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (updater)');
-            $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (deleter)');
-            $table->timestampsTz(0);
-            $table->softDeletesTz(0);
-            $table->comment('Job positions for users, linked to grades.');
+            $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('grade_id')->nullable();
+            $table->text('description')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+            $table->softDeletes();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('deleted_by')->nullable();
+
+            $table->foreign('grade_id')->references('id')->on('grades')->nullOnDelete();
+            $table->foreign('created_by')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('updated_by')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('deleted_by')->references('id')->on('users')->nullOnDelete();
         });
     }
 
     public function down(): void
     {
-        // Drop FKs before table for safe rollback
-        Schema::table('positions', function (Blueprint $table) {
-            $table->dropForeign(['grade_id']);
-            $table->dropForeign(['created_by']);
-            $table->dropForeign(['updated_by']);
-            $table->dropForeign(['deleted_by']);
-        });
         Schema::dropIfExists('positions');
     }
 };
