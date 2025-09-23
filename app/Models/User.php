@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Traits\HasRoles;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -31,7 +33,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  * @property string|null $status
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  */
-class User extends Authenticatable implements AuditableContract
+class User extends Authenticatable implements AuditableContract, FilamentUser
 {
     use AuditableTrait, HasFactory, HasRoles, Notifiable, SoftDeletes;
 
@@ -43,7 +45,7 @@ class User extends Authenticatable implements AuditableContract
     protected $fillable = [
         'title', 'name', 'identification_number', 'passport_number', 'profile_photo_path',
         'position_id', 'grade_id', 'department_id', 'level', 'mobile_number', 'email', 'password',
-        'status', 'email_verified_at', 'two_factor_secret', 'two_factor_recovery_codes', 'two_factor_confirmed_at',
+        'lang', 'theme', 'status', 'email_verified_at', 'two_factor_secret', 'two_factor_recovery_codes', 'two_factor_confirmed_at',
         'remember_token', 'created_by', 'updated_by', 'deleted_by',
     ];
 
@@ -95,11 +97,19 @@ class User extends Authenticatable implements AuditableContract
      */
     public function isActive(): bool
     {
-        return $this->status === 'active' || $this->status === 'enabled';
+        return $this->status === 'aktif';
     }
 
     public function isApprover(): bool
     {
         return (bool) $this->roles()->where('name', 'approver')->exists();
+    }
+
+    /**
+     * Determine if the user can access the Filament admin panel.
+     */
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->isActive() && str_ends_with($this->email, '@example.test');
     }
 }

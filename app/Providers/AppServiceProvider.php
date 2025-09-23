@@ -26,10 +26,11 @@ class AppServiceProvider extends ServiceProvider
             app()->setLocale(session('locale'));
         }
 
-        view()->composer('*', function ($view) {
-            $view->with('currentTheme', ThemeController::getCurrentTheme());
-        });
+        // Temporarily disabled to debug memory issues
+        // view()->composer('*', function ($view) {
+        //     $view->with('currentTheme', ThemeController::getCurrentTheme());
+        // });
 
-        Blade::component('layouts.guest', 'guest-layout');
+        // Blade::component('layouts.guest', 'guest-layout');
     }
 }
