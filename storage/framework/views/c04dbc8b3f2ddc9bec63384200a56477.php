@@ -1,2 +1,0 @@
-<a <?php echo e($attributes->merge(['class' => 'myds-skiplink'])); ?>><?php echo e($slot); ?></a>
-<?php /**PATH C:\xampp\htdocs\ict-serve-2\resources\views\components\myds\skiplink.blade.php ENDPATH**/ ?>

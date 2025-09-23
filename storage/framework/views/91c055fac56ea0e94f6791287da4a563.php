@@ -1,2 +1,0 @@
-<span <?php echo e($attributes->merge(['class' => 'myds-pill'])); ?>><?php echo e($slot); ?></span>
-<?php /**PATH C:\xampp\htdocs\ict-serve-2\resources\views\components\myds\pill.blade.php ENDPATH**/ ?>

@@ -1,2 +1,0 @@
-<button <?php echo e($attributes->merge(['class' => 'myds-button'])); ?>><?php echo e($slot); ?></button>
-<?php /**PATH C:\xampp\htdocs\ict-serve-2\resources\views\components\myds\button.blade.php ENDPATH**/ ?>
