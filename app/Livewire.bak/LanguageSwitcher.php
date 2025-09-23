@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 /**
  * Language Switcher Component for Filament Admin Panel
- *
+ * 
  * Provides bilingual (BM/EN) language switching with persistent preferences.
  * Integrates with MYDS design system and accessibility standards.
  */
@@ -45,7 +45,7 @@ class LanguageSwitcher extends Component
 
         // Emit event for other components to refresh
         $this->dispatch('language-changed', language: $language);
-
+        
         // Show success notification
         $this->dispatch('filament:notify', [
             'status' => 'success',
