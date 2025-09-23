@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 /**
  * Theme Switcher Component for Filament Admin Panel
- *
+ * 
  * Provides light/dark/system theme switching with persistent preferences.
  * Integrates with MYDS design system and accessibility standards.
  */
@@ -17,7 +17,7 @@ class ThemeSwitcher extends Component
     public string $currentTheme;
     public array $availableThemes = [
         'light' => 'Light',
-        'dark' => 'Dark',
+        'dark' => 'Dark', 
         'system' => 'System',
     ];
 
@@ -44,7 +44,7 @@ class ThemeSwitcher extends Component
 
         // Emit event for theme change
         $this->dispatch('theme-changed', theme: $theme);
-
+        
         // Show success notification
         $this->dispatch('filament:notify', [
             'status' => 'success',

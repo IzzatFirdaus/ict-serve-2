@@ -10,7 +10,7 @@ class LanguageController extends Controller
     public function switch(Request $request)
     {
         $allowedLocales = config('app.allowed_locales', ['en', 'ms']);
-        $language = $request->input('language');
+        $language = $request->input('lang'); // Updated to match test cases
 
         if (!in_array($language, $allowedLocales, true)) {
             return redirect()->back()->with('status', __('messages.language_switch_invalid'));

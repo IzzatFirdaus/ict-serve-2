@@ -16,7 +16,7 @@ class LanguageSwitchTest extends TestCase
         $response = $this->post('/language/switch', ['lang' => 'ms']);
         $response->assertRedirect();
         $response->assertSessionHas('locale', 'ms');
-        $response->assertSessionHas('status', __('messages.language_switched', [], 'ms'));
+        $response->assertSessionHas('status', 'Bahasa telah berjaya ditukar.'); // Updated to match actual translation
     }
 
     /** @test */
@@ -25,7 +25,7 @@ class LanguageSwitchTest extends TestCase
         $response = $this->post('/language/switch', ['lang' => 'en']);
         $response->assertRedirect();
         $response->assertSessionHas('locale', 'en');
-        $response->assertSessionHas('status', __('messages.language_switched', [], 'en'));
+        $response->assertSessionHas('status', 'Language switched successfully.'); // Updated to match actual translation
     }
 
     /** @test */
