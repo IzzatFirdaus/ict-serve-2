@@ -11,11 +11,8 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>ICTServe (iServe) – Sistem Pengurusan Perkhidmatan ICT MOTAC</title>
-        <meta
-            name="description"
-            content="Platform rasmi pinjaman peralatan dan helpdesk ICT MOTAC."
-        />
+    <title>{{ __('messages.meta.title') }}</title>
+    <meta name="description" content="{{ __('messages.meta.description') }}" />
 
         <!-- MYDS CSS compiled via resources/sass/app.scss -->
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -25,11 +22,7 @@
             rel="stylesheet"
         />
 
-        <!-- Bootstrap Icons CDN for UI icons -->
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-        />
+        <!-- Prefer local MYDS SVG icons; fallback to FontAwesome already included -->
         <!-- FontAwesome CDN for social icons -->
         <link
             rel="stylesheet"
@@ -37,11 +30,14 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
+        @if(isset($currentTheme))
+            <script>document.documentElement.setAttribute('data-theme', '{{ e($currentTheme) }}');</script>
+        @endif
     </head>
     <body class="myds-text--primary font-body antialiased myds-layout-fullscreen">
         <!-- Skip to main content for accessibility (MYDS) -->
-    <a href="#main-content" class="myds-skip-link" tabindex="0">Langkau ke kandungan utama</a>
-    {{-- MYDS: Skip link per MYDS-Design-Overview.md and MYDS-Develop-Overview.md (see Accessibility & Skiplink sections) --}}
+    <a href="#main-content" class="myds-skip-link" tabindex="0">{{ __('messages.aria.skip_to_content') }}</a>
+        {{-- MYDS: Skip link per MYDS-Design-Overview.md and MYDS-Develop-Overview.md (see Accessibility & Skiplink sections) --}}
         <!-- Header -->
         <header class="w-full myds-nav sticky top-0 z-40">
             <div class="myds-container flex items-center justify-between py-3">
@@ -49,62 +45,43 @@
                     <!-- MOTAC Logo JPEG (MYDS: height 40px, max-width 160px, auto aspect) -->
                     <img
                         src="{{ asset('images/motac-logo.jpeg') }}"
-                        alt="Logo MOTAC"
+                        alt="MOTAC Logo"
                         class="myds-logo"
                         style="height:40px;max-width:160px;width:auto;object-fit:contain;"
-                        {{-- MYDS: Logo sizing per MYDS-Design-Overview.md §Logo, MYDS-Develop-Overview.md §Logo, MyGovEA Prinsip 7 (Kebolehcapaian) --}}
                     />
                     <span class="ml-2 myds-heading-xs myds-brand tracking-wide">
-                        ICTServe
+                        {{ __('messages.meta.title') }}
                         <span class="font-normal myds-text--secondary">(iServe)</span>
                     </span>
                 </div>
                 <nav class="flex-1 flex items-center justify-end gap-6" aria-label="Navigasi utama">
-                    <x-myds.language-switcher />
+                    {{-- MYDS Language Switcher (select variant for tests) --}}
+                    <livewire:shared.language-switcher />
+                    {{-- MYDS Theme Switcher (select variant for tests) --}}
+                    <livewire:shared.theme-switcher />
                     <a
                         href="{{ route('login') }}"
                         class="myds-nav-link myds-body-sm font-medium hover:underline myds-focus-ring flex items-center gap-1"
+                        aria-label="{{ __('messages.auth.login.title') }}"
                     >
-                        <!-- Bootstrap Icons person-circle -->
-                        <i
-                            class="bi bi-person-circle myds-text--primary myds-icon myds-icon--md"
-                            style="width:20px;height:20px;"
-                            aria-hidden="true"
-                            role="img"
-                            aria-label="Log Masuk"
-                        ></i>
-                        {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md §Sizes, MYDS-Develop-Overview.md §Icon, MyGovEA Prinsip 7 (Kebolehcapaian) --}}
-                        Log Masuk
+                        <i class="fa-solid fa-user-circle myds-text--primary myds-icon myds-icon--md" style="width:20px;height:20px;" aria-hidden="true" role="img"></i>
+                        {{ __('messages.actions.login') }}
                     </a>
                     <a
                         href="#about"
                         class="myds-nav-link"
+                        aria-label="{{ __('messages.nav.about') }}"
                     >
-                        <!-- Bootstrap Icons info-circle -->
-                        <i
-                            class="bi bi-info-circle myds-text--primary myds-icon myds-icon--md"
-                            style="width:20px;height:20px;"
-                            aria-hidden="true"
-                            role="img"
-                            aria-label="Tentang"
-                        ></i>
-                        {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md, MYDS-Develop-Overview.md (Icon: 20x20px for medium) --}}
-                        Tentang
+                            <i class="fa-solid fa-circle-info myds-text--primary myds-icon myds-icon--md" style="width:20px;height:20px;" aria-hidden="true" role="img"></i>
+                        {{ __('messages.nav.about') }}
                     </a>
                     <a
                         href="#contact"
                         class="myds-nav-link"
+                        aria-label="{{ __('messages.nav.contact') }}"
                     >
-                        <!-- Bootstrap Icons telephone -->
-                        <i
-                            class="bi bi-telephone myds-text--primary myds-icon myds-icon--md"
-                            style="width:20px;height:20px;"
-                            aria-hidden="true"
-                            role="img"
-                            aria-label="Hubungi"
-                        ></i>
-                        {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md, MYDS-Develop-Overview.md (Icon: 20x20px for medium) --}}
-                        Hubungi
+                            <i class="fa-solid fa-phone myds-text--primary myds-icon myds-icon--md" style="width:20px;height:20px;" aria-hidden="true" role="img"></i>
+                        {{ __('messages.nav.contact') }}
                     </a>
                 </nav>
             </div>
@@ -116,18 +93,11 @@
             role="status"
         >
             <span class="inline-block bg-warning-200 text-warning-900 rounded px-2 py-1 mr-2">
-                <!-- Bootstrap Icons exclamation-triangle -->
-                <i
-                    class="bi bi-exclamation-triangle myds-text--warning myds-icon myds-icon--md"
-                    aria-hidden="true"
-                    role="img"
-                    aria-label="Beta"
-                ></i>
-                {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
-                Beta
+                <i class="fa-solid fa-triangle-exclamation myds-text--warning myds-icon myds-icon--md" aria-hidden="true" role="img"></i>
+                {{ __('messages.phase.beta') }}
             </span>
-            Platform ini dalam fasa pengujian. Sila laporkan isu ke BPM.
-            <a href="#feedback" class="underline">Beri maklum balas</a>
+            {{ __('messages.phase.testing_notice') }}
+            <a href="#feedback" class="underline">{{ __('messages.phase.feedback') }}</a>
         </div>
 
         <!-- Main Content -->
@@ -140,44 +110,31 @@
             <!-- Hero Section -->
             <section class="w-full max-w-4xl mx-auto text-center mb-12">
                 <h1 class="myds-heading-lg myds-text--primary mb-4 drop-shadow myds-letter-spacing-tight">
-                    Selamat Datang ke ICTServe
+                    {{ __('messages.hero.title') }}
                     <span class="font-normal myds-text--secondary">(iServe)</span>
                 </h1>
                 <p class="myds-body-xl myds-text--primary mb-4 font-medium">
-                    Pusat Pengurusan Pinjaman &amp; Sokongan ICT MOTAC
+                    {{ __('messages.hero.subtitle') }}
                 </p>
                 <p class="myds-body-lg myds-text--muted mb-8">
-                    Semua permohonan pinjaman peralatan ICT dan aduan kerosakan kini dalam satu
-                    sistem digital – mesra rakyat, telus, dan pantas.
+                    {{ __('messages.hero.description') }}
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
                     <a
-                        href="{{ route('login') }}"
+                        href="/login"
                         class="myds-btn myds-btn--primary myds-focus-ring text-base"
+                        aria-label="{{ __('messages.actions.login') }}"
                     >
-                        <!-- Bootstrap Icons arrow-right -->
-                        <i
-                            class="bi bi-arrow-right myds-icon myds-icon--md mr-2"
-                            aria-hidden="true"
-                            role="img"
-                            aria-label="Log Masuk"
-                        ></i>
-                        {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
-                        Log Masuk
+                        <i class="fa-solid fa-arrow-right myds-icon myds-icon--md mr-2" aria-hidden="true" role="img"></i>
+                        {{ __('messages.actions.login') }}
                     </a>
                     <a
                         href="#panduan"
                         class="myds-btn myds-btn--secondary myds-focus-ring text-base"
+                        aria-label="{{ __('messages.hero.guide') }}"
                     >
-                        <!-- Bootstrap Icons book -->
-                        <i
-                            class="bi bi-book myds-icon myds-icon--md mr-2"
-                            aria-hidden="true"
-                            role="img"
-                            aria-label="Panduan Pengguna"
-                        ></i>
-                        {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
-                        Panduan Pengguna
+                        <i class="fa-solid fa-book myds-icon myds-icon--md mr-2" aria-hidden="true" role="img"></i>
+                        {{ __('messages.hero.guide') }}
                     </a>
                 </div>
             </section>
@@ -187,95 +144,63 @@
                 <div class="myds-grid mb-10">
                     <div class="myds-col-span-12 lg:myds-col-span-4 md:myds-col-span-4 sm:myds-col-span-4">
                         <div class="myds-card myds-card--hover h-full">
-                            <i
-                                class="bi bi-folder myds-text--primary myds-icon myds-icon--lg"
-                                aria-hidden="true"
-                                role="img"
-                                aria-label="Pinjaman ICT"
-                            ></i>
+                            <i class="fa-solid fa-folder myds-text--primary myds-icon myds-icon--lg" aria-hidden="true" role="img" aria-label="Pinjaman ICT"></i>
                             {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
                             <h2 class="myds-heading-3xs myds-text--primary mb-2">
-                                Pinjaman ICT
+                                {{ __('messages.cards.loan.title') }}
                             </h2>
                             <p class="myds-body-sm myds-text--secondary mb-4">
-                                Permohonan pinjaman laptop, projektor, dan peralatan ICT secara digital dan
-                                telus.
+                                {{ __('messages.cards.loan.description') }}
                             </p>
                             <a
                                 href="#loan-info"
                                 class="myds-btn--link myds-focus-ring"
+                                aria-label="{{ __('messages.cards.loan.more') }}"
                             >
-                                Maklumat Lanjut
-                                <i
-                                    class="bi bi-chevron-right myds-icon myds-icon--md"
-                                    aria-hidden="true"
-                                    role="img"
-                                    aria-label="Maklumat Lanjut"
-                                ></i>
-                                {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
+                                {{ __('messages.cards.loan.more') }}
+                                <i class="fa-solid fa-chevron-right myds-icon myds-icon--md" aria-hidden="true" role="img"></i>
                             </a>
                         </div>
                     </div>
                     <div class="myds-col-span-12 lg:myds-col-span-4 md:myds-col-span-4 sm:myds-col-span-4">
                         <!-- Helpdesk Card -->
                         <div class="myds-card myds-card__body flex flex-col items-center text-center">
-                            <i
-                                class="bi bi-chat-dots myds-text--success myds-icon myds-icon--lg mx-auto"
-                                aria-hidden="true"
-                                role="img"
-                                aria-label="Helpdesk ICT"
-                            ></i>
+                            <i class="fa-solid fa-comments myds-text--success myds-icon myds-icon--lg mx-auto" aria-hidden="true" role="img" aria-label="Helpdesk ICT"></i>
                             {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
                             <h2 class="myds-heading-3xs myds-text--success mb-2">
-                                Helpdesk ICT
+                                {{ __('messages.cards.helpdesk.title') }}
                             </h2>
                             <p class="myds-body-sm myds-text--muted mb-4">
-                                Lapor masalah ICT, pantau status tiket dan terima bantuan profesional BPM.
+                                {{ __('messages.cards.helpdesk.description') }}
                             </p>
                             <a
                                 href="#helpdesk-info"
                                 class="myds-btn--link myds-focus-ring"
+                                aria-label="{{ __('messages.cards.helpdesk.more') }}"
                             >
-                                Maklumat Lanjut
-                                <i
-                                    class="bi bi-chevron-right myds-icon myds-icon--md ml-1"
-                                    aria-hidden="true"
-                                    role="img"
-                                    aria-label="Maklumat Lanjut"
-                                ></i>
-                                {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
+                                {{ __('messages.cards.helpdesk.more') }}
+                                <i class="fa-solid fa-chevron-right myds-icon myds-icon--md ml-1" aria-hidden="true" role="img"></i>
                             </a>
                         </div>
                     </div>
                     <div class="myds-col-span-12 lg:myds-col-span-4 md:myds-col-span-4 sm:myds-col-span-4">
                         <!-- Compliance Card -->
                         <div class="myds-card myds-card__body flex flex-col items-center text-center">
-                            <i
-                                class="bi bi-shield-check myds-text--warning myds-icon myds-icon--lg mx-auto"
-                                aria-hidden="true"
-                                role="img"
-                                aria-label="Pematuhan MYDS &amp; MyGovEA"
-                            ></i>
+                                <i class="fa-solid fa-shield-check myds-text--warning myds-icon myds-icon--lg mx-auto" aria-hidden="true" role="img" aria-label="Pematuhan MYDS &amp; MyGovEA"></i>
                             {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
                             <h2 class="myds-heading-3xs myds-text--warning mb-2">
-                                Pematuhan MYDS &amp; MyGovEA
+                                {{ __('messages.cards.compliance.title') }}
                             </h2>
                             <p class="myds-body-sm myds-text--muted mb-4">
-                                Reka bentuk mematuhi piawaian Malaysia Government Design System &amp; 18
-                                Prinsip MyGovEA.
+                                {{ __('messages.cards.compliance.description') }}
                             </p>
                             <a
                                 href="#compliance"
                                 class="myds-btn--link myds-focus-ring"
+                                aria-label="{{ __('messages.cards.compliance.more') }}"
                             >
-                                Ketahui Lagi
-                                <i
-                                    class="bi bi-chevron-right myds-icon myds-icon--md ml-1 flex-shrink-0"
-                                    aria-hidden="true"
-                                    role="img"
-                                    aria-label="Ketahui Lagi"
-                                ></i>
-                                {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
+                                {{ __('messages.cards.compliance.more') }}
+                                <i class="fa-solid fa-chevron-right myds-icon myds-icon--md ml-1 flex-shrink-0" aria-hidden="true" role="img"></i>
                             </a>
                         </div>
                     </div>
@@ -285,67 +210,47 @@
             <!-- How It Works / Manfaat Section -->
             <section id="how-it-works" class="w-full myds-container mb-10">
                 <h2 class="myds-heading-sm myds-text--primary mb-6 text-center">
-                    Bagaimana ICTServe Berfungsi
+                    {{ __('messages.howitworks.title') }}
                 </h2>
                 <div class="myds-grid">
                     <div class="myds-col-span-12 lg:myds-col-span-3 md:myds-col-span-4 sm:myds-col-span-4">
                         <div class="myds-card myds-card__body flex flex-col items-center text-center">
-                            <i
-                                class="bi bi-journal myds-text--primary myds-icon myds-icon--lg mx-auto"
-                                aria-hidden="true"
-                                role="img"
-                                aria-label="Isi Borang"
-                            ></i>
+                                <i class="fa-solid fa-book-open myds-text--primary myds-icon myds-icon--lg mx-auto" aria-hidden="true" role="img" aria-label="Isi Borang"></i>
                             {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
-                            <span class="myds-body-md font-medium myds-text--primary">Isi Borang</span>
-                            <span class="myds-body-xs myds-text--muted mt-1">
-                                Permohonan pinjaman atau aduan ICT secara digital
-                            </span>
+                                <span class="myds-body-md font-medium myds-text--primary">{{ __('messages.howitworks.step1.title') }}</span>
+                                <span class="myds-body-xs myds-text--muted mt-1">
+                                    {{ __('messages.howitworks.step1.description') }}
+                                </span>
                         </div>
                     </div>
                     <div class="myds-col-span-12 lg:myds-col-span-3 md:myds-col-span-4 sm:myds-col-span-4">
                         <div class="myds-card myds-card__body flex flex-col items-center text-center">
-                            <i
-                                class="bi bi-patch-check myds-text--success myds-icon myds-icon--lg mx-auto"
-                                aria-hidden="true"
-                                role="img"
-                                aria-label="Kelulusan / Tindakan"
-                            ></i>
+                                <i class="fa-solid fa-badge-check myds-text--success myds-icon myds-icon--lg mx-auto" aria-hidden="true" role="img" aria-label="Kelulusan / Tindakan"></i>
                             {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
-                            <span class="myds-body-md font-medium myds-text--primary">Kelulusan / Tindakan</span>
-                            <span class="myds-body-xs myds-text--muted mt-1">
-                                Permohonan disemak &amp; diluluskan pegawai
-                            </span>
+                                <span class="myds-body-md font-medium myds-text--primary">{{ __('messages.howitworks.step2.title') }}</span>
+                                <span class="myds-body-xs myds-text--muted mt-1">
+                                    {{ __('messages.howitworks.step2.description') }}
+                                </span>
                         </div>
                     </div>
                     <div class="myds-col-span-12 lg:myds-col-span-3 md:myds-col-span-4 sm:myds-col-span-4">
                         <div class="myds-card myds-card__body flex flex-col items-center text-center">
-                            <i
-                                class="bi bi-folder myds-text--warning myds-icon myds-icon--lg mx-auto"
-                                aria-hidden="true"
-                                role="img"
-                                aria-label="Ambil / Pulang Peralatan"
-                            ></i>
+                                <i class="fa-solid fa-box-archive myds-text--warning myds-icon myds-icon--lg mx-auto" aria-hidden="true" role="img" aria-label="Ambil / Pulang Peralatan"></i>
                             {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
-                            <span class="myds-body-md font-medium myds-text--primary">Ambil / Pulang Peralatan</span>
-                            <span class="myds-body-xs myds-text--muted mt-1">
-                                Urusan fizikal di BPM dengan rekod digital
-                            </span>
+                                <span class="myds-body-md font-medium myds-text--primary">{{ __('messages.howitworks.step3.title') }}</span>
+                                <span class="myds-body-xs myds-text--muted mt-1">
+                                    {{ __('messages.howitworks.step3.description') }}
+                                </span>
                         </div>
                     </div>
                     <div class="myds-col-span-12 lg:myds-col-span-3 md:myds-col-span-4 sm:myds-col-span-4">
                         <div class="myds-card myds-card__body flex flex-col items-center text-center">
-                            <i
-                                class="bi bi-list myds-text--primary myds-icon myds-icon--lg mx-auto"
-                                aria-hidden="true"
-                                role="img"
-                                aria-label="Jejak Status"
-                            ></i>
+                                <i class="fa-solid fa-list myds-text--primary myds-icon myds-icon--lg mx-auto" aria-hidden="true" role="img" aria-label="Jejak Status"></i>
                             {{-- MYDS: Icon sizing per MYDS-Icons-Overview.md --}}
-                            <span class="myds-body-md font-medium myds-text--primary">Jejak Status</span>
-                            <span class="myds-body-xs myds-text--muted mt-1">
-                                Pantau status permohonan &amp; tiket secara masa nyata
-                            </span>
+                                <span class="myds-body-md font-medium myds-text--primary">{{ __('messages.howitworks.step4.title') }}</span>
+                                <span class="myds-body-xs myds-text--muted mt-1">
+                                    {{ __('messages.howitworks.step4.description') }}
+                                </span>
                         </div>
                     </div>
                 </div>
@@ -358,18 +263,16 @@
                 <div class="myds-footer-brand">
                     <img
                         src="{{ asset('images/bpm-logo.png') }}"
-                        alt="Logo BPM"
+                        alt="{{ __('messages.footer.bpm_logo_alt') }}"
                         class="myds-logo"
                         style="height:40px;max-width:160px;width:auto;object-fit:contain;"
-                        {{-- MYDS: Logo sizing per MYDS-Design-Overview.md, MYDS-Develop-Overview.md (Logo: 40px height, max 160px width, auto aspect) --}}
                     />
-                    {{-- MYDS: Logo sizing per MYDS-Design-Overview.md --}}
-                    <span class="myds-body-xs myds-text--muted">Bahagian Pengurusan Maklumat (BPM)</span>
+                    <span class="myds-body-xs myds-text--muted">{{ __('messages.footer.bpm') }}</span>
                 </div>
                 <div class="myds-body-xs myds-text--muted myds-footer-copyright">
                     &copy;
                     <span id="year"></span>
-                    Hakcipta Terpelihara, Kementerian Pelancongan, Seni dan Budaya Malaysia
+                    {{ __('messages.footer.copyright') }}
                 </div>
                 <div class="myds-footer-social">
                     <a
@@ -415,26 +318,11 @@
                 </div>
             </div>
             <div class="myds-container myds-footer-links">
-                <a
-                    href="#privacy"
-                    class="myds-footer-link"
-                >
-                    Dasar Privasi
-                </a>
+                <a href="#privacy" class="myds-footer-link">{{ __('messages.footer.privacy') }}</a>
                 <span class="myds-text--muted">|</span>
-                <a
-                    href="#terms"
-                    class="myds-footer-link"
-                >
-                    Terma Penggunaan
-                </a>
+                <a href="#terms" class="myds-footer-link">{{ __('messages.footer.terms') }}</a>
                 <span class="myds-text--muted">|</span>
-                <a
-                    href="#accessibility"
-                    class="myds-footer-link"
-                >
-                    Kenyataan Kebolehcapaian
-                </a>
+                <a href="#accessibility" class="myds-footer-link">{{ __('messages.footer.accessibility') }}</a>
             </div>
         </footer>
 

@@ -1,5 +1,5 @@
 <div>
-    <h2 class="text-lg font-bold">Dashboard Statistics</h2>
+    <h2 class="text-lg font-bold">{{ __('dashboard.cards.stats') }}</h2>
     <canvas id="dashboard-stats-chart"></canvas>
 </div>
 
