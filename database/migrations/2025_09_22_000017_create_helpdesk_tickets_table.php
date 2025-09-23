@@ -44,49 +44,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        // Drop foreign keys explicitly for clarity and to avoid errors on some MySQL versions
-        if (Schema::hasTable('helpdesk_tickets')) {
-            Schema::table('helpdesk_tickets', function (Blueprint $table) {
-                $sm = Schema::getConnection()->getDoctrineSchemaManager();
-                // Attempt to drop foreign keys if they exist. Using try/catch because Doctrine names can vary.
-                try {
-                    $table->dropForeign(['user_id']);
-                } catch (\Throwable $e) {
-                    // ignore
-                }
-
-                try {
-                    $table->dropForeign(['assigned_to_user_id']);
-                } catch (\Throwable $e) {
-                    // ignore
-                }
-
-                try {
-                    $table->dropForeign(['category_id']);
-                } catch (\Throwable $e) {
-                    // ignore
-                }
-
-                try {
-                    $table->dropForeign(['created_by']);
-                } catch (\Throwable $e) {
-                    // ignore
-                }
-
-                try {
-                    $table->dropForeign(['updated_by']);
-                } catch (\Throwable $e) {
-                    // ignore
-                }
-
-                try {
-                    $table->dropForeign(['deleted_by']);
-                } catch (\Throwable $e) {
-                    // ignore
-                }
-            });
-
-            Schema::dropIfExists('helpdesk_tickets');
-        }
+        Schema::dropIfExists('helpdesk_tickets');
     }
 };

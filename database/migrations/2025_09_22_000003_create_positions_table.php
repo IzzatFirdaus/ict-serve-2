@@ -8,56 +8,35 @@ use Illuminate\Support\Facades\Schema;
  * Create the positions table.
  * Stores job positions and links to grades.
  */
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('positions', function (Blueprint $table) {
-            $table->id();
+            $table->id()->comment('Primary key');
             $table->string('name')->comment('Position name');
-            $table->foreignId('grade_id')->nullable()->index();
-            $table->text('description')->nullable()->comment('Optional description for the position');
-            $table->boolean('is_active')->default(true)->index()->comment('Whether the position is active');
-
+            $table->foreignId('grade_id')->nullable()->constrained('grades')->nullOnDelete()->comment('FK to grades');
+            $table->text('description')->nullable()->comment('Description');
+            $table->boolean('is_active')->default(true)->index()->comment('Active status');
             // Audit columns
-            $table->foreignId('created_by')->nullable()->index();
-            $table->foreignId('updated_by')->nullable()->index();
-            $table->foreignId('deleted_by')->nullable()->index();
-
-            $table->timestampsTz();
-            $table->softDeletesTz();
-
-            $table->comment('Job positions and mapping to grades.');
-        });
-
-        Schema::table('positions', function (Blueprint $table) {
-            $table->foreign('grade_id', 'positions_grade_id_fk')
-                ->references('id')->on('grades')->onDelete('set null');
-
-            $table->foreign('created_by', 'positions_created_by_fk')
-                ->references('id')->on('users')->onDelete('set null');
-
-            $table->foreign('updated_by', 'positions_updated_by_fk')
-                ->references('id')->on('users')->onDelete('set null');
-
-            $table->foreign('deleted_by', 'positions_deleted_by_fk')
-                ->references('id')->on('users')->onDelete('set null');
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (creator)');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (updater)');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (deleter)');
+            $table->timestampsTz(0);
+            $table->softDeletesTz(0);
+            $table->comment('Job positions for users, linked to grades.');
         });
     }
 
     public function down(): void
     {
-        if (Schema::hasTable('positions')) {
-            Schema::table('positions', function (Blueprint $table) {
-                foreach (['grade_id', 'created_by', 'updated_by', 'deleted_by'] as $col) {
-                    try {
-                        $table->dropForeign([$col]);
-                    } catch (\Throwable $e) {
-                        // ignore
-                    }
-                }
-            });
-
-            Schema::dropIfExists('positions');
-        }
+        // Drop FKs before table for safe rollback
+        Schema::table('positions', function (Blueprint $table) {
+            $table->dropForeign(['grade_id']);
+            $table->dropForeign(['created_by']);
+            $table->dropForeign(['updated_by']);
+            $table->dropForeign(['deleted_by']);
+        });
+        Schema::dropIfExists('positions');
     }
 };
