@@ -5,8 +5,8 @@ namespace App\Filament\Resources\LoanApplications\Schemas;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class LoanApplicationForm
@@ -35,14 +35,14 @@ class LoanApplicationForm
                 DatePicker::make('loan_end_date'),
                 Select::make('status')
                     ->options([
-            'draft' => 'Draft',
-            'pending_support' => 'Pending support',
-            'approved' => 'Approved',
-            'rejected' => 'Rejected',
-            'issued' => 'Issued',
-            'returned' => 'Returned',
-            'completed' => 'Completed',
-        ])
+                        'draft' => 'Draft',
+                        'pending_support' => 'Pending support',
+                        'approved' => 'Approved',
+                        'rejected' => 'Rejected',
+                        'issued' => 'Issued',
+                        'returned' => 'Returned',
+                        'completed' => 'Completed',
+                    ])
                     ->default('draft')
                     ->required(),
                 Textarea::make('rejection_reason')

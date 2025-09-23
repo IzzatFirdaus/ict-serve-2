@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Blameable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
-use App\Traits\Blameable;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class HelpdeskTicket
@@ -38,7 +38,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class HelpdeskTicket extends Model implements AuditableContract
 {
-    use AuditableTrait, HasFactory, SoftDeletes, Blameable;
+    use AuditableTrait, Blameable, HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id', 'assigned_to_user_id', 'category_id', 'subject', 'description', 'status', 'priority', 'due_date', 'resolution_notes', 'closed_at',
@@ -52,12 +52,16 @@ class HelpdeskTicket extends Model implements AuditableContract
 
     // Status constants
     public const STATUS_OPEN = 'open';
+
     public const STATUS_PENDING = 'pending';
+
     public const STATUS_CLOSED = 'closed';
 
     // Priority constants
     public const PRIORITY_LOW = 'low';
+
     public const PRIORITY_MEDIUM = 'medium';
+
     public const PRIORITY_HIGH = 'high';
 
     public function user(): BelongsTo

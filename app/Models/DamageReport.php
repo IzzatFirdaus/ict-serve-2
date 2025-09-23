@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Blameable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
-use App\Traits\Blameable;
 
 /**
  * Class DamageReport
@@ -39,7 +39,7 @@ use App\Traits\Blameable;
  */
 class DamageReport extends Model implements AuditableContract
 {
-    use AuditableTrait, HasFactory, SoftDeletes, Blameable;
+    use AuditableTrait, Blameable, HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id', 'department_id', 'position_grade', 'email', 'phone_number', 'damage_type', 'description', 'confirmation', 'status', 'assigned_to_user_id', 'resolution_notes', 'closed_at',
@@ -90,8 +90,11 @@ class DamageReport extends Model implements AuditableContract
      * Enum for damage report status.
      */
     public const STATUS_OPEN = 'open';
+
     public const STATUS_IN_PROGRESS = 'in_progress';
+
     public const STATUS_RESOLVED = 'resolved';
+
     public const STATUS_CLOSED = 'closed';
 
     /**

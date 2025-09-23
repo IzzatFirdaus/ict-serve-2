@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Blameable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
-use App\Traits\Blameable;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class HelpdeskComment
@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class HelpdeskComment extends Model implements AuditableContract
 {
-    use AuditableTrait, HasFactory, SoftDeletes, Blameable;
+    use AuditableTrait, Blameable, HasFactory, SoftDeletes;
 
     protected $fillable = [
         'ticket_id', 'user_id', 'comment', 'is_internal', 'created_by', 'updated_by', 'deleted_by',

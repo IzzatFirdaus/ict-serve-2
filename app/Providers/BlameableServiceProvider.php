@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use App\Observers\BlameableObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use App\Observers\BlameableObserver;
 
 class BlameableServiceProvider extends ServiceProvider
 {
@@ -28,7 +28,7 @@ class BlameableServiceProvider extends ServiceProvider
                 continue;
             }
 
-            $class = 'App\\Models\\' . pathinfo($file, PATHINFO_FILENAME);
+            $class = 'App\\Models\\'.pathinfo($file, PATHINFO_FILENAME);
 
             if (! class_exists($class)) {
                 continue;

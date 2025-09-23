@@ -4,8 +4,8 @@ namespace App\Filament\Resources\Equipment\Schemas;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class EquipmentForm
@@ -28,11 +28,11 @@ class EquipmentForm
                 DatePicker::make('warranty_expiry_date'),
                 Select::make('status')
                     ->options([
-            'available' => 'Available',
-            'on_loan' => 'On loan',
-            'under_maintenance' => 'Under maintenance',
-            'retired' => 'Retired',
-        ])
+                        'available' => 'Available',
+                        'on_loan' => 'On loan',
+                        'under_maintenance' => 'Under maintenance',
+                        'retired' => 'Retired',
+                    ])
                     ->default('available')
                     ->required(),
                 TextInput::make('current_location')
@@ -42,12 +42,12 @@ class EquipmentForm
                     ->columnSpanFull(),
                 Select::make('condition_status')
                     ->options([
-            'baru' => 'Baru',
-            'baik' => 'Baik',
-            'sederhana' => 'Sederhana',
-            'rosak' => 'Rosak',
-            'hilang' => 'Hilang',
-        ])
+                        'baru' => 'Baru',
+                        'baik' => 'Baik',
+                        'sederhana' => 'Sederhana',
+                        'rosak' => 'Rosak',
+                        'hilang' => 'Hilang',
+                    ])
                     ->default('baik')
                     ->required(),
                 Select::make('department_id')

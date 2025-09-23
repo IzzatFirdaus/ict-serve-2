@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Blameable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
-use App\Traits\Blameable;
 
 /**
  * Class LoanApplication
@@ -52,7 +52,7 @@ use App\Traits\Blameable;
  */
 class LoanApplication extends Model implements AuditableContract
 {
-    use AuditableTrait, HasFactory, SoftDeletes, Blameable;
+    use AuditableTrait, Blameable, HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id', 'responsible_officer_id', 'supporting_officer_id', 'purpose', 'location', 'return_location',
@@ -120,10 +120,15 @@ class LoanApplication extends Model implements AuditableContract
      * Enum for loan status.
      */
     public const STATUS_DRAFT = 'draft';
+
     public const STATUS_PENDING_SUPPORT = 'pending_support';
+
     public const STATUS_PENDING_APPROVAL = 'pending_approval';
+
     public const STATUS_APPROVED = 'approved';
+
     public const STATUS_REJECTED = 'rejected';
+
     public const STATUS_CANCELLED = 'cancelled';
 
     /**

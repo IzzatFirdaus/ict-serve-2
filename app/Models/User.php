@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Blameable;
 use App\Traits\HasRoles;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
@@ -13,7 +14,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
-use App\Traits\Blameable;
 
 /**
  * Class User
@@ -50,7 +50,7 @@ use App\Traits\Blameable;
  */
 class User extends Authenticatable implements AuditableContract, FilamentUser
 {
-    use AuditableTrait, HasFactory, HasRoles, Notifiable, SoftDeletes, Blameable;
+    use AuditableTrait, Blameable, HasFactory, HasRoles, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -77,6 +77,7 @@ class User extends Authenticatable implements AuditableContract, FilamentUser
         'theme' => 'string',
         'status' => 'string',
     ];
+
     /**
      * Audit relationships
      */
@@ -196,6 +197,4 @@ class User extends Authenticatable implements AuditableContract, FilamentUser
             $q->where('name', 'approver');
         });
     }
-
-
 }

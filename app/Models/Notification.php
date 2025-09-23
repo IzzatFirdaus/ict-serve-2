@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\Blameable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable as NotifiableTrait;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
-use App\Traits\Blameable;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Notification
@@ -31,7 +31,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Notification extends Model implements AuditableContract
 {
-    use AuditableTrait, HasFactory, NotifiableTrait, SoftDeletes, Blameable;
+    use AuditableTrait, Blameable, HasFactory, NotifiableTrait, SoftDeletes;
 
     protected $keyType = 'string';
 

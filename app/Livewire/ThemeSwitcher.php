@@ -2,9 +2,9 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Livewire\Component;
 
 /**
  * Theme Switcher Component for Filament Admin Panel
@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class ThemeSwitcher extends Component
 {
     public string $currentTheme;
+
     public array $availableThemes = [
         'light' => 'Light',
         'dark' => 'Dark',
@@ -28,7 +29,7 @@ class ThemeSwitcher extends Component
 
     public function switchTheme(string $theme): void
     {
-        if (!array_key_exists($theme, $this->availableThemes)) {
+        if (! array_key_exists($theme, $this->availableThemes)) {
             return;
         }
 

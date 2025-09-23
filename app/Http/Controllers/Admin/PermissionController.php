@@ -10,18 +10,21 @@ class PermissionController extends Controller
     public function index()
     {
         $this->authorize('viewAny', \Spatie\Permission\Models\Permission::class);
+
         return view('admin.permissions.index');
     }
 
     public function create()
     {
         $this->authorize('create', \Spatie\Permission\Models\Permission::class);
+
         return view('admin.permissions.create');
     }
 
     public function store(Request $request)
     {
         $this->authorize('create', \Spatie\Permission\Models\Permission::class);
+
         return redirect()->route('admin.permissions.index');
     }
 

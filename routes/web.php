@@ -1,40 +1,52 @@
 <?php
 
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\PositionController;
-use App\Http\Controllers\GradeController;
 use App\Http\Controllers\EquipmentCategoryController;
-use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\LocationController;
 use App\Http\Controllers\EquipmentController;
+use App\Http\Controllers\GradeController;
+use App\Http\Controllers\Helpdesk\DamageReportController;
+use App\Http\Controllers\Helpdesk\HelpdeskCommentController;
+use App\Http\Controllers\Helpdesk\TicketController as HelpdeskTicketController;
+use App\Http\Controllers\HelpdeskCategoryController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LoanApplicationController;
 use App\Http\Controllers\LoanApplicationItemController;
 use App\Http\Controllers\LoanTransactionController;
 use App\Http\Controllers\LoanTransactionItemController;
-use App\Http\Controllers\Helpdesk\TicketController as HelpdeskTicketController;
-use App\Http\Controllers\Helpdesk\DamageReportController;
-use App\Http\Controllers\HelpdeskCategoryController;
-use App\Http\Controllers\Helpdesk\HelpdeskCommentController;
-use App\Http\Controllers\ApprovalController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\Admin\SettingsController;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\PositionController;
+use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Minimal placeholder named routes so views that reference them do not error.
-// These intentionally redirect to the home page and should be replaced by
-// real auth controllers when authentication is implemented.
+
+// Minimal login routes for Playwright and manual login
 Route::get('/login', function () {
-    return view('auth.login'); // Replace with actual login view
+    return view('auth.login');
 })->name('login');
+
+Route::post('/login', function (\Illuminate\Http\Request $request) {
+    $credentials = $request->only('email', 'password');
+    if (Auth::attempt($credentials, $request->filled('remember'))) {
+        $request->session()->regenerate();
+        return redirect()->intended('/home');
+    }
+    return back()->withErrors([
+        'email' => __('auth.failed'),
+    ])->withInput($request->only('email', 'remember'));
+})->name('login.post');
 
 Route::get('/register', function () {
     return redirect('/');
@@ -74,18 +86,20 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('loan-transactions.items', LoanTransactionItemController::class);
 
     // Helpdesk - prefixed
-    Route::prefix('helpdesk')->name('helpdesk.')->group(function () {
-        Route::resource('tickets', HelpdeskTicketController::class);
-        Route::post('tickets/{ticket}/assign', [HelpdeskTicketController::class, 'assign'])->name('tickets.assign');
-        Route::post('tickets/{ticket}/close', [HelpdeskTicketController::class, 'close'])->name('tickets.close');
-        Route::post('tickets/{ticket}/reopen', [HelpdeskTicketController::class, 'reopen'])->name('tickets.reopen');
+    Route::prefix('helpdesk')
+        ->name('helpdesk.')
+        ->group(function () {
+            Route::resource('tickets', HelpdeskTicketController::class);
+            Route::post('tickets/{ticket}/assign', [HelpdeskTicketController::class, 'assign'])->name('tickets.assign');
+            Route::post('tickets/{ticket}/close', [HelpdeskTicketController::class, 'close'])->name('tickets.close');
+            Route::post('tickets/{ticket}/reopen', [HelpdeskTicketController::class, 'reopen'])->name('tickets.reopen');
 
-        Route::resource('damage-reports', DamageReportController::class);
-        Route::resource('categories', HelpdeskCategoryController::class)->names('categories');
+            Route::resource('damage-reports', DamageReportController::class);
+            Route::resource('categories', HelpdeskCategoryController::class)->names('categories');
 
-        // Nested comments under tickets
-        Route::resource('tickets.comments', HelpdeskCommentController::class)->only(['index', 'store', 'destroy']);
-    });
+            // Nested comments under tickets
+            Route::resource('tickets.comments', HelpdeskCommentController::class)->only(['index', 'store', 'destroy']);
+        });
 
     // Approvals & Notifications
     Route::resource('approvals', ApprovalController::class);
@@ -96,13 +110,19 @@ Route::middleware(['auth'])->group(function () {
     Route::post('notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
 
     // Admin area (roles, permissions, settings)
-    Route::prefix('admin')->name('admin.')->middleware(['can:access-admin'])->group(function () {
-        Route::resource('settings', SettingsController::class)->only(['index', 'edit', 'update']);
-        Route::resource('roles', RoleController::class);
-        Route::resource('permissions', PermissionController::class);
-    });
+    Route::prefix('admin')
+        ->name('admin.')
+        ->middleware(['can:access-admin'])
+        ->group(function () {
+            Route::resource('settings', SettingsController::class)->only(['index', 'edit', 'update']);
+            Route::resource('roles', RoleController::class);
+            Route::resource('permissions', PermissionController::class);
+        });
+
+    // Theme management
+    Route::post('/set-theme', [ThemeController::class, 'setTheme'])->name('set-theme');
+
+    Auth::routes();
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
-
-// Theme management
-Route::post('/set-theme', [ThemeController::class, 'setTheme'])->name('set-theme');
-

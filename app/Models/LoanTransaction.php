@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Blameable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
-use App\Traits\Blameable;
 
 /**
  * Class LoanTransaction
@@ -38,7 +38,7 @@ use App\Traits\Blameable;
  */
 class LoanTransaction extends Model implements AuditableContract
 {
-    use AuditableTrait, HasFactory, SoftDeletes, Blameable;
+    use AuditableTrait, Blameable, HasFactory, SoftDeletes;
 
     protected $fillable = [
         'loan_application_id', 'type', 'transaction_date', 'issuing_officer_id', 'receiving_officer_id',
@@ -91,12 +91,14 @@ class LoanTransaction extends Model implements AuditableContract
      * Enum for transaction type.
      */
     public const TYPE_ISSUE = 'issue';
+
     public const TYPE_RETURN = 'return';
 
     /**
      * Enum for transaction status.
      */
     public const STATUS_COMPLETED = 'completed';
+
     public const STATUS_PENDING = 'pending';
 
     /**

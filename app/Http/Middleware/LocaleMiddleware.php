@@ -11,6 +11,7 @@ class LocaleMiddleware
     {
         $locale = session('locale', config('app.locale', 'ms'));
         App::setLocale($locale);
+
         return $next($request);
     }
 }

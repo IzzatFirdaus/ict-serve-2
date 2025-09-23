@@ -10,18 +10,21 @@ class RoleController extends Controller
     public function index()
     {
         $this->authorize('viewAny', \Spatie\Permission\Models\Role::class);
+
         return view('admin.roles.index');
     }
 
     public function create()
     {
         $this->authorize('create', \Spatie\Permission\Models\Role::class);
+
         return view('admin.roles.create');
     }
 
     public function store(Request $request)
     {
         $this->authorize('create', \Spatie\Permission\Models\Role::class);
+
         return redirect()->route('admin.roles.index');
     }
 

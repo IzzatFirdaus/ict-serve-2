@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@motac.gov.my',
         ], [
             'name' => 'Test User',
-            'identification_number' => 'TEST-' . Str::upper(Str::random(8)),
+            'identification_number' => 'TEST-'.Str::upper(Str::random(8)),
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
             'remember_token' => Str::random(10),

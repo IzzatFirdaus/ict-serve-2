@@ -2,10 +2,10 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Livewire\Component;
 
 /**
  * Language Switcher Component for Filament Admin Panel
@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 class LanguageSwitcher extends Component
 {
     public string $currentLanguage;
+
     public array $availableLanguages = [
         'ms' => 'Bahasa Melayu',
         'en' => 'English',
@@ -28,7 +29,7 @@ class LanguageSwitcher extends Component
 
     public function switchLanguage(string $language): void
     {
-        if (!array_key_exists($language, $this->availableLanguages)) {
+        if (! array_key_exists($language, $this->availableLanguages)) {
             return;
         }
 

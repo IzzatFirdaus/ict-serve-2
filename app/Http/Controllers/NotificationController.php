@@ -15,6 +15,7 @@ class NotificationController extends Controller
     public function show(Notification $notification)
     {
         $this->authorize('view', $notification);
+
         return view('notifications.show', compact('notification'));
     }
 
@@ -22,12 +23,14 @@ class NotificationController extends Controller
     {
         $this->authorize('delete', $notification);
         $notification->delete();
+
         return redirect()->route('notifications.index');
     }
 
     public function markAsRead(Notification $notification)
     {
         $this->authorize('update', $notification);
+
         // mark as read logic
         return redirect()->route('notifications.index');
     }

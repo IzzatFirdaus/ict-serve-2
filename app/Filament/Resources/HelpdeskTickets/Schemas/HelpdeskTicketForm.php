@@ -5,8 +5,8 @@ namespace App\Filament\Resources\HelpdeskTickets\Schemas;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class HelpdeskTicketForm
@@ -31,13 +31,13 @@ class HelpdeskTicketForm
                     ->columnSpanFull(),
                 Select::make('status')
                     ->options([
-            'open' => 'Open',
-            'in_progress' => 'In progress',
-            'pending_user_feedback' => 'Pending user feedback',
-            'resolved' => 'Resolved',
-            'closed' => 'Closed',
-            'reopened' => 'Reopened',
-        ])
+                        'open' => 'Open',
+                        'in_progress' => 'In progress',
+                        'pending_user_feedback' => 'Pending user feedback',
+                        'resolved' => 'Resolved',
+                        'closed' => 'Closed',
+                        'reopened' => 'Reopened',
+                    ])
                     ->default('open')
                     ->required(),
                 Select::make('priority')
