@@ -13,25 +13,51 @@ return new class extends Migration {
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->unsignedBigInteger('grade_id')->nullable();
-            $table->text('description')->nullable();
-            $table->boolean('is_active')->default(true);
-            $table->timestamps();
-            $table->softDeletes();
-            $table->unsignedBigInteger('created_by')->nullable();
-            $table->unsignedBigInteger('updated_by')->nullable();
-            $table->unsignedBigInteger('deleted_by')->nullable();
+            $table->string('name')->comment('Position name');
+            $table->foreignId('grade_id')->nullable()->index();
+            $table->text('description')->nullable()->comment('Optional description for the position');
+            $table->boolean('is_active')->default(true)->index()->comment('Whether the position is active');
 
-            $table->foreign('grade_id')->references('id')->on('grades')->nullOnDelete();
-            $table->foreign('created_by')->references('id')->on('users')->nullOnDelete();
-            $table->foreign('updated_by')->references('id')->on('users')->nullOnDelete();
-            $table->foreign('deleted_by')->references('id')->on('users')->nullOnDelete();
+            // Audit columns
+            $table->foreignId('created_by')->nullable()->index();
+            $table->foreignId('updated_by')->nullable()->index();
+            $table->foreignId('deleted_by')->nullable()->index();
+
+            $table->timestampsTz();
+            $table->softDeletesTz();
+
+            $table->comment('Job positions and mapping to grades.');
+        });
+
+        Schema::table('positions', function (Blueprint $table) {
+            $table->foreign('grade_id', 'positions_grade_id_fk')
+                ->references('id')->on('grades')->onDelete('set null');
+
+            $table->foreign('created_by', 'positions_created_by_fk')
+                ->references('id')->on('users')->onDelete('set null');
+
+            $table->foreign('updated_by', 'positions_updated_by_fk')
+                ->references('id')->on('users')->onDelete('set null');
+
+            $table->foreign('deleted_by', 'positions_deleted_by_fk')
+                ->references('id')->on('users')->onDelete('set null');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('positions');
+        if (Schema::hasTable('positions')) {
+            Schema::table('positions', function (Blueprint $table) {
+                foreach (['grade_id', 'created_by', 'updated_by', 'deleted_by'] as $col) {
+                    try {
+                        $table->dropForeign([$col]);
+                    } catch (\Throwable $e) {
+                        // ignore
+                    }
+                }
+            });
+
+            Schema::dropIfExists('positions');
+        }
     }
 };
