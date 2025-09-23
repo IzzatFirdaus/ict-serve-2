@@ -79,5 +79,14 @@ module.exports = {
     ],
     'property-no-vendor-prefix': true,
     'value-no-vendor-prefix': true,
+    // Allow kebab-case, BEM, utility, and MYDS class naming
+    'selector-class-pattern': [
+      // Regex: kebab-case, BEM (block__element--modifier), utility (bg-primary-600, radius-m, etc)
+      // Allows: .myds-card, .myds-card__body, .myds-btn--primary, .text-primary, .bg-primary-600, .radius-m, .pill-success, .skip-link, etc
+      '^([a-z0-9]+([_-]{1,2}[a-z0-9]+)*)+$',
+      {
+        "message": "Selector should be kebab-case, BEM, or utility class (lowercase, hyphens, underscores, numbers only)",
+      },
+    ],
   },
 }
