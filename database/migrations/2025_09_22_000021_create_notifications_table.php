@@ -17,15 +17,15 @@ return new class extends Migration
             $table->string('type');
             $table->morphs('notifiable');
             $table->json('data');
-            $table->timestamp('read_at')->nullable()->index();
+            $table->timestampTz('read_at')->nullable()->index();
 
-            // Audit
-            $table->unsignedBigInteger('created_by')->nullable()->index();
-            $table->unsignedBigInteger('updated_by')->nullable()->index();
-            $table->unsignedBigInteger('deleted_by')->nullable()->index();
+            // Audit (nullable, reference users)
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete();
 
-            $table->timestamps();
-            $table->softDeletes();
+            $table->timestampsTz();
+            $table->softDeletesTz();
 
             $table->comment('Application notifications (stored).');
         });
@@ -33,6 +33,18 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('notifications');
+        if (Schema::hasTable('notifications')) {
+            Schema::table('notifications', function (Blueprint $table) {
+                foreach (['created_by', 'updated_by', 'deleted_by'] as $col) {
+                    try {
+                        $table->dropForeign([$col]);
+                    } catch (\Throwable $e) {
+                        // ignore
+                    }
+                }
+            });
+
+            Schema::dropIfExists('notifications');
+        }
     }
 };

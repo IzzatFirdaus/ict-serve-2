@@ -15,21 +15,20 @@ return new class extends Migration
     {
         Schema::create('helpdesk_comments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('ticket_id')->index();
-            $table->unsignedBigInteger('user_id')->nullable()->index();
+
+            $table->foreignId('ticket_id')->constrained('helpdesk_tickets')->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
+
             $table->text('comment');
             $table->boolean('is_internal')->default(false)->index();
 
             // Audit
-            $table->unsignedBigInteger('created_by')->nullable()->index();
-            $table->unsignedBigInteger('updated_by')->nullable()->index();
-            $table->unsignedBigInteger('deleted_by')->nullable()->index();
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete();
 
-            $table->timestamps();
-            $table->softDeletes();
-
-            $table->foreign('ticket_id')->references('id')->on('helpdesk_tickets')->cascadeOnDelete();
-            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
+            $table->timestampsTz();
+            $table->softDeletesTz();
 
             $table->comment('Comments and internal notes for helpdesk tickets.');
         });
@@ -37,6 +36,35 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('helpdesk_comments');
+        if (Schema::hasTable('helpdesk_comments')) {
+            Schema::table('helpdesk_comments', function (Blueprint $table) {
+                try {
+                    $table->dropForeign(['ticket_id']);
+                } catch (\Throwable $e) {
+                }
+
+                try {
+                    $table->dropForeign(['user_id']);
+                } catch (\Throwable $e) {
+                }
+
+                try {
+                    $table->dropForeign(['created_by']);
+                } catch (\Throwable $e) {
+                }
+
+                try {
+                    $table->dropForeign(['updated_by']);
+                } catch (\Throwable $e) {
+                }
+
+                try {
+                    $table->dropForeign(['deleted_by']);
+                } catch (\Throwable $e) {
+                }
+            });
+
+            Schema::dropIfExists('helpdesk_comments');
+        }
     }
 };

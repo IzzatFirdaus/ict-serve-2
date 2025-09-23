@@ -15,22 +15,24 @@ return new class extends Migration
     {
         Schema::create('approvals', function (Blueprint $table) {
             $table->id();
-            $table->morphs('approvable');
-            $table->unsignedBigInteger('officer_id')->nullable()->index();
+            // Polymorphic relation (bigInteger id + string type)
+            $table->unsignedBigInteger('approvable_id');
+            $table->string('approvable_type');
+            $table->index(['approvable_id', 'approvable_type']);
+
+            $table->foreignId('officer_id')->nullable()->constrained('users')->nullOnDelete();
             $table->string('stage')->nullable()->index();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending')->index();
             $table->text('comments')->nullable();
-            $table->timestamp('approval_timestamp')->nullable()->index();
+            $table->timestampTz('approval_timestamp')->nullable()->index();
 
             // Audit
-            $table->unsignedBigInteger('created_by')->nullable()->index();
-            $table->unsignedBigInteger('updated_by')->nullable()->index();
-            $table->unsignedBigInteger('deleted_by')->nullable()->index();
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete();
 
-            $table->timestamps();
-            $table->softDeletes();
-
-            $table->foreign('officer_id')->references('id')->on('users')->nullOnDelete();
+            $table->timestampsTz();
+            $table->softDeletesTz();
 
             $table->comment('Approval records for various approvable models.');
         });
@@ -38,6 +40,30 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('approvals');
+        if (Schema::hasTable('approvals')) {
+            Schema::table('approvals', function (Blueprint $table) {
+                try {
+                    $table->dropForeign(['officer_id']);
+                } catch (\Throwable $e) {
+                }
+
+                try {
+                    $table->dropForeign(['created_by']);
+                } catch (\Throwable $e) {
+                }
+
+                try {
+                    $table->dropForeign(['updated_by']);
+                } catch (\Throwable $e) {
+                }
+
+                try {
+                    $table->dropForeign(['deleted_by']);
+                } catch (\Throwable $e) {
+                }
+            });
+
+            Schema::dropIfExists('approvals');
+        }
     }
 };

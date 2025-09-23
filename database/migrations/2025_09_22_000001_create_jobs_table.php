@@ -5,11 +5,6 @@
  * Follows Laravel 12 conventions and supports queue, batch, and failed job tracking.
  */
 
-/**
- * Migration: Create jobs, job_batches, and failed_jobs tables for Laravel queue system.
- * Follows Laravel 12 conventions and supports queue, batch, and failed job tracking.
- */
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

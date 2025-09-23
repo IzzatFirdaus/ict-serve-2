@@ -12,30 +12,31 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('equipment_categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->text('description')->nullable();
-            $table->boolean('is_active')->default(true)->index();
-            $table->unsignedBigInteger('created_by')->nullable()->index();
-            $table->unsignedBigInteger('updated_by')->nullable()->index();
-            $table->unsignedBigInteger('deleted_by')->nullable()->index();
-            $table->timestamps();
-            $table->softDeletes();
+            $table->id()->comment('Primary key');
+            $table->string('name')->unique()->comment('Equipment category name, unique');
+            $table->text('description')->nullable()->comment('Description');
+            $table->boolean('is_active')->default(true)->index()->comment('Active status');
+            // Audit columns
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (creator)');
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (updater)');
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (deleter)');
+            $table->timestampsTz(0);
+            $table->softDeletesTz(0);
             $table->comment('Stores equipment category definitions for ICTServe (iServe).');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
+        // Drop FKs before table for safe rollback
+        Schema::table('equipment_categories', function (Blueprint $table) {
+            $table->dropForeign(['created_by']);
+            $table->dropForeign(['updated_by']);
+            $table->dropForeign(['deleted_by']);
+        });
         Schema::dropIfExists('equipment_categories');
     }
 };
