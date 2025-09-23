@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Users\Tables;
+namespace App\Filament\Resources\Equipment\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -12,47 +12,55 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class UsersTable
+class EquipmentTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                TextColumn::make('asset_type')
                     ->searchable(),
-                TextColumn::make('name')
+                TextColumn::make('brand')
                     ->searchable(),
-                TextColumn::make('identification_number')
+                TextColumn::make('model')
                     ->searchable(),
-                TextColumn::make('passport_number')
+                TextColumn::make('serial_number')
                     ->searchable(),
-                TextColumn::make('profile_photo_path')
+                TextColumn::make('tag_id')
                     ->searchable(),
-                TextColumn::make('position.name')
-                    ->searchable(),
-                TextColumn::make('grade.name')
-                    ->searchable(),
-                TextColumn::make('department.name')
-                    ->searchable(),
-                TextColumn::make('level')
-                    ->searchable(),
-                TextColumn::make('mobile_number')
-                    ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
-                TextColumn::make('lang')
-                    ->searchable(),
-                TextColumn::make('theme')
-                    ->searchable(),
+                TextColumn::make('purchase_date')
+                    ->date()
+                    ->sortable(),
+                TextColumn::make('warranty_expiry_date')
+                    ->date()
+                    ->sortable(),
                 TextColumn::make('status')
                     ->badge(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
+                TextColumn::make('current_location')
+                    ->searchable(),
+                TextColumn::make('condition_status')
+                    ->badge(),
+                TextColumn::make('department.name')
+                    ->searchable(),
+                TextColumn::make('equipmentCategory.name')
+                    ->searchable(),
+                TextColumn::make('subCategory.name')
+                    ->searchable(),
+                TextColumn::make('location.name')
+                    ->searchable(),
+                TextColumn::make('item_code')
+                    ->searchable(),
+                TextColumn::make('purchase_price')
+                    ->numeric()
                     ->sortable(),
-                TextColumn::make('two_factor_confirmed_at')
-                    ->dateTime()
-                    ->sortable(),
+                TextColumn::make('acquisition_type')
+                    ->badge(),
+                TextColumn::make('classification')
+                    ->searchable(),
+                TextColumn::make('funded_by')
+                    ->searchable(),
+                TextColumn::make('supplier_name')
+                    ->searchable(),
                 TextColumn::make('created_by')
                     ->numeric()
                     ->sortable(),

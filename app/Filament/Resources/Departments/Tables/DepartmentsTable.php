@@ -30,15 +30,6 @@ class DepartmentsTable
                 TextColumn::make('head_user_id')
                     ->numeric()
                     ->sortable(),
-                TextColumn::make('created_by')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('updated_by')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('deleted_by')
-                    ->numeric()
-                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -51,6 +42,15 @@ class DepartmentsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_by')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('updated_by')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('deleted_by')
+                    ->numeric()
+                    ->sortable(),
             ])
             ->filters([
                 TrashedFilter::make(),

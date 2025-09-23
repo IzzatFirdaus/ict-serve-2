@@ -41,6 +41,12 @@ class UserForm
                     ->label('Email address')
                     ->email()
                     ->required(),
+                TextInput::make('lang')
+                    ->required()
+                    ->default('ms'),
+                TextInput::make('theme')
+                    ->required()
+                    ->default('system'),
                 TextInput::make('password')
                     ->password()
                     ->required(),

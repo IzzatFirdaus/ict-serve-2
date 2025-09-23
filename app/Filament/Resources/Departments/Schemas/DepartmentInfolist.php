@@ -25,15 +25,6 @@ class DepartmentInfolist
                 TextEntry::make('head_user_id')
                     ->numeric()
                     ->placeholder('-'),
-                TextEntry::make('created_by')
-                    ->numeric()
-                    ->placeholder('-'),
-                TextEntry::make('updated_by')
-                    ->numeric()
-                    ->placeholder('-'),
-                TextEntry::make('deleted_by')
-                    ->numeric()
-                    ->placeholder('-'),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),
@@ -43,6 +34,15 @@ class DepartmentInfolist
                 TextEntry::make('deleted_at')
                     ->dateTime()
                     ->visible(fn (Department $record): bool => $record->trashed()),
+                TextEntry::make('created_by')
+                    ->numeric()
+                    ->placeholder('-'),
+                TextEntry::make('updated_by')
+                    ->numeric()
+                    ->placeholder('-'),
+                TextEntry::make('deleted_by')
+                    ->numeric()
+                    ->placeholder('-'),
             ]);
     }
 }

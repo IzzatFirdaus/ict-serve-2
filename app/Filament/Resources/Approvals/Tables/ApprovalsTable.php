@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Users\Tables;
+namespace App\Filament\Resources\Approvals\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -12,45 +12,24 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class UsersTable
+class ApprovalsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                TextColumn::make('approvable_type')
                     ->searchable(),
-                TextColumn::make('name')
+                TextColumn::make('approvable_id')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('officer.name')
                     ->searchable(),
-                TextColumn::make('identification_number')
-                    ->searchable(),
-                TextColumn::make('passport_number')
-                    ->searchable(),
-                TextColumn::make('profile_photo_path')
-                    ->searchable(),
-                TextColumn::make('position.name')
-                    ->searchable(),
-                TextColumn::make('grade.name')
-                    ->searchable(),
-                TextColumn::make('department.name')
-                    ->searchable(),
-                TextColumn::make('level')
-                    ->searchable(),
-                TextColumn::make('mobile_number')
-                    ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
-                TextColumn::make('lang')
-                    ->searchable(),
-                TextColumn::make('theme')
+                TextColumn::make('stage')
                     ->searchable(),
                 TextColumn::make('status')
                     ->badge(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('two_factor_confirmed_at')
+                TextColumn::make('approval_timestamp')
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('created_by')

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Users\Tables;
+namespace App\Filament\Resources\LoanApplications\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -12,47 +12,59 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 
-class UsersTable
+class LoanApplicationsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('title')
+                TextColumn::make('user.name')
                     ->searchable(),
-                TextColumn::make('name')
+                TextColumn::make('responsibleOfficer.name')
                     ->searchable(),
-                TextColumn::make('identification_number')
+                TextColumn::make('supportingOfficer.name')
                     ->searchable(),
-                TextColumn::make('passport_number')
+                TextColumn::make('location')
                     ->searchable(),
-                TextColumn::make('profile_photo_path')
+                TextColumn::make('return_location')
                     ->searchable(),
-                TextColumn::make('position.name')
-                    ->searchable(),
-                TextColumn::make('grade.name')
-                    ->searchable(),
-                TextColumn::make('department.name')
-                    ->searchable(),
-                TextColumn::make('level')
-                    ->searchable(),
-                TextColumn::make('mobile_number')
-                    ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
-                TextColumn::make('lang')
-                    ->searchable(),
-                TextColumn::make('theme')
-                    ->searchable(),
+                TextColumn::make('loan_start_date')
+                    ->date()
+                    ->sortable(),
+                TextColumn::make('loan_end_date')
+                    ->date()
+                    ->sortable(),
                 TextColumn::make('status')
                     ->badge(),
-                TextColumn::make('email_verified_at')
+                TextColumn::make('applicant_confirmation_timestamp')
                     ->dateTime()
                     ->sortable(),
-                TextColumn::make('two_factor_confirmed_at')
+                TextColumn::make('submitted_at')
                     ->dateTime()
                     ->sortable(),
+                TextColumn::make('approved_by')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('approved_at')
+                    ->dateTime()
+                    ->sortable(),
+                TextColumn::make('rejected_by')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('rejected_at')
+                    ->dateTime()
+                    ->sortable(),
+                TextColumn::make('cancelled_by')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('cancelled_at')
+                    ->dateTime()
+                    ->sortable(),
+                TextColumn::make('current_approval_officer_id')
+                    ->numeric()
+                    ->sortable(),
+                TextColumn::make('current_approval_stage')
+                    ->searchable(),
                 TextColumn::make('created_by')
                     ->numeric()
                     ->sortable(),

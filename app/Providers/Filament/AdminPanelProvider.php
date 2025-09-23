@@ -28,8 +28,20 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->colors([
-                'primary' => Color::Amber,
+            ->brandName('ICTServe (iServe)')
+            ->favicon(asset('favicon.ico'))
+            ->colors($this->getMydsColors())
+            ->font('Inter')
+            ->darkMode()
+            ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
+            ->sidebarCollapsibleOnDesktop()
+            ->navigationGroups([
+                __('filament.navigation.users'),
+                __('filament.navigation.equipment'),
+                __('filament.navigation.loans'),
+                __('filament.navigation.helpdesk'),
+                __('filament.navigation.admin'),
+                __('filament.navigation.reports'),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
@@ -54,6 +66,34 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->spa()
+            ->maxContentWidth('full')
+            ->authGuard('web')
+            ->passwordReset()
+            ->emailVerification()
+            ->profile()
+            ->globalSearch()
+            ->renderHook(
+                'panels::body.start',
+                fn (): string => '<script>
+                    document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") || "system");
+                </script>'
+            );
+    }
+
+    /**
+     * Get MYDS-compliant color palette
+     */
+    private function getMydsColors(): array
+    {
+        return [
+            'primary' => Color::hex('#2680e9'),
+            'gray' => Color::Slate,
+            'danger' => Color::Red,
+            'info' => Color::Blue,
+            'success' => Color::Green,
+            'warning' => Color::Amber,
+        ];
     }
 }

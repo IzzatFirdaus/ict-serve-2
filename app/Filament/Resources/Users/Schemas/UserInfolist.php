@@ -35,6 +35,8 @@ class UserInfolist
                     ->placeholder('-'),
                 TextEntry::make('email')
                     ->label('Email address'),
+                TextEntry::make('lang'),
+                TextEntry::make('theme'),
                 TextEntry::make('status')
                     ->badge(),
                 TextEntry::make('email_verified_at')
