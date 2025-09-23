@@ -11,6 +11,9 @@
 /* MYDS token partial (exported CSS custom properties) */
 @use 'myds-variables' as *;
 
+/* Local MYDS component overrides and utilities */
+@import 'myds-components';
+
 /* Fonts (keep as a plain CSS import) */
 @import url('https://fonts.bunny.net/css?family=Poppins:400,500,600|Inter:400,500');
 
