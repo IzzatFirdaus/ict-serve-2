@@ -38,14 +38,24 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::table('loan_transactions', function (Blueprint $table) {
-            $table->dropForeign(['loan_application_id']);
-            $table->dropForeign(['issuing_officer_id']);
-            $table->dropForeign(['receiving_officer_id']);
-            $table->dropForeign(['created_by']);
-            $table->dropForeign(['updated_by']);
-            $table->dropForeign(['deleted_by']);
-        });
+        if (Schema::hasTable('loan_transactions')) {
+            Schema::table('loan_transactions', function (Blueprint $table) {
+                foreach ([
+                    'loan_application_id',
+                    'issuing_officer_id',
+                    'receiving_officer_id',
+                    'created_by',
+                    'updated_by',
+                    'deleted_by',
+                ] as $fk) {
+                    try {
+                        $table->dropForeign([$fk]);
+                    } catch (\Throwable $e) {
+                        // ignore
+                    }
+                }
+            });
+        }
         Schema::dropIfExists('loan_transactions');
     }
 };

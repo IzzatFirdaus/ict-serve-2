@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Schema;
  * Create the grades table.
  * Stores user grade/level information for approval and position mapping.
  */
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('grades', function (Blueprint $table) {
