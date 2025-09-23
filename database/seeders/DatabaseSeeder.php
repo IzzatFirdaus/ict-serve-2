@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create or update test user for general testing (idempotent)
-        User::updateOrCreate([
+        // Use DB queries to seed core users to avoid Eloquent model global scopes during early seeding
+        DB::table('users')->updateOrInsert([
             'email' => 'test@motac.gov.my',
         ], [
             'name' => 'Test User',
@@ -23,11 +23,12 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
             'remember_token' => Str::random(10),
+            'status' => 'aktif',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
-
-        // Create or update Filament admin user for admin panel access (idempotent)
-        User::updateOrCreate([
+        DB::table('users')->updateOrInsert([
             'email' => 'filament_admin@motac.gov.my',
         ], [
             'name' => 'Filament Admin',
@@ -36,10 +37,11 @@ class DatabaseSeeder extends Seeder
             'status' => 'aktif',
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
-        // Create or update Izzat Firdaus user (idempotent)
-        User::updateOrCreate([
+        DB::table('users')->updateOrInsert([
             'email' => 'izzatfirdaus@motac.gov.my',
         ], [
             'name' => 'Izzat Firdaus',
@@ -48,6 +50,8 @@ class DatabaseSeeder extends Seeder
             'status' => 'aktif',
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }
