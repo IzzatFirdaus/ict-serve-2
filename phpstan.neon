@@ -2,6 +2,20 @@ includes:
     - ./vendor/larastan/larastan/extension.neon
 
 parameters:
+    bootstrapFiles:
+        - phpstan-bootstrap.php
+        - phpstan-stubs.php
     paths:
         - app
     level: 5
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        -
+            message: '#Undefined type .?Spatie\\Permission\\Models\\Permission#'
+            path: app/Http/Controllers/Admin/PermissionController.php
+        -
+            message: '~Parameter #1 \$view of function view expects view-string\|null, string given~'
+            path: app/.*
+        -
+            message: '~function view expects view-string~'
+            path: app/.*

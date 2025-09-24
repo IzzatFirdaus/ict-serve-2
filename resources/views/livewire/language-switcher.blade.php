@@ -5,7 +5,7 @@
     <button
         type="button"
         @click="open = !open"
-        class="fi-dropdown-trigger flex items-center gap-x-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus:bg-gray-800"
+        class="fi-dropdown-trigger flex items-center gap-x-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500"
         aria-expanded="false"
         aria-haspopup="true"
         :aria-expanded="open"
@@ -34,7 +34,7 @@
         x-transition:leave-end="transform opacity-0 scale-95"
         @click.away="open = false"
         @keydown.escape="open = false"
-        class="fi-dropdown-list absolute z-10 mt-2 w-40 origin-top-right rounded-lg bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800 dark:ring-gray-700"
+        class="fi-dropdown-list absolute z-10 mt-2 w-40 origin-top-right rounded-lg bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         role="menu"
         aria-orientation="vertical"
         style="display: none;"
@@ -44,13 +44,13 @@
                 type="button"
                 wire:click="switchLanguage('{{ $code }}')"
                 @click="open = false"
-                class="group flex w-full items-center gap-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none dark:text-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 {{ $currentLanguage === $code ? 'bg-gray-50 font-medium dark:bg-gray-700' : '' }}"
+                class="group flex w-full items-center gap-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none {{ $currentLanguage === $code ? 'bg-gray-50 font-medium' : '' }}"
                 role="menuitem"
                 aria-label="{{ __('filament.language.switch_to', ['language' => $name]) }}"
             >
                 {{-- Selected Indicator --}}
                 @if($currentLanguage === $code)
-                    <x-icon name="bs.check" class="h-4 w-4 text-primary-600 dark:text-primary-400" aria-hidden="true" />
+                    <x-icon name="bs.check" class="h-4 w-4 text-primary-600" aria-hidden="true" />
                 @else
                     <span class="w-4"></span>
                 @endif
@@ -59,7 +59,7 @@
                 <span>{{ $name }}</span>
 
                 {{-- Language Code --}}
-                <span class="ml-auto text-xs text-gray-500 dark:text-gray-400">
+                <span class="ml-auto text-xs text-gray-500">
                     {{ strtoupper($code) }}
                 </span>
             </button>

@@ -12,6 +12,7 @@ class LoanApplicationItemController extends Controller
     {
         $this->authorize('viewAny', LoanApplicationItem::class);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('loan_application_items.index', compact('loan_application'));
     }
 
@@ -26,6 +27,7 @@ class LoanApplicationItemController extends Controller
     {
         $this->authorize('view', $item);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('loan_application_items.show', compact('loan_application', 'item'));
     }
 

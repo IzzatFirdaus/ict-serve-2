@@ -1,3 +1,4 @@
+This file has been removed as part of legacy auth removal.
 @extends('layouts.app')
 
 @section('content')

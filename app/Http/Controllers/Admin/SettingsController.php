@@ -11,6 +11,7 @@ class SettingsController extends Controller
     {
         $this->authorize('viewAny', \App\Models\Setting::class);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('admin.settings.index');
     }
 
@@ -18,6 +19,7 @@ class SettingsController extends Controller
     {
         $this->authorize('update', \App\Models\Setting::class);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('admin.settings.edit');
     }
 

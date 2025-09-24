@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
+/**
+ * @method void dispatchBrowserEvent(string $event, mixed $data = null)
+ */
 class ThemeSwitcher extends Component
 {
     public string $theme = 'system';
@@ -41,6 +44,7 @@ class ThemeSwitcher extends Component
 
     public function render()
     {
+        /** @phpstan-return \Illuminate\View\View */
         return view('livewire.shared.theme-switcher');
     }
 

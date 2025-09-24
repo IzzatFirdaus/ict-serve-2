@@ -11,6 +11,7 @@ class SubCategoryController extends Controller
     {
         $this->authorize('viewAny', SubCategory::class);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('sub_categories.index');
     }
 
@@ -18,6 +19,7 @@ class SubCategoryController extends Controller
     {
         $this->authorize('create', SubCategory::class);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('sub_categories.create');
     }
 
@@ -32,6 +34,7 @@ class SubCategoryController extends Controller
     {
         $this->authorize('view', $subCategory);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('sub_categories.show', compact('subCategory'));
     }
 
@@ -39,6 +42,7 @@ class SubCategoryController extends Controller
     {
         $this->authorize('update', $subCategory);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('sub_categories.edit', compact('subCategory'));
     }
 

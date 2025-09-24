@@ -11,14 +11,14 @@ class LocationController extends Controller
     {
         $this->authorize('viewAny', Location::class);
 
-        return view('locations.index');
+        return \view('locations.index');
     }
 
     public function create()
     {
         $this->authorize('create', Location::class);
 
-        return view('locations.create');
+        return \view('locations.create');
     }
 
     public function store(Request $request)
@@ -32,14 +32,14 @@ class LocationController extends Controller
     {
         $this->authorize('view', $location);
 
-        return view('locations.show', compact('location'));
+        return \view('locations.show', compact('location'));
     }
 
     public function edit(Location $location)
     {
         $this->authorize('update', $location);
 
-        return view('locations.edit', compact('location'));
+        return \view('locations.edit', compact('location'));
     }
 
     public function update(Request $request, Location $location)

@@ -11,6 +11,7 @@ class LoanTransactionController extends Controller
     {
         $this->authorize('viewAny', LoanTransaction::class);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('loan_transactions.index');
     }
 
@@ -18,6 +19,7 @@ class LoanTransactionController extends Controller
     {
         $this->authorize('create', LoanTransaction::class);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('loan_transactions.create');
     }
 
@@ -32,6 +34,7 @@ class LoanTransactionController extends Controller
     {
         $this->authorize('view', $loan_transaction);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('loan_transactions.show', compact('loan_transaction'));
     }
 
@@ -39,6 +42,7 @@ class LoanTransactionController extends Controller
     {
         $this->authorize('update', $loan_transaction);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('loan_transactions.edit', compact('loan_transaction'));
     }
 

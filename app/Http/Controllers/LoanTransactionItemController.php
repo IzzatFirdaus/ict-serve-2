@@ -12,6 +12,7 @@ class LoanTransactionItemController extends Controller
     {
         $this->authorize('viewAny', LoanTransactionItem::class);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('loan_transaction_items.index', compact('loan_transaction'));
     }
 
@@ -26,6 +27,7 @@ class LoanTransactionItemController extends Controller
     {
         $this->authorize('view', $item);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('loan_transaction_items.show', compact('loan_transaction', 'item'));
     }
 
