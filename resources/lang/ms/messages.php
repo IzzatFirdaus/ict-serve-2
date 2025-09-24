@@ -36,10 +36,18 @@ return [
         'save' => 'Simpan',
         'edit' => 'Sunting',
         'delete' => 'Padam',
+        'close' => 'Tutup',
+        'back' => 'Kembali',
+    ],
+    'form' => [
+        'placeholder' => [
+            'select' => 'Sila Pilih',
+            'search' => 'Cari...',
+        ],
     ],
     'toast' => [
-        'language_switched' => 'Bahasa telah berjaya ditukar.',
-        'theme_switched' => 'Tema telah berjaya ditukar.',
+        'language_switched' => 'Bahasa ditukar kepada :language.',
+        'theme_switched' => 'Tema ditukar kepada :theme.',
     ],
     'aria' => [
         'skip_to_content' => 'Langkau ke kandungan utama',

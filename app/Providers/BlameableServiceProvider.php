@@ -3,49 +3,50 @@
 namespace App\Providers;
 
 use App\Observers\BlameableObserver;
+use App\Traits\Blameable;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use ReflectionClass;
 
 class BlameableServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        // no bindings
+        //
     }
 
     public function boot(): void
     {
-        $modelPath = app_path('Models');
+        $this->discoverAndObserveModels();
+    }
 
-        if (! is_dir($modelPath)) {
+    /**
+     * Discover models in the App\Models directory and apply the
+     * BlameableObserver to those using the Blameable trait.
+     */
+    protected function discoverAndObserveModels(): void
+    {
+        $modelsPath = app_path('Models');
+
+        if (!File::isDirectory($modelsPath)) {
             return;
         }
 
-        $files = scandir($modelPath);
-
-        foreach ($files as $file) {
-            if (! Str::endsWith($file, '.php')) {
-                continue;
-            }
-
-            $class = 'App\\Models\\'.pathinfo($file, PATHINFO_FILENAME);
-
-            if (! class_exists($class)) {
-                continue;
-            }
-
-            $traits = class_uses($class);
-
-            if (! is_array($traits)) {
-                continue;
-            }
-
-            foreach ($traits as $trait) {
-                if ($trait === 'App\\Traits\\Blameable') {
-                    $class::observe(BlameableObserver::class);
-                    break;
-                }
-            }
-        }
+        collect(File::files($modelsPath))
+            ->map(function (\Symfony\Component\Finder\SplFileInfo $file) {
+                return 'App\\Models\\' . $file->getFilenameWithoutExtension();
+            })
+            ->filter(function (string $class) {
+                return class_exists($class);
+            })
+            ->filter(function (string $class) {
+                // Use reflection to safely check for trait usage
+                $reflection = new ReflectionClass($class);
+                return in_array(Blameable::class, $reflection->getTraitNames());
+            })
+            ->each(function (string $class) {
+                $class::observe(BlameableObserver::class);
+            });
     }
 }

@@ -5,10 +5,8 @@ namespace App\Models;
 use App\Traits\Blameable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable as NotifiableTrait;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
@@ -24,6 +22,8 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  * @property int|null $created_by
  * @property int|null $updated_by
  * @property int|null $deleted_by
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  * @property-read Model $notifiable
  * @property-read User|null $createdBy
  * @property-read User|null $updatedBy
@@ -31,10 +31,9 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  */
 class Notification extends Model implements AuditableContract
 {
-    use AuditableTrait, Blameable, HasFactory, NotifiableTrait, SoftDeletes;
+    use AuditableTrait, Blameable, HasFactory, SoftDeletes;
 
     protected $keyType = 'string';
-
     public $incrementing = false;
 
     protected $fillable = [
@@ -49,21 +48,6 @@ class Notification extends Model implements AuditableContract
     public function notifiable(): MorphTo
     {
         return $this->morphTo();
-    }
-
-    public function createdBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function updatedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
-
-    public function deletedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'deleted_by');
     }
 
     public function scopeUnread($query)

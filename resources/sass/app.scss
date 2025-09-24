@@ -1,8 +1,40 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
+//==========================================================================
+// Main Application Stylesheet (SCSS Entry Point)
+//==========================================================================
 
-// Variables
-@import 'variables';
+// 1. Import MYDS design tokens so they can be used everywhere.
+@use 'myds-tokens' as *;
 
-// Bootstrap
-@import 'bootstrap/scss/bootstrap';
+// 2. Configure and import the Bootstrap framework using MYDS tokens.
+// This uses the modern Dart Sass module system.
+@use 'bootstrap/scss/bootstrap' with (
+  // Map MYDS colors to Bootstrap's core color system
+  $primary: $primary,
+  $danger: $danger,
+  $success: $success,
+  $warning: $warning,
+  $light: $bg-muted,
+  $dark: $text-primary,
+
+  // Map MYDS typography to Bootstrap's typography system
+  $font-family-sans-serif: $font-family-sans-serif,
+  $font-size-base: $font-size-base,
+  $line-height-base: $line-height-base,
+  $headings-font-family: $font-family-heading,
+  $body-color: $text-primary,
+  $body-bg: $bg-page,
+
+  // Map MYDS border-radius to Bootstrap's border-radius
+  $border-radius: $radius-m,
+  $border-radius-sm: $radius-s,
+  $border-radius-lg: $radius-l,
+  $border-color: $otl-default,
+
+  // Enable necessary Bootstrap features
+  $enable-grid-classes: true,
+  $enable-responsive-font-sizes: true
+);
+
+// 3. Import your custom MYDS components.
+// These styles will be applied after Bootstrap.
+@import 'myds-components';

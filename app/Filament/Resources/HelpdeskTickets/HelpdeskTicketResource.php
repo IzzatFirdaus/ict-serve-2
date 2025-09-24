@@ -44,7 +44,7 @@ class HelpdeskTicketResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            \App\Filament\Resources\HelpdeskTickets\RelationManagers\CommentsRelationManager::class,
         ];
     }
 

@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\Approvals\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ForceDeleteBulkAction;
-use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\ForceDeleteAction;
+use Filament\Actions\RestoreAction;
+use Filament\Actions\ActionGroup;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -18,41 +18,13 @@ class ApprovalsTable
     {
         return $table
             ->columns([
-                TextColumn::make('approvable_type')
-                    ->searchable(),
-                TextColumn::make('approvable_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('officer.name')
-                    ->searchable(),
-                TextColumn::make('stage')
-                    ->searchable(),
-                TextColumn::make('status')
-                    ->badge(),
-                TextColumn::make('approval_timestamp')
-                    ->dateTime()
-                    ->sortable(),
-                TextColumn::make('created_by')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('updated_by')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('deleted_by')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('approvable_type')->searchable()->sortable(),
+                TextColumn::make('officer.name')->searchable()->sortable(),
+                TextColumn::make('stage')->searchable()->sortable(),
+                TextColumn::make('status')->badge()->searchable()->sortable(),
+                TextColumn::make('approval_timestamp')->dateTime()->sortable(),
+                TextColumn::make('createdBy.name')->label('Created By')->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updatedBy.name')->label('Updated By')->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 TrashedFilter::make(),
@@ -62,10 +34,10 @@ class ApprovalsTable
                 EditAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
+                ActionGroup::make([
+                    DeleteAction::make('bulkDelete')->requiresConfirmation()->action(fn ($records) => $records->each->delete()),
+                    ForceDeleteAction::make('bulkForceDelete')->requiresConfirmation()->action(fn ($records) => $records->each->forceDelete()),
+                    RestoreAction::make('bulkRestore')->requiresConfirmation()->action(fn ($records) => $records->each->restore()),
                 ]),
             ]);
     }

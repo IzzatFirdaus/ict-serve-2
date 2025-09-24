@@ -1,0 +1,52 @@
+//==========================================================================
+// MYDS Design Tokens (SCSS Variables)
+// This file is the single source of truth for all design system values.
+//==========================================================================
+
+// 1. MYDS Color Palette
+//--------------------------------------------------------------------------
+$primary: #2563eb; // Corresponds to --_primary-600
+$primary-hover: #1d4ed8; // Corresponds to --_primary-700
+$danger: #dc2626; // Corresponds to --_danger-600
+$danger-hover: #b91c1c; // Corresponds to --_danger-700
+$success: #16a34a; // Corresponds to --_success-600
+$success-hover: #15803d; // Corresponds to --_success-700
+$warning: #d97706; // Corresponds to --_warning-600
+$warning-hover: #b45309; // Corresponds to --_warning-700
+
+// Text Colors
+$text-primary: #172439;
+$text-secondary: #4b5563;
+$text-muted: #6b7280;
+$text-white: #ffffff;
+
+// Background & Surface Colors
+$bg-page: #f8fafc;
+$bg-surface: #ffffff;
+$bg-muted: #f3f4f6;
+
+// Outline/Border Colors
+$otl-default: #e5e7eb;
+
+// 2. Typography
+//--------------------------------------------------------------------------
+$font-family-heading: 'Poppins', 'Nunito', system-ui, -apple-system, sans-serif;
+$font-family-sans-serif: 'Inter', system-ui, -apple-system, sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// 3. Radius & Spacing
+//--------------------------------------------------------------------------
+$radius-s: 0.25rem;
+$radius-m: 0.375rem;
+$radius-l: 0.5rem;
+$radius-full: 9999px;
+
+$space-s: 0.5rem;
+$space-m: 0.75rem;
+$space-l: 1rem;
+$space-xl: 1.5rem;
+
+// 4. Motion
+//--------------------------------------------------------------------------
+$motion-short: 0.15s ease-in-out;

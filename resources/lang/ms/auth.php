@@ -1,17 +1,19 @@
 <?php
+
 return [
     'skip' => 'Langkau ke kandungan utama',
     'nav' => 'Navigasi utama',
     'dashboard' => 'Papan Pemuka',
+    'logged_in_as' => 'Log masuk sebagai :name',
     'login' => [
         'title' => 'Log Masuk',
-        'button' => 'Log Masuk'
+        'button' => 'Log Masuk',
     ],
     'logout' => 'Log Keluar',
     'register' => [
         'title' => 'Daftar Akaun',
         'button' => 'Daftar',
-        'prompt' => 'Belum ada akaun? Daftar sekarang.'
+        'prompt' => 'Belum ada akaun? Daftar sekarang.',
     ],
     'email' => 'E-mel',
     'name' => 'Nama',
@@ -24,18 +26,17 @@ return [
     'passwords' => [
         'email' => [
             'title' => 'Reset Kata Laluan',
-            'button' => 'Hantar pautan reset'
+            'button' => 'Hantar pautan reset',
         ],
         'reset' => [
             'title' => 'Tetapkan semula kata laluan',
-            'button' => 'Tetapkan semula'
-        ]
+            'button' => 'Tetapkan semula',
+        ],
     ],
     'verify' => [
         'title' => 'Sahkan E-mel Anda',
         'instruction' => 'Sila semak e-mel anda untuk pautan pengesahan.',
         'resend' => 'Hantar semula',
-        'resent' => 'Pautan pengesahan baru telah dihantar ke alamat e-mel anda.'
-    ]
+        'resent' => 'Pautan pengesahan baru telah dihantar ke alamat e-mel anda.',
+    ],
 ];
-// removed stray closing bracket

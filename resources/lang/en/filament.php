@@ -22,7 +22,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Language Switcher
+    | Language & Theme Switchers
     |--------------------------------------------------------------------------
     */
     'language' => [
@@ -31,12 +31,6 @@ return [
         'switched_to' => 'Language switched to :language',
         'current' => 'Current Language',
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Theme Switcher
-    |--------------------------------------------------------------------------
-    */
     'theme' => [
         'switch_theme' => 'Switch Theme',
         'switch_to' => 'Switch to :theme theme',
@@ -103,10 +97,27 @@ return [
         'name' => 'Name',
         'email' => 'Email',
         'password' => 'Password',
+        'password_confirmation' => 'Confirm Password',
+        'role' => 'Role',
+        'permissions' => 'Permissions',
+        'department' => 'Department',
+        'title' => 'Title / Position',
         'status' => 'Status',
+        'category' => 'Category',
+        'description' => 'Description',
+        'serial_number' => 'Serial Number',
+        'brand' => 'Brand',
+        'model' => 'Model',
+        'asset_type' => 'Asset Type',
+        'purchase_date' => 'Purchase Date',
+        'warranty_expiry_date' => 'Warranty Expiry',
+        'location' => 'Location',
+        'priority' => 'Priority',
+        'subject' => 'Subject',
+        'assigned_to' => 'Assigned To',
+        'reported_by' => 'Reported By',
         'created_at' => 'Created At',
         'updated_at' => 'Updated At',
-        'description' => 'Description',
         'active' => 'Active',
         'inactive' => 'Inactive',
         'pending' => 'Pending',
@@ -124,7 +135,7 @@ return [
         'edit' => 'Edit',
         'view' => 'View',
         'delete' => 'Delete',
-        'save' => 'Save',
+        'save' => 'Save Changes',
         'cancel' => 'Cancel',
         'submit' => 'Submit',
         'approve' => 'Approve',
@@ -134,6 +145,58 @@ return [
         'search' => 'Search',
         'filter' => 'Filter',
         'reset' => 'Reset',
+        'confirm' => 'Confirm',
+        'attach' => 'Attach',
+        'detach' => 'Detach',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Table (List Resource)
+    |--------------------------------------------------------------------------
+    */
+    'tables' => [
+        'columns' => [
+            'name' => 'Name',
+            'email' => 'Email',
+            'status' => 'Status',
+            'roles' => 'Roles',
+            'created_at' => 'Created At',
+            'updated_at' => 'Last Updated',
+        ],
+        'filters' => [
+            'status' => 'Filter by status',
+            'role' => 'Filter by role',
+            'created_at' => 'Filter by creation date',
+        ],
+        'empty' => [
+            'heading' => 'No records found',
+            'description' => 'No data is available to display here.',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Modals
+    |--------------------------------------------------------------------------
+    */
+    'modals' => [
+        'delete' => [
+            'heading' => 'Delete Record',
+            'subheading' => 'Are you sure you want to delete this record? This action cannot be undone.',
+            'buttons' => [
+                'delete' => 'Confirm Delete',
+                'cancel' => 'Cancel',
+            ],
+        ],
+        'confirm' => [
+            'heading' => 'Confirm Action',
+            'subheading' => 'Are you sure you want to proceed with this action?',
+            'buttons' => [
+                'confirm' => 'Confirm',
+                'cancel' => 'Cancel',
+            ],
+        ],
     ],
 
     /*
@@ -154,7 +217,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Dashboard
+    | Dashboard & Widgets
     |--------------------------------------------------------------------------
     */
     'dashboard' => [
@@ -167,12 +230,6 @@ return [
         'active_loans' => 'Active Loans',
         'open_tickets' => 'Open Tickets',
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Widgets
-    |--------------------------------------------------------------------------
-    */
     'widgets' => [
         'total_users' => 'Total Users',
         'total_equipment' => 'Total Equipment',

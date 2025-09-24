@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Traits\Blameable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable as AuditableTrait;
@@ -23,9 +22,9 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  * @property int|null $deleted_by
  * @property-read \Illuminate\Database\Eloquent\Collection|HelpdeskTicket[] $tickets
  * @property-read \Illuminate\Database\Eloquent\Collection|DamageReport[] $damageReports
- * @property-read User|null $createdBy
- * @property-read User|null $updatedBy
- * @property-read User|null $deletedBy
+ * @property-read \App\Models\User|null $createdBy
+ * @property-read \App\Models\User|null $updatedBy
+ * @property-read \App\Models\User|null $deletedBy
  */
 class HelpdeskCategory extends Model implements AuditableContract
 {
@@ -47,21 +46,6 @@ class HelpdeskCategory extends Model implements AuditableContract
     public function damageReports(): HasMany
     {
         return $this->hasMany(DamageReport::class, 'damage_type');
-    }
-
-    public function createdBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function updatedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
-
-    public function deletedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'deleted_by');
     }
 
     public function scopeActive($query)

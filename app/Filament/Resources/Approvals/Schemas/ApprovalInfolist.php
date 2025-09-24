@@ -10,42 +10,21 @@ class ApprovalInfolist
 {
     public static function configure(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                TextEntry::make('approvable_type'),
-                TextEntry::make('approvable_id')
-                    ->numeric(),
-                TextEntry::make('officer.name')
-                    ->label('Officer')
-                    ->placeholder('-'),
-                TextEntry::make('stage')
-                    ->placeholder('-'),
-                TextEntry::make('status')
-                    ->badge(),
-                TextEntry::make('comments')
-                    ->placeholder('-')
-                    ->columnSpanFull(),
-                TextEntry::make('approval_timestamp')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('created_by')
-                    ->numeric()
-                    ->placeholder('-'),
-                TextEntry::make('updated_by')
-                    ->numeric()
-                    ->placeholder('-'),
-                TextEntry::make('deleted_by')
-                    ->numeric()
-                    ->placeholder('-'),
-                TextEntry::make('created_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('updated_at')
-                    ->dateTime()
-                    ->placeholder('-'),
-                TextEntry::make('deleted_at')
-                    ->dateTime()
-                    ->visible(fn (Approval $record): bool => $record->trashed()),
+        return $schema->schema([
+                TextEntry::make('approvable_type')->label('Record Type'),
+                TextEntry::make('approvable_id')->label('Record ID'),
+                TextEntry::make('officer.name')->label('Officer'),
+                TextEntry::make('stage'),
+                TextEntry::make('status')->badge(),
+                TextEntry::make('comments')->columnSpanFull(),
+                TextEntry::make('approval_timestamp')->dateTime(),
+                TextEntry::make('createdBy.name')->label('Created By'),
+                TextEntry::make('updatedBy.name')->label('Updated By'),
+                TextEntry::make('deletedBy.name')->label('Deleted By'),
+                TextEntry::make('created_at')->dateTime(),
+                TextEntry::make('updated_at')->dateTime(),
+                TextEntry::make('deleted_at')->dateTime()
+                    ->visible(fn (?Approval $record): bool => $record?->trashed()),
             ]);
     }
 }

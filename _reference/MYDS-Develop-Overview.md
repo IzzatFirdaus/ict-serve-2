@@ -13,8 +13,8 @@ Malaysia's official design system for government digital services, ensuring **ac
 ### A. Colors
 
 - **Primary Palette:**
-    - `MYDS Blue` (#2563EB) – Main government identity.
-    - Supported by secondary colors, e.g., `Green` for success, `Red` for errors.
+  - `MYDS Blue` (#2563EB) – Main government identity.
+  - Supported by secondary colors, e.g., `Green` for success, `Red` for errors.
 - **Accessibility:** Minimum contrast ratio of **4.5:1** (WCAG AA compliant).
 
 ### B. Typography
@@ -24,11 +24,11 @@ A clear standard for font style, size, and spacing to ensure readability and con
 #### Heading
 
 - **Font Family:**
-    - `Poppins` is used for home page section titles, page headers, and important text elements to create a clear visual hierarchy and improve user navigation.
-    - Not applicable for rich-text.
+  - `Poppins` is used for home page section titles, page headers, and important text elements to create a clear visual hierarchy and improve user navigation.
+  - Not applicable for rich-text.
 
 - **Font Sizes and Weights:**
-    - All sizes include weights: Regular (400), Medium (500), Semibold (600).
+  - All sizes include weights: Regular (400), Medium (500), Semibold (600).
 
 | Name                | HTML Tag | Font Size       | Line Height     |
 | ------------------- | -------- | --------------- | --------------- |
@@ -44,10 +44,10 @@ A clear standard for font style, size, and spacing to ensure readability and con
 #### Body
 
 - **Font Family:**
-    - `Inter` is used for paragraphs, descriptions, and general content to provide a comfortable reading experience for users.
+  - `Inter` is used for paragraphs, descriptions, and general content to provide a comfortable reading experience for users.
 
 - **Font Sizes and Weights:**
-    - All sizes include weights: Regular (400), Medium (500), Semibold (600).
+  - All sizes include weights: Regular (400), Medium (500), Semibold (600).
 
 | Name             | Font Size       | Line Height     | List Spacing   | Paragraph Spacing |
 | ---------------- | --------------- | --------------- | -------------- | ----------------- |
@@ -66,13 +66,13 @@ A clear standard for font style, size, and spacing to ensure readability and con
 #### Rich Text Format (RTF)
 
 - **Font Family:**
-    - `Inter` is used for styling long form content such as an article.
+  - `Inter` is used for styling long form content such as an article.
 
 - **Note:**
-    - The H1 tag in RTF differs from the standard H1 Heading tag and is intended only for formatting content within an article section.
+  - The H1 tag in RTF differs from the standard H1 Heading tag and is intended only for formatting content within an article section.
 
 - **Font Sizes and Weights:**
-    - All sizes include weights: Regular (400) and Semibold (600).
+  - All sizes include weights: Regular (400) and Semibold (600).
 
 | Name      | HTML Tag | Font Size       | Line Height     | List Spacing   | Paragraph Spacing |
 | --------- | -------- | --------------- | --------------- | -------------- | ----------------- |
@@ -90,7 +90,7 @@ A clear standard for font style, size, and spacing to ensure readability and con
 
 - **Grid System:** 12-column layout with `24px` gutters.
 - **Responsive Breakpoints:**
-    - Mobile (`<768px`), Tablet (`768px–1024px`), Desktop (`>1024px`).
+  - Mobile (`<768px`), Tablet (`768px–1024px`), Desktop (`>1024px`).
 
 ---
 
@@ -104,10 +104,10 @@ A clear standard for font style, size, and spacing to ensure readability and con
 ### B. Forms
 
 - **Input Fields:**
-    - Labels aligned top-left, error states in `Red`.
-    - Placeholder text avoided (per accessibility guidelines).
+  - Labels aligned top-left, error states in `Red`.
+  - Placeholder text avoided (per accessibility guidelines).
 - **Buttons:**
-    - Primary (`Blue`), Secondary (`White`), Disabled (`Grey`).
+  - Primary (`Blue`), Secondary (`White`), Disabled (`Grey`).
 
 ### C. Data Display
 

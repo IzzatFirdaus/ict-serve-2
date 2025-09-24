@@ -7,55 +7,50 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
+/**
+ * A shared, reusable component for language switching (e.g., Bahasa Melayu/English).
+ * Persists the user's choice and refreshes the page for a complete translation.
+ */
 class LanguageSwitcher extends Component
 {
-    public string $lang = 'ms';
+    public string $currentLanguage;
 
-    public array $available = [
+    public array $availableLanguages = [
         'ms' => 'Bahasa Melayu',
         'en' => 'English',
     ];
 
     public function mount(): void
     {
-        $this->lang = $this->resolveLanguage();
+        $this->currentLanguage = App::getLocale();
     }
 
-    public function switchLanguage(string $lang): void
+    public function switchLanguage(string $language): void
     {
-        if (! array_key_exists($lang, $this->available)) {
+        if (! array_key_exists($language, $this->availableLanguages)) {
             return;
         }
 
-        $this->lang = $lang;
-
-        // Persist in session
-        Session::put('locale', $lang);
-        App::setLocale($lang);
-
-        // Persist for authenticated users
+        // Persist the language choice
+        Session::put('locale', $language);
         if (Auth::check()) {
-            Auth::user()->forceFill(['lang' => $lang])->save();
+            Auth::user()->update(['lang' => $language]);
         }
 
-        // Emit browser event to notify frontend components
-        $this->dispatchBrowserEvent('language-changed', ['lang' => $lang]);
+        $this->currentLanguage = $language;
+        $this->dispatch('language-changed', language: $language);
 
-        // Notify user
-        $this->dispatchBrowserEvent('notify', ['type' => 'success', 'message' => __('messages.toast.language_switched')]);
+        // Dispatch a notification for user feedback
+        $this->dispatch('notifications:success', [
+            'message' => 'Bahasa ditukar kepada ' . $this->availableLanguages[$language],
+        ]);
+
+        // A redirect is the most reliable way to ensure all parts of the UI are translated
+        $this->redirect(request()->header('Referer', '/'), navigate: true);
     }
 
     public function render()
     {
         return view('livewire.shared.language-switcher');
-    }
-
-    private function resolveLanguage(): string
-    {
-        if (Auth::check() && Auth::user()->lang) {
-            return Auth::user()->lang;
-        }
-
-        return Session::get('locale', config('app.locale', 'ms'));
     }
 }

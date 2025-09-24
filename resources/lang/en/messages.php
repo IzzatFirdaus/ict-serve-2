@@ -1,50 +1,140 @@
 <?php
+
 return [
     'meta' => [
-        'title' => 'ICTServe (iServe)',
-        'description' => 'ICT services for agencies and staff',
+        'title' => 'ICTServe (iServe) – MOTAC ICT Service Management System',
+        'description' => 'The official platform for ICT equipment loans and helpdesk for MOTAC.',
+    ],
+    'nav' => [
+        'login' => 'Login',
+        'about' => 'About',
+        'contact' => 'Contact',
+        'dashboard' => 'Dashboard',
+        'logout' => 'Logout',
+    ],
+    'theme' => [
+        'dark' => 'Dark Mode',
+        'light' => 'Light Mode',
+        'system' => 'Follow System',
+        'toggle' => 'Toggle Theme',
+        'select' => 'Select Theme',
+        'icon_light' => 'Sun',
+        'icon_dark' => 'Moon',
+        'icon_system' => 'System',
+    ],
+    'language' => [
+        'ms' => 'Bahasa Melayu',
+        'en' => 'English',
+        'switch' => 'Switch Language',
+        'select' => 'Select Language',
+        'icon_ms' => 'BM',
+        'icon_en' => 'EN',
+    ],
+    'button' => [
+        'submit' => 'Submit',
+        'cancel' => 'Cancel',
+        'save' => 'Save',
+        'edit' => 'Edit',
+        'delete' => 'Delete',
+        'close' => 'Close',
+        'back' => 'Back',
+    ],
+    'form' => [
+        'placeholder' => [
+            'select' => 'Please Select',
+            'search' => 'Search...',
+        ],
+    ],
+    'toast' => [
+        'language_switched' => 'Language switched to :language.',
+        'theme_switched' => 'Theme switched to :theme.',
     ],
     'aria' => [
         'skip_to_content' => 'Skip to main content',
+        'main_navigation' => 'Main navigation',
+        'theme_switch' => 'Switch theme',
+        'theme_select' => 'Select theme',
+        'language_switch' => 'Switch language',
+        'theme_toggle' => 'Toggle between light, dark, or system theme',
         'language_dropdown' => 'Language selection dropdown',
         'theme_dropdown' => 'Theme selection dropdown',
     ],
-    'actions' => [
-        'login' => 'Login',
+    'phase' => [
+        'beta' => 'Beta',
+        'testing_notice' => 'This platform is in a testing phase. Please report issues to BPM.',
+        'feedback' => 'Give feedback',
+    ],
+    'helper' => [
+        'theme_persist' => 'Your theme choice will be saved for your next visit.',
+        'language_persist' => 'Your language choice will be saved for your next visit.',
     ],
     'hero' => [
         'title' => 'Welcome to ICTServe',
-        'subtitle' => 'ICT loaning and support services',
-        'description' => 'Request equipment, track your application, and get support',
-        'guide' => 'Guide'
-    ],
-    'phase' => [
-        'beta' => 'Beta',
-        'testing_notice' => 'The system is in testing phase. Please provide feedback.',
-        'feedback' => 'Give feedback'
-    ],
-    'nav' => [
-        'about' => 'About',
-        'contact' => 'Contact'
-    ],
-    'footer' => [
-        'bpm' => 'Bureau of Performance & Services',
-        'bpm_logo_alt' => 'BPM Logo',
-        'copyright' => 'All rights reserved',
-        'privacy' => 'Privacy',
-        'terms' => 'Terms',
-        'accessibility' => 'Accessibility'
+        'subtitle' => 'MOTAC\'s ICT Loan & Support Management Center',
+        'description' => 'All ICT equipment loan applications and damage reports are now in one digital system – citizen-centric, transparent, and fast.',
+        'guide' => 'User Guide',
     ],
     'cards' => [
-        'loan' => [ 'title' => 'Loan', 'description' => 'Borrow equipment', 'more' => 'More' ],
-        'helpdesk' => [ 'title' => 'Helpdesk', 'description' => 'Get help', 'more' => 'More' ],
-        'compliance' => [ 'title' => 'Compliance', 'description' => 'MYDS & MyGovEA', 'more' => 'More' ],
+        'loan' => [
+            'icon' => 'ICT Loan',
+            'title' => 'ICT Loan',
+            'description' => 'Apply for laptops, projectors, and other ICT equipment digitally and transparently.',
+            'more' => 'More Info',
+        ],
+        'helpdesk' => [
+            'icon' => 'ICT Helpdesk',
+            'title' => 'ICT Helpdesk',
+            'description' => 'Report ICT problems, monitor ticket status, and receive professional BPM support.',
+            'more' => 'More Info',
+        ],
+        'compliance' => [
+            'icon' => 'MYDS & MyGovEA Compliance',
+            'title' => 'MYDS & MyGovEA Compliance',
+            'description' => 'Designed in compliance with the Malaysia Government Design System & 18 MyGovEA Principles.',
+            'more' => 'Learn More',
+        ],
     ],
     'howitworks' => [
-        'title' => 'How it works',
-        'step1' => [ 'title' => 'Fill form', 'description' => 'Complete the application form' ],
-        'step2' => [ 'title' => 'Approval', 'description' => 'Wait for approval' ],
-        'step3' => [ 'title' => 'Collect', 'description' => 'Receive equipment' ],
-        'step4' => [ 'title' => 'Track', 'description' => 'Check updates' ],
+        'title' => 'How ICTServe Works',
+        'step1' => [
+            'icon' => 'Fill Form',
+            'title' => 'Fill Form',
+            'description' => 'Apply for a loan or report an issue digitally',
+        ],
+        'step2' => [
+            'icon' => 'Approval / Action',
+            'title' => 'Approval / Action',
+            'description' => 'Applications are reviewed & approved by officers',
+        ],
+        'step3' => [
+            'icon' => 'Collect / Return Equipment',
+            'title' => 'Collect / Return Equipment',
+            'description' => 'Physical handling at BPM with digital records',
+        ],
+        'step4' => [
+            'icon' => 'Track Status',
+            'title' => 'Track Status',
+            'description' => 'Monitor application & ticket status in real-time',
+        ],
+    ],
+    'footer' => [
+        'bpm_logo_alt' => 'BPM Logo',
+        'bpm' => 'Information Management Division (BPM)',
+        'copyright' => 'All Rights Reserved, Ministry of Tourism, Arts and Culture Malaysia',
+        'privacy' => 'Privacy Policy',
+        'terms' => 'Terms of Use',
+        'accessibility' => 'Accessibility Statement',
+    ],
+    'language_switch_invalid' => 'Invalid language selection.',
+    'auth' => [
+        'login' => [
+            'title' => 'Login to ICTServe (iServe)',
+            'email' => 'Email',
+            'password' => 'Password',
+        ],
+        'register' => 'Register',
+    ],
+    'actions' => [
+        'login' => 'Login',
     ],
 ];

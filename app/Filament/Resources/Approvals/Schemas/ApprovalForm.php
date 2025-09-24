@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Approvals\Schemas;
 
+use App\Enums\ApprovalStatus;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -12,8 +13,7 @@ class ApprovalForm
 {
     public static function configure(Schema $schema): Schema
     {
-        return $schema
-            ->components([
+        return $schema->schema([
                 TextInput::make('approvable_type')
                     ->required(),
                 TextInput::make('approvable_id')
@@ -21,26 +21,16 @@ class ApprovalForm
                     ->numeric(),
                 Select::make('officer_id')
                     ->relationship('officer', 'name')
-                    ->default(null),
-                TextInput::make('stage')
-                    ->default(null),
+                    ->searchable()
+                    ->preload(),
+                TextInput::make('stage'),
                 Select::make('status')
-                    ->options(['pending' => 'Pending', 'approved' => 'Approved', 'rejected' => 'Rejected'])
-                    ->default('pending')
-                    ->required(),
+                    ->options(ApprovalStatus::class)
+                    ->required()
+                    ->default(ApprovalStatus::PENDING),
                 Textarea::make('comments')
-                    ->default(null)
                     ->columnSpanFull(),
                 DateTimePicker::make('approval_timestamp'),
-                TextInput::make('created_by')
-                    ->numeric()
-                    ->default(null),
-                TextInput::make('updated_by')
-                    ->numeric()
-                    ->default(null),
-                TextInput::make('deleted_by')
-                    ->numeric()
-                    ->default(null),
             ]);
     }
 }

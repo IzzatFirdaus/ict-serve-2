@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Departments\Schemas;
 
+use App\Enums\BranchType;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -15,29 +16,28 @@ class DepartmentForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Nama Jabatan')
                     ->required(),
                 Select::make('branch_type')
-                    ->options(['ibu_pejabat' => 'Ibu pejabat', 'pejabat_negeri' => 'Pejabat negeri', 'unit' => 'Unit'])
+                    ->label('Jenis Cawangan')
+                    ->options(BranchType::class)
                     ->required(),
                 TextInput::make('code')
-                    ->required(),
-                Textarea::make('description')
-                    ->default(null)
-                    ->columnSpanFull(),
+                    ->label('Kod')
+                    ->required()
+                    ->unique(ignoreRecord: true),
+                Select::make('head_user_id')
+                    ->label('Ketua Jabatan')
+                    ->relationship('head', 'name')
+                    ->searchable()
+                    ->preload(),
                 Toggle::make('is_active')
-                    ->required(),
-                TextInput::make('head_user_id')
-                    ->numeric()
-                    ->default(null),
-                TextInput::make('created_by')
-                    ->numeric()
-                    ->default(null),
-                TextInput::make('updated_by')
-                    ->numeric()
-                    ->default(null),
-                TextInput::make('deleted_by')
-                    ->numeric()
-                    ->default(null),
+                    ->label('Status Aktif')
+                    ->required()
+                    ->default(true),
+                Textarea::make('description')
+                    ->label('Keterangan')
+                    ->columnSpanFull(),
             ]);
     }
 }
