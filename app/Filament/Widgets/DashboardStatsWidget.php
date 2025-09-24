@@ -2,23 +2,52 @@
 
 namespace App\Filament\Widgets;
 
-use Filament\Widgets\Widget;
+use App\Enums\HelpdeskStatus;
+use App\Enums\LoanApplicationStatus;
+use App\Models\HelpdeskTicket;
+use App\Models\LoanApplication;
+use Filament\Widgets\StatsOverviewWidget as BaseWidget;
+use Filament\Widgets\StatsOverviewWidget\Stat;
 
-class DashboardStatsWidget extends Widget
+class DashboardStatsWidget extends BaseWidget
 {
-    protected string $view = 'filament.widgets.dashboard-stats-widget';
-
-    protected function getChartData(): array
+    /**
+     * Get the statistics to display in the widget.
+     *
+     * @return array<Stat>
+     */
+    protected function getStats(): array
     {
+        // Fetch dynamic counts from the database
+        $pendingApprovalsCount = LoanApplication::query()
+            ->where('status', LoanApplicationStatus::PENDING_SUPPORT)
+            ->count();
+
+        $openTicketsCount = HelpdeskTicket::query()
+            ->where('status', HelpdeskStatus::OPEN)
+            ->count();
+
+        // You can add more complex queries as needed, for example:
+        $overdueLoansCount = LoanApplication::query()
+            ->where('status', LoanApplicationStatus::ISSUED)
+            ->where('loan_end_date', '<', now())
+            ->count();
+
         return [
-            'labels' => ['Pending Approvals', 'Open Tickets', 'Overdue Loans'],
-            'datasets' => [
-                [
-                    'label' => 'Count',
-                    'data' => [10, 25, 5],
-                    'backgroundColor' => ['#4CAF50', '#FFC107', '#F44336'],
-                ],
-            ],
+            Stat::make('Pending Approvals', $pendingApprovalsCount)
+                ->description('Loan applications awaiting support')
+                ->color('warning')
+                ->icon('heroicon-o-clock'),
+
+            Stat::make('Open Tickets', $openTicketsCount)
+                ->description('Helpdesk tickets requiring action')
+                ->color('info')
+                ->icon('heroicon-o-lifebuoy'),
+
+            Stat::make('Overdue Loans', $overdueLoansCount)
+                ->description('Equipment not returned on time')
+                ->color('danger')
+                ->icon('heroicon-o-exclamation-triangle'),
         ];
     }
 }

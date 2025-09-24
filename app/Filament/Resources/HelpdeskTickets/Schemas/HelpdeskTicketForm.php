@@ -2,8 +2,12 @@
 
 namespace App\Filament\Resources\HelpdeskTickets\Schemas;
 
+use App\Enums\HelpdeskPriority;
+use App\Enums\HelpdeskStatus;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Grid;
+// Removed Group import; not available in Filament 4
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -15,49 +19,15 @@ class HelpdeskTicketForm
     {
         return $schema
             ->components([
-                Select::make('user_id')
-                    ->relationship('user', 'name')
-                    ->default(null),
-                TextInput::make('assigned_to_user_id')
-                    ->numeric()
-                    ->default(null),
-                Select::make('category_id')
-                    ->relationship('category', 'name')
-                    ->default(null),
-                TextInput::make('subject')
-                    ->required(),
-                Textarea::make('description')
-                    ->required()
-                    ->columnSpanFull(),
-                Select::make('status')
-                    ->options([
-                        'open' => 'Open',
-                        'in_progress' => 'In progress',
-                        'pending_user_feedback' => 'Pending user feedback',
-                        'resolved' => 'Resolved',
-                        'closed' => 'Closed',
-                        'reopened' => 'Reopened',
-                    ])
-                    ->default('open')
-                    ->required(),
-                Select::make('priority')
-                    ->options(['low' => 'Low', 'medium' => 'Medium', 'high' => 'High', 'critical' => 'Critical'])
-                    ->default('medium')
-                    ->required(),
+                TextInput::make('subject')->required(),
+                Select::make('category_id')->relationship('category', 'name')->searchable()->preload()->required(),
+                Textarea::make('description')->required(),
+                Textarea::make('resolution_notes'),
+                Select::make('status')->options(HelpdeskStatus::class)->required()->default(HelpdeskStatus::OPEN),
+                Select::make('priority')->options(HelpdeskPriority::class)->required()->default(HelpdeskPriority::MEDIUM),
                 DatePicker::make('due_date'),
-                Textarea::make('resolution_notes')
-                    ->default(null)
-                    ->columnSpanFull(),
-                DateTimePicker::make('closed_at'),
-                TextInput::make('created_by')
-                    ->numeric()
-                    ->default(null),
-                TextInput::make('updated_by')
-                    ->numeric()
-                    ->default(null),
-                TextInput::make('deleted_by')
-                    ->numeric()
-                    ->default(null),
+                Select::make('user_id')->label('Reporter')->relationship('user', 'name')->searchable()->preload()->required(),
+                Select::make('assigned_to_user_id')->label('Assigned To')->relationship('assignedTo', 'name')->searchable()->preload(),
             ]);
     }
 }

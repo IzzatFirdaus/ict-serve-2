@@ -1,14 +1,7 @@
-import './theme';
-import './language';
+import './bootstrap';
 
-import { showSwal } from './swal';
+import Alpine from 'alpinejs';
 
-window.showSwal = showSwal;
+window.Alpine = Alpine;
 
-document.addEventListener('DOMContentLoaded', function () {
-    var yearEl = document.getElementById('year');
-    if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-    }
-});
-
+Alpine.start();

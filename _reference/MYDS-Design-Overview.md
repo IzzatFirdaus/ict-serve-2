@@ -59,21 +59,21 @@ The 12-8-4 grid system in MYDS provides a flexible, responsive layout structure 
 Breakpoints allow layouts to adjust for different device sizes:
 
 - Desktop (≥ 1024px):
-    - 12-column grid
-    - 24px column gaps and edge padding
-    - Maximum content width: 1280px
+  - 12-column grid
+  - 24px column gaps and edge padding
+  - Maximum content width: 1280px
 
     The 12-column layout offers maximum flexibility for arranging content on larger screens, enabling complex layouts while keeping elements aligned and uncluttered.
 
 - Tablet (768px - 1023px):
-    - 8-column grid
-    - 24px gap and edge padding
+  - 8-column grid
+  - 24px gap and edge padding
 
     The 8-column layout simplifies design for medium screens, maintaining readability and usability.
 
 - Mobile (≤ 767px):
-    - 4-column grid
-    - 18px gap and edge padding
+  - 4-column grid
+  - 18px gap and edge padding
 
     The 4-column layout is ideal for small screens, focusing on essential elements for quick and comfortable access.
 
@@ -467,11 +467,11 @@ An Alert Dialog is a modal pop-up designed to capture user attention for importa
 #### Alert Dialog Section: Footer
 
 - Positioned at bottom, contains action buttons:
-    - Primary Action: Main button, always visible (right-aligned desktop, centered mobile).
-    - Action 1: Secondary, next to primary (left).
-    - Cancel Action: Next to Action 1, cancels the primary action.
-    - Action 2: Far left, for additional actions (e.g., Delete Draft).
-    - Disclaimer: Shown before primary action (e.g., By submitting, you agree to Terms of Use and Privacy Policy).
+  - Primary Action: Main button, always visible (right-aligned desktop, centered mobile).
+  - Action 1: Secondary, next to primary (left).
+  - Cancel Action: Next to Action 1, cancels the primary action.
+  - Action 2: Far left, for additional actions (e.g., Delete Draft).
+  - Disclaimer: Shown before primary action (e.g., By submitting, you agree to Terms of Use and Privacy Policy).
 
 #### Alert Dialog Section: Footer Layout
 
@@ -876,9 +876,9 @@ How to navigate:
 
 - Trigger Button: Secondary button for month navigation (enabled/disabled as needed).
 - Date Buttons:
-    - Secondary (default/disabled) for navigation.
-    - Tertiary (default/hover/disabled) for interactive dates.
-    - Primary (default) for currently selected date.
+  - Secondary (default/disabled) for navigation.
+  - Tertiary (default/hover/disabled) for interactive dates.
+  - Primary (default) for currently selected date.
 - Disabled Dates: Prevent selection ahead of latest allowed date.
 - Visual Feedback: Hover, selected, and disabled states for clear interaction.
 
@@ -1144,12 +1144,12 @@ The Password Input component provides a secure field for users to enter password
 - Label: Text label for the password field, indicating its purpose (e.g., Password).
 - Default Placeholder: Enter password guides users on what to input.
 - Show/Hide Icon: Eye icon changes based on visibility state:
-    - eye-show: Displays when password is hidden.
-    - eye-hide: Displays when password is visible.
+  - eye-show: Displays when password is hidden.
+  - eye-hide: Displays when password is visible.
 - Show/Hide Icon Trigger Area: The clickable area for toggling password visibility.
 - Tooltip: Displays guidance when hovering over the icon:
-    - Show password if hidden.
-    - Hide password if visible.
+  - Show password if hidden.
+  - Hide password if visible.
 
 ![password-input-anatomy.png](password-input-anatomy.png)
 ![password-input-trigger-area.png](password-input-trigger-area.png)
@@ -1166,9 +1166,9 @@ The Password Input component provides a secure field for users to enter password
 - Default: Password hidden, field ready for input.
 - Focused: Field is active and ready to receive input (via click or tab).
 - Filled: User has entered a password.
-    - Eye-show: Trailing icon to reveal password.
+  - Eye-show: Trailing icon to reveal password.
 - Filled (Password visible): Password displayed in plain text.
-    - Eye-hide: Trailing icon to hide password.
+  - Eye-hide: Trailing icon to hide password.
 - Error: Outlined in otl-danger-300 and shows error hint text when password input is empty.
 - Error Focused: Error state remains even when focused.
 
@@ -1197,12 +1197,12 @@ The Phase Banner informs users about the service’s development stage (e.g., Al
 ### Phase Banner Component Responsive View
 
 - Desktop & Tablet:
-    - Tag size: M
-    - Horizontal padding: 24px on left and right
+  - Tag size: M
+  - Horizontal padding: 24px on left and right
 - Mobile:
-    - Tag size: S
-    - Horizontal padding: 18px on left and right
-    - The tag remains on the left. Wrap/break the description text as needed for smaller screens.
+  - Tag size: S
+  - Horizontal padding: 18px on left and right
+  - The tag remains on the left. Wrap/break the description text as needed for smaller screens.
 
 ![phase-banner-responsive.png](phase-banner-responsive.png)
 
@@ -1886,8 +1886,8 @@ Toasts can represent different types of notifications:
 
 - **Progress Bar Animation:**  
   For successful scenarios, a progress bar appears with a 200ms ease-in-out slide up animation.
-    - The loading bar animates from 100% to 0% width over 3 seconds.
-    - The toast auto-dismisses after 3 seconds with a 200ms ease-in-out slide down animation, along with the progress bar.
+  - The loading bar animates from 100% to 0% width over 3 seconds.
+  - The toast auto-dismisses after 3 seconds with a 200ms ease-in-out slide down animation, along with the progress bar.
 
 ![toast-progress-bar.png](toast-progress-bar.png)
 

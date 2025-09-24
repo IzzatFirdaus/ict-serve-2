@@ -47,10 +47,20 @@ class LoanTransaction extends Model implements AuditableContract
     ];
 
     protected $casts = [
-        'transaction_date' => 'datetime',
+        'transaction_date' => 'date',
         'accessories_checklist_on_issue' => 'array',
         'accessories_checklist_on_return' => 'array',
     ];
+
+    // Transaction type constants
+    public const TYPE_ISSUE = 'issue';
+    public const TYPE_RETURN = 'return';
+
+    // Transaction status constants (aligned with migration)
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_ISSUED = 'issued';
+    public const STATUS_RETURNED_GOOD = 'returned_good';
+    public const STATUS_RETURNED_DAMAGED = 'returned_damaged';
 
     public function loanApplication(): BelongsTo
     {
@@ -70,50 +80,5 @@ class LoanTransaction extends Model implements AuditableContract
     public function items(): HasMany
     {
         return $this->hasMany(LoanTransactionItem::class, 'loan_transaction_id');
-    }
-
-    public function createdBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function updatedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
-
-    public function deletedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'deleted_by');
-    }
-
-    /**
-     * Enum for transaction type.
-     */
-    public const TYPE_ISSUE = 'issue';
-
-    public const TYPE_RETURN = 'return';
-
-    /**
-     * Enum for transaction status.
-     */
-    public const STATUS_COMPLETED = 'completed';
-
-    public const STATUS_PENDING = 'pending';
-
-    /**
-     * Scope for completed transactions.
-     */
-    public function scopeCompleted($query)
-    {
-        return $query->where('status', self::STATUS_COMPLETED);
-    }
-
-    /**
-     * Scope for pending transactions.
-     */
-    public function scopePending($query)
-    {
-        return $query->where('status', self::STATUS_PENDING);
     }
 }

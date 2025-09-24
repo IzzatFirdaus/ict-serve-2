@@ -12,6 +12,10 @@
         "@tailwindcss/forms": "^0.5.2",
         "@tailwindcss/vite": "^4.0.0",
         "@types/node": "^24.5.2",
+<<<<<<< HEAD
+=======
+        "alpinejs": "^3.4.2",
+>>>>>>> 2db7420674c06347d9511964dad536c1e23f3747
         "autoprefixer": "^10.4.2",
         "axios": "^1.7.4",
         "bootstrap": "^5.2.3",
@@ -23,7 +27,6 @@
         "prettier-plugin-blade": "^2.1.21",
         "sass": "^1.56.1",
         "stylelint": "^16.24.0",
-        "stylelint-config-prettier": "^9.0.5",
         "stylelint-config-standard": "^39.0.0",
         "stylelint-config-tailwindcss": "^1.0.0",
         "stylelint-declaration-block-no-ignored-properties": "^2.5.0",

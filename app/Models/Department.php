@@ -21,30 +21,18 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  * @property string|null $description
  * @property bool $is_active
  * @property int|null $head_user_id
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property int|null $deleted_by
  * @property-read User|null $head
  * @property-read \Illuminate\Database\Eloquent\Collection|User[] $users
+ * @property-read User|null $createdBy
+ * @property-read User|null $updatedBy
+ * @property-read User|null $deletedBy
  */
 class Department extends Model implements AuditableContract
 {
     use AuditableTrait, Blameable, HasFactory, SoftDeletes;
-
-    /**
-     * Audit relationships
-     */
-    public function createdBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function updatedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
-
-    public function deletedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'deleted_by');
-    }
 
     protected $fillable = [
         'name', 'branch_type', 'code', 'description', 'is_active', 'head_user_id',
@@ -65,17 +53,11 @@ class Department extends Model implements AuditableContract
         return $this->belongsTo(User::class, 'head_user_id');
     }
 
-    /**
-     * Returns true if the department is active.
-     */
     public function isActive(): bool
     {
-        return (bool) $this->is_active;
+        return $this->is_active;
     }
 
-    /**
-     * Scope for active departments.
-     */
     public function scopeActive($query)
     {
         return $query->where('is_active', true);

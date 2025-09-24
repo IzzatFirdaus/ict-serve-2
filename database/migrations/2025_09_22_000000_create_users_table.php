@@ -25,9 +25,9 @@ return new class extends Migration
             $table->string('passport_number')->nullable()->comment('Passport number, if any');
             $table->string('profile_photo_path')->nullable()->comment('Profile photo path');
             // Note: position/grade/department constraints are added in a later migration to avoid ordering issues
-            $table->foreignId('position_id')->nullable()->index()->comment('FK to positions (constraint added after positions table exists)');
-            $table->foreignId('grade_id')->nullable()->index()->comment('FK to grades (constraint added after grades table exists)');
-            $table->foreignId('department_id')->nullable()->index()->comment('FK to departments (constraint added after departments table exists)');
+            $table->foreignId('position_id')->nullable()->index()->comment('FK to positions (constraint added later)');
+            $table->foreignId('grade_id')->nullable()->index()->comment('FK to grades (constraint added later)');
+            $table->foreignId('department_id')->nullable()->index()->comment('FK to departments (constraint added later)');
             $table->string('level')->nullable()->comment('User level (legacy/optional)');
             $table->string('mobile_number')->nullable()->comment('Mobile phone number');
             $table->string('email')->unique()->comment('User email, unique');
@@ -55,15 +55,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Drop FKs before table for safe rollback
+        // Only drop foreign keys that were created in THIS migration's up() method.
         Schema::table('users', function (Blueprint $table) {
-            foreach (['position_id', 'grade_id', 'department_id', 'created_by', 'updated_by', 'deleted_by'] as $col) {
-                try {
-                    $table->dropForeign([$col]);
-                } catch (\Throwable $e) {
-                    // ignore if FK doesn't exist
-                }
-            }
+            $table->dropForeign(['created_by']);
+            $table->dropForeign(['updated_by']);
+            $table->dropForeign(['deleted_by']);
         });
         Schema::dropIfExists('users');
     }

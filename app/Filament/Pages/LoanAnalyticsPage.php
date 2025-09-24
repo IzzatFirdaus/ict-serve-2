@@ -2,9 +2,37 @@
 
 namespace App\Filament\Pages;
 
-use Filament\Pages\Page;
+use App\Filament\Widgets\LoanStatsOverviewWidget;
+use App\Filament\Widgets\LoansByTypeChartWidget;
+use App\Filament\Widgets\RecentLoanApplicationsWidget;
+use Filament\Pages\Dashboard;
 
-class LoanAnalyticsPage extends Page
+class LoanAnalyticsPage extends Dashboard
 {
-    protected string $view = 'filament.pages.loan-analytics-page';
+    /**
+     * The title of the page displayed in the navigation and header.
+     *
+     * @var string
+     */
+    protected static ?string $title = 'Analitis Pinjaman';
+
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-chart-bar-square';
+    protected static string|\UnitEnum|null $navigationGroup = 'Laporan & Analitis';
+
+    /**
+     * Get the widgets that are displayed on the dashboard.
+     *
+     * This method defines the layout and content of the analytics page.
+     * Each widget is a self-contained component for displaying data.
+     *
+     * @return array<class-string<\Filament\Widgets\Widget> | \Filament\Widgets\WidgetConfiguration>
+     */
+    public function getWidgets(): array
+    {
+        return [
+            LoanStatsOverviewWidget::class,
+            LoansByTypeChartWidget::class,
+            RecentLoanApplicationsWidget::class,
+        ];
+    }
 }

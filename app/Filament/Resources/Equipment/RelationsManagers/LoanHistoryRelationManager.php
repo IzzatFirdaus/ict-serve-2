@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Filament\Resources\Equipment\RelationManagers;
+
+use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables;
+use Filament\Tables\Table;
+
+class LoanHistoryRelationManager extends RelationManager
+{
+    protected static string $relationship = 'loanTransactionItems';
+    protected static ?string $title = 'Loan History';
+
+    public function table(Table $table): Table
+    {
+        return $table
+            ->recordTitleAttribute('id')
+            ->columns([
+                Tables\Columns\TextColumn::make('loanTransaction.loanApplication.user.name')->label('User'),
+                Tables\Columns\TextColumn::make('status')->badge(),
+                Tables\Columns\TextColumn::make('loanTransaction.transaction_date')->date()->label('Transaction Date'),
+                Tables\Columns\TextColumn::make('condition_on_return'),
+            ]);
+    }
+}

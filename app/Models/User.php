@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\UserStatus;
 use App\Traits\Blameable;
-use App\Traits\HasRoles;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Class User
@@ -31,7 +32,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  * @property string|null $mobile_number
  * @property string $email
  * @property string $password
- * @property string|null $status
+ * @property UserStatus|null $status
  * @property string|null $lang
  * @property string|null $theme
  * @property \Illuminate\Support\Carbon|null $email_verified_at
@@ -45,18 +46,11 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  * @property-read \Illuminate\Database\Eloquent\Collection|HelpdeskTicket[] $helpdeskTickets
  * @property-read \Illuminate\Database\Eloquent\Collection|LoanApplication[] $loanApplications
  * @property-read \Illuminate\Database\Eloquent\Collection|Approval[] $approvals
- * @property-read bool $is_active
- * @property-read bool $is_approver
  */
 class User extends Authenticatable implements AuditableContract, FilamentUser
 {
     use AuditableTrait, Blameable, HasFactory, HasRoles, Notifiable, SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'title', 'name', 'identification_number', 'passport_number', 'profile_photo_path',
         'position_id', 'grade_id', 'department_id', 'level', 'mobile_number', 'email', 'password',
@@ -64,62 +58,26 @@ class User extends Authenticatable implements AuditableContract, FilamentUser
         'remember_token', 'created_by', 'updated_by', 'deleted_by',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'two_factor_secret',
+        'two_factor_recovery_codes'
+    ];
+
     protected $casts = [
         'email_verified_at' => 'datetime',
         'two_factor_recovery_codes' => 'array',
         'two_factor_confirmed_at' => 'datetime',
-        'lang' => 'string',
-        'theme' => 'string',
-        'status' => 'string',
+        'status' => UserStatus::class,
     ];
 
-    /**
-     * Audit relationships
-     */
-    public function createdBy(): ?BelongsTo
+    public function canAccessPanel(Panel $panel): bool
     {
-        return $this->belongsTo(User::class, 'created_by');
+    // TODO: Replace hardcoded domain with a configurable setting from config or database.
+    return $this->status === UserStatus::AKTIF && str_ends_with($this->email, '@motac.gov.my');
     }
 
-    public function updatedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
-
-    public function deletedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'deleted_by');
-    }
-
-    /**
-     * Accessor for language (bilingual/theme awareness)
-     */
-    public function getLangLabelAttribute(): string
-    {
-        return match ($this->lang) {
-            'ms' => 'Bahasa Melayu',
-            'en' => 'English',
-            default => 'Unknown',
-        };
-    }
-
-    public function getThemeLabelAttribute(): string
-    {
-        return match ($this->theme) {
-            'light' => 'Cerah',
-            'dark' => 'Gelap',
-            default => 'Unknown',
-        };
-    }
-
-    /**
-     * Relationships
-     */
     public function position(): BelongsTo
     {
         return $this->belongsTo(Position::class);
@@ -150,51 +108,8 @@ class User extends Authenticatable implements AuditableContract, FilamentUser
         return $this->hasMany(Approval::class, 'officer_id');
     }
 
-    /**
-     * Helpers
-     */
-    /**
-     * Returns true if the user is active (status = 'aktif').
-     */
-    public function isActive(): bool
-    {
-        return $this->status === \App\Enums\UserStatus::Aktif->value;
-    }
-
-    /**
-     * Returns true if the user has the 'approver' role.
-     */
-    public function isApprover(): bool
-    {
-        return (bool) $this->roles()->where('name', 'approver')->exists();
-    }
-
-    /**
-     * Determine if the user can access the Filament admin panel.
-     */
-    /**
-     * Determine if the user can access the Filament admin panel.
-     */
-    public function canAccessPanel(Panel $panel): bool
-    {
-        return $this->isActive() && str_ends_with($this->email, '@example.test');
-    }
-
-    /**
-     * Scope for active users.
-     */
     public function scopeActive($query)
     {
-        return $query->where('status', \App\Enums\UserStatus::Aktif->value);
-    }
-
-    /**
-     * Scope for approvers.
-     */
-    public function scopeApprovers($query)
-    {
-        return $query->whereHas('roles', function ($q) {
-            $q->where('name', 'approver');
-        });
+    return $query->where('status', UserStatus::AKTIF);
     }
 }

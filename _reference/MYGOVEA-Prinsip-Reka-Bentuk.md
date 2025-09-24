@@ -181,9 +181,9 @@ _Kognitif merujuk kepada aspek pemikiran dan proses kognitif pengguna semasa ber
 ### Cara Mengukur Beban Kognitif Pengguna
 
 - **Kaedah Kognitif Load:**
-    - **NASA Task Load Index (NASA-TLX):** Penilaian subjektif beban kognitif oleh pengguna.
-    - **Dual-Task Performance:** Ujian pengguna melakukan dua tugas serentak untuk mengukur beban kognitif.
-    - **Pengukuran Fisiologi:** Mengukur aktiviti otak, denyutan jantung, atau respons kulit.
+  - **NASA Task Load Index (NASA-TLX):** Penilaian subjektif beban kognitif oleh pengguna.
+  - **Dual-Task Performance:** Ujian pengguna melakukan dua tugas serentak untuk mengukur beban kognitif.
+  - **Pengukuran Fisiologi:** Mengukur aktiviti otak, denyutan jantung, atau respons kulit.
 - **Pengamatan dan Maklum Balas Pengguna:** Amati pengguna dan kumpul maklum balas tentang pengalaman mereka.
 - **Ujian Keterlibatan Mod:** Moderator membimbing pengguna dan mengumpul maklum balas secara langsung.
 - **Analisis Data:** Analisis maklum balas dan data dengan kaedah pengukuran kognitif serta bandingkan dengan skala rujukan seperti NASA-TLX.
@@ -244,16 +244,16 @@ _UI/UX adalah dua aspek penting dalam reka bentuk aplikasi yang saling berkait b
 - **Fungsi:** Menyusun antara muka pengguna secara konsisten dan mudah difahami.
 - **Contoh Komponen:** Butang, input teks, menu, bar navigasi, petunjuk dan lain-lain.
 - **Kelebihan:**
-    - Mencipta pengalaman pengguna yang seimbang dan intuitif.
-    - Membantu pengguna memahami fungsi aplikasi dan memberi tindak balas.
-    - Memudahkan pengurusan dan penyelenggaraan melalui konsistensi antara muka.
+  - Mencipta pengalaman pengguna yang seimbang dan intuitif.
+  - Membantu pengguna memahami fungsi aplikasi dan memberi tindak balas.
+  - Memudahkan pengurusan dan penyelenggaraan melalui konsistensi antara muka.
 
 ### Komponen UX
 
 - **Definisi:** Komponen UX merujuk kepada keseluruhan interaksi dan persepsi pengguna semasa menggunakan produk, perkhidmatan, atau aplikasi digital.
 - **Aspek UX:**
-    - Interaksi pengguna termasuk antara muka, fungsi, prestasi, kebolehgunaan dan reaksi emosi.
-    - Persepsi pengguna terhadap produk atau perkhidmatan.
+  - Interaksi pengguna termasuk antara muka, fungsi, prestasi, kebolehgunaan dan reaksi emosi.
+  - Persepsi pengguna terhadap produk atau perkhidmatan.
 - **Kepentingan:** UI yang baik meningkatkan kebolehgunaan, manakala UX yang baik memastikan interaksi pengguna lancar dan memuaskan.
 
 ### Gabungan UI dan UX

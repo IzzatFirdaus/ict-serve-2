@@ -50,19 +50,21 @@ class HelpdeskTicket extends Model implements AuditableContract
         'closed_at' => 'datetime',
     ];
 
-    // Status constants
+    // Status constants (aligned with migration)
     public const STATUS_OPEN = 'open';
-
-    public const STATUS_PENDING = 'pending';
-
+    public const STATUS_IN_PROGRESS = 'in_progress';
+    public const STATUS_PENDING_FEEDBACK = 'pending_user_feedback';
+    public const STATUS_RESOLVED = 'resolved';
     public const STATUS_CLOSED = 'closed';
+    public const STATUS_REOPENED = 'reopened';
+
 
     // Priority constants
     public const PRIORITY_LOW = 'low';
-
     public const PRIORITY_MEDIUM = 'medium';
-
     public const PRIORITY_HIGH = 'high';
+    public const PRIORITY_CRITICAL = 'critical';
+
 
     public function user(): BelongsTo
     {
@@ -84,21 +86,6 @@ class HelpdeskTicket extends Model implements AuditableContract
         return $this->hasMany(HelpdeskComment::class, 'ticket_id');
     }
 
-    public function createdBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function updatedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
-
-    public function deletedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'deleted_by');
-    }
-
     public function isClosed(): bool
     {
         return $this->status === self::STATUS_CLOSED;
@@ -113,9 +100,12 @@ class HelpdeskTicket extends Model implements AuditableContract
     {
         return match ($this->status) {
             self::STATUS_OPEN => 'Open',
-            self::STATUS_PENDING => 'Pending',
+            self::STATUS_IN_PROGRESS => 'In Progress',
+            self::STATUS_PENDING_FEEDBACK => 'Pending User Feedback',
+            self::STATUS_RESOLVED => 'Resolved',
             self::STATUS_CLOSED => 'Closed',
-            default => 'Unknown',
+            self::STATUS_REOPENED => 'Reopened',
+            default => ucfirst($this->status),
         };
     }
 
@@ -125,7 +115,8 @@ class HelpdeskTicket extends Model implements AuditableContract
             self::PRIORITY_LOW => 'Low',
             self::PRIORITY_MEDIUM => 'Medium',
             self::PRIORITY_HIGH => 'High',
-            default => 'Unknown',
+            self::PRIORITY_CRITICAL => 'Critical',
+            default => ucfirst($this->priority),
         };
     }
 
@@ -137,15 +128,5 @@ class HelpdeskTicket extends Model implements AuditableContract
     public function scopeClosed($query)
     {
         return $query->where('status', self::STATUS_CLOSED);
-    }
-
-    public function scopeAssigned($query)
-    {
-        return $query->whereNotNull('assigned_to_user_id');
-    }
-
-    public function scopeUnassigned($query)
-    {
-        return $query->whereNull('assigned_to_user_id');
     }
 }

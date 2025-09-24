@@ -2,18 +2,12 @@
 
 namespace App\Filament\Resources\Approvals;
 
-use App\Filament\Resources\Approvals\Pages\CreateApproval;
-use App\Filament\Resources\Approvals\Pages\EditApproval;
-use App\Filament\Resources\Approvals\Pages\ListApprovals;
-use App\Filament\Resources\Approvals\Pages\ViewApproval;
-use App\Filament\Resources\Approvals\Schemas\ApprovalForm;
-use App\Filament\Resources\Approvals\Schemas\ApprovalInfolist;
-use App\Filament\Resources\Approvals\Tables\ApprovalsTable;
+use App\Filament\Resources\Approvals\Pages;
+use App\Filament\Resources\Approvals\Schemas;
+use App\Filament\Resources\Approvals\Tables;
 use App\Models\Approval;
-use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -21,48 +15,37 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ApprovalResource extends Resource
 {
     protected static ?string $model = Approval::class;
-
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
-
+    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-check-badge';
+    protected static string|\UnitEnum|null $navigationGroup = 'Pentadbiran Sistem';
     protected static ?string $recordTitleAttribute = 'status';
 
     public static function form(Schema $schema): Schema
     {
-        return ApprovalForm::configure($schema);
+        return Schemas\ApprovalForm::configure($schema);
     }
 
     public static function infolist(Schema $schema): Schema
     {
-        return ApprovalInfolist::configure($schema);
+        return Schemas\ApprovalInfolist::configure($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return ApprovalsTable::configure($table);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
+        return Tables\ApprovalsTable::configure($table);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => ListApprovals::route('/'),
-            'create' => CreateApproval::route('/create'),
-            'view' => ViewApproval::route('/{record}'),
-            'edit' => EditApproval::route('/{record}/edit'),
+            'index' => Pages\ListApprovals::route('/'),
+            'create' => Pages\CreateApproval::route('/create'),
+            'view' => Pages\ViewApproval::route('/{record}'),
+            'edit' => Pages\EditApproval::route('/{record}/edit'),
         ];
     }
 
-    public static function getRecordRouteBindingEloquentQuery(): Builder
+    public static function getEloquentQuery(): Builder
     {
-        return parent::getRecordRouteBindingEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
+        return parent::getEloquentQuery()->withoutGlobalScopes([SoftDeletingScope::class]);
     }
 }

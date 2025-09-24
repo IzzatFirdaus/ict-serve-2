@@ -51,6 +51,13 @@ class DamageReport extends Model implements AuditableContract
         'closed_at' => 'datetime',
     ];
 
+    // Status constants (aligned with migration)
+    public const STATUS_NEW = 'new';
+    public const STATUS_ASSIGNED = 'assigned';
+    public const STATUS_IN_PROGRESS = 'in_progress';
+    public const STATUS_RESOLVED = 'resolved';
+    public const STATUS_CLOSED = 'closed';
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -71,51 +78,6 @@ class DamageReport extends Model implements AuditableContract
         return $this->belongsTo(HelpdeskCategory::class, 'damage_type');
     }
 
-    public function createdBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function updatedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
-
-    public function deletedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'deleted_by');
-    }
-
-    /**
-     * Enum for damage report status.
-     */
-    public const STATUS_OPEN = 'open';
-
-    public const STATUS_IN_PROGRESS = 'in_progress';
-
-    public const STATUS_RESOLVED = 'resolved';
-
-    public const STATUS_CLOSED = 'closed';
-
-    /**
-     * Scope for open reports.
-     */
-    public function scopeOpen($query)
-    {
-        return $query->where('status', self::STATUS_OPEN);
-    }
-
-    /**
-     * Scope for closed reports.
-     */
-    public function scopeClosed($query)
-    {
-        return $query->where('status', self::STATUS_CLOSED);
-    }
-
-    /**
-     * Returns true if the report is resolved.
-     */
     public function isResolved(): bool
     {
         return $this->status === self::STATUS_RESOLVED;

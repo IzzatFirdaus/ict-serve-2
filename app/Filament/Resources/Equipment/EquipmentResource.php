@@ -9,6 +9,7 @@ use App\Filament\Resources\Equipment\Pages\ViewEquipment;
 use App\Filament\Resources\Equipment\Schemas\EquipmentForm;
 use App\Filament\Resources\Equipment\Schemas\EquipmentInfolist;
 use App\Filament\Resources\Equipment\Tables\EquipmentTable;
+use App\Filament\Resources\Equipment\RelationManagers\LoanHistoryRelationManager;
 use App\Models\Equipment;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -44,7 +45,7 @@ class EquipmentResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            LoanHistoryRelationManager::class,
         ];
     }
 

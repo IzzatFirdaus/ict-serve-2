@@ -1,57 +1,64 @@
-// Minimal theme toggle shim for MYDS integration
-window.applyTheme = function (theme) {
-    try {
-        document.documentElement.setAttribute('data-theme', theme);
-        try { localStorage.setItem('theme', theme); } catch (e) { }
-    } catch (e) { console.error(e); }
-};
+/**
+ * ICTServe Theme Manager (MYDS Compliant)
+ *
+ * This script handles theme initialization and switching.
+ * It should be included in the <head> of the document to prevent FOUC (Flash of Unstyled Content).
+ */
+(() => {
+    // List of valid themes for validation.
+    const SUPPORTED_THEMES = ['light', 'dark', 'system'];
 
-// Initialize from localStorage if present
-document.addEventListener('DOMContentLoaded', function () {
-    try {
-        var t = localStorage.getItem('theme');
-        if (t) { window.applyTheme(t); }
-    } catch (e) { }
-});
-// Theme helper: apply saved theme or system preference to <html data-theme>
-(function () {
-    function applyTheme(theme) {
-        var html = document.documentElement;
-        try {
-            if (!theme || theme === 'system') {
-                var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                html.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-                try { localStorage.removeItem('theme'); } catch (err) { }
-            } else {
-                html.setAttribute('data-theme', theme);
-                try { localStorage.setItem('theme', theme); } catch (err) { }
-            }
-        } catch (err) {
-            // Defensive: if anything fails, don't throw in the boot path
-            console.error('applyTheme error', err);
+    /**
+     * Applies the selected theme to the <html> element and persists the choice.
+     * @param {string} theme The theme to apply ('light', 'dark', or 'system').
+     */
+    const applyTheme = (theme) => {
+        if (!SUPPORTED_THEMES.includes(theme)) {
+            console.warn(`Unsupported theme "${theme}". Defaulting to 'system'.`);
+            theme = 'system';
         }
-    }
 
-    var html = document.documentElement;
-    var hasServerTheme = html.hasAttribute('data-theme');
+        try {
+            if (theme === 'system') {
+                // If 'system', apply the OS preference and remove the local storage override.
+                const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
+                localStorage.removeItem('theme');
+            } else {
+                // Otherwise, apply the specific theme and save it to local storage.
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            }
+        } catch (e) {
+            console.error('Failed to apply theme:', e);
+        }
+    };
 
-    // Only override the server-injected theme if the user has a saved preference.
-    var saved = null;
-    try { saved = localStorage.getItem('theme'); } catch (err) { saved = null; }
-
-    if (saved) {
-        applyTheme(saved);
-    } else if (!hasServerTheme) {
-        // If the server didn't set a theme, fall back to system preference.
+    // --- INITIALIZATION ---
+    // On script load, immediately apply the stored theme or the system default.
+    try {
+        const savedTheme = localStorage.getItem('theme');
+        applyTheme(savedTheme || 'system');
+    } catch (e) {
+        // If localStorage fails, default to system.
         applyTheme('system');
     }
 
-    // Listen for events from Livewire (single listener)
-    window.addEventListener('theme-changed', function (e) {
-        var theme = e && e.detail && e.detail.theme ? e.detail.theme : e;
-        applyTheme(theme);
+    // --- EVENT LISTENERS ---
+    // 1. Listen for theme changes dispatched from the Livewire component.
+    window.addEventListener('theme-changed', (event) => {
+        const newTheme = event.detail?.theme;
+        if (newTheme) {
+            applyTheme(newTheme);
+        }
     });
 
-    // Expose for console/testing
-    window.applyTheme = applyTheme;
+    // 2. Listen for changes in the user's OS color scheme preference.
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        // Only re-apply the theme if the user is currently in 'system' mode.
+        const currentTheme = localStorage.getItem('theme');
+        if (!currentTheme || currentTheme === 'system') {
+            applyTheme('system');
+        }
+    });
 })();

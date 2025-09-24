@@ -1,10 +1,4 @@
-
 <?php
-
-/**
- * Migration for loan_transactions table.
- * Records issues and returns of equipment for approved loan applications.
- */
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -26,7 +20,6 @@ return new class extends Migration
             $table->json('accessories_checklist_on_return')->nullable()->comment('Accessories checklist on return');
             $table->text('return_notes')->nullable()->comment('Return notes');
             $table->enum('status', ['pending', 'issued', 'returned_good', 'returned_damaged'])->default('pending')->index()->comment('Transaction status');
-            // Audit
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (creator)');
             $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (updater)');
             $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete()->comment('FK to users (deleter)');
@@ -38,24 +31,14 @@ return new class extends Migration
 
     public function down(): void
     {
-        if (Schema::hasTable('loan_transactions')) {
-            Schema::table('loan_transactions', function (Blueprint $table) {
-                foreach ([
-                    'loan_application_id',
-                    'issuing_officer_id',
-                    'receiving_officer_id',
-                    'created_by',
-                    'updated_by',
-                    'deleted_by',
-                ] as $fk) {
-                    try {
-                        $table->dropForeign([$fk]);
-                    } catch (\Throwable $e) {
-                        // ignore
-                    }
-                }
-            });
-        }
+        Schema::table('loan_transactions', function (Blueprint $table) {
+            $table->dropForeign(['loan_application_id']);
+            $table->dropForeign(['issuing_officer_id']);
+            $table->dropForeign(['receiving_officer_id']);
+            $table->dropForeign(['created_by']);
+            $table->dropForeign(['updated_by']);
+            $table->dropForeign(['deleted_by']);
+        });
         Schema::dropIfExists('loan_transactions');
     }
 };

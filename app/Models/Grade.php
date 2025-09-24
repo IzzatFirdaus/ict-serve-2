@@ -16,33 +16,21 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  *
  * @property int $id
  * @property string $name
- * @property string|null $level
+ * @property int|null $level
  * @property int|null $min_approval_grade_id
  * @property bool $is_approver_grade
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property int|null $deleted_by
  * @property-read Grade|null $minApprovalGrade
  * @property-read \Illuminate\Database\Eloquent\Collection|Position[] $positions
+ * @property-read User|null $createdBy
+ * @property-read User|null $updatedBy
+ * @property-read User|null $deletedBy
  */
 class Grade extends Model implements AuditableContract
 {
     use AuditableTrait, Blameable, HasFactory, SoftDeletes;
-
-    /**
-     * Audit relationships
-     */
-    public function createdBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function updatedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
-
-    public function deletedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'deleted_by');
-    }
 
     protected $fillable = [
         'name', 'level', 'min_approval_grade_id', 'is_approver_grade', 'created_by', 'updated_by', 'deleted_by',
@@ -50,6 +38,7 @@ class Grade extends Model implements AuditableContract
 
     protected $casts = [
         'is_approver_grade' => 'boolean',
+        'level' => 'integer',
     ];
 
     public function positions(): HasMany
@@ -62,17 +51,11 @@ class Grade extends Model implements AuditableContract
         return $this->belongsTo(Grade::class, 'min_approval_grade_id');
     }
 
-    /**
-     * Returns true if this grade is an approver grade.
-     */
     public function isApprover(): bool
     {
-        return (bool) $this->is_approver_grade;
+        return $this->is_approver_grade;
     }
 
-    /**
-     * Scope for approver grades.
-     */
     public function scopeApprover($query)
     {
         return $query->where('is_approver_grade', true);

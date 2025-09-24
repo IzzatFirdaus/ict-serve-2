@@ -40,6 +40,8 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  * @property int|null $created_by
  * @property int|null $updated_by
  * @property int|null $deleted_by
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  * @property-read User $user
  * @property-read User|null $responsibleOfficer
  * @property-read User|null $supportingOfficer
@@ -71,6 +73,15 @@ class LoanApplication extends Model implements AuditableContract
         'cancelled_at' => 'datetime',
     ];
 
+    // Status constants (aligned with migration)
+    public const STATUS_DRAFT = 'draft';
+    public const STATUS_PENDING_SUPPORT = 'pending_support';
+    public const STATUS_APPROVED = 'approved';
+    public const STATUS_REJECTED = 'rejected';
+    public const STATUS_ISSUED = 'issued';
+    public const STATUS_RETURNED = 'returned';
+    public const STATUS_COMPLETED = 'completed';
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -101,62 +112,8 @@ class LoanApplication extends Model implements AuditableContract
         return $this->morphMany(Approval::class, 'approvable');
     }
 
-    public function createdBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function updatedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
-
-    public function deletedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'deleted_by');
-    }
-
-    /**
-     * Enum for loan status.
-     */
-    public const STATUS_DRAFT = 'draft';
-
-    public const STATUS_PENDING_SUPPORT = 'pending_support';
-
-    public const STATUS_PENDING_APPROVAL = 'pending_approval';
-
-    public const STATUS_APPROVED = 'approved';
-
-    public const STATUS_REJECTED = 'rejected';
-
-    public const STATUS_CANCELLED = 'cancelled';
-
-    /**
-     * Returns true if the application is in a state that can be approved.
-     */
-    public function isApprovable(): bool
-    {
-        return in_array($this->status, [self::STATUS_PENDING_SUPPORT, self::STATUS_DRAFT]);
-    }
-
     public function isEditable(): bool
     {
         return in_array($this->status, [self::STATUS_DRAFT, self::STATUS_PENDING_SUPPORT]);
-    }
-
-    /**
-     * Scope for pending applications.
-     */
-    public function scopePending($query)
-    {
-        return $query->where('status', self::STATUS_PENDING_SUPPORT);
-    }
-
-    /**
-     * Scope for approved applications.
-     */
-    public function scopeApproved($query)
-    {
-        return $query->where('status', self::STATUS_APPROVED);
     }
 }

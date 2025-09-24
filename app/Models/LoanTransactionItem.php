@@ -44,19 +44,4 @@ class LoanTransactionItem extends Model implements AuditableContract
     {
         return $this->belongsTo(Equipment::class, 'equipment_id');
     }
-
-    public function createdBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
-
-    public function updatedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'updated_by');
-    }
-
-    public function deletedBy(): ?BelongsTo
-    {
-        return $this->belongsTo(User::class, 'deleted_by');
-    }
 }

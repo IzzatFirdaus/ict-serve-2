@@ -11,8 +11,13 @@
         "filament/filament": "^4.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+<<<<<<< HEAD
         "livewire/livewire": "^3.6.4",
         "livewire/volt": "^1.7.0"
+=======
+        "livewire/livewire": "^3.6",
+        "spatie/laravel-permission": "^6.21"
+>>>>>>> 2db7420674c06347d9511964dad536c1e23f3747
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -22,6 +27,7 @@
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.25",
         "laravel/sail": "^1.41",
+        "laravel/ui": "^4.6",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
         "owen-it/laravel-auditing": "^14.0",
