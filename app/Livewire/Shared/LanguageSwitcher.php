@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
+/**
+ * @method void dispatchBrowserEvent(string $event, mixed $data = null)
+ */
 class LanguageSwitcher extends Component
 {
     public string $lang = 'ms';
@@ -47,6 +50,7 @@ class LanguageSwitcher extends Component
 
     public function render()
     {
+        /** @phpstan-return \Illuminate\View\View */
         return view('livewire.shared.language-switcher');
     }
 

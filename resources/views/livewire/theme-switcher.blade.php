@@ -5,7 +5,7 @@
     <button
         type="button"
         @click="open = !open"
-        class="fi-dropdown-trigger flex items-center gap-x-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus:bg-gray-800"
+        class="fi-dropdown-trigger flex items-center gap-x-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500"
         aria-expanded="false"
         aria-haspopup="true"
         :aria-expanded="open"
@@ -43,7 +43,7 @@
         x-transition:leave-end="transform opacity-0 scale-95"
         @click.away="open = false"
         @keydown.escape="open = false"
-        class="fi-dropdown-list absolute z-10 mt-2 w-40 origin-top-right rounded-lg bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-800 dark:ring-gray-700"
+        class="fi-dropdown-list absolute z-10 mt-2 w-40 origin-top-right rounded-lg bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         role="menu"
         aria-orientation="vertical"
         style="display: none;"
@@ -53,20 +53,20 @@
                 type="button"
                 wire:click="switchTheme('{{ $theme }}')"
                 @click="open = false"
-                class="group flex w-full items-center gap-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none dark:text-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 {{ $currentTheme === $theme ? 'bg-gray-50 font-medium dark:bg-gray-700' : '' }}"
+                class="group flex w-full items-center gap-x-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none {{ $currentTheme === $theme ? 'bg-gray-50 font-medium' : '' }}"
                 role="menuitem"
                 aria-label="{{ __('filament.theme.switch_to', ['theme' => __('filament.theme.' . $theme)]) }}"
             >
                 {{-- Theme Icon --}}
                 @switch($theme)
                     @case('light')
-                        <x-icon name="bs.sun" class="h-4 w-4 {{ $currentTheme === $theme ? 'text-primary-600 dark:text-primary-400' : 'text-gray-400' }}" aria-hidden="true" />
+                        <x-icon name="bs.sun" class="h-4 w-4 {{ $currentTheme === $theme ? 'text-primary-600' : 'text-gray-400' }}" aria-hidden="true" />
                         @break
                     @case('dark')
-                        <x-icon name="bs.moon" class="h-4 w-4 {{ $currentTheme === $theme ? 'text-primary-600 dark:text-primary-400' : 'text-gray-400' }}" aria-hidden="true" />
+                        <x-icon name="bs.moon" class="h-4 w-4 {{ $currentTheme === $theme ? 'text-primary-600' : 'text-gray-400' }}" aria-hidden="true" />
                         @break
                     @default
-                        <x-icon name="bs.circle-half" class="h-4 w-4 {{ $currentTheme === $theme ? 'text-primary-600 dark:text-primary-400' : 'text-gray-400' }}" aria-hidden="true" />
+                        <x-icon name="bs.circle-half" class="h-4 w-4 {{ $currentTheme === $theme ? 'text-primary-600' : 'text-gray-400' }}" aria-hidden="true" />
                 @endswitch
 
                 {{-- Theme Name --}}
@@ -74,7 +74,7 @@
 
                 {{-- Selected Indicator --}}
                 @if($currentTheme === $theme)
-                    <x-icon name="bs.check" class="ml-auto h-4 w-4 text-primary-600 dark:text-primary-400" aria-hidden="true" />
+                    <x-icon name="bs.check" class="ml-auto h-4 w-4 text-primary-600" aria-hidden="true" />
                 @endif
             </button>
         @endforeach

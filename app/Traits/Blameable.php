@@ -24,12 +24,20 @@ trait Blameable
         });
 
         static::deleting(function ($model) {
+            // ensure $model is an object with the expected methods/properties
+            if (! is_object($model)) {
+                return;
+            }
+
             // on soft delete, set deleted_by
             if (method_exists($model, 'isForceDeleting') && ! $model->isForceDeleting()) {
                 if (Auth::check()) {
+                    // Only set property if it exists or is dynamically allowed
                     $model->deleted_by = Auth::id();
                     // Save to persist deleted_by before soft delete
-                    $model->save();
+                    if (method_exists($model, 'save')) {
+                        $model->save();
+                    }
                 }
             }
         });

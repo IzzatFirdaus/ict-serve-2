@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Helpdesk;
 
 use App\Http\Controllers\Controller;
 use App\Models\HelpdeskComment;
-use App\Models\Ticket;
+use App\Models\HelpdeskTicket as Ticket;
 use Illuminate\Http\Request;
 
 class HelpdeskCommentController extends Controller

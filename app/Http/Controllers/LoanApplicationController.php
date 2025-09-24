@@ -14,6 +14,7 @@ class LoanApplicationController extends Controller
     {
         $this->authorize('viewAny', LoanApplication::class);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('loan_applications.index');
     }
 
@@ -24,6 +25,7 @@ class LoanApplicationController extends Controller
     {
         $this->authorize('create', LoanApplication::class);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('loan_applications.create');
     }
 
@@ -44,6 +46,7 @@ class LoanApplicationController extends Controller
     {
         $this->authorize('view', $loan_application);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('loan_applications.show', compact('loan_application'));
     }
 
@@ -54,6 +57,7 @@ class LoanApplicationController extends Controller
     {
         $this->authorize('update', $loan_application);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('loan_applications.edit', compact('loan_application'));
     }
 

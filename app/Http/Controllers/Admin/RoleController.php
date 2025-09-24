@@ -11,6 +11,7 @@ class RoleController extends Controller
     {
         $this->authorize('viewAny', \Spatie\Permission\Models\Role::class);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('admin.roles.index');
     }
 
@@ -18,6 +19,7 @@ class RoleController extends Controller
     {
         $this->authorize('create', \Spatie\Permission\Models\Role::class);
 
+        /** @phpstan-return \Illuminate\View\View */
         return view('admin.roles.create');
     }
 
@@ -30,11 +32,13 @@ class RoleController extends Controller
 
     public function show($id)
     {
+        /** @phpstan-return \Illuminate\View\View */
         return view('admin.roles.show', compact('id'));
     }
 
     public function edit($id)
     {
+        /** @phpstan-return \Illuminate\View\View */
         return view('admin.roles.edit', compact('id'));
     }
 

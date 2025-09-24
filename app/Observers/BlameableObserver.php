@@ -22,10 +22,16 @@ class BlameableObserver
 
     public function deleting($model): void
     {
+        if (! is_object($model)) {
+            return;
+        }
+
         if (method_exists($model, 'isForceDeleting') && ! $model->isForceDeleting()) {
             if (Auth::check()) {
                 $model->deleted_by = Auth::id();
-                $model->save();
+                if (method_exists($model, 'save')) {
+                    $model->save();
+                }
             }
         }
     }
