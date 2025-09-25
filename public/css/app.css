@@ -1,6 +1,6 @@
 /* =========================================================================
    ICTServe (iServe) v1.0 – Main CSS (Compiled Output)
-   MYDS + MyGovEA-compliant, minified for production.
+    Official government design system compliant, minified for production.
    ========================================================================= */
 
 html,
@@ -13,7 +13,7 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
-.myds-grid {
+ .gov-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 24px;
@@ -22,13 +22,13 @@ body {
     margin-right: auto;
 }
 @media (max-width: 1023px) {
-    .myds-grid {
+    .gov-grid {
         grid-template-columns: repeat(8, 1fr);
         gap: 24px;
     }
 }
 @media (max-width: 767px) {
-    .myds-grid {
+    .gov-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 18px;
         padding-left: 18px;
@@ -101,8 +101,8 @@ body {
 .otl-danger-300 {
     border-color: #fca5a5 !important;
 }
-:focus-visible,
-.focus\:ring-myds {
+ :focus-visible,
+.focus\:ring-gov {
     outline: 2px solid #96b7ff;
     outline-offset: 2px;
     box-shadow: 0 0 0 4px #96b7ff33;
@@ -194,24 +194,24 @@ input[aria-invalid='true']:focus,
 .input-error:focus {
     outline: 2px solid #fca5a5;
 }
-.table-myds {
+ .table-gov {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
     background: #fff;
 }
-.table-myds th,
-.table-myds td {
+ .table-gov th,
+ .table-gov td {
     border-bottom: 1px solid #e4e4e7;
     padding: 12px 16px;
     text-align: left;
 }
-.table-myds th {
+ .table-gov th {
     background: #fafafa;
     font-weight: 600;
     color: #18181b;
 }
-.table-myds tr:last-child td {
+ .table-gov tr:last-child td {
     border-bottom: none;
 }
 .pill,
@@ -269,7 +269,7 @@ input[aria-invalid='true']:focus,
     border-color: #2563eb;
     background: #eff6ff;
 }
-.myds-skip-link {
+ .gov-skip-link {
     position: absolute;
     left: 0;
     top: -40px;
@@ -282,7 +282,7 @@ input[aria-invalid='true']:focus,
     outline: none;
     box-shadow: 0 4px 16px #0002;
 }
-.myds-skip-link:focus {
+ .gov-skip-link:focus {
     top: 16px;
     box-shadow: 0 8px 24px #2563eb55;
 }
@@ -354,7 +354,7 @@ label,
     font-size: 0.875rem;
     font-weight: 500;
 }
-.icon-myds {
+ .icon-gov {
     display: inline-block;
     vertical-align: middle;
     width: 20px;
@@ -436,7 +436,7 @@ label,
     margin-left: 2px;
     font-weight: 700;
 }
-@keyframes myds-fade-in {
+@keyframes gov-fade-in {
     from {
         opacity: 0;
     }
@@ -444,10 +444,10 @@ label,
         opacity: 1;
     }
 }
-.fade-in {
-    animation: myds-fade-in 0.3s ease;
+ .fade-in {
+    animation: gov-fade-in 0.3s ease;
 }
-@keyframes myds-slide-up {
+@keyframes gov-slide-up {
     from {
         transform: translateY(12px);
         opacity: 0;
@@ -457,10 +457,10 @@ label,
         opacity: 1;
     }
 }
-.slide-up {
-    animation: myds-slide-up 0.4s cubic-bezier(0.4, 1.4, 0.2, 1);
+ .slide-up {
+    animation: gov-slide-up 0.4s cubic-bezier(0.4, 1.4, 0.2, 1);
 }
-.toast-myds {
+ .toast-gov {
     position: fixed;
     right: 24px;
     bottom: 24px;
@@ -476,9 +476,9 @@ label,
     display: flex;
     align-items: center;
     gap: 16px;
-    animation: myds-fade-in 0.3s;
+    animation: gov-fade-in 0.3s;
 }
-.toast-myds .toast-progress {
+ .toast-gov .toast-progress {
     position: absolute;
     left: 0;
     right: 0;
@@ -496,7 +496,7 @@ label,
         width: 0%;
     }
 }
-.tooltip-myds {
+ .tooltip-gov {
     position: absolute;
     padding: 8px 14px;
     background: #161619;
@@ -510,10 +510,10 @@ label,
     transition: opacity 0.18s;
     z-index: 4000;
 }
-.tooltip-myds.show {
+ .tooltip-gov.show {
     opacity: 1;
 }
-.myds-accordion .accordion-header {
+ .gov-accordion .accordion-header {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -521,36 +521,36 @@ label,
     border-bottom: 1px solid #f4f4f5;
     padding: 12px 0;
 }
-.myds-accordion .accordion-header:hover {
+ .gov-accordion .accordion-header:hover {
     text-decoration: underline;
 }
-.myds-accordion .accordion-body {
+ .gov-accordion .accordion-body {
     padding: 12px 0;
     opacity: 1;
     transition: opacity 0.2s;
 }
-.myds-accordion .accordion-body[aria-hidden='true'] {
+ .gov-accordion .accordion-body[aria-hidden='true'] {
     opacity: 0;
     height: 0;
     pointer-events: none;
 }
-.myds-summary-list dt {
+ .gov-summary-list dt {
     font-weight: 500;
     color: #18181b;
     margin-right: 16px;
     min-width: 140px;
     float: left;
 }
-.myds-summary-list dd {
+ .gov-summary-list dd {
     margin: 0 0 8px 0;
     color: #3f3f46;
 }
-.myds-summary-list:after {
+ .gov-summary-list:after {
     content: '';
     display: block;
     clear: both;
 }
-.btn-icon-myds {
+ .btn-icon-gov {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -561,8 +561,8 @@ label,
     cursor: pointer;
     border: none;
 }
-.btn-icon-myds:hover,
-.btn-icon-myds:focus {
+ .btn-icon-gov:hover,
+ .btn-icon-gov:focus {
     background: #f4f4f5;
 }
 /* =========================================================================

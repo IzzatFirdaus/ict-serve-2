@@ -46,7 +46,7 @@ Dokumen ini menerangkan aliran lengkap pengurusan aduan kerosakan ICT melalui mo
 - Panel pentadbir: Filament 4
 - Pangkalan data: MySQL 8.0+
 - Sistem pemberitahuan: Laravel Notifications
-- Sistem reka bentuk: Malaysia Government Design System (MYDS)
+- Sistem reka bentuk: Sistem Reka Bentuk Kerajaan Malaysia
 
 ### 2.2 Komponen teras
 
@@ -281,7 +281,7 @@ DamageReport
 
 ## 5. Piawaian pematuhan
 
-### 5.1 Pematuhan prinsip MyGOVEA
+### 5.1 Pematuhan prinsip reka bentuk kerajaan
 
 | Prinsip               | Pelaksanaan                                    | Status   |
 | --------------------- | ---------------------------------------------- | -------- |
@@ -290,24 +290,24 @@ DamageReport
 | Kandungan terancang   | Seksyen borang dan aliran kerja jelas          | ✅ Patuh |
 | Teknologi sesuai      | Tumpuan pada tumpuan teknologi moden (Laravel) | ✅ Patuh |
 | Antara muka minimalis | UI bersih, tidak berlebihan                    | ✅ Patuh |
-| Konsistensi           | Komponen MYDS digunakan secara konsisten       | ✅ Patuh |
+| Konsistensi           | Komponen reka bentuk digunakan secara konsisten | ✅ Patuh |
 | Paparan/menu jelas    | Breadcrumbs, penunjuk status                   | ✅ Patuh |
 | Realistik             | Berdasarkan keperluan BPM sebenar              | ✅ Patuh |
 | Beban kognitif rendah | Pendedahan maklumat berperingkat               | ✅ Patuh |
 | Fleksibel             | Seni bina modular, boleh dikembangkan          | ✅ Patuh |
 | Komunikasi            | Pemberitahuan pelbagai saluran                 | ✅ Patuh |
 | Hierarki              | Struktur kandungan yang jelas                  | ✅ Patuh |
-| Komponen UI/UX        | Komponen MYDS boleh guna semula                | ✅ Patuh |
-| Tipografi             | Piawaian tipografi MYDS                        | ✅ Patuh |
+| Komponen UI/UX        | Komponen boleh guna semula                      | ✅ Patuh |
+| Tipografi             | Piawaian tipografi rasmi                        | ✅ Patuh |
 | Tetapan lalai         | Tetapan selamat dan privasi dilindungi         | ✅ Patuh |
 | Kawalan pengguna      | Kawalan akses berasaskan peranan               | ✅ Patuh |
 | Pencegahan ralat      | Pengesahan input awal, pengesahan tindakan     | ✅ Patuh |
 | Dokumentasi           | Panduan dan tooltip komprehensif               | ✅ Patuh |
 
-### 5.2 Pelaksanaan MYDS
+### 5.2 Pelaksanaan reka bentuk kerajaan
 
-- Token warna: Semua elemen UI menggunakan token warna MYDS
-- Komponen: Borang, butang, amaran mengikuti spesifikasi MYDS
+- Token warna: Semua elemen UI menggunakan token warna rasmi
+- Komponen: Borang, butang, amaran mengikuti spesifikasi rasmi
 - Sistem grid: Susun atur responsif 12-8-4
 - Aksesibiliti: WCAG 2.1 AA dengan label ARIA
 - Tipografi: Poppins untuk tajuk, Inter untuk teks badan
@@ -391,8 +391,7 @@ php artisan test --coverage
 - Dokumentasi Laravel 12
 - Dokumentasi Livewire 3
 - Dokumentasi Filament 4
-- Laman rasmi MYDS
-- Prinsip MyGOVEA
+- Laman rasmi sistem reka bentuk kerajaan
 
 ### 7.2 Dokumentasi berkaitan
 
@@ -466,7 +465,7 @@ This document describes the comprehensive workflow for ICT damage complaint mana
 - Admin panel: Filament 4
 - Database: MySQL 8.0+
 - Notification system: Laravel Notifications
-- Design system: Malaysia Government Design System (MYDS)
+- Design system: Malaysia Government Design System
 
 ### 2.2 Core components
 
@@ -701,7 +700,7 @@ DamageReport
 
 ## 5. Compliance standards
 
-### 5.1 MyGOVEA principles compliance
+### 5.1 Compliance with government design principles
 
 | Principle              | Implementation                        | Status       |
 | ---------------------- | ------------------------------------- | ------------ |
@@ -710,24 +709,24 @@ DamageReport
 | Structured content     | Clear form sections and workflow      | ✅ Compliant |
 | Appropriate technology | Modern Laravel stack                  | ✅ Compliant |
 | Minimalist interface   | Clean, uncluttered UI                 | ✅ Compliant |
-| Consistency            | MYDS components throughout            | ✅ Compliant |
+| Consistency            | Consistent use of design components   | ✅ Compliant |
 | Clear navigation       | Breadcrumbs, status indicators        | ✅ Compliant |
 | Realistic              | Based on actual BPM requirements      | ✅ Compliant |
 | Cognitive load         | Progressive disclosure of information | ✅ Compliant |
 | Flexibility            | Modular, extensible architecture      | ✅ Compliant |
 | Communication          | Multi-channel notifications           | ✅ Compliant |
 | Hierarchy              | Clear organizational structure        | ✅ Compliant |
-| UI/UX components       | Reusable MYDS components              | ✅ Compliant |
-| Typography             | MYDS typography standards             | ✅ Compliant |
+| UI/UX components       | Reusable design components            | ✅ Compliant |
+| Typography             | Official typography standards         | ✅ Compliant |
 | Default settings       | Smart defaults for common fields      | ✅ Compliant |
 | User control           | Role-based access control             | ✅ Compliant |
 | Error prevention       | Input validation, confirmations       | ✅ Compliant |
 | Documentation          | Comprehensive guides and tooltips     | ✅ Compliant |
 
-### 5.2 MYDS implementation
+### 5.2 Government design implementation
 
-- Color tokens: All UI elements use MYDS color tokens
-- Components: Forms, buttons, alerts follow MYDS specifications
+- Color tokens: All UI elements use official color tokens
+- Components: Forms, buttons, alerts follow official specifications
 - Grid system: 12-8-4 responsive grid layout
 - Accessibility: WCAG 2.1 AA compliance with ARIA labels
 - Typography: Poppins for headings, Inter for body text
@@ -811,8 +810,7 @@ php artisan test --coverage
 - Laravel 12 documentation
 - Livewire 3 documentation
 - Filament 4 documentation
-- MYDS official site
-- MyGOVEA principles
+- Official government design system site
 
 ### 7.2 Related documentation
 

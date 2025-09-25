@@ -1,357 +1,392 @@
-Dokumentasi Lengkap ICTServe (iServe) v1.0 - Dokumen Dikemaskini
-📄 Dokumentasi_Reka_Bentuk_ICTServe(iServe).md
-Dokumentasi Reka Bentuk Sistem ICTServe (iServe) v1.0
-Maklumat Dokumen
-AtributNilaiVersi Dokumen2.0Tarikh Kemaskini25 September 2025StatusAktifKlasifikasiTeknikalPenulisPasukan Pembangunan ICTServe
-Kandungan
 
-Ringkasan Eksekutif
-Prinsip Reka Bentuk
-Seni Bina Sistem
-Reka Bentuk Antara Muka
-Reka Bentuk Pangkalan Data
-Reka Bentuk Keselamatan
-Reka Bentuk API
-Pematuhan Standard
-Panduan Implementasi
-Lampiran
+# Dokumentasi Reka Bentuk Sistem ICTServe (iServe)
 
-1. Ringkasan Eksekutif
-   1.1 Pengenalan
-   ICTServe (iServe) adalah sistem pengurusan perkhidmatan ICT komprehensif yang direka khusus untuk Kementerian Pelancongan, Seni dan Budaya Malaysia (MOTAC). Sistem ini mengintegrasikan pengurusan pinjaman peralatan ICT dan operasi helpdesk dalam satu platform yang selamat, cekap dan mesra pengguna.
-   1.2 Objektif Reka Bentuk
-   ObjektifPeneranganMetrik KejayaanKebolehgunaanAntara muka intuitif dan mudah digunakanSkor SUS > 80PrestasiSistem responsif dengan masa muat pantasMasa respons < 2sSkalabilitiMenyokong pertumbuhan pengguna500+ pengguna serentakKeselamatanPerlindungan data menyeluruhZero breachKebolehselenggaraanMudah dikemas kini dan diselenggara< 4 jam downtime/tahun
-   1.3 Skop Reka Bentuk
-   Dokumen ini merangkumi:
+| Versi Dokumen | Tarikh Kemaskini   | Status | Klasifikasi | Penulis                     |
+|--------------|--------------------|--------|-------------|-----------------------------|
+| 2.0          | 25 September 2025  | Aktif  | Teknikal    | Pasukan Pembangunan ICTServe |
 
-Prinsip dan garis panduan reka bentuk
-Seni bina sistem dan komponen
-Spesifikasi antara muka pengguna
-Struktur pangkalan data
-Protokol keselamatan
-Standard API dan integrasi
+## Kandungan
 
-2.  Prinsip Reka Bentuk
-    2.1 Prinsip MyGOVEA
-    ICTServe mematuhi 18 prinsip MyGOVEA untuk memastikan kualiti dan kebolehgunaan sistem:
-    mermaidmindmap
-    root((MyGOVEA))
-    Pengguna
-    Berpaksikan Rakyat
-    Kawalan Pengguna
-    Pencegahan Ralat
-    Data
-    Berpacukan Data
-    Kandungan Terancang
-    Struktur Hierarki
-    Teknologi
-    Teknologi Bersesuaian
-    Fleksibel
-    Seragam
-    Antara Muka
-    Minimalis dan Mudah
-    Paparan Jelas
-    Komponen UI/UX
-    Komunikasi
-    Komunikasi Berkesan
-    Panduan & Dokumentasi
-    Tipografi
-    2.2 Prinsip Reka Bentuk Teknikal
-    2.2.1 Domain-Driven Design (DDD)
-    php// Bounded Contexts
-    ├── Equipment Management Context
-    │ ├── Equipment Aggregate
-    │ ├── Loan Application Aggregate
-    │ └── Transaction Aggregate
-    │
-    ├── Helpdesk Context
-    │ ├── Ticket Aggregate
-    │ ├── Category Aggregate
-    │ └── Comment Aggregate
-    │
-    └── User Management Context
-    ├── User Aggregate
-    ├── Department Aggregate
-    └── Role Aggregate
-    2.2.2 SOLID Principles
-    PrinsipImplementasiSingle ResponsibilitySetiap kelas mempunyai satu tanggungjawab sahajaOpen/ClosedTerbuka untuk extension, tertutup untuk modificationLiskov SubstitutionSubclass boleh menggantikan parent classInterface SegregationInterface yang spesifik dan fokusDependency InversionBergantung pada abstraksi, bukan konkrit
-    2.3 Prinsip Kebolehcapaian (WCAG 2.1 AA)
-    AspekKeperluanImplementasiPerceivableMaklumat boleh dilihatKontras warna 4.5:1, teks alternatifOperableInterface boleh digunakanKeyboard navigation, skip linksUnderstandableMaklumat mudah difahamiLabel jelas, arahan konsistenRobustSerasi dengan teknologi bantuanARIA labels, semantic HTML
-3.  Seni Bina Sistem
-    3.1 Seni Bina Keseluruhan
-    mermaidC4Context
-    title Konteks Sistem ICTServe
+- [Ringkasan Eksekutif](#ringkasan-eksekutif)
+- [Prinsip Reka Bentuk](#prinsip-reka-bentuk)
+- [Reka Bentuk Antara Muka](#reka-bentuk-antara-muka)
+- [Reka Bentuk Pangkalan Data](#reka-bentuk-pangkalan-data)
+- [Pematuhan Standard](#pematuhan-standard)
+- [Panduan Implementasi](#panduan-implementasi)
+- [Lampiran](#lampiran)
 
-        Person(user, "Pengguna MOTAC", "Staf yang menggunakan sistem")
-        Person(admin, "Pentadbir", "Menguruskan sistem")
+## Ringkasan Eksekutif
 
-        System_Boundary(ictserve, "ICTServe") {
-            System(web, "Web Application", "Laravel 12 + Livewire 3")
-            System(api, "REST API", "API untuk integrasi")
-            SystemDb(db, "Database", "MySQL 8.0")
-            System(cache, "Cache", "Redis")
+### Pengenalan
+
+ICTServe (iServe) ialah sistem pengurusan perkhidmatan ICT yang komprehensif, dibangunkan khusus untuk Kementerian Pelancongan, Seni dan Budaya Malaysia (MOTAC). Sistem ini mengintegrasikan pengurusan pinjaman aset ICT dan operasi helpdesk dalam satu platform yang selamat, cekap, serta mesra pengguna.
+
+### Objektif Reka Bentuk
+
+| Objektif             | Penerangan                                         | Metrik Kejayaan                |
+|----------------------|----------------------------------------------------|-------------------------------|
+| Kebolehgunaan        | Antara muka intuitif dan mudah digunakan           | Skor SUS > 80                 |
+| Prestasi             | Sistem responsif dengan masa pemuatan pantas       | Masa respons < 2s             |
+| Skalabiliti          | Menyokong pertumbuhan pengguna                     | 500+ pengguna serentak        |
+| Keselamatan          | Perlindungan data menyeluruh                       | Tiada pelanggaran data        |
+| Kebolehselenggaraan  | Mudah dikemas kini dan disenggara                  | < 4 jam masa henti/tahun      |
+
+### Skop Reka Bentuk
+
+Dokumen ini merangkumi:
+
+- Prinsip dan garis panduan reka bentuk
+- Seni bina sistem dan komponen
+- Spesifikasi antara muka pengguna
+- Struktur pangkalan data
+- Protokol keselamatan
+- Standard API dan integrasi
+
+## Prinsip Reka Bentuk
+
+### Prinsip Reka Bentuk Kerajaan
+
+ICTServe mematuhi prinsip reka bentuk kerajaan Malaysia untuk memastikan kualiti dan kebolehgunaan sistem:
+
+```mermaid
+mindmap
+    root((Reka Bentuk Kerajaan))
+        Pengguna
+            Berpaksikan Rakyat
+            Kawalan Pengguna
+            Pencegahan Ralat
+        Data
+            Berpacukan Data
+            Kandungan Terancang
+            Struktur Hierarki
+        Teknologi
+            Teknologi Bersesuaian
+            Fleksibel
+            Seragam
+        Antara Muka
+            Minimalis dan Mudah
+            Paparan Jelas
+            Komponen UI/UX
+        Komunikasi
+            Komunikasi Berkesan
+            Panduan & Dokumentasi
+            Tipografi
+```
+
+### Prinsip Reka Bentuk Teknikal
+
+// Batasan Konteks (Bounded Contexts)
+├── Konteks Pengurusan Peralatan
+│   ├── Agregat Tiket
+        └── Agregat Peranan
+| Tanggungjawab Tunggal | Setiap kelas mempunyai satu tanggungjawab sahaja |
         }
-
-        System_Ext(email, "Email System", "SMTP Server")
+        System_Ext(email, "Sistem E-mel", "Pelayan SMTP")
         System_Ext(hrmis, "HRMIS", "Sistem HR")
-
-        Rel(user, web, "Menggunakan")
-        Rel(admin, web, "Menguruskan")
-        Rel(web, api, "Menggunakan")
-        Rel(api, db, "Baca/Tulis")
         Rel(api, cache, "Cache data")
         Rel(web, email, "Hantar notifikasi")
-        Rel(api, hrmis, "Sync data staf")
+        Rel(api, hrmis, "Penyelarasan data staf")
 
-    3.2 Seni Bina Lapisan
-    yamlPresentation Layer:
-    Components: - Blade Templates - Livewire Components - Alpine.js
-    Responsibilities: - User interface rendering - User interaction handling - Form validation
+## Reka Bentuk Antara Muka
 
-Application Layer:
-Components: - Controllers - Services - Form Requests
-Responsibilities: - Business logic orchestration - Request validation - Response formatting
+### Sistem Grid Responsif
 
-Domain Layer:
-Components: - Models - Repositories - Value Objects
-Responsibilities: - Business rules - Domain logic - Entity relationships
-
-Infrastructure Layer:
-Components: - Database - Cache - File Storage
-Responsibilities: - Data persistence - External integrations - System services
-3.3 Corak Reka Bentuk (Design Patterns)
-CorakPenggunaanContohRepository PatternData access abstractionEquipmentRepositoryService PatternBusiness logic encapsulationLoanApplicationServiceObserver PatternEvent handlingModel observersFactory PatternObject creationNotificationFactoryStrategy PatternAlgorithm selectionPayment processors 4. Reka Bentuk Antara Muka
-4.1 Sistem Grid Responsif
-css/_Grid System: 12-8-4_/
+```css
+/* Sistem Grid: 12-8-4 */
 .container {
-display: grid;
-gap: 1rem;
+    display: grid;
+    gap: 1rem;
 }
 
-/_Desktop: 12 columns_/
+/* Desktop: 12 lajur */
 @media (min-width: 1024px) {
-.container {
-grid-template-columns: repeat(12, 1fr);
-}
+    .container {
+        grid-template-columns: repeat(12, 1fr);
+    }
 }
 
-/_Tablet: 8 columns_/
+/* Tablet: 8 lajur */
 @media (min-width: 768px) and (max-width: 1023px) {
-.container {
-grid-template-columns: repeat(8, 1fr);
-}
+    .container {
+        grid-template-columns: repeat(8, 1fr);
+    }
 }
 
-/_Mobile: 4 columns_/
+/* Mudah Alih: 4 lajur */
 @media (max-width: 767px) {
-.container {
-grid-template-columns: repeat(4, 1fr);
+    .container {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
-}
-4.2 Sistem Warna (MYDS)
-scss// Primary Colors
+```
+
+### Sistem Warna Rasmi
+
+```scss
+// Warna Utama
 $primary-50: #EFF6FF;
 $primary-100: #DBEAFE;
 $primary-500: #3B82F6;
 $primary-600: #2563EB;
 $primary-700: #1D4ED8;
 
-// Secondary Colors
+// Warna Sekunder
 $secondary-50: #F8FAFC;
 $secondary-500: #64748B;
 $secondary-900: #0F172A;
 
-// Semantic Colors
+// Warna Semantik
 $success: #10B981;
 $warning: #F59E0B;
 $danger: #EF4444;
 $info: #06B6D4;
 
-// Neutral Colors
+// Warna Neutral
 $gray-50: #F9FAFB;
 $gray-500: #6B7280;
 $gray-900: #111827;
-4.3 Tipografi
-css/_Heading Font Stack_/
+```
+
+### Tipografi
+
+```css
+/* Fon Tajuk */
 .heading {
-font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-font-weight: 600;
-line-height: 1.2;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
 }
 
-/_Body Font Stack_/
+/* Fon Isi */
 .body {
-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-font-weight: 400;
-line-height: 1.6;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
 }
 
-/_Font Sizes (rem) _/
-.text-xs { font-size: 0.75rem; } /_ 12px _/
-.text-sm { font-size: 0.875rem; } /_ 14px _/
-.text-base { font-size: 1rem; } /_ 16px _/
-.text-lg { font-size: 1.125rem; } /_ 18px _/
-.text-xl { font-size: 1.25rem; } /_ 20px _/
-.text-2xl { font-size: 1.5rem; } /_ 24px _/
-.text-3xl { font-size: 1.875rem; } /_ 30px_/
-4.4 Komponen UI
-4.4.1 Button Component
-blade{{-- resources/views/components/button.blade.php --}}
+/* Saiz Fon (rem) */
+.text-xs { font-size: 0.75rem; } /* 12px */
+.text-sm { font-size: 0.875rem; } /* 14px */
+.text-base { font-size: 1rem; } /* 16px */
+.text-lg { font-size: 1.125rem; } /* 18px */
+.text-xl { font-size: 1.25rem; } /* 20px */
+.text-2xl { font-size: 1.5rem; } /* 24px */
+.text-3xl { font-size: 1.875rem; } /* 30px */
+```
+
+### Komponen UI
+
+#### Komponen Butang
+
+```blade
+{{-- resources/views/components/button.blade.php --}}
 @props([
-'type' => 'primary',
-'size' => 'medium',
-'disabled' => false,
-'loading' => false,
+        'type' => 'primary',
+        'size' => 'medium',
+        'disabled' => false,
+        'loading' => false,
 ])
 
 @php
 $classes = [
-'primary' => 'bg-primary-600 hover:bg-primary-700 text-white',
-'secondary' => 'bg-gray-200 hover:bg-gray-300 text-gray-800',
-'danger' => 'bg-danger hover:bg-red-600 text-white',
+        'primary' => 'bg-primary-600 hover:bg-primary-700 text-white',
+        'secondary' => 'bg-gray-200 hover:bg-gray-300 text-gray-800',
+        'danger' => 'bg-danger hover:bg-red-600 text-white',
 ];
 
 $sizes = [
-'small' => 'px-3 py-1.5 text-sm',
-'medium' => 'px-4 py-2 text-base',
-'large' => 'px-6 py-3 text-lg',
+        'small' => 'px-3 py-1.5 text-sm',
+        'medium' => 'px-4 py-2 text-base',
+        'large' => 'px-6 py-3 text-lg',
 ];
 @endphp
 
 <button
-{{ $attributes->merge([
-        'type' => 'button',
-        'class' => 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ' . $classes[$type] . ' ' . $sizes[$size]
-    ]) }}
-{{ $disabled || $loading ? 'disabled' : '' }}
-
+        {{ $attributes->merge([
+                'type' => 'button',
+                'class' => 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed ' . $classes[$type] . ' ' . $sizes[$size]
+        ]) }}
+        {{ $disabled || $loading ? 'disabled' : '' }}
 >
-
-    @if($loading)
-        <svg class="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-    @endif
-    {{ $slot }}
-
+        @if($loading)
+                <svg class="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+        @endif
+        {{ $slot }}
 </button>
-4.4.2 Form Input Component
-blade{{-- resources/views/components/form/input.blade.php --}}
+```
+
+#### Komponen Input Borang
+
+```blade
+{{-- resources/views/components/form/input.blade.php --}}
 @props([
-    'label' => '',
-    'name' => '',
-    'type' => 'text',
-    'required' => false,
-    'error' => null,
+        'label' => '',
+        'name' => '',
+        'type' => 'text',
+        'required' => false,
+        'error' => null,
 ])
 
 <div class="form-group">
-    @if($label)
-        <label for="{{ $name }}" class="block text-sm font-medium text-gray-700 mb-1">
-            {{ $label }}
-            @if($required)
-                <span class="text-danger">*</span>
-            @endif
-        </label>
-    @endif
+        @if($label)
+                <label for="{{ $name }}" class="block text-sm font-medium text-gray-700 mb-1">
+                        {{ $label }}
+                        @if($required)
+                                <span class="text-danger">*</span>
+                        @endif
+                </label>
+        @endif
 
-    <input
-        type="{{ $type }}"
-        name="{{ $name }}"
-        id="{{ $name }}"
-        {{ $attributes->merge(['class' => 'block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm' . ($error ? ' border-danger' : '')]) }}
-        {{ $required ? 'required' : '' }}
-    />
+        <input
+                type="{{ $type }}"
+                name="{{ $name }}"
+                id="{{ $name }}"
+                {{ $attributes->merge(['class' => 'block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm' . ($error ? ' border-danger' : '')]) }}
+                {{ $required ? 'required' : '' }}
+        />
 
-    @if($error)
-        <p class="mt-1 text-sm text-danger">{{ $error }}</p>
-    @endif
-
+        @if($error)
+                <p class="mt-1 text-sm text-danger">{{ $error }}</p>
+        @endif
 </div>
-5. Reka Bentuk Pangkalan Data
-5.1 Prinsip Reka Bentuk Database
-PrinsipPeneranganImplementasiNormalizationMengurangkan redundansi data3NF untuk kebanyakan jadualIndexingMeningkatkan prestasi queryIndex pada foreign keys dan search fieldsSoft DeletesMengekalkan data historydeleted_at timestampAudit TrailTracking perubahan datacreated_by, updated_by fieldsUUID SupportUnique identifiersUUID untuk API references
-5.2 Struktur Jadual Utama
-5.2.1 Users Table
-sqlCREATE TABLE users (
+```
+
+## Reka Bentuk Pangkalan Data
+
+### Prinsip Reka Bentuk Pangkalan Data
+
+| Prinsip             | Penerangan                              | Implementasi                                 |
+|---------------------|-----------------------------------------|----------------------------------------------|
+| Penormalan          | Mengurangkan redundansi data            | 3NF untuk kebanyakan jadual                  |
+| Pengindeksan        | Meningkatkan prestasi pertanyaan        | Indeks pada foreign key dan medan carian     |
+| Soft Delete         | Mengekalkan sejarah data                | Medan deleted_at (timestamp)                 |
+| Audit Trail         | Jejak perubahan data                    | Medan created_by, updated_by                 |
+| Sokongan UUID       | Pengecam unik                           | UUID untuk rujukan API                       |
+
+### Struktur Jadual Utama
+
+#### Jadual Pengguna (Users)
+
+```sql
+CREATE TABLE users (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     uuid CHAR(36) UNIQUE NOT NULL,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     identification_number VARCHAR(20) UNIQUE,
-    department_id BIGINT UNSIGNED,
-    position_id BIGINT UNSIGNED,
-    grade_id BIGINT UNSIGNED,
-    status ENUM('active', 'inactive', 'suspended') DEFAULT 'active',
-    created_by BIGINT UNSIGNED,
-    updated_by BIGINT UNSIGNED,
-    deleted_by BIGINT UNSIGNED,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deleted_at TIMESTAMP NULL,
 
-    INDEX idx_users_email (email),
-    INDEX idx_users_department (department_id),
-    INDEX idx_users_status (status),
+    ## Reka Bentuk API
 
-    FOREIGN KEY (department_id) REFERENCES departments(id),
-    FOREIGN KEY (position_id) REFERENCES positions(id),
-    FOREIGN KEY (grade_id) REFERENCES grades(id)
+    ### RESTful API Design
 
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-5.3 Relationship Diagram
-mermaiderDiagram
-USERS ||--o{ LOAN_APPLICATIONS : creates
-USERS ||--o{ HELPDESK_TICKETS : submits
-DEPARTMENTS ||--o{ USERS : has
-GRADES ||--o{ USERS : assigned
-POSITIONS ||--o{ USERS : holds
+    ```yaml
+    API Structure:
+        Version: /api/v1
+        Format: JSON
+        Authentication: Bearer Token (Sanctum)
 
-    LOAN_APPLICATIONS ||--|{ LOAN_APPLICATION_ITEMS : contains
-    LOAN_APPLICATIONS ||--o{ LOAN_TRANSACTIONS : generates
-    LOAN_APPLICATIONS ||--o{ APPROVALS : requires
+    Endpoints:
+        Equipment:
+            GET /equipment           # List equipment
+            GET /equipment/{id}      # Get equipment details
+            POST /equipment          # Create equipment
+            PUT /equipment/{id}      # Update equipment
+            DELETE /equipment/{id}   # Delete equipment
+        Loans:
+            GET    /loans                  # List loans
+            GET    /loans/{id}             # Get loan details
+            POST   /loans                  # Create loan application
+            PUT    /loans/{id}/approve     # Approve loan
+            PUT    /loans/{id}/reject      # Reject loan
+            POST   /loans/{id}/issue       # Issue equipment
+            POST   /loans/{id}/return      # Return equipment
+    ```
 
-    EQUIPMENT ||--o{ LOAN_TRANSACTION_ITEMS : tracked_in
-    EQUIPMENT_CATEGORIES ||--o{ EQUIPMENT : categorizes
+    ### API Response Format
 
-    HELPDESK_TICKETS ||--o{ HELPDESK_COMMENTS : has
-    HELPDESK_CATEGORIES ||--o{ HELPDESK_TICKETS : categorizes
+    ```json
+    {
+        "success": true,
+        "data": {
+            "id": 1,
+            "type": "loan_application",
+            "attributes": {
+                "application_number": "LA-2025-09-0001",
+                "status": "approved",
+                "created_at": "2025-09-25T10:00:00Z"
+            },
+            "relationships": {
+                "user": {
+                    "id": 123,
+                    "name": "Ahmad Ali"
+                },
+                "equipment": [
+                    {
+                        "id": 456,
+                        "name": "Dell Laptop",
+                        "quantity": 1
+                    }
+                ]
+            }
+        },
+        "meta": {
+            "timestamp": "2025-09-25T10:30:00Z",
+            "version": "1.0"
+        }
+    }
+    ```
 
-    NOTIFICATIONS }o--|| USERS : sent_to
+    ### Error Handling
 
-6. Reka Bentuk Keselamatan
-   6.1 Lapisan Keselamatan
-   yamlApplication Security:
-   Authentication: - Laravel Fortify - 2FA support - Session management
-
-Authorization: - Role-based access control (RBAC) - Permission-based policies - Resource-level permissions
-
-Data Protection: - Encryption at rest (AES-256) - Encryption in transit (TLS 1.3) - Database field encryption
-
-Input Validation: - Server-side validation - CSRF protection - XSS prevention - SQL injection prevention
-6.2 Security Headers
-php// config/secure-headers.php
+    ```json
+    {
+        "success": false,
+        "error": {
+            "code": "VALIDATION_ERROR",
+            "message": "The given data was invalid.",
+            "details": {
+                "email": [
+                    "The email field is required."
+                ],
+                "loan_date": [
+                    "The loan date must be a future date."
+                ]
+            }
+        },
+        "meta": {
+            "timestamp": "2025-09-25T10:30:00Z",
+            "request_id": "req_abc123"
+        }
+    }
+    ```
+// config/secure-headers.php
 return [
-'X-Frame-Options' => 'SAMEORIGIN',
-'X-Content-Type-Options' => 'nosniff',
-'X-XSS-Protection' => '1; mode=block',
-'Strict-Transport-Security' => 'max-age=31536000; includeSubDomains',
-'Content-Security-Policy' => "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;",
-'Referrer-Policy' => 'strict-origin-when-cross-origin',
-'Permissions-Policy' => 'camera=(), microphone=(), geolocation=()',
+    'X-Frame-Options' => 'SAMEORIGIN',
+    'X-Content-Type-Options' => 'nosniff',
+    'X-XSS-Protection' => '1; mode=block',
+    'Strict-Transport-Security' => 'max-age=31536000; includeSubDomains',
+    'Content-Security-Policy' => "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;",
+    'Referrer-Policy' => 'strict-origin-when-cross-origin',
+    'Permissions-Policy' => 'camera=(), microphone=(), geolocation=()',
 ];
-6.3 Audit Logging
-php// app/Traits/Auditable.php
+```
+
+### Audit Logging
+
+```php
+// app/Traits/Auditable.php
 trait Auditable
 {
-public static function bootAuditable()
-{
-static::creating(function ($model) {
-if (auth()->check()) {
-$model->created_by = auth()->id();
-}
-});
+    public static function bootAuditable()
+    {
+        static::creating(function ($model) {
+            if (auth()->check()) {
+                $model->created_by = auth()->id();
+            }
+        });
 
         static::updating(function ($model) {
             if (auth()->check()) {
@@ -366,159 +401,154 @@ $model->created_by = auth()->id();
             }
         });
     }
+}
+```
 
-} 7. Reka Bentuk API
-7.1 RESTful API Design
-yamlAPI Structure:
-Version: /api/v1
-Format: JSON
-Authentication: Bearer Token (Sanctum)
+## Pematuhan Standard
 
-Endpoints:
-Equipment:
-GET /equipment # List equipment
-GET /equipment/{id} # Get equipment details
-POST /equipment # Create equipment
-PUT /equipment/{id} # Update equipment
-DELETE /equipment/{id} # Delete equipment
+### Senarai Semak Pematuhan Kerajaan
 
-    Loans:
-      GET    /loans                  # List loans
-      GET    /loans/{id}             # Get loan details
-      POST   /loans                  # Create loan application
-      PUT    /loans/{id}/approve     # Approve loan
-      PUT    /loans/{id}/reject      # Reject loan
-      POST   /loans/{id}/issue       # Issue equipment
-      POST   /loans/{id}/return      # Return equipment
+| Prinsip                | Status | Implementasi                                 |
+|------------------------|--------|----------------------------------------------|
+| Berpaksikan Rakyat     | ✅     | Reka bentuk berpusatkan pengguna, ujian kebolehgunaan |
+| Berpacukan Data        | ✅     | Model data komprehensif, analitik            |
+| Kandungan Terancang    | ✅     | Kandungan terstruktur, hierarki jelas        |
+| Teknologi Bersesuaian  | ✅     | Teknologi moden, seni bina boleh skala       |
+| Antara Muka Minimalis  | ✅     | Antara muka ringkas, fungsi terfokus         |
+| Seragam                | ✅     | Corak reka bentuk konsisten                  |
+| Paparan Jelas          | ✅     | Navigasi jelas, breadcrumbs                  |
+| Realistik              | ✅     | Berdasarkan aliran kerja sebenar             |
+| Kognitif               | ✅     | Beban kognitif dikurangkan                   |
+| Fleksibel              | ✅     | Seni bina modular                            |
+| Komunikasi             | ✅     | Notifikasi pelbagai saluran                  |
+| Struktur Hierarki      | ✅     | Struktur organisasi jelas                    |
+| Komponen UI/UX         | ✅     | Komponen boleh guna semula                   |
+| Tipografi              | ✅     | Piawaian tipografi rasmi kerajaan            |
+| Tetapan Lalai          | ✅     | Tetapan lalai pintar                         |
+| Kawalan Pengguna       | ✅     | Keutamaan pengguna, RBAC                     |
+| Pencegahan Ralat       | ✅     | Pengesahan, pengesahan semula                |
+| Panduan & Dokumentasi  | ✅     | Dokumentasi komprehensif                     |
 
-7.2 API Response Format
-json{
-"success": true,
-"data": {
-"id": 1,
-"type": "loan_application",
-"attributes": {
-"application_number": "LA-2025-09-0001",
-"status": "approved",
-"created_at": "2025-09-25T10:00:00Z"
-},
-"relationships": {
-"user": {
-"id": 123,
-"name": "Ahmad Ali"
-},
-"equipment": [
-{
-"id": 456,
-"name": "Dell Laptop",
-"quantity": 1
-}
-]
-}
-},
-"meta": {
-"timestamp": "2025-09-25T10:30:00Z",
-"version": "1.0"
-}
-}
-7.3 Error Handling
-json{
-"success": false,
-"error": {
-"code": "VALIDATION_ERROR",
-"message": "The given data was invalid.",
-"details": {
-"email": [
-"The email field is required."
-],
-"loan_date": [
-"The loan date must be a future date."
-]
-}
-},
-"meta": {
-"timestamp": "2025-09-25T10:30:00Z",
-"request_id": "req_abc123"
-}
-} 8. Pematuhan Standard
-8.1 MyGOVEA Compliance Checklist
-PrinsipStatusImplementasiBerpaksikan Rakyat✅User-centered design, usability testingBerpacukan Data✅Comprehensive data model, analyticsKandungan Terancang✅Structured content, clear hierarchyTeknologi Bersesuaian✅Modern tech stack, scalable architectureAntara Muka Minimalis✅Clean UI, focused functionalitySeragam✅Consistent design patternsPaparan Jelas✅Clear navigation, breadcrumbsRealistik✅Based on actual workflowsKognitif✅Reduced cognitive loadFleksibel✅Modular architectureKomunikasi✅Multi-channel notificationsStruktur Hierarki✅Clear organizational structureKomponen UI/UX✅Reusable componentsTipografi✅MYDS typography standardsTetapan Lalai✅Smart defaultsKawalan Pengguna✅User preferences, RBACPencegahan Ralat✅Validation, confirmationsPanduan & Dokumentasi✅Comprehensive documentation
-8.2 WCAG 2.1 AA Compliance
-KriteriaStatusNota1.1.1 Non-text Content✅Alt text untuk semua imej1.4.3 Contrast (Minimum)✅Ratio 4.5:1 untuk teks normal2.1.1 Keyboard✅Semua fungsi boleh diakses dengan keyboard2.4.7 Focus Visible✅Focus indicator jelas3.3.2 Labels or Instructions✅Label jelas untuk semua input 9. Panduan Implementasi
-9.1 Development Setup
-bash# Prerequisites
+### Pematuhan WCAG 2.1 AA
+
+| Kriteria                  | Status | Nota                                 |
+|--------------------------|--------|--------------------------------------|
+| 1.1.1 Kandungan Bukan Teks| ✅     | Teks alternatif untuk semua imej     |
+| 1.4.3 Kontras (Minimum)   | ✅     | Nisbah 4.5:1 untuk teks biasa        |
+| 2.1.1 Papan Kekunci       | ✅     | Semua fungsi boleh diakses dengan papan kekunci |
+| 2.4.7 Fokus Kelihatan     | ✅     | Penunjuk fokus yang jelas            |
+| 3.3.2 Label/Arahan        | ✅     | Label jelas untuk semua input        |
+
+## Panduan Implementasi
+
+### Persediaan Pembangunan
+
+```bash
+# Prasyarat
 
 - PHP >= 8.2
 - Composer >= 2.0
 - Node.js >= 18.0
 - MySQL >= 8.0
 - Redis >= 7.0
+```
 
-# Installation Steps
+### Langkah Pemasangan
 
-1. Clone repository
-   git clone <https://github.com/motac/ictserve.git>
-   cd ictserve
+```bash
+# 1. Klon repositori
+git clone https://github.com/motac/ictserve.git
+cd ictserve
 
-2. Install dependencies
-   composer install
-   npm install
+# 2. Pasang kebergantungan
+composer install
+npm install
 
-3. Environment setup
-   cp .env.example .env
-   php artisan key:generate
+# 3. Persediaan persekitaran
+cp .env.example .env
+php artisan key:generate
 
-4. Database setup
-   php artisan migrate --seed
+# 4. Persediaan pangkalan data
+php artisan migrate --seed
 
-5. Build assets
-   npm run build
+# 5. Bina aset
+npm run build
 
-6. Start development server
-   php artisan serve
-   npm run dev
-   9.2 Deployment Checklist
-   yamlPre-Deployment:
+# 6. Mulakan pelayan pembangunan
+php artisan serve
+npm run dev
+```
 
-- [ ] Run tests: php artisan test
-- [ ] Check code quality: php artisan insights
-- [ ] Build assets: npm run build
-- [ ] Clear caches: php artisan optimize:clear
+### Senarai Semak Pengeluaran
 
-Deployment:
+- [ ] Jalankan ujian: php artisan test
+- [ ] Semak kualiti kod: php artisan insights
+- [ ] Bina aset: npm run build
+- [ ] Kosongkan cache: php artisan optimize:clear
 
-- [ ] Enable maintenance mode: php artisan down
-- [ ] Pull latest code: git pull origin main
-- [ ] Install dependencies: composer install --no-dev
-- [ ] Run migrations: php artisan migrate --force
-- [ ] Clear and cache configs: php artisan optimize
-- [ ] Restart services: supervisorctl restart all
+### Pengeluaran
 
-Post-Deployment:
+- [ ] Aktifkan mod penyelenggaraan: php artisan down
+- [ ] Tarik kod terkini: git pull origin main
+- [ ] Pasang kebergantungan: composer install --no-dev
+- [ ] Jalankan migrasi: php artisan migrate --force
+- [ ] Kosong & cache konfigurasi: php artisan optimize
+- [ ] Mulakan semula servis: supervisorctl restart all
 
-- [ ] Disable maintenance mode: php artisan up
-- [ ] Verify application: health checks
-- [ ] Monitor logs: tail -f storage/logs/laravel.log
-      9.3 Testing Strategy
-      Jenis TestToolCoverage TargetUnit TestsPHPUnit> 80%Feature TestsPHPUnit> 70%Browser TestsLaravel DuskCritical pathsAPI TestsPostman/PHPUnitAll endpointsPerformance TestsApache Bench< 2s responseSecurity TestsOWASP ZAPZero vulnerabilities
+### Selepas Pengeluaran
 
-10. Lampiran
-    A. Glosari Teknikal
-    IstilahDefinisiAPIApplication Programming InterfaceCRUDCreate, Read, Update, DeleteDDDDomain-Driven DesignMVCModel-View-ControllerRBACRole-Based Access ControlRESTRepresentational State TransferSOLIDSingle responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversionUUIDUniversally Unique IdentifierWCAGWeb Content Accessibility Guidelines
-    B. Rujukan
+- [ ] Nyahaktif mod penyelenggaraan: php artisan up
+- [ ] Sahkan aplikasi: semakan kesihatan
+- [ ] Pantau log: tail -f storage/logs/laravel.log
 
-Laravel Documentation
-Livewire Documentation
-Filament Documentation
-MYDS Guidelines
-MyGOVEA Framework
-WCAG 2.1 Guidelines
+### Strategi Ujian
 
-C. Changelog
-VersiTarikhPerubahanPenulis2.025/09/2025Major update dengan compliance penuhPasukan ICTServe1.515/08/2025Tambah security featuresSecurity Team1.012/06/2025Initial releaseDevelopment Team
-D. Hubungi
+| Jenis Ujian      | Alat         | Sasaran Liputan |
+|------------------|--------------|-----------------|
+| Ujian Unit       | PHPUnit      | > 80%           |
+| Ujian Ciri       | PHPUnit      | > 70%           |
+| Ujian Pelayar    | Laravel Dusk | Laluan kritikal |
+| Ujian API        | Postman/PHPUnit | Semua endpoint |
+| Prestasi         | Apache Bench | < 2s respons    |
+| Keselamatan      | OWASP ZAP    | Tiada kerentanan|
+
+## Lampiran
+
+### A. Glosari Teknikal
+
+| Istilah | Definisi |
+|---------|----------|
+| API     | Antara Muka Pengaturcaraan Aplikasi |
+| CRUD    | Cipta, Baca, Kemaskini, Padam |
+| DDD     | Reka Bentuk Berpaksikan Domain |
+| MVC     | Model-Paparan-Pengawal |
+| RBAC    | Kawalan Akses Berasaskan Peranan |
+| REST    | Pemindahan Keadaan Representasi |
+| SOLID   | Tanggungjawab tunggal, Terbuka-tertutup, Penggantian Liskov, Pengasingan Antara Muka, Pembalikan Kebergantungan |
+| UUID    | Pengecam Unik Sejagat |
+| WCAG    | Garis Panduan Kebolehcapaian Kandungan Web |
+
+### B. Rujukan
+
+Dokumentasi Laravel
+Dokumentasi Livewire
+Dokumentasi Filament
+Garis Panduan Reka Bentuk Kerajaan
+Kerangka Reka Bentuk Kerajaan
+Garis Panduan WCAG 2.1
+
+### C. Log Perubahan
+
+| Versi | Tarikh      | Perubahan                        | Penulis            |
+|-------|-------------|----------------------------------|--------------------|
+| 2.0   | 25/09/2025  | Kemas kini utama, patuh sepenuhnya| Pasukan ICTServe   |
+| 1.5   | 15/08/2025  | Tambah ciri keselamatan          | Pasukan Keselamatan|
+| 1.0   | 12/06/2025  | Keluaran awal                    | Pasukan Pembangunan|
+
+### D. Hubungi
+
 Pasukan Pembangunan ICTServe
 
-Email: <ictserve@motac.gov.my>
+E-mel: <ictserve@motac.gov.my>
 Portal: <https://ictserve.motac.gov.my/support>
 Telefon: 03-8000 8000
