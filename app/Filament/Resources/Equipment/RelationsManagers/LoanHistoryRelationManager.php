@@ -9,6 +9,7 @@ use Filament\Tables\Table;
 class LoanHistoryRelationManager extends RelationManager
 {
     protected static string $relationship = 'loanTransactionItems';
+
     protected static ?string $title = 'Loan History';
 
     public function table(Table $table): Table

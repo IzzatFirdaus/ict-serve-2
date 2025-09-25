@@ -62,7 +62,7 @@ class User extends Authenticatable implements AuditableContract, FilamentUser
         'password',
         'remember_token',
         'two_factor_secret',
-        'two_factor_recovery_codes'
+        'two_factor_recovery_codes',
     ];
 
     protected $casts = [
@@ -74,8 +74,8 @@ class User extends Authenticatable implements AuditableContract, FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-    // TODO: Replace hardcoded domain with a configurable setting from config or database.
-    return $this->status === UserStatus::AKTIF && str_ends_with($this->email, '@motac.gov.my');
+        // TODO: Replace hardcoded domain with a configurable setting from config or database.
+        return $this->status === UserStatus::AKTIF && str_ends_with($this->email, '@motac.gov.my');
     }
 
     public function position(): BelongsTo
@@ -110,6 +110,6 @@ class User extends Authenticatable implements AuditableContract, FilamentUser
 
     public function scopeActive($query)
     {
-    return $query->where('status', UserStatus::AKTIF);
+        return $query->where('status', UserStatus::AKTIF);
     }
 }

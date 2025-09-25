@@ -34,6 +34,7 @@ class Notification extends Model implements AuditableContract
     use AuditableTrait, Blameable, HasFactory, SoftDeletes;
 
     protected $keyType = 'string';
+
     public $incrementing = false;
 
     protected $fillable = [

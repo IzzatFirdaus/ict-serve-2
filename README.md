@@ -1,10 +1,10 @@
 # README.md
 
-## ICTServe (iServe) – MYDS-Compliant ICT Service Management
+## ICTServe (iServe) – ICT Service Management
 
-ICTServe (iServe) adalah aplikasi Laravel 12 untuk mengurus perkhidmatan ICT di MOTAC, termasuk modul Pinjaman Peralatan dan Helpdesk Aduan Kerosakan. Projek ini dibina dengan fokus kepada pengalaman mesra pengguna, aksesibiliti yang ketat, dan pematuhan kepada [Sistem Reka Bentuk Kerajaan Malaysia (MYDS)](https://design.digital.gov.my/) dan [Prinsip MyGovEA](https://mygovea.jdn.gov.my/page-prinsip-reka-bentuk/).
+ICTServe (iServe) adalah aplikasi Laravel 12 untuk mengurus perkhidmatan ICT di MOTAC, termasuk modul Pinjaman Peralatan dan Helpdesk Aduan Kerosakan. Projek ini dibina dengan fokus kepada pengalaman mesra pengguna, aksesibiliti yang ketat, dan pematuhan kepada piawaian kerajaan Malaysia untuk reka bentuk digital dan prinsip sistem kerajaan.
 
-_ICTServe (iServe) is a modern Laravel 12 application for managing ICT services in MOTAC, including equipment loans and helpdesk ticketing for damage complaints. The project is built with a citizen-centric focus, strict accessibility, and compliance with the [Malaysia Government Design System (MYDS)](https://design.digital.gov.my/) and [MyGovEA Principles](https://mygovea.jdn.gov.my/page-prinsip-reka-bentuk/)._
+_ICTServe (iServe) is a modern Laravel 12 application for managing ICT services in MOTAC, including equipment loans and helpdesk ticketing for damage complaints. The project is built with a citizen-centric focus, strict accessibility, and compliance with Malaysia's government digital and design standards._
 
 ---
 
@@ -17,9 +17,9 @@ _ICTServe (iServe) is a modern Laravel 12 application for managing ICT services 
 
 _All MOTAC staff, BPM, IT support, and administrators._
 
-- **Fokus Reka Bentuk (Design Focus)**: Pematuhan MYDS, aksesibiliti (WCAG 2.1 AA), grid responsif 12-8-4, dan seni bina modular.
+- **Fokus Reka Bentuk (Design Focus)**: Pematuhan kepada piawaian kerajaan, aksesibiliti (WCAG 2.1 AA), grid responsif 12-8-4, dan seni bina modular.
 
-_MYDS-compliant UI, accessibility (WCAG 2.1 AA), responsive 12-8-4 grid, and a modular, extensible architecture._
+_UI compliant with government digital standards, accessibility (WCAG 2.1 AA), responsive 12-8-4 grid, and a modular, extensible architecture._
 
 ---
 
@@ -37,7 +37,7 @@ _Digital loan application, approval workflow, issuance/return, and audit log._
 
 _Damage complaint form, ticketing with status, threaded comments, and admin assignment._
 
-- **Aksesibiliti & UI MYDS (Accessibility & MYDS UI)**: Navigasi papan kekunci, sokongan ARIA, kontras tinggi, dan mod gelap.
+- **Aksesibiliti & UI (Accessibility & UI)**: Navigasi papan kekunci, sokongan ARIA, kontras tinggi, dan mod gelap.
 
 _Keyboard navigation, ARIA support, high contrast, and dark mode._
 
@@ -59,11 +59,13 @@ _Full audit logging, in-app & email notifications, role-based access, and biling
 
 ### 4. Struktur Sistem (System Architecture)
 
-- **Seni Bina (Architecture)**: Struktur Laravel MVC standard dengan komponen Livewire, sumber admin Filament, dan pustaka komponen Blade untuk elemen MYDS.
+- **Seni Bina (Architecture)**: Struktur Laravel MVC standard dengan komponen Livewire, sumber admin Filament, dan pustaka komponen Blade untuk elemen UI rasmi projek.
 
-_Standard Laravel MVC structure with Livewire components, Filament admin resources, and a Blade component library for MYDS elements._
+_Standard Laravel MVC structure with Livewire components, Filament admin resources, and a Blade component library for official UI elements._
 
 - **Struktur Direktori (Directory Structure)**:
+
+```text
   app/
   ├─ Http/Controllers/
   ├─ Models/
@@ -72,7 +74,7 @@ _Standard Laravel MVC structure with Livewire components, Filament admin resourc
   └─ Policies/
   resources/
   ├─ views/
-  │ ├─ components/myds/
+  │ ├─ components/
   │ └─ livewire/
   ├─ css/
   └─ js/
@@ -81,6 +83,7 @@ _Standard Laravel MVC structure with Livewire components, Filament admin resourc
   └─ seeders/
   routes/
   tests/
+```
 
 - **Dokumentasi Lanjut (Further Documentation)**: Rujuk direktori `/docs` untuk skema data terperinci, carta aliran kerja, dan rasional reka bentuk.
 
@@ -103,42 +106,50 @@ _See the `/docs` directory for detailed data schemas, workflow charts, and desig
 
 _Clone the repository and install PHP dependencies._
 
-    git clone [https://github.com/user/ict-serve.git](https://github.com/user/ict-serve.git)
+```powershell
+    git clone [https://github.com/user/ict-serve-2.git](https://github.com/user/ict-serve-2.git)
     cd ict-serve
     Copy-Item .env.example .env
     composer install
+```
 
 2. **Sediakan persekitaran aplikasi.**
 
 _Set up the application environment._
 
+```powershell
     php artisan key:generate
+```
 
 #### Edit your .env with database credentials as needed
 
-1. **Jalankan migrasi pangkalan data dan seeders.**
+3. **Jalankan migrasi pangkalan data dan seeders.**
 
 _Run database migrations and seeders._
 
+```powershell
     php artisan migrate --seed
+```
 
 4. **Pasang pergantungan frontend.**
 
 _Install frontend dependencies._
 
+```powershell
     npm install
+```
 
 5. **Jalankan server pembangunan.**
 
 _Run the development servers._
 
-    ```powershell
+```powershell
         # Dalam terminal pertama (In the first terminal):
         npm run dev
 
         # Dalam terminal kedua (In a second terminal):
         php artisan serve
-    ```
+```
 
 6. **Akses aplikasi.**
 
@@ -176,9 +187,9 @@ Buka (Open) [http://localhost:8000](https://www.google.com/search?q=http://local
 
 _Follow Laravel Boost conventions for code structure, naming, and best practices._
 
-- **Sistem Reka Bentuk MYDS (MYDS Design System)**: Gunakan token semantik MYDS untuk warna, jarak, dan tipografi.
+- **Sistem Reka Bentuk Projek (Project Design System)**: Gunakan token semantik projek untuk warna, jarak, dan tipografi.
 
-_Use semantic tokens from MYDS for colors, spacing, and typography._
+_Use semantic tokens from the project for colors, spacing, and typography._
 
 - **Aksesibiliti (Accessibility)**: Pastikan semua komponen menyokong navigasi papan kekunci, label ARIA, dan kontras warna yang mencukupi.
 

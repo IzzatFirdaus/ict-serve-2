@@ -11,14 +11,14 @@ class PositionController extends Controller
     {
         $this->authorize('viewAny', Position::class);
 
-        return view('positions.index');
+        return \view('positions.index');
     }
 
     public function create()
     {
         $this->authorize('create', Position::class);
 
-        return view('positions.create');
+        return \view('positions.create');
     }
 
     public function store(Request $request)
@@ -32,14 +32,14 @@ class PositionController extends Controller
     {
         $this->authorize('view', $position);
 
-        return view('positions.show', compact('position'));
+        return \view('positions.show', compact('position'));
     }
 
     public function edit(Position $position)
     {
         $this->authorize('update', $position);
 
-        return view('positions.edit', compact('position'));
+        return \view('positions.edit', compact('position'));
     }
 
     public function update(Request $request, Position $position)

@@ -28,63 +28,47 @@ class BlameableObserver
 {
     /**
      * Handle the Model "creating" event.
-     *
-     * @param \Illuminate\Database\Eloquent\Model $model
-     * @return void
      */
     public function creating(Model $model): void
     {
         // Only set created_by if it hasn't been set manually, and if the action
         // is performed by an authenticated user in a web context.
-        if (empty($model->created_by) && Auth::check() && !App::runningInConsole()) {
+        if (empty($model->created_by) && Auth::check() && ! App::runningInConsole()) {
             $model->created_by = Auth::id();
         }
     }
 
     /**
      * Handle the Model "updating" event.
-     *
-     * @param \Illuminate\Database\Eloquent\Model $model
-     * @return void
      */
     public function updating(Model $model): void
     {
         // Always set updated_by if the action is performed by an authenticated user.
-        if (Auth::check() && !App::runningInConsole()) {
+        if (Auth::check() && ! App::runningInConsole()) {
             $model->updated_by = Auth::id();
         }
     }
 
     /**
      * Handle the Model "deleting" event for soft deletes.
-     *
-     * @param \Illuminate\Database\Eloquent\Model $model
-     * @return void
      */
     public function deleting(Model $model): void
     {
-<<<<<<< HEAD
-        if (! is_object($model)) {
+        // Ensure $model is an object (defensive) and we're not in a console context
+        if (! is_object($model) || App::runningInConsole()) {
             return;
         }
 
+        // Only act on soft-delete (not force-delete)
         if (method_exists($model, 'isForceDeleting') && ! $model->isForceDeleting()) {
             if (Auth::check()) {
                 $model->deleted_by = Auth::id();
-                if (method_exists($model, 'save')) {
+
+                if (method_exists($model, 'saveQuietly')) {
+                    $model->saveQuietly();
+                } elseif (method_exists($model, 'save')) {
                     $model->save();
                 }
-=======
-        // First, check if the model is actually being soft-deleted.
-        if (method_exists($model, 'isForceDeleting') && !$model->isForceDeleting()) {
-            if (Auth::check() && !App::runningInConsole()) {
-                // Set the deleted_by attribute on the model.
-                $model->deleted_by = Auth::id();
-
-                // CRITICAL: We call saveQuietly() to persist the deleted_by change
-                // without triggering the 'updating' event, thus avoiding an infinite loop.
-                $model->saveQuietly();
->>>>>>> 2db7420674c06347d9511964dad536c1e23f3747
             }
         }
     }

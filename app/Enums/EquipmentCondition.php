@@ -12,7 +12,7 @@ enum EquipmentCondition: string implements HasLabel
     case ROSAK = 'rosak';
     case HILANG = 'hilang';
 
-    public function getLabel(): ?string
+    public function getLabel(): string
     {
         return ucfirst($this->value);
     }

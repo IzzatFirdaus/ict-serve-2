@@ -49,7 +49,7 @@ class UserController extends Controller
     {
         $this->authorize('view', $user);
 
-        return \view('users.show', compact('user'));
+        return \view('users.show', \compact('user'));
     }
 
     /**
@@ -59,7 +59,7 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
-        return \view('users.edit', compact('user'));
+        return \view('users.edit', \compact('user'));
     }
 
     /**

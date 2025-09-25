@@ -14,23 +14,23 @@ class ApprovalForm
     public static function configure(Schema $schema): Schema
     {
         return $schema->schema([
-                TextInput::make('approvable_type')
-                    ->required(),
-                TextInput::make('approvable_id')
-                    ->required()
-                    ->numeric(),
-                Select::make('officer_id')
-                    ->relationship('officer', 'name')
-                    ->searchable()
-                    ->preload(),
-                TextInput::make('stage'),
-                Select::make('status')
-                    ->options(ApprovalStatus::class)
-                    ->required()
-                    ->default(ApprovalStatus::PENDING),
-                Textarea::make('comments')
-                    ->columnSpanFull(),
-                DateTimePicker::make('approval_timestamp'),
-            ]);
+            TextInput::make('approvable_type')
+                ->required(),
+            TextInput::make('approvable_id')
+                ->required()
+                ->numeric(),
+            Select::make('officer_id')
+                ->relationship('officer', 'name')
+                ->searchable()
+                ->preload(),
+            TextInput::make('stage'),
+            Select::make('status')
+                ->options(ApprovalStatus::class)
+                ->required()
+                ->default(ApprovalStatus::PENDING),
+            Textarea::make('comments')
+                ->columnSpanFull(),
+            DateTimePicker::make('approval_timestamp'),
+        ]);
     }
 }

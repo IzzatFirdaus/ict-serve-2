@@ -30,7 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->brandName('ICTServe (iServe)')
             ->favicon(asset('favicon.ico'))
-            ->colors($this->getMydsColors())
+            ->colors($this->getDesignColors())
             ->font('Inter')
             ->darkMode()
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
@@ -83,9 +83,9 @@ class AdminPanelProvider extends PanelProvider
     }
 
     /**
-     * Get MYDS-compliant color palette
+     * Get design system-compliant color palette
      */
-    private function getMydsColors(): array
+    private function getDesignColors(): array
     {
         return [
             'primary' => Color::hex('#2680e9'),

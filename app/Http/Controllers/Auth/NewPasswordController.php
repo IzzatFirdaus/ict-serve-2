@@ -17,10 +17,20 @@ class NewPasswordController extends Controller
 {
     /**
      * Display the password reset view.
+     *
+     * @phpstan-return view-string
      */
     public function create(Request $request): View
     {
-        return view('auth.reset-password', ['request' => $request]);
+        $request->merge([
+            'token' => $request->route('token'),
+            'email' => $request->query('email'),
+        ]);
+
+        /** @var view-string $view */
+        $view = 'welcome';
+
+        return view($view);
     }
 
     /**

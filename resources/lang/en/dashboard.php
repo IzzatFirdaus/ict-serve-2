@@ -1,4 +1,5 @@
 <?php
+
 return [
     'cards' => [
         'active_loans' => 'Active Loans',

@@ -11,16 +11,20 @@ class RoleController extends Controller
     {
         $this->authorize('viewAny', \Spatie\Permission\Models\Role::class);
 
-        /** @phpstan-return \Illuminate\View\View */
-        return view('admin.roles.index');
+        /** @var view-string $view */
+        $view = 'admin.roles.index';
+
+        return view($view);
     }
 
     public function create()
     {
         $this->authorize('create', \Spatie\Permission\Models\Role::class);
 
-        /** @phpstan-return \Illuminate\View\View */
-        return view('admin.roles.create');
+        /** @var view-string $view */
+        $view = 'admin.roles.create';
+
+        return view($view);
     }
 
     public function store(Request $request)
@@ -32,14 +36,18 @@ class RoleController extends Controller
 
     public function show($id)
     {
-        /** @phpstan-return \Illuminate\View\View */
-        return view('admin.roles.show', compact('id'));
+        /** @var view-string $view */
+        $view = 'admin.roles.show';
+
+        return view($view, compact('id'));
     }
 
     public function edit($id)
     {
-        /** @phpstan-return \Illuminate\View\View */
-        return view('admin.roles.edit', compact('id'));
+        /** @var view-string $view */
+        $view = 'admin.roles.edit';
+
+        return view($view, compact('id'));
     }
 
     public function update(Request $request, $id)

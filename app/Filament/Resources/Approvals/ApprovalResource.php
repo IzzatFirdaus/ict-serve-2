@@ -2,9 +2,6 @@
 
 namespace App\Filament\Resources\Approvals;
 
-use App\Filament\Resources\Approvals\Pages;
-use App\Filament\Resources\Approvals\Schemas;
-use App\Filament\Resources\Approvals\Tables;
 use App\Models\Approval;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -15,8 +12,11 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ApprovalResource extends Resource
 {
     protected static ?string $model = Approval::class;
+
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-check-badge';
+
     protected static string|\UnitEnum|null $navigationGroup = 'Pentadbiran Sistem';
+
     protected static ?string $recordTitleAttribute = 'status';
 
     public static function form(Schema $schema): Schema

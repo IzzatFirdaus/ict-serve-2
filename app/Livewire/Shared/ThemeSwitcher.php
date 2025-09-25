@@ -7,12 +7,10 @@ use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 /**
-<<<<<<< HEAD
- * @method void dispatchBrowserEvent(string $event, mixed $data = null)
-=======
  * A shared, reusable component for theme switching (light/dark/system).
  * Persists the user's choice in the database and session, providing a consistent UX.
->>>>>>> 2db7420674c06347d9511964dad536c1e23f3747
+ *
+ * @method void dispatchBrowserEvent(string $event, mixed $data = null)
  */
 class ThemeSwitcher extends Component
 {
@@ -46,7 +44,7 @@ class ThemeSwitcher extends Component
 
         // Dispatch a notification for user feedback
         $this->dispatch('notifications:success', [
-            'message' => 'Tema ditukar kepada ' . $this->availableThemes[$theme],
+            'message' => 'Tema ditukar kepada '.$this->availableThemes[$theme],
         ]);
 
         // Immediately update the browser's theme attribute for instant visual change

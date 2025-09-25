@@ -88,9 +88,9 @@ return [
             'more' => 'Maklumat Lanjut',
         ],
         'compliance' => [
-            'icon' => 'Pematuhan MYDS & MyGovEA',
-            'title' => 'Pematuhan MYDS & MyGovEA',
-            'description' => 'Reka bentuk mematuhi piawaian Malaysia Government Design System & 18 Prinsip MyGovEA.',
+            'icon' => 'Pematuhan Sistem Reka Bentuk',
+            'title' => 'Pematuhan Sistem Reka Bentuk',
+            'description' => 'Reka bentuk mematuhi piawaian sistem reka bentuk digital kerajaan dan prinsip kebolehcapaian.',
             'more' => 'Ketahui Lagi',
         ],
     ],

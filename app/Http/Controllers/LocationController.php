@@ -32,14 +32,14 @@ class LocationController extends Controller
     {
         $this->authorize('view', $location);
 
-        return \view('locations.show', compact('location'));
+        return \view('locations.show', \compact('location'));
     }
 
     public function edit(Location $location)
     {
         $this->authorize('update', $location);
 
-        return \view('locations.edit', compact('location'));
+        return \view('locations.edit', \compact('location'));
     }
 
     public function update(Request $request, Location $location)

@@ -75,11 +75,17 @@ class LoanApplication extends Model implements AuditableContract
 
     // Status constants (aligned with migration)
     public const STATUS_DRAFT = 'draft';
+
     public const STATUS_PENDING_SUPPORT = 'pending_support';
+
     public const STATUS_APPROVED = 'approved';
+
     public const STATUS_REJECTED = 'rejected';
+
     public const STATUS_ISSUED = 'issued';
+
     public const STATUS_RETURNED = 'returned';
+
     public const STATUS_COMPLETED = 'completed';
 
     public function user(): BelongsTo

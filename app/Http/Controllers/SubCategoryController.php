@@ -12,7 +12,7 @@ class SubCategoryController extends Controller
         $this->authorize('viewAny', SubCategory::class);
 
         /** @phpstan-return \Illuminate\View\View */
-        return view('sub_categories.index');
+        return \view('sub_categories.index');
     }
 
     public function create()
@@ -20,7 +20,7 @@ class SubCategoryController extends Controller
         $this->authorize('create', SubCategory::class);
 
         /** @phpstan-return \Illuminate\View\View */
-        return view('sub_categories.create');
+        return \view('sub_categories.create');
     }
 
     public function store(Request $request)
@@ -35,7 +35,7 @@ class SubCategoryController extends Controller
         $this->authorize('view', $subCategory);
 
         /** @phpstan-return \Illuminate\View\View */
-        return view('sub_categories.show', compact('subCategory'));
+        return \view('sub_categories.show', compact('subCategory'));
     }
 
     public function edit(SubCategory $subCategory)
@@ -43,7 +43,7 @@ class SubCategoryController extends Controller
         $this->authorize('update', $subCategory);
 
         /** @phpstan-return \Illuminate\View\View */
-        return view('sub_categories.edit', compact('subCategory'));
+        return \view('sub_categories.edit', compact('subCategory'));
     }
 
     public function update(Request $request, SubCategory $subCategory)

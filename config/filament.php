@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'primary_color' => 'blue', // Replace with MYDS primary color token
+    'primary_color' => 'blue', // Replace with design system primary color token
     'dark_mode' => true,
     'brand' => [
         'name' => 'ICTServe',

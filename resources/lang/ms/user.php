@@ -1,4 +1,5 @@
 <?php
+
 return [
     'profile' => [
         'title' => 'Profil Pengguna',

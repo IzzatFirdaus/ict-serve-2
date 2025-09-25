@@ -53,9 +53,13 @@ class DamageReport extends Model implements AuditableContract
 
     // Status constants (aligned with migration)
     public const STATUS_NEW = 'new';
+
     public const STATUS_ASSIGNED = 'assigned';
+
     public const STATUS_IN_PROGRESS = 'in_progress';
+
     public const STATUS_RESOLVED = 'resolved';
+
     public const STATUS_CLOSED = 'closed';
 
     public function user(): BelongsTo

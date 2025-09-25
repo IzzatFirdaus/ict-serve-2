@@ -19,13 +19,9 @@ class EmailVerificationTest extends TestCase
 
         $response = $this->actingAs($user)->get('/verify-email');
 
-<<<<<<< HEAD
         $response
             ->assertSeeVolt('pages.auth.verify-email')
             ->assertStatus(200);
-=======
-        $response->assertStatus(200);
->>>>>>> 2db7420674c06347d9511964dad536c1e23f3747
     }
 
     public function test_email_can_be_verified(): void

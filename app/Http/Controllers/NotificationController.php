@@ -9,14 +9,14 @@ class NotificationController extends Controller
 {
     public function index(Request $request)
     {
-        return view('notifications.index');
+        return \view('notifications.index');
     }
 
     public function show(Notification $notification)
     {
         $this->authorize('view', $notification);
 
-        return view('notifications.show', compact('notification'));
+        return \view('notifications.show', compact('notification'));
     }
 
     public function destroy(Notification $notification)

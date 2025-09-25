@@ -1,5 +1,5 @@
 {{-- Language Switcher Component for Filament Admin --}}
-{{-- MYDS-compliant bilingual switcher with accessibility support --}}
+{{-- Design system-compliant bilingual switcher with accessibility support --}}
 
 <div class="fi-dropdown-panel" x-data="{ open: false }">
     <button
@@ -67,18 +67,18 @@
 </div>
 @props(['asButton' => false])
 
-<div class="myds-language-switcher" role="group" aria-label="{{ __('messages.aria.language_dropdown') }}">
+<div class="ds-language-switcher" role="group" aria-label="{{ __('messages.aria.language_dropdown') }}">
     @if($asButton)
-        <button type="button" class="myds-button" aria-haspopup="listbox" aria-expanded="false" id="lang-toggle">
+        <button type="button" class="ds-button" aria-haspopup="listbox" aria-expanded="false" id="lang-toggle">
             {{ __('messages.language.' . ($lang ?? 'ms')) }}
         </button>
-        <ul role="listbox" aria-labelledby="lang-toggle" class="myds-popover" style="display:none;" id="lang-options">
+        <ul role="listbox" aria-labelledby="lang-toggle" class="ds-popover" style="display:none;" id="lang-options">
             <li role="option"><button type="button" wire:click="switchLanguage('ms')">{{ __('messages.language.ms') }}</button></li>
             <li role="option"><button type="button" wire:click="switchLanguage('en')">{{ __('messages.language.en') }}</button></li>
         </ul>
     @else
         <label for="lang-select" class="sr-only">{{ __('messages.language.select') }}</label>
-        <select id="lang-select" wire:change="switchLanguage($event.target.value)" wire:model="lang" class="myds-select" aria-label="{{ __('messages.aria.language_dropdown') }}">
+        <select id="lang-select" wire:change="switchLanguage($event.target.value)" wire:model="lang" class="ds-select" aria-label="{{ __('messages.aria.language_dropdown') }}">
             <option value="ms">{{ __('messages.language.ms') }}</option>
             <option value="en">{{ __('messages.language.en') }}</option>
         </select>

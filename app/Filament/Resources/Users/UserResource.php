@@ -1,25 +1,24 @@
 <?php
 
-
 namespace App\Filament\Resources\Users;
 
-use App\Filament\Resources\Users\Pages;
-use App\Filament\Resources\Users\Schemas;
-use App\Filament\Resources\Users\Tables;
 use App\Models\User;
 use BackedEnum;
-use UnitEnum;
-use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
+
     protected static string|UnitEnum|null $navigationGroup = 'Pengguna';
+
     protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema

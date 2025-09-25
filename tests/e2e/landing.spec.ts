@@ -13,14 +13,14 @@ test.describe('ICTServe landing page', () => {
     // (removed stray skip link test code outside of test block)
     test('skip link works and keyboard focus lands on main', async ({ page }) => {
         await page.waitForLoadState('domcontentloaded');
-        // Use JS to directly query the skip link (MYDS selector)
+        // Use JS to directly query the skip link (design system selector)
         const skipHtml = await page.evaluate(() => {
-            const el = document.querySelector('.myds-skip-link');
+            const el = document.querySelector('.ds-skip-link');
             return el ? el.outerHTML : null;
         });
         if (!skipHtml) throw new Error('Skip link not found in DOM');
         // Now use locator to interact if present
-        const skip = page.locator('.myds-skip-link');
+    const skip = page.locator('.ds-skip-link');
         await skip.waitFor({ state: 'attached', timeout: 3000 });
         await skip.focus();
         await expect(skip).toBeVisible();

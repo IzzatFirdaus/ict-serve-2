@@ -2,7 +2,7 @@
 
 /**
  * Filament Admin Panel - English Translation
- * MYDS-compliant bilingual support for ICTServe (iServe)
+ * Design system-compliant bilingual support for ICTServe (iServe)
  */
 
 return [

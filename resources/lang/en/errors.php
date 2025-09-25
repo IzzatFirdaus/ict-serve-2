@@ -1,4 +1,5 @@
 <?php
+
 return [
     '404' => 'Page not found',
     '403' => 'Access denied',

@@ -6,7 +6,6 @@ use App\Observers\BlameableObserver;
 use App\Traits\Blameable;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 use ReflectionClass;
 
 class BlameableServiceProvider extends ServiceProvider
@@ -29,13 +28,13 @@ class BlameableServiceProvider extends ServiceProvider
     {
         $modelsPath = app_path('Models');
 
-        if (!File::isDirectory($modelsPath)) {
+        if (! File::isDirectory($modelsPath)) {
             return;
         }
 
         collect(File::files($modelsPath))
             ->map(function (\Symfony\Component\Finder\SplFileInfo $file) {
-                return 'App\\Models\\' . $file->getFilenameWithoutExtension();
+                return 'App\\Models\\'.$file->getFilenameWithoutExtension();
             })
             ->filter(function (string $class) {
                 return class_exists($class);
@@ -43,6 +42,7 @@ class BlameableServiceProvider extends ServiceProvider
             ->filter(function (string $class) {
                 // Use reflection to safely check for trait usage
                 $reflection = new ReflectionClass($class);
+
                 return in_array(Blameable::class, $reflection->getTraitNames());
             })
             ->each(function (string $class) {

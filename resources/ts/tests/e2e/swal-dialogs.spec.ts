@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('MYDS SweetAlert2 Dialogs', () => {
+test.describe('Design System SweetAlert2 Dialogs', () => {
     test('should show info dialog and be accessible', async ({ page }) => {
         await page.goto('/');
         await page.evaluate(() => {

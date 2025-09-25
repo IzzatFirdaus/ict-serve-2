@@ -24,7 +24,7 @@ This prompt enforces strict tool usage for GitHub Copilot Chat interactions in t
 - When referencing documentation, code, or usage patterns, always search with **context7** (do not rely solely on memory or training data).
 - When outside information or the latest web data is needed, use **firecrawl** to fetch and summarize. Always cite the source.
 - All browser-based tests, UI regression, or E2E test scripts must be run, checked, or scaffolded through **playwright-mcp-server**.
-- Adhere to all project-specific conventions and guidelines defined in root-level instruction files, including MYDS and MyGovEA compliance.
+ - Adhere to all project-specific conventions and guidelines defined in root-level instruction files, including government design system and accessibility compliance.
 
 ## Formatting and Workflow
 

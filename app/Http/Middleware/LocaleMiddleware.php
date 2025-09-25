@@ -19,9 +19,7 @@ class LocaleMiddleware
      * is found, it sets it as the application's current language. Otherwise,
      * it falls back to the default locale specified in the config.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, Closure $next): Response
     {

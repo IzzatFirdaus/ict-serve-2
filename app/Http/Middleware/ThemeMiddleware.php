@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -23,9 +22,7 @@ class ThemeMiddleware
      *
      * The final, validated theme is then shared with all views.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -35,7 +32,7 @@ class ThemeMiddleware
 
         // Prioritize the authenticated user's saved preference.
         $user = $request->user();
-        if ($user && !empty($user->theme)) {
+        if ($user && ! empty($user->theme)) {
             $theme = $user->theme;
         }
         // Fallback to the session theme if no user preference is set.
@@ -44,7 +41,7 @@ class ThemeMiddleware
         }
 
         // Validate the determined theme. If it's not supported, use the default.
-        if (!in_array($theme, $supportedThemes)) {
+        if (! in_array($theme, $supportedThemes)) {
             $theme = $defaultTheme;
         }
 

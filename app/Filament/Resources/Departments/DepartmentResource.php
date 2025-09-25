@@ -1,26 +1,24 @@
 <?php
 
-
 namespace App\Filament\Resources\Departments;
 
-use App\Filament\Resources\Departments\Pages;
-use App\Filament\Resources\Departments\RelationManagers;
-use App\Filament\Resources\Departments\Schemas;
-use App\Filament\Resources\Departments\Tables;
 use App\Models\Department;
 use BackedEnum;
-use UnitEnum;
-use Filament\Schemas\Schema;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use UnitEnum;
 
 class DepartmentResource extends Resource
 {
     protected static ?string $model = Department::class;
+
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-building-office-2';
+
     protected static string|UnitEnum|null $navigationGroup = 'Pengguna';
+
     protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema

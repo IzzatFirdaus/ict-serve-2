@@ -8,17 +8,23 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Schemas\Schema;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Filament\Schemas\Schema;
 
+/**
+ * @property mixed $form
+ */
 class SettingsPage extends Page implements HasForms
 {
     use InteractsWithForms;
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-cog-6-tooth';
+
     protected static string|\UnitEnum|null $navigationGroup = 'Pentadbiran Sistem';
+
     protected static ?string $title = 'Tetapan Aplikasi';
+
     protected string $view = 'filament.pages.settings-page';
 
     public ?array $data = [];
@@ -35,7 +41,7 @@ class SettingsPage extends Page implements HasForms
         return $schema->schema([
             Select::make('min_approval_grade_id')
                 ->label('Gred Minimum Pegawai Penyokong')
-                ->options(Grade::where('is_approver_grade', true)->pluck('name', 'id'))
+                ->options(Grade::where('is_approver_grade', true)->pluck('id', 'name'))
                 ->helperText('Gred minimum yang diperlukan untuk menyokong permohonan pinjaman.')
                 ->required(),
             TextInput::make('return_reminder_days')

@@ -11,14 +11,20 @@ class ApprovalController extends Controller
     {
         $this->authorize('viewAny', Approval::class);
 
-        return view('approvals.index');
+        /** @var view-string $view */
+        $view = 'approvals.index';
+
+        return view($view);
     }
 
     public function create()
     {
         $this->authorize('create', Approval::class);
 
-        return view('approvals.create');
+        /** @var view-string $view */
+        $view = 'approvals.create';
+
+        return view($view);
     }
 
     public function store(Request $request)
@@ -32,14 +38,20 @@ class ApprovalController extends Controller
     {
         $this->authorize('view', $approval);
 
-        return view('approvals.show', compact('approval'));
+        /** @var view-string $view */
+        $view = 'approvals.show';
+
+        return view($view, compact('approval'));
     }
 
     public function edit(Approval $approval)
     {
         $this->authorize('update', $approval);
 
-        return view('approvals.edit', compact('approval'));
+        /** @var view-string $view */
+        $view = 'approvals.edit';
+
+        return view($view, compact('approval'));
     }
 
     public function update(Request $request, Approval $approval)

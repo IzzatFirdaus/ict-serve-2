@@ -2,8 +2,8 @@
 
 namespace App\Filament\Components;
 
-use Livewire\Component;
 use Illuminate\Contracts\View\View;
+use Livewire\Component;
 
 /**
  * @method void emit(string $event, mixed ...$params)
@@ -14,15 +14,11 @@ class ThemeSwitcher extends Component
     /**
      * The currently active theme.
      * Can be 'light', 'dark', or 'system'.
-     *
-     * @var string
      */
     public string $theme = 'system';
 
     /**
      * Mount the component and initialize the theme from the session.
-     *
-     * @return void
      */
     public function mount(): void
     {
@@ -36,13 +32,12 @@ class ThemeSwitcher extends Component
      * in the user's session, and dispatches an event to notify other parts of
      * the application about the theme change.
      *
-     * @param string $theme The new theme to switch to ('light', 'dark', 'system').
-     * @return void
+     * @param  string  $theme  The new theme to switch to ('light', 'dark', 'system').
      */
     public function switchTheme(string $theme): void
     {
         // Validate the theme input to prevent arbitrary session values.
-        if (!in_array($theme, ['light', 'dark', 'system'])) {
+        if (! in_array($theme, ['light', 'dark', 'system'])) {
             return;
         }
 
@@ -56,11 +51,13 @@ class ThemeSwitcher extends Component
     /**
      * Render the theme switcher component view.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @phpstan-return \Illuminate\Contracts\View\View
      */
     public function render(): View
     {
-        /** @phpstan-return \Illuminate\View\View */
-        return view('filament.components.theme-switcher');
+        /** @var view-string $view */
+        $view = 'filament.components.theme-switcher';
+
+        return view($view);
     }
 }

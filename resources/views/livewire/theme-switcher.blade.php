@@ -1,5 +1,5 @@
 {{-- Theme Switcher Component for Filament Admin --}}
-{{-- MYDS-compliant theme switcher with accessibility support --}}
+{{-- Design system-compliant theme switcher with accessibility support --}}
 
 <div class="fi-dropdown-panel" x-data="{ open: false }">
     <button

@@ -11,7 +11,7 @@ enum UserStatus: string implements HasColor, HasLabel
     case TIDAK_AKTIF = 'tidak_aktif';
     case DIGANTUNG = 'digantung';
 
-    public function getLabel(): ?string
+    public function getLabel(): string
     {
         return match ($this) {
             self::AKTIF => 'Aktif',
@@ -20,7 +20,7 @@ enum UserStatus: string implements HasColor, HasLabel
         };
     }
 
-    public function getColor(): string|array|null
+    public function getColor(): string
     {
         return match ($this) {
             self::AKTIF => 'success',

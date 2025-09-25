@@ -1,7 +1,7 @@
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
 const test_1 = require('@playwright/test');
-test_1.test.describe('MYDS SweetAlert2 Dialogs', () => {
+test_1.test.describe('Design System SweetAlert2 Dialogs', () => {
     (0, test_1.test)('should show info dialog and be accessible', async ({ page }) => {
         await page.goto('/');
         await page.evaluate(() => {

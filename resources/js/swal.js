@@ -3,10 +3,10 @@
 import Swal from 'sweetalert2';
 
 /**
- * MYDS-compliant SweetAlert2 Helper (v2)
+ * Design System-compliant SweetAlert2 Helper (v2)
  * --------------------------------------
  * This wrapper uses CSS classes for styling to ensure 100% compliance with
- * the project's design tokens (MYDS/Tailwind). It moves all color logic
+ * the project's design tokens. It moves all color logic
  * out of JavaScript and into your stylesheets.
  *
  * @param {Object} opts - SweetAlert2 options.
@@ -23,11 +23,11 @@ export function showSwal(opts = {}) {
 
     // --- Dynamic Class Mapping based on Variant ---
     // This logic determines the style of the confirm button.
-    let confirmButtonClass = 'myds-btn myds-btn-primary'; // Default
+    let confirmButtonClass = 'ds-btn ds-btn-primary'; // Default
     if (variant === 'destructive') {
-        confirmButtonClass = 'myds-btn myds-btn-danger';
+        confirmButtonClass = 'ds-btn ds-btn-danger';
     } else if (variant === 'success') {
-        confirmButtonClass = 'myds-btn myds-btn-success';
+        confirmButtonClass = 'ds-btn ds-btn-success';
     }
 
     return Swal.fire({
@@ -35,7 +35,7 @@ export function showSwal(opts = {}) {
         customClass: {
             popup: 'rounded-xl shadow-lg',
             confirmButton: confirmButtonClass,
-            cancelButton: 'myds-btn myds-btn-secondary',
+            cancelButton: 'ds-btn ds-btn-secondary',
             // You can also style the title, text, etc.
             // title: 'text-2xl font-bold text-gray-800',
             // htmlContainer: 'text-gray-600',

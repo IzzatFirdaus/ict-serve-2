@@ -18,8 +18,8 @@ class DepartmentInfolist
                 TextEntry::make('head.name')->label('Ketua Jabatan'),
                 IconEntry::make('is_active')->boolean()->label('Status Aktif'),
                 TextEntry::make('description')->columnSpanFull(),
-                TextEntry::make('createdBy.name')->label('Dicipta Oleh')->toggleable(),
-                TextEntry::make('updatedBy.name')->label('Dikemaskini Oleh')->toggleable(),
+                TextEntry::make('createdBy.name')->label('Dicipta Oleh'),
+                TextEntry::make('updatedBy.name')->label('Dikemaskini Oleh'),
             ]);
     }
 }

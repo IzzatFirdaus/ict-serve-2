@@ -2,11 +2,11 @@
 
 namespace App\Filament\Components;
 
-use Livewire\Component;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Livewire\Component;
 
 /**
  * @method void emit(string $event, mixed ...$params)
@@ -17,15 +17,11 @@ class LanguageSwitcher extends Component
     /**
      * The currently active language locale.
      * e.g., 'en', 'ms'.
-     *
-     * @var string
      */
     public string $language = 'ms';
 
     /**
      * Mount the component and initialize the language from the session or app default.
-     *
-     * @return void
      */
     public function mount(): void
     {
@@ -38,8 +34,7 @@ class LanguageSwitcher extends Component
      * This method updates the session with the new locale and then triggers a
      * page refresh to ensure all content is re-rendered in the selected language.
      *
-     * @param string $lang The new language locale to switch to (e.g., 'en', 'ms').
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  string  $lang  The new language locale to switch to (e.g., 'en', 'ms').
      */
     public function switchLanguage(string $lang): RedirectResponse
     {
@@ -57,11 +52,13 @@ class LanguageSwitcher extends Component
     /**
      * Render the language switcher component view.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @phpstan-return \Illuminate\Contracts\View\View
      */
     public function render(): View
     {
-        /** @phpstan-return \Illuminate\View\View */
-        return view('filament.components.language-switcher');
+        /** @var view-string $view */
+        $view = 'filament.components.language-switcher';
+
+        return view($view);
     }
 }

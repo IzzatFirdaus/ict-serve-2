@@ -2,8 +2,8 @@
 
 namespace App\Filament\Pages;
 
-use App\Filament\Widgets\LoanStatsOverviewWidget;
 use App\Filament\Widgets\LoansByTypeChartWidget;
+use App\Filament\Widgets\LoanStatsOverviewWidget;
 use App\Filament\Widgets\RecentLoanApplicationsWidget;
 use Filament\Pages\Dashboard;
 
@@ -11,12 +11,11 @@ class LoanAnalyticsPage extends Dashboard
 {
     /**
      * The title of the page displayed in the navigation and header.
-     *
-     * @var string
      */
     protected static ?string $title = 'Analitis Pinjaman';
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-chart-bar-square';
+
     protected static string|\UnitEnum|null $navigationGroup = 'Laporan & Analitis';
 
     /**

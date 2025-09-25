@@ -11,7 +11,7 @@ enum BranchType: string implements HasColor, HasLabel
     case PEJABAT_NEGERI = 'pejabat_negeri';
     case UNIT = 'unit';
 
-    public function getLabel(): ?string
+    public function getLabel(): string
     {
         return match ($this) {
             self::IBU_PEJABAT => 'Ibu Pejabat',
@@ -20,7 +20,7 @@ enum BranchType: string implements HasColor, HasLabel
         };
     }
 
-    public function getColor(): string|array|null
+    public function getColor(): string
     {
         return match ($this) {
             self::IBU_PEJABAT => 'primary',

@@ -11,16 +11,20 @@ class SettingsController extends Controller
     {
         $this->authorize('viewAny', \App\Models\Setting::class);
 
-        /** @phpstan-return \Illuminate\View\View */
-        return view('admin.settings.index');
+        /** @var view-string $view */
+        $view = 'admin.settings.index';
+
+        return view($view);
     }
 
     public function edit()
     {
         $this->authorize('update', \App\Models\Setting::class);
 
-        /** @phpstan-return \Illuminate\View\View */
-        return view('admin.settings.edit');
+        /** @var view-string $view */
+        $view = 'admin.settings.edit';
+
+        return view($view);
     }
 
     public function update(Request $request)

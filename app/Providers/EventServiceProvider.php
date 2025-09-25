@@ -25,7 +25,7 @@ class EventServiceProvider extends ServiceProvider
     /**
      * The model observers for your application.
      *
-     * @var array
+     * @var array<class-string, array<int, object|string>|object|string>
      */
     protected $observers = [
         Models\Approval::class => [BlameableObserver::class],

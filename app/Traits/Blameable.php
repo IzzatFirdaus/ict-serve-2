@@ -31,32 +31,23 @@ trait Blameable
         });
 
         static::deleting(function ($model) {
-<<<<<<< HEAD
             // ensure $model is an object with the expected methods/properties
             if (! is_object($model)) {
                 return;
             }
 
-            // on soft delete, set deleted_by
+            // on soft delete, set deleted_by only when not force-deleting
             if (method_exists($model, 'isForceDeleting') && ! $model->isForceDeleting()) {
-=======
-            // Check if the model is being soft-deleted, not force-deleted.
-            if (method_exists($model, 'isForceDeleting') && !$model->isForceDeleting()) {
->>>>>>> 2db7420674c06347d9511964dad536c1e23f3747
                 if (Auth::check()) {
-                    // Only set property if it exists or is dynamically allowed
                     $model->deleted_by = Auth::id();
-<<<<<<< HEAD
-                    // Save to persist deleted_by before soft delete
-                    if (method_exists($model, 'save')) {
+
+                    // Persist the change without triggering model events if possible
+                    if (method_exists($model, 'saveQuietly')) {
+                        $model->saveQuietly();
+                    } elseif (method_exists($model, 'save')) {
+                        // Fallback: save (may trigger events)
                         $model->save();
                     }
-=======
-
-                    // CRITICAL: Use saveQuietly() to persist the change without
-                    // triggering the 'updating' event, which would cause an infinite loop.
-                    $model->saveQuietly();
->>>>>>> 2db7420674c06347d9511964dad536c1e23f3747
                 }
             }
         });

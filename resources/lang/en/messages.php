@@ -88,9 +88,9 @@ return [
             'more' => 'More Info',
         ],
         'compliance' => [
-            'icon' => 'MYDS & MyGovEA Compliance',
-            'title' => 'MYDS & MyGovEA Compliance',
-            'description' => 'Designed in compliance with the Malaysia Government Design System & 18 MyGovEA Principles.',
+            'icon' => 'Design System Compliance',
+            'title' => 'Design System Compliance',
+            'description' => 'Designed in compliance with government digital design system and accessibility principles.',
             'more' => 'Learn More',
         ],
     ],

@@ -11,12 +11,11 @@ class HelpdeskAnalyticsPage extends Dashboard
 {
     /**
      * The title of the page.
-     *
-     * @var string
      */
     protected static ?string $title = 'Analitis Meja Bantuan';
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-chart-pie';
+
     protected static string|\UnitEnum|null $navigationGroup = 'Laporan & Analitis';
 
     /**

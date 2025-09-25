@@ -52,19 +52,25 @@ class HelpdeskTicket extends Model implements AuditableContract
 
     // Status constants (aligned with migration)
     public const STATUS_OPEN = 'open';
-    public const STATUS_IN_PROGRESS = 'in_progress';
-    public const STATUS_PENDING_FEEDBACK = 'pending_user_feedback';
-    public const STATUS_RESOLVED = 'resolved';
-    public const STATUS_CLOSED = 'closed';
-    public const STATUS_REOPENED = 'reopened';
 
+    public const STATUS_IN_PROGRESS = 'in_progress';
+
+    public const STATUS_PENDING_FEEDBACK = 'pending_user_feedback';
+
+    public const STATUS_RESOLVED = 'resolved';
+
+    public const STATUS_CLOSED = 'closed';
+
+    public const STATUS_REOPENED = 'reopened';
 
     // Priority constants
     public const PRIORITY_LOW = 'low';
-    public const PRIORITY_MEDIUM = 'medium';
-    public const PRIORITY_HIGH = 'high';
-    public const PRIORITY_CRITICAL = 'critical';
 
+    public const PRIORITY_MEDIUM = 'medium';
+
+    public const PRIORITY_HIGH = 'high';
+
+    public const PRIORITY_CRITICAL = 'critical';
 
     public function user(): BelongsTo
     {

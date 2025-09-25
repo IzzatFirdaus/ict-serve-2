@@ -54,12 +54,16 @@ class LoanTransaction extends Model implements AuditableContract
 
     // Transaction type constants
     public const TYPE_ISSUE = 'issue';
+
     public const TYPE_RETURN = 'return';
 
     // Transaction status constants (aligned with migration)
     public const STATUS_PENDING = 'pending';
+
     public const STATUS_ISSUED = 'issued';
+
     public const STATUS_RETURNED_GOOD = 'returned_good';
+
     public const STATUS_RETURNED_DAMAGED = 'returned_damaged';
 
     public function loanApplication(): BelongsTo

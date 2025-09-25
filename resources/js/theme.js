@@ -1,5 +1,5 @@
 /**
- * ICTServe Theme Manager (MYDS Compliant)
+ * ICTServe Theme Manager (Design system compliant)
  *
  * This script handles theme initialization and switching.
  * It should be included in the <head> of the document to prevent FOUC (Flash of Unstyled Content).

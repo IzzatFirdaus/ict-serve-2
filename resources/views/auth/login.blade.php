@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -47,4 +45,3 @@
         </div>
     </form>
 </x-guest-layout>
->>>>>>> 2db7420674c06347d9511964dad536c1e23f3747

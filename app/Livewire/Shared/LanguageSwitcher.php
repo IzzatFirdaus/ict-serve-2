@@ -8,12 +8,10 @@ use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 /**
-<<<<<<< HEAD
- * @method void dispatchBrowserEvent(string $event, mixed $data = null)
-=======
  * A shared, reusable component for language switching (e.g., Bahasa Melayu/English).
  * Persists the user's choice and refreshes the page for a complete translation.
->>>>>>> 2db7420674c06347d9511964dad536c1e23f3747
+ *
+ * @method void dispatchBrowserEvent(string $event, mixed $data = null)
  */
 class LanguageSwitcher extends Component
 {
@@ -46,7 +44,7 @@ class LanguageSwitcher extends Component
 
         // Dispatch a notification for user feedback
         $this->dispatch('notifications:success', [
-            'message' => 'Bahasa ditukar kepada ' . $this->availableLanguages[$language],
+            'message' => 'Bahasa ditukar kepada '.$this->availableLanguages[$language],
         ]);
 
         // A redirect is the most reliable way to ensure all parts of the UI are translated
