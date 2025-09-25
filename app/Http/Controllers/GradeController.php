@@ -11,14 +11,14 @@ class GradeController extends Controller
     {
         $this->authorize('viewAny', Grade::class);
 
-        return view('grades.index');
+        return \view('grades.index');
     }
 
     public function create()
     {
         $this->authorize('create', Grade::class);
 
-        return view('grades.create');
+        return \view('grades.create');
     }
 
     public function store(Request $request)
@@ -32,14 +32,14 @@ class GradeController extends Controller
     {
         $this->authorize('view', $grade);
 
-        return view('grades.show', compact('grade'));
+        return \view('grades.show', compact('grade'));
     }
 
     public function edit(Grade $grade)
     {
         $this->authorize('update', $grade);
 
-        return view('grades.edit', compact('grade'));
+        return \view('grades.edit', compact('grade'));
     }
 
     public function update(Request $request, Grade $grade)

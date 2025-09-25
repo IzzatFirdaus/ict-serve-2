@@ -22,7 +22,10 @@
             if (theme === 'system') {
                 // If 'system', apply the OS preference and remove the local storage override.
                 const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                document.documentElement.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
+                document.documentElement.setAttribute(
+                    'data-theme',
+                    systemPrefersDark ? 'dark' : 'light'
+                );
                 localStorage.removeItem('theme');
             } else {
                 // Otherwise, apply the specific theme and save it to local storage.

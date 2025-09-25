@@ -20,9 +20,9 @@ Performance and Optimization
 Troubleshooting Guide
 
 1. System Overview
-1.1 Purpose and Scope
-The Email Notification System serves as a critical communication infrastructure within ICTServe, providing automated, timely, and consistent notifications across all system modules. It ensures stakeholders remain informed about important events, status changes, and required actions.
-1.2 Key Features
+   1.1 Purpose and Scope
+   The Email Notification System serves as a critical communication infrastructure within ICTServe, providing automated, timely, and consistent notifications across all system modules. It ensures stakeholders remain informed about important events, status changes, and required actions.
+   1.2 Key Features
 
 Multi-channel Delivery: Email and in-app notifications
 Template Management: Customizable email templates
@@ -33,17 +33,17 @@ Localization Support: Multi-language templates
 
 1.3 System Architecture Overview
 mermaidgraph TB
-    subgraph "Application Layer"
-        A[User Action] --> B[Service Layer]
-        B --> C[Notification Service]
-    end
+subgraph "Application Layer"
+A[User Action] --> B[Service Layer]
+B --> C[Notification Service]
+end
 
     subgraph "Notification Processing"
         C --> D[Create Notification]
         D --> E[Queue Job]
         E --> F[Process Queue]
     end
-    
+
     subgraph "Delivery Channels"
         F --> G[Database Channel]
         F --> H[Email Channel]
@@ -51,71 +51,70 @@ mermaidgraph TB
         H --> J[SMTP Server]
         J --> K[User Email]
     end
-    
+
     subgraph "Monitoring"
         F --> L[Delivery Logs]
         L --> M[Analytics Dashboard]
     end
+
 2. Architecture Design
-2.1 Component Architecture
-ComponentResponsibilityTechnologyNotification ServiceCentral notification orchestrationLaravel Service ClassNotification ClassesEvent-specific notification logicLaravel NotificationsMailable ClassesComplex email compositionLaravel MailablesQueue WorkersAsynchronous processingLaravel QueuesEmail TemplatesHTML email layoutsBlade TemplatesDelivery DriversEmail service integrationSMTP/Mailgun/SES
-2.2 Database Schema
-sql-- notifications table
-CREATE TABLE notifications (
-    id CHAR(36) PRIMARY KEY,
-    type VARCHAR(255) NOT NULL,
-    notifiable_type VARCHAR(255) NOT NULL,
-    notifiable_id BIGINT UNSIGNED NOT NULL,
-    data JSON NOT NULL,
-    read_at TIMESTAMP NULL,
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP,
-    INDEX idx_notifiable (notifiable_type, notifiable_id),
-    INDEX idx_read_at (read_at)
-);
+   2.1 Component Architecture
+   ComponentResponsibilityTechnologyNotification ServiceCentral notification orchestrationLaravel Service ClassNotification ClassesEvent-specific notification logicLaravel NotificationsMailable ClassesComplex email compositionLaravel MailablesQueue WorkersAsynchronous processingLaravel QueuesEmail TemplatesHTML email layoutsBlade TemplatesDelivery DriversEmail service integrationSMTP/Mailgun/SES
+   2.2 Database Schema
+   sql-- notifications table
+   CREATE TABLE notifications (
+   id CHAR(36) PRIMARY KEY,
+   type VARCHAR(255) NOT NULL,
+   notifiable_type VARCHAR(255) NOT NULL,
+   notifiable_id BIGINT UNSIGNED NOT NULL,
+   data JSON NOT NULL,
+   read_at TIMESTAMP NULL,
+   created_at TIMESTAMP,
+   updated_at TIMESTAMP,
+   INDEX idx_notifiable (notifiable_type, notifiable_id),
+   INDEX idx_read_at (read_at)
+   );
 
 -- email_logs table (custom)
 CREATE TABLE email_logs (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    recipient VARCHAR(255) NOT NULL,
-    subject VARCHAR(255) NOT NULL,
-    type VARCHAR(100) NOT NULL,
-    status ENUM('pending', 'sent', 'failed', 'bounced'),
-    attempts INT DEFAULT 0,
-    sent_at TIMESTAMP NULL,
-    failed_at TIMESTAMP NULL,
-    error_message TEXT NULL,
-    metadata JSON,
-    created_at TIMESTAMP,
-    INDEX idx_status (status),
-    INDEX idx_recipient (recipient)
+id BIGINT PRIMARY KEY AUTO_INCREMENT,
+recipient VARCHAR(255) NOT NULL,
+subject VARCHAR(255) NOT NULL,
+type VARCHAR(100) NOT NULL,
+status ENUM('pending', 'sent', 'failed', 'bounced'),
+attempts INT DEFAULT 0,
+sent_at TIMESTAMP NULL,
+failed_at TIMESTAMP NULL,
+error_message TEXT NULL,
+metadata JSON,
+created_at TIMESTAMP,
+INDEX idx_status (status),
+INDEX idx_recipient (recipient)
 );
 2.3 Queue Configuration
 php// config/queue.php
 'connections' => [
-    'notifications' => [
-        'driver' => 'redis',
-        'connection' => 'default',
-        'queue' => 'notifications',
-        'retry_after' => 90,
-        'block_for' => 0,
-    ],
-    'emails' => [
-        'driver' => 'redis',
-        'connection' => 'default',
-        'queue' => 'emails',
-        'retry_after' => 300,
-        'block_for' => 0,
-    ],
+'notifications' => [
+'driver' => 'redis',
+'connection' => 'default',
+'queue' => 'notifications',
+'retry_after' => 90,
+'block_for' => 0,
 ],
-3. Notification Types and Triggers
+'emails' => [
+'driver' => 'redis',
+'connection' => 'default',
+'queue' => 'emails',
+'retry_after' => 300,
+'block_for' => 0,
+],
+], 3. Notification Types and Triggers
 3.1 Loan Module Notifications
 Notification ClassTrigger EventRecipientsPriorityLoanApplicationSubmittedNew loan application submittedApplicantNormalLoanApplicationNeedsActionApplication pending approvalApproverHighLoanApplicationApprovedApplication approvedApplicantHighLoanApplicationRejectedApplication rejectedApplicantNormalLoanReadyForIssuanceApproved loan ready for processingBPM StaffHighEquipmentIssuedEquipment issued to applicantApplicantNormalEquipmentReturnedEquipment successfully returnedApplicantNormalReturnReminderReturn date approaching (3 days)BorrowerHighOverdueNoticeEquipment overdueBorrower, BPMCriticalEquipmentIncidentEquipment damage/loss reportedBPM, ManagementCritical
 3.2 Helpdesk Module Notifications
 Notification ClassTrigger EventRecipientsPriorityTicketCreatedNew helpdesk ticket createdUser, IT TeamNormalTicketAssignedTicket assigned to agentAssigned AgentHighTicketStatusChangedTicket status updatedTicket CreatorNormalTicketCommentAddedNew comment on ticketParticipantsNormalTicketResolvedTicket marked as resolvedTicket CreatorHighTicketReopenedResolved ticket reopenedAssigned AgentHighTicketEscalatedTicket escalated to managementManagementCriticalSLAWarningSLA breach imminentAgent, SupervisorCritical
 3.3 System Notifications
-Notification ClassTrigger EventRecipientsPriorityPasswordResetPassword reset requestedUserCriticalAccountActivatedNew account activatedUserNormalSecurityAlertSuspicious activity detectedUser, AdminCriticalSystemMaintenanceScheduled maintenance noticeAll UsersNormal
-4. Technical Implementation
+Notification ClassTrigger EventRecipientsPriorityPasswordResetPassword reset requestedUserCriticalAccountActivatedNew account activatedUserNormalSecurityAlertSuspicious activity detectedUser, AdminCriticalSystemMaintenanceScheduled maintenance noticeAll UsersNormal 4. Technical Implementation
 4.1 Notification Service Implementation
 php<?php
 
@@ -128,11 +127,11 @@ use App\Models\EmailLog;
 
 class NotificationService
 {
-    /**
-     *Send notification to user(s)
-     *
-     *@param mixed $notifiable User or Collection of users
-     * @param string $notificationClass Notification class name
+/\*\*
+_Send notification to user(s)
+_
+_@param mixed $notifiable User or Collection of users
+_ @param string $notificationClass Notification class name
      * @param array $data Additional data for notification
      * @return bool
      */
@@ -141,18 +140,18 @@ class NotificationService
         try {
             // Validate notification class exists
             if (!class_exists($notificationClass)) {
-                throw new \Exception("Notification class {$notificationClass} not found");
-            }
+throw new \Exception("Notification class {$notificationClass} not found");
+}
 
             // Create notification instance
             $notification = new $notificationClass($data);
-            
+
             // Send notification
             Notification::send($notifiable, $notification);
-            
+
             // Log successful sending
             $this->logNotification($notifiable, $notificationClass, 'sent');
-            
+
             return true;
         } catch (\Exception $e) {
             // Log error
@@ -161,13 +160,13 @@ class NotificationService
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);
-            
+
             $this->logNotification($notifiable, $notificationClass, 'failed', $e->getMessage());
-            
+
             return false;
         }
     }
-    
+
     /**
      * Queue notification for later sending
      *
@@ -181,24 +180,24 @@ class NotificationService
     {
         try {
             $notification = new $notificationClass($data);
-            
+
             if ($delay > 0) {
                 $notifiable->notify($notification->delay(now()->addSeconds($delay)));
             } else {
                 $notifiable->notify($notification);
             }
-            
+
             return true;
         } catch (\Exception $e) {
             Log::error('Queued notification failed', [
                 'class' => $notificationClass,
                 'error' => $e->getMessage()
             ]);
-            
+
             return false;
         }
     }
-    
+
     /**
      * Log notification activity
      */
@@ -216,6 +215,7 @@ class NotificationService
             ]
         ]);
     }
+
 }
 4.2 Sample Notification Class
 php<?php
@@ -230,21 +230,21 @@ use App\Models\LoanApplication;
 
 class LoanApplicationApproved extends Notification implements ShouldQueue
 {
-    use Queueable;
+use Queueable;
 
     protected $application;
-    
+
     public function __construct(LoanApplication $application)
     {
         $this->application = $application;
         $this->queue = 'notifications';
     }
-    
+
     public function via($notifiable): array
     {
         return ['mail', 'database'];
     }
-    
+
     public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
@@ -259,7 +259,7 @@ class LoanApplicationApproved extends Notification implements ShouldQueue
             ->line('Please contact BPM office for equipment collection.')
             ->salutation('Terima kasih / Thank you');
     }
-    
+
     public function toDatabase($notifiable): array
     {
         return [
@@ -270,9 +270,11 @@ class LoanApplicationApproved extends Notification implements ShouldQueue
             'action_url' => "/loan-applications/{$this->application->id}"
         ];
     }
+
 }
 4.3 Email Template Structure
 blade{{-- resources/views/emails/layouts/master.blade.php --}}
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -330,7 +332,7 @@ blade{{-- resources/views/emails/layouts/master.blade.php --}}
     <div class="content">
         @yield('content')
     </div>
-    
+
     <div class="footer">
         <p>
             Ini adalah e-mel automatik. Sila jangan balas e-mel ini.<br>
@@ -346,6 +348,7 @@ blade{{-- resources/views/emails/layouts/master.blade.php --}}
             </p>
         @endif
     </div>
+
 </body>
 </html>
 5. Email Templates
@@ -365,15 +368,14 @@ return [
 
 // resources/lang/en/notifications.php
 return [
-    'loan_approved' => [
-        'subject' => 'Loan Application Approved',
-        'greeting' => 'Dear :name',
-        'line1' => 'Your ICT equipment loan application has been approved.',
-        'action' => 'View Details',
-        'thanks' => 'Thank you'
-    ]
-];
-6. Configuration and Setup
+'loan_approved' => [
+'subject' => 'Loan Application Approved',
+'greeting' => 'Dear :name',
+'line1' => 'Your ICT equipment loan application has been approved.',
+'action' => 'View Details',
+'thanks' => 'Thank you'
+]
+]; 6. Configuration and Setup
 6.1 Environment Configuration
 env# Mail Configuration
 MAIL_MAILER=smtp
@@ -400,16 +402,16 @@ NOTIFICATION_RETRY_DELAY=300
 6.2 Mail Driver Configuration
 php// config/mail.php
 'mailers' => [
-    'smtp' => [
-        'transport' => 'smtp',
-        'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-        'port' => env('MAIL_PORT', 587),
-        'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-        'username' => env('MAIL_USERNAME'),
-        'password' => env('MAIL_PASSWORD'),
-        'timeout' => null,
-        'auth_mode' => null,
-    ],
+'smtp' => [
+'transport' => 'smtp',
+'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+'port' => env('MAIL_PORT', 587),
+'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+'username' => env('MAIL_USERNAME'),
+'password' => env('MAIL_PASSWORD'),
+'timeout' => null,
+'auth_mode' => null,
+],
 
     'failover' => [
         'transport' => 'failover',
@@ -418,13 +420,13 @@ php// config/mail.php
             'log',
         ],
     ],
+
 ],
 
 'from' => [
-    'address' => env('MAIL_FROM_ADDRESS', 'noreply@ictserve.gov.my'),
-    'name' => env('MAIL_FROM_NAME', 'ICTServe System'),
-],
-7. Testing and Debugging
+'address' => env('MAIL_FROM_ADDRESS', 'noreply@ictserve.gov.my'),
+'name' => env('MAIL_FROM_NAME', 'ICTServe System'),
+], 7. Testing and Debugging
 7.1 Unit Testing
 php<?php
 
@@ -438,15 +440,15 @@ use Illuminate\Support\Facades\Notification;
 
 class LoanNotificationTest extends TestCase
 {
-    public function test_loan_approval_notification_is_sent()
-    {
-        Notification::fake();
+public function test_loan_approval_notification_is_sent()
+{
+Notification::fake();
 
         $user = User::factory()->create();
         $application = LoanApplication::factory()->create(['user_id' => $user->id]);
-        
+
         $user->notify(new LoanApplicationApproved($application));
-        
+
         Notification::assertSentTo(
             [$user],
             LoanApplicationApproved::class,
@@ -455,19 +457,20 @@ class LoanNotificationTest extends TestCase
             }
         );
     }
+
 }
 7.2 Debugging Tools
 php// Log all outgoing emails in development
 if (app()->environment('local')) {
-    Mail::alwaysTo('<debug@example.com>');
-    Mail::alwaysFrom('<test@ictserve.local>');
+Mail::alwaysTo('<debug@example.com>');
+Mail::alwaysFrom('<test@ictserve.local>');
 }
 
 // Email preview route (development only)
 Route::get('/mail-preview/{notification}', function ($notification) {
     $user = User::first();
     $notificationClass = "App\\Notifications\\{$notification}";
-    return (new $notificationClass($user))->toMail($user);
+return (new $notificationClass($user))->toMail($user);
 })->middleware(['auth', 'dev-only']);
 8. Performance and Optimization
 8.1 Queue Optimization
@@ -476,8 +479,8 @@ public function sendBulkNotifications(Collection $users, string $notificationCla
 {
     $users->chunk(100, function ($chunk) use ($notificationClass) {
         dispatch(new ProcessBulkNotifications($chunk, $notificationClass))
-            ->onQueue('bulk-notifications');
-    });
+->onQueue('bulk-notifications');
+});
 }
 
 // Rate limiting
@@ -486,15 +489,14 @@ RateLimiter::for('notifications', function (Request $request) {
 });
 8.2 Caching Strategies
 php// Cache frequently used email templates
-Cache::remember("email_template_{$templateName}", 3600, function () use ($templateName) {
-    return view("emails.{$templateName}")->render();
+Cache::remember("email*template*{$templateName}", 3600, function () use ($templateName) {
+return view("emails.{$templateName}")->render();
 });
 
 // Cache user notification preferences
-Cache::remember("user_notification_settings_{$userId}", 86400, function () use ($userId) {
-    return User::find($userId)->notificationSettings;
-});
-9. Troubleshooting Guide
+Cache::remember("user*notification_settings*{$userId}", 86400, function () use ($userId) {
+return User::find($userId)->notificationSettings;
+}); 9. Troubleshooting Guide
 9.1 Common Issues
 IssueSymptomsSolutionEmails not sendingNo emails received, no errorsCheck queue workers, verify SMTP settingsDelayed notificationsLong delay between trigger and receiptIncrease queue workers, optimize queue processingDuplicate emailsMultiple copies of same emailCheck retry logic, ensure idempotencyTemplate errorsBroken layouts, missing variablesValidate template variables, test renderingBounced emailsHigh bounce rateVerify email addresses, implement validation
 9.2 Monitoring Checklist
@@ -518,9 +520,9 @@ Monthly Audit:
 - [ ] User engagement metrics
 - [ ] System performance review
 - [ ] Security audit
-9.3 Emergency Procedures
-bash# Stop all notification processing
-php artisan queue:pause
+      9.3 Emergency Procedures
+      bash# Stop all notification processing
+      php artisan queue:pause
 
 # Clear failed jobs
 

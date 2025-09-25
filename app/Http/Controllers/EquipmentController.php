@@ -11,14 +11,14 @@ class EquipmentController extends Controller
     {
         $this->authorize('viewAny', Equipment::class);
 
-        return view('equipment.index');
+        return \view('equipment.index');
     }
 
     public function create()
     {
         $this->authorize('create', Equipment::class);
 
-        return view('equipment.create');
+        return \view('equipment.create');
     }
 
     public function store(Request $request)
@@ -32,14 +32,14 @@ class EquipmentController extends Controller
     {
         $this->authorize('view', $equipment);
 
-        return view('equipment.show', compact('equipment'));
+        return \view('equipment.show', compact('equipment'));
     }
 
     public function edit(Equipment $equipment)
     {
         $this->authorize('update', $equipment);
 
-        return view('equipment.edit', compact('equipment'));
+        return \view('equipment.edit', compact('equipment'));
     }
 
     public function update(Request $request, Equipment $equipment)
@@ -64,6 +64,6 @@ class EquipmentController extends Controller
     {
         $this->authorize('view', $equipment);
 
-        return view('equipment.history', compact('equipment'));
+        return \view('equipment.history', compact('equipment'));
     }
 }

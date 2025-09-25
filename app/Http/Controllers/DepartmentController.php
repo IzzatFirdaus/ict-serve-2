@@ -11,14 +11,14 @@ class DepartmentController extends Controller
     {
         $this->authorize('viewAny', Department::class);
 
-        return \view('departments.index');
+        return view('departments.index');
     }
 
     public function create()
     {
         $this->authorize('create', Department::class);
 
-        return \view('departments.create');
+        return view('departments.create');
     }
 
     public function store(Request $request)
@@ -32,14 +32,14 @@ class DepartmentController extends Controller
     {
         $this->authorize('view', $department);
 
-        return \view('departments.show', compact('department'));
+        return view('departments.show', compact('department'));
     }
 
     public function edit(Department $department)
     {
         $this->authorize('update', $department);
 
-        return \view('departments.edit', compact('department'));
+        return view('departments.edit', compact('department'));
     }
 
     public function update(Request $request, Department $department)
