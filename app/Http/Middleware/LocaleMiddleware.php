@@ -25,9 +25,14 @@ class LocaleMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $sessionLocale = $request->session()->get('locale');
         $defaultLocale = config('app.locale', 'ms');
         $supportedLocales = config('app.supported_locales', ['en', 'ms']);
+        $sessionLocale = null;
+
+        // Only attempt to get session locale if the session is available
+        if (method_exists($request, 'hasSession') && $request->hasSession()) {
+            $sessionLocale = $request->session()->get('locale');
+        }
 
         // Use the session locale only if it's in the supported list.
         if ($sessionLocale && in_array($sessionLocale, $supportedLocales)) {
