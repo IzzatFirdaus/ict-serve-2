@@ -25,10 +25,10 @@ Its purpose is to prevent wasted effort, repeated failures, and unsafe operation
 ### 2. Laravel Database Operations
 
 - Use only Laravel’s built-in tools for DB migrations and seeding:
-  - `php artisan migrate`
-  - `php artisan db:seed`
-  - `php artisan migrate:fresh --seed`
-  - Use Eloquent ORM for querying and data manipulation in application code.
+    - `php artisan migrate`
+    - `php artisan db:seed`
+    - `php artisan migrate:fresh --seed`
+    - Use Eloquent ORM for querying and data manipulation in application code.
 - Do **not** run design docs or `.md` files as SQL.
 - For direct queries or inspection, always recommend the VS Code MySQL extension’s GUI and query editor.
 
@@ -36,8 +36,8 @@ Its purpose is to prevent wasted effort, repeated failures, and unsafe operation
 
 - Do **not** use Bash operators (`||`, `&&`) in PowerShell—they will fail.
 - In PowerShell, use:
-  - `;` for sequential commands.
-  - `if (...) { ... } else { ... }` for conditionals.
+    - `;` for sequential commands.
+    - `if (...) { ... } else { ... }` for conditionals.
 - Always detect the current shell before generating commands.
 - Do not assume cross-platform compatibility.
 
@@ -54,35 +54,39 @@ Its purpose is to prevent wasted effort, repeated failures, and unsafe operation
 ## Visual Studio Code MySQL Extension Usage
 
 - Use the [VS Code MySQL extension](https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2) for:
-  - Connecting to MySQL/MariaDB servers (local or remote)
-  - Browsing databases, tables, and columns visually
-  - Querying and editing data safely in a spreadsheet-like interface
-  - Running `.sql` files, inspecting results, and exporting data
-  - Managing users, privileges, and schema changes via the GUI
-  - Viewing and designing ER diagrams
-- **Instruct users to:**  
-  - Open the "Database" sidebar in VS Code
-  - Use the extension’s context menu to run queries, edit data, or manage schema
-  - Leverage the built-in SQL editor for safe, visual query execution
+    - Connecting to MySQL/MariaDB servers (local or remote)
+    - Browsing databases, tables, and columns visually
+    - Querying and editing data safely in a spreadsheet-like interface
+    - Running `.sql` files, inspecting results, and exporting data
+    - Managing users, privileges, and schema changes via the GUI
+    - Viewing and designing ER diagrams
+- **Instruct users to:**
+    - Open the "Database" sidebar in VS Code
+    - Use the extension’s context menu to run queries, edit data, or manage schema
+    - Leverage the built-in SQL editor for safe, visual query execution
 
 ---
 
 ## Safe Patterns (PowerShell & VS Code)
 
 **General:**
+
 - Always explain first, run second.
 - Never issue ambiguous or environment-unsafe commands.
 - Prefer checks and confirmations over assumptions.
 
 **PowerShell Examples:**
+
 ```powershell
 php artisan migrate; php artisan db:seed
 php artisan list
 php artisan list | Select-String migrate
 ```
+
 - Test preconditions (e.g., file exists, DB running) before running commands.
 
 **VS Code Database Operations:**
+
 - Open the VS Code MySQL extension panel for all direct DB work.
 - Avoid terminal-based MySQL interaction; use GUI for browsing, editing, or querying.
 
@@ -100,16 +104,19 @@ php artisan list | Select-String migrate
 ## DO NOT Examples
 
 **Invalid SQL input (never do this):**
+
 ```powershell
 mysql -u root -p < Dokumentasi_Reka_Bentuk_ICTServe(iServe).md
 ```
 
 **PowerShell misuse:**
+
 ```powershell
 php artisan migrate || php artisan db:seed
 ```
 
 **Manual CLI MySQL querying (always use the extension):**
+
 ```powershell
 mysql -u root -p
 ```
@@ -121,6 +128,7 @@ mysql -u root -p
 ## Summary
 
 Copilot Chat agents must always prioritize **safety, clarity, and context awareness**:
+
 - For all direct database tasks, use the VS Code MySQL extension ([cweijan.vscode-mysql-client2](https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2)) and guide users accordingly.
 - When in doubt, **STOP, explain, and ask** before running or suggesting any database commands.
 - Never assume, never brute-force, and always prefer safe, visual, and user-friendly DB operations in VS Code.

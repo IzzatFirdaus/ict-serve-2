@@ -20,7 +20,12 @@
         </span>
 
         {{-- Dropdown Arrow --}}
-        <x-icon name="bs.chevron-down" class="h-3 w-3 transition-transform" ::class="{ 'rotate-180': open }" aria-hidden="true" />
+        <x-icon
+            name="bs.chevron-down"
+            class="h-3 w-3 transition-transform"
+            ::class="{ 'rotate-180': open }"
+            aria-hidden="true"
+        />
     </button>
 
     {{-- Dropdown Menu --}}
@@ -37,9 +42,9 @@
         class="fi-dropdown-list absolute z-10 mt-2 w-40 origin-top-right rounded-lg bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         role="menu"
         aria-orientation="vertical"
-        style="display: none;"
+        style="display: none"
     >
-        @foreach($availableLanguages as $code => $name)
+        @foreach ($availableLanguages as $code => $name)
             <button
                 type="button"
                 wire:click="switchLanguage('{{ $code }}')"
@@ -49,7 +54,7 @@
                 aria-label="{{ __('filament.language.switch_to', ['language' => $name]) }}"
             >
                 {{-- Selected Indicator --}}
-                @if($currentLanguage === $code)
+                @if ($currentLanguage === $code)
                     <x-icon name="bs.check" class="h-4 w-4 text-primary-600" aria-hidden="true" />
                 @else
                     <span class="w-4"></span>

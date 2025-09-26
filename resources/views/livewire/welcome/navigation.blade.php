@@ -1,4 +1,3 @@
-
 <nav class="-mx-3 flex flex-1 justify-end">
     @auth
         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">

@@ -11,14 +11,14 @@ class EquipmentCategoryController extends Controller
     {
         $this->authorize('viewAny', EquipmentCategory::class);
 
-        return view('equipment_categories.index');
+        return \view('equipment_categories.index');
     }
 
     public function create()
     {
         $this->authorize('create', EquipmentCategory::class);
 
-        return view('equipment_categories.create');
+        return \view('equipment_categories.create');
     }
 
     public function store(Request $request)
@@ -32,14 +32,14 @@ class EquipmentCategoryController extends Controller
     {
         $this->authorize('view', $equipmentCategory);
 
-        return view('equipment_categories.show', compact('equipmentCategory'));
+        return \view('equipment_categories.show', compact('equipmentCategory'));
     }
 
     public function edit(EquipmentCategory $equipmentCategory)
     {
         $this->authorize('update', $equipmentCategory);
 
-        return view('equipment_categories.edit', compact('equipmentCategory'));
+        return \view('equipment_categories.edit', compact('equipmentCategory'));
     }
 
     public function update(Request $request, EquipmentCategory $equipmentCategory)

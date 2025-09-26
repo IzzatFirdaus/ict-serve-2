@@ -12,12 +12,15 @@
         aria-label="{{ __('filament.theme.switch_theme') }}"
     >
         {{-- Theme Icon --}}
+
         @switch($currentTheme)
             @case('light')
                 <x-icon name="bs.sun" class="h-4 w-4" aria-hidden="true" />
+
                 @break
             @case('dark')
                 <x-icon name="bs.moon" class="h-4 w-4" aria-hidden="true" />
+
                 @break
             @default
                 <x-icon name="bs.circle-half" class="h-4 w-4" aria-hidden="true" />
@@ -29,7 +32,12 @@
         </span>
 
         {{-- Dropdown Arrow --}}
-        <x-icon name="bs.chevron-down" class="h-3 w-3 transition-transform" ::class="{ 'rotate-180': open }" aria-hidden="true" />
+        <x-icon
+            name="bs.chevron-down"
+            class="h-3 w-3 transition-transform"
+            ::class="{ 'rotate-180': open }"
+            aria-hidden="true"
+        />
     </button>
 
     {{-- Dropdown Menu --}}
@@ -46,9 +54,9 @@
         class="fi-dropdown-list absolute z-10 mt-2 w-40 origin-top-right rounded-lg bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         role="menu"
         aria-orientation="vertical"
-        style="display: none;"
+        style="display: none"
     >
-        @foreach($availableThemes as $theme => $name)
+        @foreach ($availableThemes as $theme => $name)
             <button
                 type="button"
                 wire:click="switchTheme('{{ $theme }}')"
@@ -58,23 +66,42 @@
                 aria-label="{{ __('filament.theme.switch_to', ['theme' => __('filament.theme.' . $theme)]) }}"
             >
                 {{-- Theme Icon --}}
+
                 @switch($theme)
                     @case('light')
-                        <x-icon name="bs.sun" class="h-4 w-4 {{ $currentTheme === $theme ? 'text-primary-600' : 'text-gray-400' }}" aria-hidden="true" />
+                        <x-icon
+                            name="bs.sun"
+                            class="h-4 w-4 {{ $currentTheme === $theme ? 'text-primary-600' : 'text-gray-400' }}"
+                            aria-hidden="true"
+                        />
+
                         @break
                     @case('dark')
-                        <x-icon name="bs.moon" class="h-4 w-4 {{ $currentTheme === $theme ? 'text-primary-600' : 'text-gray-400' }}" aria-hidden="true" />
+                        <x-icon
+                            name="bs.moon"
+                            class="h-4 w-4 {{ $currentTheme === $theme ? 'text-primary-600' : 'text-gray-400' }}"
+                            aria-hidden="true"
+                        />
+
                         @break
                     @default
-                        <x-icon name="bs.circle-half" class="h-4 w-4 {{ $currentTheme === $theme ? 'text-primary-600' : 'text-gray-400' }}" aria-hidden="true" />
+                        <x-icon
+                            name="bs.circle-half"
+                            class="h-4 w-4 {{ $currentTheme === $theme ? 'text-primary-600' : 'text-gray-400' }}"
+                            aria-hidden="true"
+                        />
                 @endswitch
 
                 {{-- Theme Name --}}
                 <span>{{ __('filament.theme.' . $theme) }}</span>
 
                 {{-- Selected Indicator --}}
-                @if($currentTheme === $theme)
-                    <x-icon name="bs.check" class="ml-auto h-4 w-4 text-primary-600" aria-hidden="true" />
+                @if ($currentTheme === $theme)
+                    <x-icon
+                        name="bs.check"
+                        class="ml-auto h-4 w-4 text-primary-600"
+                        aria-hidden="true"
+                    />
                 @endif
             </button>
         @endforeach
