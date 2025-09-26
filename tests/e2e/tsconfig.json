@@ -1,13 +1,12 @@
 {
-
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "commonjs",
-    "moduleResolution": "Node",
-    "strict": true,
-  "types": ["@playwright/test", "node"],
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "include": ["*.ts", "../../resources/ts/global.d.ts"]
+    "compilerOptions": {
+        "target": "ESNext",
+        "module": "commonjs",
+        "moduleResolution": "Node",
+        "strict": true,
+        "types": ["@playwright/test", "node"],
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": ["*.ts", "../../resources/ts/global.d.ts"]
 }

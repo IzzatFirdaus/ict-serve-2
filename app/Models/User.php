@@ -2,47 +2,114 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\UserStatus;
+use App\Traits\Blameable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
+use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+/**
+ * Class User
+ *
+ * @property int $id
+ * @property string|null $title
+ * @property string $name
+ * @property string|null $identification_number
+ * @property string|null $passport_number
+ * @property string|null $profile_photo_path
+ * @property int|null $position_id
+ * @property int|null $grade_id
+ * @property int|null $department_id
+ * @property string|null $level
+ * @property string|null $mobile_number
+ * @property string $email
+ * @property string $password
+ * @property UserStatus|null $status
+ * @property string|null $lang
+ * @property string|null $theme
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property array|null $two_factor_recovery_codes
+ * @property string|null $two_factor_secret
+ * @property \Illuminate\Support\Carbon|null $two_factor_confirmed_at
+ * @property string|null $remember_token
+ * @property-read Position|null $position
+ * @property-read Grade|null $grade
+ * @property-read Department|null $department
+ * @property-read \Illuminate\Database\Eloquent\Collection|HelpdeskTicket[] $helpdeskTickets
+ * @property-read \Illuminate\Database\Eloquent\Collection|LoanApplication[] $loanApplications
+ * @property-read \Illuminate\Database\Eloquent\Collection|Approval[] $approvals
+ */
+class User extends Authenticatable implements AuditableContract, FilamentUser
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use AuditableTrait, Blameable, HasFactory, HasRoles, Notifiable, SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'title', 'name', 'identification_number', 'passport_number', 'profile_photo_path',
+        'position_id', 'grade_id', 'department_id', 'level', 'mobile_number', 'email', 'password',
+        'lang', 'theme', 'status', 'email_verified_at', 'two_factor_secret', 'two_factor_recovery_codes', 'two_factor_confirmed_at',
+        'remember_token', 'created_by', 'updated_by', 'deleted_by',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'two_factor_recovery_codes' => 'array',
+        'two_factor_confirmed_at' => 'datetime',
+        'status' => UserStatus::class,
+    ];
+
+    public function canAccessPanel(Panel $panel): bool
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        // TODO: Replace hardcoded domain with a configurable setting from config or database.
+        return $this->status === UserStatus::AKTIF && str_ends_with($this->email, '@motac.gov.my');
+    }
+
+    public function position(): BelongsTo
+    {
+        return $this->belongsTo(Position::class);
+    }
+
+    public function grade(): BelongsTo
+    {
+        return $this->belongsTo(Grade::class);
+    }
+
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function helpdeskTickets(): HasMany
+    {
+        return $this->hasMany(HelpdeskTicket::class, 'user_id');
+    }
+
+    public function loanApplications(): HasMany
+    {
+        return $this->hasMany(LoanApplication::class, 'user_id');
+    }
+
+    public function approvals(): HasMany
+    {
+        return $this->hasMany(Approval::class, 'officer_id');
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', UserStatus::AKTIF);
     }
 }

@@ -3,79 +3,53 @@
 import Swal from 'sweetalert2';
 
 /**
- * MYDS-compliant SweetAlert2 Helper
- * ----------------------------------
- * This helper wraps SweetAlert2 dialogs with MYDS (Malaysia Government Design System) color tokens,
- * accessible button classes, and sensible defaults for use in all destructive, confirm, and alert flows.
+ * Design System-compliant SweetAlert2 Helper (v2)
+ * --------------------------------------
+ * This wrapper uses CSS classes for styling to ensure 100% compliance with
+ * the project's design tokens. It moves all color logic
+ * out of JavaScript and into your stylesheets.
  *
- * Usage:
- *   import { showSwal } from './swal';
- *
- *   // Simple info dialog
- *   showSwal({
- *     title: 'Maklumat',
- *     text: 'Ini adalah dialog maklumat.',
- *     icon: 'info',
- *     variant: 'info',
- *   });
- *
- *   // Destructive confirm dialog
- *   showSwal({
- *     title: 'Padam permohonan?',
- *     text: 'Tindakan ini tidak boleh diundur.',
- *     icon: 'warning',
- *     variant: 'destructive',
- *     showCancelButton: true,
- *     confirmButtonText: 'Padam',
- *     cancelButtonText: 'Batal',
- *   }).then(result => {
- *     if (result.isConfirmed) {
- *       // Do destructive action
- *     }
- *   });
- *
- * Accessibility:
- *   - Buttons use MYDS classes for color contrast and focus rings.
- *   - Dialogs are keyboard and screen reader accessible by default (SweetAlert2).
- *   - Use clear, descriptive titles and button text for a11y.
- *
- * @param {Object} opts - SweetAlert2 options (see https://sweetalert2.github.io/)
- * @param {('success'|'error'|'warning'|'info'|'question'|'confirm'|'destructive')} opts.variant - Dialog type for MYDS color mapping
- * @returns {Promise<SweetAlertResult>}
+ * @param {Object} opts - SweetAlert2 options.
+ * @param {'success'|'error'|'warning'|'info'|'confirm'|'destructive'} [opts.variant='info'] - Determines the dialog's icon and button styles.
+ * @returns {Promise<SweetAlertResult>} A promise that resolves with the SweetAlert2 result.
  */
 export function showSwal(opts = {}) {
-    // MYDS color tokens (adjust as needed for your theme)
-    const mydsColors = {
-        success: '#22c55e', // green-500
-        error: '#ef4444',   // red-500
-        warning: '#f59e42', // orange-400
-        info: '#0ea5e9',    // blue-500
-        question: '#6366f1',// indigo-500
-        confirm: '#6366f1', // indigo-500
-        destructive: '#ef4444',
-    };
     const {
         variant = 'info',
         confirmButtonText = 'OK',
         cancelButtonText = 'Batal',
-        showCancelButton = false,
         ...rest
     } = opts;
+
+    // --- Dynamic Class Mapping based on Variant ---
+    // This logic determines the style of the confirm button.
+    let confirmButtonClass = 'ds-btn ds-btn-primary'; // Default
+    if (variant === 'destructive') {
+        confirmButtonClass = 'ds-btn ds-btn-danger';
+    } else if (variant === 'success') {
+        confirmButtonClass = 'ds-btn ds-btn-success';
+    }
+
     return Swal.fire({
+        // Use custom classes for styling, controlled by your app's CSS.
         customClass: {
-            popup: 'rounded-xl shadow-card',
-            confirmButton: 'myds-btn myds-btn-primary',
-            cancelButton: 'myds-btn myds-btn-secondary',
+            popup: 'rounded-xl shadow-lg',
+            confirmButton: confirmButtonClass,
+            cancelButton: 'ds-btn ds-btn-secondary',
+            // You can also style the title, text, etc.
+            // title: 'text-2xl font-bold text-gray-800',
+            // htmlContainer: 'text-gray-600',
         },
-        buttonsStyling: false,
+        buttonsStyling: false, // CRITICAL: This allows your custom classes to take effect.
+
+        // Sensible defaults for accessibility and UX.
         focusConfirm: true,
         allowOutsideClick: false,
         allowEscapeKey: true,
-        confirmButtonColor: mydsColors[variant] || mydsColors.info,
-        cancelButtonColor: mydsColors.error,
+
+        // Pass through the user-defined options.
         confirmButtonText,
         cancelButtonText,
-        showCancelButton,
         ...rest,
     });
 }

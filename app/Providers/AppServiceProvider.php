@@ -19,9 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Set locale from session if available
-        if (session()->has('locale')) {
-            app()->setLocale(session('locale'));
-        }
+        // Service provider logic can be added here as needed.
+        // Locale and theme data are now handled by their respective middleware.
     }
 }
