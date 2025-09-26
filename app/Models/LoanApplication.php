@@ -56,6 +56,21 @@ class LoanApplication extends Model implements AuditableContract
 {
     use AuditableTrait, Blameable, HasFactory, SoftDeletes;
 
+    protected $auditInclude = [
+        'status',
+        'approved_by',
+        'rejection_reason',
+        'loan_start_date',
+        'loan_end_date'
+    ];
+
+    protected $auditEvents = [
+        'created',
+        'updated',
+        'deleted',
+        'restored'
+    ];
+
     protected $fillable = [
         'user_id', 'responsible_officer_id', 'supporting_officer_id', 'purpose', 'location', 'return_location',
         'loan_start_date', 'loan_end_date', 'status', 'rejection_reason', 'applicant_confirmation_timestamp',
